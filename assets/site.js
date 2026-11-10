@@ -60,11 +60,11 @@ const P={
 const CRP=["colin","rita","porf"];
 // s: prep | sub | acc | pub
 const pubs=[
- {t:"The proper geometric dimension of the mapping class groups of non-orientable surfaces with punctures",w:CRP,y:2026,s:"acc",j:"J. Group Theory",v:"to appear",pv:"https://doi.org/10.1515/jgth-2025-0187",ax:"2609.22505"},
+ {t:"The proper geometric dimension of the mapping class groups of non-orientable surfaces with punctures",w:CRP,y:2026,s:"sub",v:"Preprint",ax:"2609.22505"},
  {t:"Contractible Rips complexes of groups via metric gluings",w:["li"],y:2026,s:"sub",v:"Preprint",ax:"2608.24279"},
  {t:"Centralizers and classifying spaces for commutativity of SL₂(ℤ[1/p])",w:["omar","flores"],y:2026,s:"sub",v:"Submitted",ax:"2607.28001"},
  {t:"Finiteness properties and quasi-isometry of group pairs",w:["li"],y:2026,s:"sub",v:"Submitted",ax:"2603.06535"},
- {t:"A note on higher coherence of graphs of groups",w:["li"],y:2025,s:"sub",v:"Submitted",ax:"2511.16409"},
+ {t:"A note on higher coherence of graphs of groups",w:["li"],y:2026,s:"acc",j:"J. Group Theory",v:"to appear",pv:"https://doi.org/10.1515/jgth-2025-0187",ax:"2511.16409"},
  {t:"A spine for the Teichmüller space of a non-orientable surface with punctures",w:CRP,y:2025,s:"pub",j:"Bull. London Math. Soc.",v:"(2025)",pv:"https://doi.org/10.1112/blms.70228",ax:"2504.05404"},
  {t:"A note on finiteness properties of vertex stabilisers",w:["li"],y:2026,s:"pub",j:"Proc. Amer. Math. Soc.",v:"154 (2026), 4587–4595",pv:"https://doi.org/10.1090/proc/17750",ax:"2502.14751"},
  {t:"The proper geometric dimension of the full mapping class group of a punctured orientable surface",w:CRP,y:2025,s:"pub",j:"J. Group Theory",v:"(2025)",pv:"https://doi.org/10.1515/jgth-2024-0227",ax:"2412.14410"},
