@@ -140,7 +140,6 @@ const S=[
    ["Porfirio L. León Álvarez","El teorema de Eilenberg–Ganea para familias","UNAM","2019"]]],
  ["lvBsc",[
    ["Alonso García Molina","Las conjeturas de Kaplansky en grupos hiperbólicos","UNAM","2026"],
-   ["Asly Amairani López Poblete","Grupos virtualmente cíclicos","UABJO","2026"],
    ["Víctor Eduardo San Martín Macías","Grupos de dimensión 1","UNAM","2024"],
    ["Diana Belén Vizcaíno Torres","El espectro terso de Bowditch y grupos generados por dos elementos","UNAM","2024"],
    ["Vivian Daniela de León","Una cota para el orden del grupo de isometrías de una superficie hiperbólica","UNAM","2024"],
