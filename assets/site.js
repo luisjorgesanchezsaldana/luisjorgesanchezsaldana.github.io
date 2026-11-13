@@ -55,11 +55,13 @@ const P={
   hidber:["Cristhian E. Hidber"], trujillo:["Alejandra Trujillo-Negrete"],
   joecken:["Kyle Joecken"], lafont:["Jean-François Lafont","https://people.math.osu.edu/lafont.1/"],
   arci:["José Antonio Arciniega-Nevarez"], jlcm:["José Luis Cisneros-Molina","http://www.matcuer.unam.mx/paginas/jlcm/"],
-  busta:["Mauricio Bustamante","https://sites.google.com/view/mbustamante/"]
+  busta:["Mauricio Bustamante","https://sites.google.com/view/mbustamante/"],
+  efm:["Eduardo Flores Martínez"]
 };
 const CRP=["colin","rita","porf"];
 // s: prep | sub | acc | pub
 const pubs=[
+ {t:"Finiteness properties of Bestvina–Brady kernels for graph products with torsion",w:["efm"],y:2026,s:"sub",v:"Preprint",ax:"2611.15976"},
  {t:"The proper geometric dimension of the mapping class groups of non-orientable surfaces with punctures",w:CRP,y:2026,s:"sub",v:"Preprint",ax:"2609.22505"},
  {t:"Contractible Rips complexes of groups via metric gluings",w:["li"],y:2026,s:"sub",v:"Preprint",ax:"2608.24279"},
  {t:"Centralizers and classifying spaces for commutativity of SL₂(ℤ[1/p])",w:["omar","flores"],y:2026,s:"sub",v:"Submitted",ax:"2607.28001"},
