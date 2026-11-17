@@ -1,0 +1,135 @@
+\documentclass[11pt]{article}
+\usepackage[spanish,provide=*]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,babel}
+\usepackage[colorlinks=true,urlcolor=blue!50!black,linkcolor=blue!50!black]{hyperref}
+
+\hyphenpenalty=10000 \exhyphenpenalty=10000 \emergencystretch=3em
+\theoremstyle{definition}
+\newtheorem{defn}{Definición}
+
+\definecolor{extremo}{RGB}{47,107,79}
+\definecolor{azul}{RGB}{44,74,154}
+
+\title{Caminos y homotopías}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=nStpLjYHEvc}{\guillemotleft{}Caminos y homotopías | Grupo fundamental | Topología algebraica\guillemotright{}}
+(curso de Introducción a la Topología Algebraica, otoño 2020). Preparan la definición del grupo fundamental.
+\normalsize
+
+\section*{Notación y caminos}
+
+Se denota por $I$ al intervalo unitario $[0,1]\subset\mathbb{R}$. Además, $X$ es un espacio topológico cualquiera, fijo durante todo el texto.
+
+\begin{defn}[Camino]
+Un \emph{camino} en $X$ es una función continua
+\[
+  f\colon I\longrightarrow X .
+\]
+\end{defn}
+
+Gráficamente, $X$ se dibuja como una región y el camino manda el intervalo $I$ a una curva dentro de ella; a menudo se dibuja solo la imagen.
+
+\medskip\noindent\textbf{Observación.} Un camino es la función, no solo su imagen: lo que se tiene son caminos parametrizados. El dibujo de la curva es una forma cómoda de pensarlos.
+
+\section*{La idea: deformar caminos}
+
+La idea que viene de la topología algebraica, y que aparecerá una y otra vez, es \textbf{deformar un camino continuamente en un tiempo finito}. Se empieza con un camino (en el dibujo del video, el blanco) y se mueve como si fuera una cuerda, pasando por una sucesión de caminos intermedios (los amarillos) hasta llegar a otro camino (el rojo). Se dice entonces que el camino rojo se obtuvo del blanco mediante una deformación. Lo que sigue formaliza esta idea.
+
+\section*{Homotopía de caminos}
+
+\begin{defn}[Homotopía de caminos]
+Una \emph{homotopía de caminos} en $X$ es una familia de caminos
+\[
+  f_t\colon I\longrightarrow X,\qquad 0\le t\le 1,
+\]
+indexada por un parámetro $t$ en $I$ (el \guillemotleft{}tiempo\guillemotright{}), tal que la función asociada
+\[
+  F\colon I\times I\longrightarrow X,\qquad F(s,t)=f_t(s),
+\]
+es continua.
+\end{defn}
+
+\noindent\textbf{Cómo leer el cuadrado $I\times I$.} Cada línea horizontal del cuadrado ($t$ fijo) se manda al camino $f_t$, que es una etapa de la deformación. La línea de hasta arriba va al camino blanco, $f_0$; las líneas intermedias (por ejemplo $t=1/6$ o $t=1/2$) van a los caminos amarillos; y la línea de hasta abajo va al camino rojo, $f_1$. Así, $F$ recoge toda la deformación del blanco al rojo en una sola función continua.
+
+\section*{Homotopía relativa a los extremos}
+
+Ahora se complementa la definición. El video lo señala como un detalle técnico cuya importancia se verá muy rápido, al definir el grupo fundamental.
+
+\begin{defn}[Homotopía relativa a los extremos]
+Sean $x_0,x_1\in X$. La homotopía $F\colon I\times I\to X$ es \emph{relativa a los extremos}, denotado $\mathrm{rel}\ \{0,1\}$, si
+\[
+  F(0,t)=x_0\quad\text{para todo } t,
+  \qquad
+  F(1,t)=x_1\quad\text{para todo } t.
+\]
+\end{defn}
+
+Es decir: todos los caminos de las etapas de la deformación tienen el mismo punto inicial $x_0$ y el mismo punto final $x_1$. En el cuadrado, el lado izquierdo ($s=0$) se manda completo a $x_0$ y el lado derecho ($s=1$) se manda completo a $x_1$; el lado de arriba va al camino blanco y el de abajo al rojo.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[>=Stealth,line cap=round]
+  % caminos en X
+  \coordinate (a) at (0,0);
+  \coordinate (b) at (5,0);
+  \foreach \c in {1.35,0.1,-1.15}{%
+    \draw[gray!70,thin] (a) .. controls (1.2,\c) and (3.8,\c) .. (b);}
+  \draw[very thick] (a) .. controls (1.2,2.6) and (3.8,2.6) .. (b);
+  \draw[very thick,azul] (a) .. controls (1.2,-2.4) and (3.8,-2.4) .. (b);
+  \fill[extremo] (a) circle (2.5pt);
+  \fill[extremo] (b) circle (2.5pt);
+  \node[below left] at (a) {$x_0$};
+  \node[below right] at (b) {$x_1$};
+  \node at (2.5,2.3) {$f_0$};
+  \node[azul] at (2.5,-2.15) {$f_1$};
+  \node[gray] at (-0.3,2.3) {$X$};
+  % cuadrado I x I
+  \def\xl{8.2}\def\xr{11.2}\def\yt{1.8}\def\yb{-1.8}
+  \foreach \y in {0.9,0,-0.9}{\draw[gray!60,thin] (\xl,\y) -- (\xr,\y);}
+  \draw[very thick] (\xl,\yt) -- (\xr,\yt);
+  \draw[very thick,azul] (\xl,\yb) -- (\xr,\yb);
+  \draw[very thick,extremo] (\xl,\yt) -- (\xl,\yb);
+  \draw[very thick,extremo] (\xr,\yt) -- (\xr,\yb);
+  \node[above] at ({(\xl+\xr)/2},\yt) {$t=0\mapsto f_0$};
+  \node[below] at ({(\xl+\xr)/2},\yb) {$t=1\mapsto f_1$};
+  \node[gray,below] at ({(\xl+\xr)/2},{\yb-0.55}) {\small $I\times I$};
+  % flecha F
+  \draw[->] (7.9,1.0) -- (5.6,1.0) node[midway,above] {$F$};
+\end{tikzpicture}
+\par\smallskip
+\begin{minipage}{0.9\textwidth}\small\centering
+A la izquierda, los caminos de la deformación en $X$ ($f_0$ arriba, $f_1$ abajo) comparten los mismos extremos $x_0$ y $x_1$. A la derecha, el cuadrado $I\times I$ que $F$ manda a esa familia; los lados verticales (en verde) van a $x_0$ y a $x_1$.
+\end{minipage}
+\end{figure}
+
+\section*{Caminos homotópicos relativos a $\{0,1\}$}
+
+La última definición continúa la anterior, pero ahora se parte de dos caminos dados desde el principio, $f_0$ y $f_1$ en $X$, con los mismos puntos iniciales y los mismos puntos finales.
+
+\begin{defn}[Caminos homotópicos]
+Dos caminos $f_0$ y $f_1$ en $X$ son \emph{homotópicos relativos a $\{0,1\}$} si existe una homotopía entre ellos, es decir, una función continua $F\colon I\times I\to X$, relativa a los extremos, tal que
+\[
+  F(s,0)=f_0(s)\quad\text{y}\quad F(s,1)=f_1(s).
+\]
+\end{defn}
+
+En el dibujo, el camino de arriba (blanco) es $f_0$ y el de abajo (rojo) es $f_1$: $f_0$ se deforma de manera continua en el tiempo hasta $f_1$, siempre dejando fijos los extremos.
+
+\medskip\noindent\textbf{Notación.}
+\[
+  f_0\simeq f_1\ \ \mathrm{rel}\ \{0,1\}.
+\]
+
+\end{document}
