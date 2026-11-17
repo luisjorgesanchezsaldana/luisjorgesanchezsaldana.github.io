@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{y8YsZ3qrOZ4}
+\input{preambulo}
+\unidad{1}{26} % unidad 1; primer enunciado: 1.26
+
+\title{El grupo fundamental de la $n$-esfera}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=y8YsZ3qrOZ4}{\guillemotleft{}El grupo fundamental de la $n$-esfera\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se demuestra que el grupo fundamental de la $n$-esfera es trivial si $n\geq 2$, con ayuda de un lema técnico sobre lazos en una unión de abiertos arco-conexos.
+\normalsize
+
+\section*{Enunciado}
+
+Se estudian los grupos fundamentales de las esferas $S^n$ de dimensión $n\geq 1$. Ya se sabe que $\pi_1(S^1)\cong\mathbb{Z}$ (Teorema~1.19). Además, cualquier esfera de dimensión al menos $1$ es conexa (por caminos), de modo que su grupo fundamental no depende del punto base y no se hablará de los puntos base. El objetivo de este video es demostrar lo siguiente.
+
+\begin{prop}\label{prop:esfera}
+$\pi_1(S^n)=0$ si $n\geq 2$; es decir, el grupo fundamental de la $n$-esfera es el grupo trivial (el grupo con un solo elemento).
+\end{prop}
+
+Para demostrarlo, primero se demuestra un lema técnico que también será útil más adelante.
+
+\begin{lema}\label{lema:descomposicion}
+Sea $X=\bigcup_{\alpha\in I}A_\alpha$ tal que
+\begin{itemize}
+  \item cada $A_\alpha$ es arco-conexo y cada $A_\alpha$ es abierto;
+  \item $x_0\in A_\alpha$ para todo $\alpha\in I$;
+  \item $A_\alpha\cap A_\beta$ es arco-conexo para todos $\alpha,\beta\in I$.
+\end{itemize}
+Entonces todo lazo en $X$ (basado en $x_0$) es homotópico a un producto de lazos tales que cada uno de esos lazos está contenido en alguno de los $A_\alpha$.
+\end{lema}
+
+Que $A_\alpha$ sea arco-conexo significa que dos puntos cualesquiera de $A_\alpha$ se pueden conectar por un camino en $A_\alpha$; es decir, dados dos puntos de $A_\alpha$ existe un camino en $A_\alpha$ que comienza en el primero y termina en el segundo. Aquí $x_0$ es un punto base cualquiera, que desde ahora se mantiene fijo.
+
+\section*{Demostración del lema}
+
+Esquemáticamente, el espacio $X$ es la unión de tres abiertos $A_\alpha$, $A_\beta$, $A_\gamma$ (con todo y su relleno), con $x_0$ en la intersección de los tres. La intersección de cualesquiera dos es arco-conexa: dos puntos cualesquiera de una intersección se pueden unir con un camino que no se sale de ella. Se quiere ver que un lazo $\gamma$ que no se queda dentro de uno solo de los $A_\alpha$ se puede descomponer como producto de lazos, cada uno contenido en uno de los $A_\alpha$ (por ejemplo, un primer lazo en $A_\alpha$, un segundo en $A_\beta$ y un tercero en $A_\gamma$). La demostración es bastante geométrica; solo se usa que el intervalo $I=[0,1]$ es compacto.
+
+\begin{center}
+\begin{tikzpicture}[x=0.024cm,y=-0.024cm,line cap=round]
+  \draw[thick,gray] (250,120) circle (90);
+  \draw[thick,gray] (350,120) circle (90);
+  \draw[thick,gray] (300,200) circle (90);
+  \draw[very thick] (300,150) .. controls (265,150) and (235,170) .. (215,190) .. controls (230,260) and (370,260) .. (385,190) .. controls (420,150) and (410,90) .. (300,70) .. controls (250,70) and (260,120) .. (300,150);
+  \draw[thick,azul,dashed] (300,150) .. controls (275,185) and (240,205) .. (215,190);
+  \draw[thick,azul,dashed] (300,150) .. controls (330,190) and (360,205) .. (385,190);
+  \draw[thick,azul,dashed] (300,150) -- (300,70);
+  \fill[extremo] (300,150) circle (4); \node[extremo] at (318,160) {\small $x_0$};
+  \fill[azul] (215,190) circle (3.2); \node[azul] at (199,204) {\small $p_1$};
+  \fill[azul] (385,190) circle (3.2); \node[azul] at (401,204) {\small $p_2$};
+  \fill[azul] (300,70) circle (3.2); \node[azul] at (300,60) {\small $p_3$};
+  \node at (165,38) {$A_\alpha$}; \node at (435,38) {$A_\beta$}; \node at (300,310) {$A_\gamma$};
+  \node at (255,100) {\small $\gamma$}; \node at (160,20) {$X$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: tres abiertos que se intersectan, un lazo $\gamma$ basado en $x_0$, y caminos (azul, punteados) de $x_0$ a puntos $p_1,p_2,p_3$ por los que $\gamma$ pasa de un abierto a otro.
+
+\begin{proof}
+Sea $\gamma\colon I\to X$ un lazo basado en $x_0$.
+
+\medskip\noindent\textit{Una partición adaptada.}
+Para cada $t\in I$, el punto $\gamma(t)$ está en algún $A_\alpha$, que es abierto; por continuidad existe una vecindad de $t$ en $I$ cuya imagen bajo $\gamma$ queda completamente contenida en ese $A_\alpha$, y esa vecindad se puede achicar un poco para que su cerradura también quede contenida en $A_\alpha$. Haciendo esto con todos los puntos del intervalo se obtiene una cubierta abierta de $I$. Como $I$ es compacto, existe una subcubierta finita $V_1,V_2,\dots,V_m$, que se puede pensar como una partición del intervalo: las cerraduras $\overline{V}_1,\dots,\overline{V}_m$ son subintervalos cerrados que cubren $I$ y cada uno cae dentro de uno de los $A_\alpha$ bajo $\gamma$.
+
+\medskip\noindent\textit{Descomposición de $\gamma$ en caminos.}
+Sea $\gamma_i$ la restricción de $\gamma$ a $\overline{V}_i$; no es un lazo, sino solo un camino. Claramente $\gamma$ es la concatenación $\gamma_1\cdots\gamma_m$ de estos caminos.
+
+\medskip\noindent\textit{De caminos a lazos.}
+El problema es que los $\gamma_i$ no son lazos, que es lo que se quería. Pero volverlos lazos no es complicado. El punto donde termina $\gamma_i$ vive tanto en el abierto que contiene a la imagen de $\overline{V}_i$ como en el que contiene a la de $\overline{V}_{i+1}$, es decir, en una intersección de abiertos. Como las intersecciones de los abiertos son arco-conexas (y contienen a $x_0$), ese punto se puede conectar con $x_0$ por un camino dentro de la intersección (los caminos azules punteados de la figura). Se hace esto con cada uno de los elementos de la partición, y la concatenación de los lazos así obtenidos, cada uno contenido en uno de los $A_\alpha$, es homotópica al lazo original $\gamma$: lo único en lo que difieren es en pedazos que van de $x_0$ a un punto y luego regresan por el mismo camino, y como ya se hizo en videos anteriores, esos pedazos se pueden contraer a un punto.
+
+El video da solo la idea geométrica; lo único que falta es terminar de escribir los detalles.
+\end{proof}
+
+\section*{Demostración de la proposición}
+
+La idea también es muy geométrica. Se descompone la esfera como la unión de dos abiertos: se toman el hemisferio norte y el hemisferio sur y se \emph{engordan} un poco para que queden abiertos, de modo que su intersección es una franja que rodea al ecuador.
+
+\begin{center}
+\begin{tikzpicture}[x=0.024cm,y=-0.024cm,line cap=round]
+  \definecolor{rosa}{RGB}{190,70,110}
+  \fill[rosa,opacity=0.35] (94.2,120.0) -- (94.6,122.2) -- (95.8,124.3) -- (97.8,126.5) -- (100.6,128.6) -- (104.1,130.6) -- (108.3,132.5) -- (113.3,134.3) -- (118.9,136.1) -- (125.2,137.7) -- (132.0,139.2) -- (139.3,140.5) -- (147.1,141.7) -- (155.3,142.7) -- (163.8,143.5) -- (172.6,144.1) -- (181.6,144.6) -- (190.8,144.9) -- (200.0,145.0) -- (209.2,144.9) -- (218.4,144.6) -- (227.4,144.1) -- (236.2,143.5) -- (244.7,142.7) -- (252.9,141.7) -- (260.7,140.5) -- (268.0,139.2) -- (274.8,137.7) -- (281.1,136.1) -- (286.7,134.3) -- (291.7,132.5) -- (295.9,130.6) -- (299.4,128.6) -- (302.2,126.5) -- (304.2,124.3) -- (305.4,122.2) -- (305.8,120.0) -- (305.8,180.0) -- (305.4,182.2) -- (304.2,184.3) -- (302.2,186.5) -- (299.4,188.6) -- (295.9,190.6) -- (291.7,192.5) -- (286.7,194.3) -- (281.1,196.1) -- (274.8,197.7) -- (268.0,199.2) -- (260.7,200.5) -- (252.9,201.7) -- (244.7,202.7) -- (236.2,203.5) -- (227.4,204.1) -- (218.4,204.6) -- (209.2,204.9) -- (200.0,205.0) -- (190.8,204.9) -- (181.6,204.6) -- (172.6,204.1) -- (163.8,203.5) -- (155.3,202.7) -- (147.1,201.7) -- (139.3,200.5) -- (132.0,199.2) -- (125.2,197.7) -- (118.9,196.1) -- (113.3,194.3) -- (108.3,192.5) -- (104.1,190.6) -- (100.6,188.6) -- (97.8,186.5) -- (95.8,184.3) -- (94.6,182.2) -- (94.2,180.0) -- cycle;
+  \draw[thick] (200,150) circle (110);
+  \draw[thick] (90.0,150.0) -- (90.4,152.4) -- (91.7,154.9) -- (93.7,157.2) -- (96.6,159.6) -- (100.3,161.8) -- (104.7,164.0) -- (109.9,166.1) -- (115.7,168.0) -- (122.2,169.8) -- (129.3,171.4) -- (136.9,172.9) -- (145.0,174.2) -- (153.5,175.4) -- (162.4,176.3) -- (171.5,177.0) -- (180.9,177.6) -- (190.4,177.9) -- (200.0,178.0) -- (209.6,177.9) -- (219.1,177.6) -- (228.5,177.0) -- (237.6,176.3) -- (246.5,175.4) -- (255.0,174.2) -- (263.1,172.9) -- (270.7,171.4) -- (277.8,169.8) -- (284.3,168.0) -- (290.1,166.1) -- (295.3,164.0) -- (299.7,161.8) -- (303.4,159.6) -- (306.3,157.2) -- (308.3,154.9) -- (309.6,152.4) -- (310.0,150.0);
+  \draw[thick,dashed] (90.0,150.0) -- (90.4,147.6) -- (91.7,145.1) -- (93.7,142.8) -- (96.6,140.4) -- (100.3,138.2) -- (104.7,136.0) -- (109.9,133.9) -- (115.7,132.0) -- (122.2,130.2) -- (129.3,128.6) -- (136.9,127.1) -- (145.0,125.8) -- (153.5,124.6) -- (162.4,123.7) -- (171.5,123.0) -- (180.9,122.4) -- (190.4,122.1) -- (200.0,122.0) -- (209.6,122.1) -- (219.1,122.4) -- (228.5,123.0) -- (237.6,123.7) -- (246.5,124.6) -- (255.0,125.8) -- (263.1,127.1) -- (270.7,128.6) -- (277.8,130.2) -- (284.3,132.0) -- (290.1,133.9) -- (295.3,136.0) -- (299.7,138.2) -- (303.4,140.4) -- (306.3,142.8) -- (308.3,145.1) -- (309.6,147.6) -- (310.0,150.0);
+  \node at (200,20) {$A_1$}; \node at (200,275) {$A_2$}; \node[rosa] at (390,150) {$A_1\cap A_2$}; \node at (60,60) {$S^n$};
+  \draw[rosa,->] (345,150) -- (310,150);
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: los casquetes $A_1$ (superior) y $A_2$ (inferior); su intersección $A_1\cap A_2$ es la franja en rosa.
+
+\begin{proof}[Demostración de la Proposición~\ref{prop:esfera}]
+Sean $A_1$ y $A_2$ los casquetes superior e inferior engordados. Cada uno es homeomorfo a $\mathbb{R}^n$ (en la figura, con $n=2$, homeomorfo a $\mathbb{R}^2$): esto no es difícil de ver porque son discos abiertos. La intersección $A_1\cap A_2$ es casi la esfera de dimensión $n-1$: el ecuador es una esfera $S^{n-1}$, pero como se engorda, la intersección es homeomorfa a $S^{n-1}\times\mathbb{R}$ (el intervalo abierto es homeomorfo a $\mathbb{R}$).
+
+Como $n\geq 2$, se tiene $n-1\geq 1$, de modo que $S^{n-1}$ es arco-conexa y por lo tanto $A_1\cap A_2$ es arco-conexa. Así, la esfera es unión de dos abiertos arco-conexos cuya intersección es arco-conexa, y se puede tomar un punto $x_0$ en la intersección; se está entonces en la situación del Lema~\ref{lema:descomposicion}.
+
+Sea $\gamma$ un lazo cualquiera en $S^n$ basado en $x_0$. Por el Lema~\ref{lema:descomposicion}, $\gamma$ es homotópico a un producto de lazos, cada uno de los cuales está en el casquete superior o en el casquete inferior. Pero cada casquete es homeomorfo a $\mathbb{R}^n$, y todo lazo en $\mathbb{R}^n$ se puede contraer, es decir, es homotópico al lazo constante (un ejercicio muy sencillo). Entonces cada uno de los lazos del producto se puede contraer al lazo constante, y pegando todas esas contracciones se obtiene que $\gamma$ es homotópico al lazo constante.
+
+Como $\gamma$ era un lazo cualquiera, todo lazo en $S^n$ es homotópico al lazo constante; por lo tanto $\pi_1(S^n)$ es trivial. El truco fue recurrir al lema anterior: tomar un lazo cualquiera y descomponerlo como producto de lazos que ya son triviales.
+\end{proof}
+
+\end{document}
