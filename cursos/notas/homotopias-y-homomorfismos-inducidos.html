@@ -1,0 +1,65 @@
+<!-- Fragmento de las notas de homotopias-y-homomorfismos-inducidos. Mismo contenido que el .tex. -->
+<h4>Homotopías que no preservan el punto base</h4>
+<p>En el video anterior se demostró la Proposición 1.31: si \(g,f\colon (X,x_0)\to(Y,y_0)\) son homotópicas mediante una homotopía que <i>preserva el punto base</i>, entonces inducen el mismo homomorfismo \(g_*=f_*\colon\pi_1(X,x_0)\to\pi_1(Y,y_0)\). Hay que tener cuidado con la hipótesis: «homotópicas» quiere decir aquí homotópicas por una homotopía que preserva el punto base. La pregunta natural es qué sucede si la homotopía <i>no</i> preserva el punto base.</p>
+<p>Para pensarlo, sean \(g,f\colon X\to Y\) homotópicas mediante \(H\colon X\times I\to Y\), con \(H(x,0)=g(x)\) y \(H(x,1)=f(x)\) (como en la Definición 1.29). Como es costumbre, cada rebanada horizontal de \(X\times I\) es una copia de \(X\). Se toma un punto base cualquiera \(x_0\in X\). Conforme avanza la homotopía, la imagen del punto base se va moviendo: en tiempo \(t\) está en \(H(x_0,t)\). La «estela» que deja la imagen del punto base es un camino en \(Y\), a saber
+\[ h\colon I\to Y,\qquad h(t)=H(x_0,t), \]
+es decir, la restricción de \(H\) a \(\{x_0\}\times I\cong I\). Este camino va de \(g(x_0)\) a \(f(x_0)\).</p>
+<figure>
+<svg viewBox="0 0 600 250" role="img" aria-label="El cilindro X×I con el segmento {x₀}×I que se envía con H al camino h de g(x₀) a f(x₀) en Y">
+<defs><marker id="nbarrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<line class="mid" x1="80" x2="80" y1="60" y2="200"/><line class="mid" x1="240" x2="240" y1="60" y2="200"/>
+<line class="f0" x1="80" x2="240" y1="60" y2="60"/>
+<line class="mid" x1="80" x2="240" y1="95" y2="95"/>
+<line class="mid" x1="80" x2="240" y1="130" y2="130"/>
+<line class="mid" x1="80" x2="240" y1="165" y2="165"/>
+<line class="f1" x1="80" x2="240" y1="200" y2="200"/>
+<line class="end" x1="140" x2="140" y1="60" y2="200"/>
+<circle class="endpt" cx="140" cy="60" r="4"/><circle class="endpt" cx="140" cy="200" r="4"/>
+<text x="140" y="52" text-anchor="middle">x₀</text><text x="140" y="218" text-anchor="middle">x₀</text>
+<ellipse class="mid" fill="none" cx="470" cy="138" rx="105" ry="92"/>
+<path class="f0" fill="none" d="M385 90C420 70 470 115 545 90"/>
+<path class="f1" fill="none" d="M385 185C425 175 475 210 545 188"/>
+<path class="end" fill="none" d="M435 88C400 120 480 150 438 188" marker-end="url(#nbarrow)"/>
+<circle class="endpt" cx="435" cy="88" r="4"/><circle class="endpt" cx="438" cy="188" r="4"/>
+<path class="arr" d="M262 130H336" marker-end="url(#nbarrow)"/><text x="301" y="116" text-anchor="middle">H</text>
+<text x="72" y="66" text-anchor="end">X×{0}</text><text class="c1" x="72" y="204" text-anchor="end">X×{1}</text>
+<text class="dim" x="160" y="38" text-anchor="middle">X × I</text><text class="dim" x="470" y="24" text-anchor="middle">Y</text>
+<text x="565" y="79" text-anchor="middle">g</text><text class="c1" x="565" y="202" text-anchor="middle">f</text>
+<text x="478" y="142">h</text>
+<text x="428" y="80" text-anchor="end">g(x₀)</text><text x="428" y="206" text-anchor="end">f(x₀)</text>
+</svg>
+<figcaption>El segmento \(\{x_0\}\times I\) (en verde) se manda con \(H\) al camino \(h\), la estela que deja la imagen del punto base cuando \(g\) se deforma en \(f\).</figcaption>
+</figure>
+<p>Esto crea una dificultad si se quiere ver si la homotopía induce una función entre grupos fundamentales. Un elemento de \(\pi_1(X,x_0)\) es un lazo basado en \(x_0\); al empujarlo con la homotopía, el lazo se va moviendo y, en general, ya no está basado en \(x_0\) ni en el mismo punto de \(Y\) para todo tiempo. Así que la homotopía no parece preservar los lazos dentro del grupo fundamental, y no hay una manera natural de hablar de funciones inducidas. Sin embargo, sí se obtiene el siguiente resultado, en el que aparece el camino \(h\).</p>
+<div class="thm"><b>Lema 1.32.</b> <i>Sean \(g,f\colon X\to Y\) homotópicas mediante \(H\colon X\times I\to Y\) y sea \(x_0\in X\) un punto base. Sea \(h\) el camino \(h(t)=H(x_0,t)\), que va de \(g(x_0)\) a \(f(x_0)\). Entonces el siguiente diagrama conmuta:</i>
+<figure>
+<svg viewBox="0 0 520 210" role="img" aria-label="Triángulo conmutativo: f_* de π₁(X,x₀) a π₁(Y,f(x₀)), g_* de π₁(X,x₀) a π₁(Y,g(x₀)) y β_h de π₁(Y,f(x₀)) a π₁(Y,g(x₀))">
+<defs><marker id="nbarrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="70" y="108" text-anchor="middle">π₁(X,x₀)</text>
+<text x="400" y="38" text-anchor="middle">π₁(Y,f(x₀))</text>
+<text x="400" y="190" text-anchor="middle">π₁(Y,g(x₀))</text>
+<path class="arr" d="M125 98L335 48" marker-end="url(#nbarrow2)"/><text class="dim" x="220" y="62" text-anchor="middle">f_*</text>
+<path class="arr" d="M125 114L335 176" marker-end="url(#nbarrow2)"/><text class="dim" x="220" y="168" text-anchor="middle">g_*</text>
+<path class="arr" d="M400 52V160" marker-end="url(#nbarrow2)"/><text class="dim" x="412" y="108">β_h ≅</text>
+</svg>
+</figure>
+<i>es decir, \(\beta_h\circ f_*=g_*\), donde \(\beta_h\) es el isomorfismo de cambio de punto base asociado al camino \(h\).</i></div>
+<p>Recordar que un diagrama es conmutativo significa que, si se toma un elemento del grupo de la izquierda y se manda al de la derecha de dos maneras, siguiendo cada una de las rutas, se obtiene el mismo elemento. Aquí, \(f_*\) es el homomorfismo inducido \(\pi_1(X,x_0)\to\pi_1(Y,f(x_0))\), \(g_*\) es el inducido \(\pi_1(X,x_0)\to\pi_1(Y,g(x_0))\), y \(\beta_h\colon\pi_1(Y,f(x_0))\to\pi_1(Y,g(x_0))\) es el isomorfismo de cambio de punto base del video anterior (Definición 1.13): como \(h\) va de \(g(x_0)\) a \(f(x_0)\), se tiene \(\beta_h[\delta]=[h\cdot\delta\cdot\bar h]\).</p>
+<p>Se quiere demostrar que \(\beta_h\circ f_*=g_*\). Para cada \(t\in I\) sea \(h_t=h|_{[0,t]}\), reparametrizado para que sea un camino definido en \(I\); es el camino que sigue a \(h\) hasta el tiempo \(t\), de \(g(x_0)\) a \(H(x_0,t)\). Sea \([\gamma]\in\pi_1(X,x_0)\), de modo que \(\gamma\) es un lazo en \(X\) basado en \(x_0\). Lo que hay que ver es que
+\[ g\circ\gamma\ \simeq\ h\cdot(f\circ\gamma)\cdot\bar h\qquad\text{rel }\{0,1\}, \]
+pues el lado izquierdo representa a \(g_*[\gamma]\) y el derecho a \(\beta_h(f_*[\gamma])\).</p>
+<p>Para cada \(t\), la función \(H(\gamma(\cdot),t)\) es un lazo en \(Y\) basado en \(H(x_0,t)\), pues \(\gamma(0)=\gamma(1)=x_0\). Por lo tanto, el producto
+\[ h_t\cdot H(\gamma(\cdot),t)\cdot\bar h_t \]
+es un lazo basado en \(g(x_0)\) (comienza en \(g(x_0)\), recorre \(h_t\) hasta \(H(x_0,t)\), da el lazo \(H(\gamma(\cdot),t)\) y regresa por \(\bar h_t\)). Conforme \(t\) varía de \(0\) a \(1\), esto da una homotopía de lazos basados en \(g(x_0)\):</p>
+<ul>
+<li>En \(t=0\), \(h_0\) es el camino constante en \(g(x_0)\) y \(H(\gamma(\cdot),0)=g\circ\gamma\), de modo que se obtiene (salvo homotopía relativa a los extremos) el lazo \(g\circ\gamma\).</li>
+<li>En \(t=1\), \(h_1=h\) y \(H(\gamma(\cdot),1)=f\circ\gamma\), de modo que se obtiene el lazo \(h\cdot(f\circ\gamma)\cdot\bar h\).</li>
+</ul>
+<p>Entonces \(g\circ\gamma\simeq h\cdot(f\circ\gamma)\cdot\bar h\) rel \(\{0,1\}\): el lazo \(f\circ\gamma\), al ir deformándose con las etapas \(H(\gamma(\cdot),t)\), termina en \(g\circ\gamma\) siempre que se compense el movimiento del punto base con el camino \(h\). Por definición de \(\beta_h\), esto dice que
+\[ g_*[\gamma]=[g\circ\gamma]=[h\cdot(f\circ\gamma)\cdot\bar h]=\beta_h(f_*[\gamma]), \]
+que es lo que se quería demostrar. \(\square\)</p>
+<p><b>Comentario.</b> En el video se dibuja \(f\) arriba y \(g\) abajo («se deforma \(f\) en \(g\)»), de modo que el camino \(h\) va de \(f(x_0)\) a \(g(x_0)\) y la conclusión de la demostración se escribe \(f\circ\gamma\simeq h\cdot(g\circ\gamma)\cdot\bar h\), mientras que el diagrama y el enunciado son \(\beta_h\circ f_*=g_*\). En estas notas se usa el orden de la Definición 1.29 (\(H(x,0)=g(x)\) y \(H(x,1)=f(x)\)), con el que \(h\) va de \(g(x_0)\) a \(f(x_0)\) y todo es consistente con el diagrama del lema y con la convención de \(\beta_h\) de la Definición 1.13. La idea de la demostración es la del video.</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=CPTGHDZAJFc&amp;t=640" target="_blank" rel="noopener">10:40</a> En el video la homotopía se dibuja de \(f\) a \(g\) (así que \(h\) va de \(f(x_0)\) a \(g(x_0)\)) y la demostración concluye \(f\circ\gamma\simeq h\cdot(g\circ\gamma)\cdot\bar h\), lo cual daría \(f_*=\beta_h\circ g_*\); pero el diagrama y el enunciado del lema dicen \(\beta_h\circ f_*=g_*\), con \(\beta_h\colon\pi_1(Y,f(x_0))\to\pi_1(Y,g(x_0))\). Las dos versiones corresponden a órdenes opuestos de \(f\) y \(g\) en la homotopía. En estas notas se usa el orden de la Definición 1.29, con el que el enunciado y la demostración son consistentes.</li></ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/homotopias-y-homomorfismos-inducidos.tex">homotopias-y-homomorfismos-inducidos.tex</a>.</p>

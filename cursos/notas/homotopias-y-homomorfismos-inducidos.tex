@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{CPTGHDZAJFc}
+\input{preambulo}
+\unidad{1}{32} % unidad 1; primer enunciado: 1.32
+
+\title{Homotopías y homomorfismos inducidos}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=CPTGHDZAJFc}{\guillemotleft{}Homotopías y homomorfismos inducidos\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Continuación del video anterior: se estudia qué ocurre con los homomorfismos inducidos cuando la homotopía entre dos funciones no preserva el punto base, y se demuestra que el diagrama con el cambio de punto base conmuta.
+\normalsize
+
+\section*{Homotopías que no preservan el punto base}
+
+En el video anterior se demostró la Proposición~1.31: si $g,f\colon (X,x_0)\to(Y,y_0)$ son homotópicas mediante una homotopía que \emph{preserva el punto base}, entonces inducen el mismo homomorfismo $g_*=f_*\colon\pi_1(X,x_0)\to\pi_1(Y,y_0)$. Hay que tener cuidado con la hipótesis: ``homotópicas'' quiere decir aquí homotópicas por una homotopía que preserva el punto base. La pregunta natural es qué sucede si la homotopía \emph{no} preserva el punto base.
+
+Para pensarlo, sean $g,f\colon X\to Y$ homotópicas mediante $H\colon X\times I\to Y$, con $H(x,0)=g(x)$ y $H(x,1)=f(x)$ (como en la Definición~1.29). Como es costumbre, cada rebanada horizontal de $X\times I$ es una copia de $X$. Se toma un punto base cualquiera $x_0\in X$. Conforme avanza la homotopía, la imagen del punto base se va moviendo: en tiempo $t$ está en $H(x_0,t)$. La ``estela'' que deja la imagen del punto base es un camino en $Y$, a saber
+\[
+  h\colon I\to Y,\qquad h(t)=H(x_0,t),
+\]
+es decir, la restricción de $H$ a $\{x_0\}\times I\cong I$. Este camino va de $g(x_0)$ a $f(x_0)$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (80,60) -- (80,200); \draw[gray] (240,60) -- (240,200);
+  \draw[thick,black] (80,60) -- (240,60);
+  \draw[gray] (80,95) -- (240,95);
+  \draw[gray] (80,130) -- (240,130);
+  \draw[gray] (80,165) -- (240,165);
+  \draw[thick,azul] (80,200) -- (240,200);
+  \draw[very thick,extremo] (140,60) -- (140,200);
+  \fill[extremo] (140,60) circle (4); \fill[extremo] (140,200) circle (4);
+  \node[anchor=south] at (140,57) {\small $x_0$};
+  \node[anchor=north] at (140,203) {\small $x_0$};
+  \draw[gray] (470,138) ellipse (105 and 92);
+  \draw[thick] (385,90) .. controls (420,70) and (470,115) .. (545,90);
+  \draw[thick,azul] (385,185) .. controls (425,175) and (475,210) .. (545,188);
+  \draw[very thick,extremo,->] (435,88) .. controls (400,120) and (480,150) .. (438,188);
+  \fill[extremo] (435,88) circle (4); \fill[extremo] (438,188) circle (4);
+  \draw[->,gray] (262,130) -- (340,130); \node at (301,112) {\small $H$};
+  \node[anchor=east] at (72,62) {\small $X\times\{0\}$}; \node[anchor=east,azul] at (72,200) {\small $X\times\{1\}$};
+  \node at (160,35) {$X\times I$}; \node at (470,22) {$Y$};
+  \node at (565,75) {\small $g$}; \node[azul] at (565,198) {\small $f$};
+  \node[extremo,anchor=west] at (471,140) {\small $h$};
+  \node[anchor=south east] at (432,86) {\small $g(x_0)$}; \node[anchor=north east] at (435,191) {\small $f(x_0)$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: el segmento $\{x_0\}\times I$ (en verde) se manda con $H$ al camino $h$, la estela que deja la imagen del punto base cuando $g$ se deforma en $f$.
+
+Esto crea una dificultad si se quiere ver si la homotopía induce una función entre grupos fundamentales. Un elemento de $\pi_1(X,x_0)$ es un lazo basado en $x_0$; al empujarlo con la homotopía, el lazo se va moviendo y, en general, ya no está basado en $x_0$ ni en el mismo punto de $Y$ para todo tiempo. Así que la homotopía no parece preservar los lazos dentro del grupo fundamental, y no hay una manera natural de hablar de funciones inducidas. Sin embargo, sí se obtiene el siguiente resultado, en el que aparece el camino $h$.
+
+\begin{lema}\label{lema:homotopia-cambio-base}
+Sean $g,f\colon X\to Y$ homotópicas mediante $H\colon X\times I\to Y$ y sea $x_0\in X$ un punto base. Sea $h$ el camino $h(t)=H(x_0,t)$, que va de $g(x_0)$ a $f(x_0)$. Entonces el siguiente diagrama conmuta:
+\begin{center}
+\begin{tikzpicture}[x=0.03cm,y=-0.03cm]
+  \node (a) at (0,100) {$\pi_1(X,x_0)$};
+  \node (b) at (330,20) {$\pi_1(Y,f(x_0))$};
+  \node (c) at (330,180) {$\pi_1(Y,g(x_0))$};
+  \draw[->] (a) -- node[above left,font=\small] {$f_*$} (b);
+  \draw[->] (a) -- node[below left,font=\small] {$g_*$} (c);
+  \draw[->] (b) -- node[right,font=\small] {$\beta_h\ \cong$} (c);
+\end{tikzpicture}
+\end{center}
+es decir, $\beta_h\circ f_*=g_*$, donde $\beta_h$ es el isomorfismo de cambio de punto base asociado al camino $h$.
+\end{lema}
+
+Recordar que un diagrama es conmutativo significa que, si se toma un elemento del grupo de la izquierda y se manda al de la derecha de dos maneras, siguiendo cada una de las rutas, se obtiene el mismo elemento. Aquí, $f_*$ es el homomorfismo inducido $\pi_1(X,x_0)\to\pi_1(Y,f(x_0))$, $g_*$ es el inducido $\pi_1(X,x_0)\to\pi_1(Y,g(x_0))$, y $\beta_h\colon\pi_1(Y,f(x_0))\to\pi_1(Y,g(x_0))$ es el isomorfismo de cambio de punto base del video anterior (Definición~1.13): como $h$ va de $g(x_0)$ a $f(x_0)$, se tiene $\beta_h[\delta]=[h\cdot\delta\cdot\bar h]$.
+
+\begin{proof}
+Se quiere demostrar que $\beta_h\circ f_*=g_*$. Para cada $t\in I$ sea $h_t=h|_{[0,t]}$, reparametrizado para que sea un camino definido en $I$; es el camino que sigue a $h$ hasta el tiempo $t$, de $g(x_0)$ a $H(x_0,t)$. Sea $[\gamma]\in\pi_1(X,x_0)$, de modo que $\gamma$ es un lazo en $X$ basado en $x_0$. Lo que hay que ver es que
+\[
+  g\circ\gamma\ \simeq\ h\cdot(f\circ\gamma)\cdot\bar h\qquad\text{rel }\{0,1\},
+\]
+pues el lado izquierdo representa a $g_*[\gamma]$ y el derecho a $\beta_h(f_*[\gamma])$.
+
+Para cada $t$, la función $H(\gamma(\cdot),t)$ es un lazo en $Y$ basado en $H(x_0,t)$, pues $\gamma(0)=\gamma(1)=x_0$. Por lo tanto, el producto
+\[
+  h_t\cdot H(\gamma(\cdot),t)\cdot\bar h_t
+\]
+es un lazo basado en $g(x_0)$ (comienza en $g(x_0)$, recorre $h_t$ hasta $H(x_0,t)$, da el lazo $H(\gamma(\cdot),t)$ y regresa por $\bar h_t$). Conforme $t$ varía de $0$ a $1$, esto da una homotopía de lazos basados en $g(x_0)$:
+\begin{itemize}
+  \item En $t=0$, $h_0$ es el camino constante en $g(x_0)$ y $H(\gamma(\cdot),0)=g\circ\gamma$, de modo que se obtiene (salvo homotopía relativa a los extremos) el lazo $g\circ\gamma$.
+  \item En $t=1$, $h_1=h$ y $H(\gamma(\cdot),1)=f\circ\gamma$, de modo que se obtiene el lazo $h\cdot(f\circ\gamma)\cdot\bar h$.
+\end{itemize}
+Entonces $g\circ\gamma\simeq h\cdot(f\circ\gamma)\cdot\bar h$ rel $\{0,1\}$: el lazo $f\circ\gamma$, al ir deformándose con las etapas $H(\gamma(\cdot),t)$, termina en $g\circ\gamma$ siempre que se compense el movimiento del punto base con el camino $h$. Por definición de $\beta_h$, esto dice que
+\[
+  g_*[\gamma]=[g\circ\gamma]=[h\cdot(f\circ\gamma)\cdot\bar h]=\beta_h(f_*[\gamma]),
+\]
+que es lo que se quería demostrar.
+\end{proof}
+
+\noindent\textbf{Comentario.} En el video se dibuja $f$ arriba y $g$ abajo (``se deforma $f$ en $g$''), de modo que el camino $h$ va de $f(x_0)$ a $g(x_0)$ y la conclusión de la demostración se escribe $f\circ\gamma\simeq h\cdot(g\circ\gamma)\cdot\bar h$, mientras que el diagrama y el enunciado son $\beta_h\circ f_*=g_*$. En estas notas se usa el orden de la Definición~1.29 ($H(x,0)=g(x)$ y $H(x,1)=f(x)$), con el que $h$ va de $g(x_0)$ a $f(x_0)$ y todo es consistente con el diagrama del lema y con la convención de $\beta_h$ de la Definición~1.13. La idea de la demostración es la del video.
+
+\begin{erratas}
+  \errata{640}{10:40}{En el video la homotopía se dibuja de $f$ a $g$ (así que $h$ va de $f(x_0)$ a $g(x_0)$) y la demostración concluye $f\circ\gamma\simeq h\cdot(g\circ\gamma)\cdot\bar h$, lo cual daría $f_*=\beta_h\circ g_*$; pero el diagrama y el enunciado del lema dicen $\beta_h\circ f_*=g_*$, con $\beta_h\colon\pi_1(Y,f(x_0))\to\pi_1(Y,g(x_0))$. Las dos versiones corresponden a órdenes opuestos de $f$ y $g$ en la homotopía. En estas notas se usa el orden de la Definición~1.29, con el que el enunciado y la demostración son consistentes.}
+\end{erratas}
+
+\end{document}
