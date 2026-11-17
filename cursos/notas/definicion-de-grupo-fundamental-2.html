@@ -1,0 +1,125 @@
+<h4>El producto en el grupo fundamental</h4>
+<p>Este video continúa el anterior. Allí se definió el grupo fundamental solo como conjunto: es el conjunto de clases de equivalencia de lazos basados en \(x_0\), módulo la homotopía relativa a los extremos,
+\[ \pi_1(X,x_0)=\Omega(X,x_0)\big/\!\simeq\ \mathrm{rel}\ \{0,1\}. \]
+Se le llama «grupo», pero todavía no se ha dado una operación (más o menos sí, porque por eso se habló primero de la concatenación de caminos). La operación será concatenar lazos, lo cual tiene sentido: dos lazos basados en \(x_0\) siempre se pueden concatenar, pues uno termina donde comienza el otro.</p>
+<p><b>Observación.</b> Si \([f],[g]\in\pi_1(X,x_0)\), se pueden tomar representantes \(f\) y \(g\), que son lazos basados en \(x_0\), y concatenarlos. Como \(f\) termina en \(x_0\) y \(g\) comienza en \(x_0\), la concatenación \(f\cdot g\) tiene sentido; además comienza y termina en \(x_0\), así que es de nuevo un lazo, y su clase \([f\cdot g]\) es un elemento de \(\pi_1(X,x_0)\). Es decir, la concatenación da un producto en el grupo fundamental.</p>
+<div class="thm"><b>Teorema 1.11.</b> <i>\(\pi_1(X,x_0)\) es un grupo con la operación
+\[ [f][g]=[f\cdot g]. \]</i></div>
+<p>El resto del video se dedica a demostrar que esta operación satisface los axiomas de grupo; por eso a \(\pi_1(X,x_0)\) se le llama el grupo fundamental de \(X\) basado en \(x_0\).</p>
+<p><i>Demostración.</i> Hay que ver que el producto está bien definido, que es asociativo, que existe un elemento neutro y que existen inversos.</p>
+
+<h4>El producto está bien definido</h4>
+<p>Como se multiplican clases de equivalencia usando representantes, hay que verificar que el resultado no depende de los representantes elegidos. Esto es consecuencia de la Proposición 1.8 del video anterior: si \([f]=[f_1]\) y \([g]=[g_1]\), entonces \([f\cdot g]=[f_1\cdot g_1]\). Además, como se vio arriba, el producto de dos lazos es un lazo.</p>
+
+<h4>Asociatividad</h4>
+<p>Se quiere ver que
+\[ \bigl([f][g]\bigr)[h]=[f]\bigl([g][h]\bigr), \]
+donde \(f\), \(g\) y \(h\) son lazos arbitrarios basados en \(x_0\). Por definición, esto es \([(f\cdot g)\cdot h]=[f\cdot(g\cdot h)]\).</p>
+<p>En el dibujo los dos lazos se ven iguales, pero los lazos no son solo su imagen: son funciones parametrizadas, y para que dos lazos sean iguales tienen que coincidir como funciones. Hay que tener cuidado con lo que significan las concatenaciones. En \((f\cdot g)\cdot h\), en la primera mitad del tiempo se recorre \(f\cdot g\) y en la segunda mitad se recorre \(h\); como \(f\cdot g\) se recorre en media unidad de tiempo, \(f\) se recorre en un cuarto de tiempo y \(g\) en otro cuarto. En \(f\cdot(g\cdot h)\), en la primera mitad del tiempo se recorre \(f\) y en la segunda mitad \(g\cdot h\), así que \(g\) y \(h\) se recorren cada uno en un cuarto de tiempo (figura). Las imágenes y los recorridos coinciden, pero las parametrizaciones son distintas (por ejemplo, en el primero \(f\) se recorre muy rápido y en el segundo no); por lo tanto, los lazos no son iguales.</p>
+<figure>
+<svg viewBox="0 0 560 130" role="img" aria-label="Dos barras que representan el intervalo unitario: en (f·g)·h, f ocupa un cuarto, g otro cuarto y h la mitad; en f·(g·h), f ocupa la mitad y g y h un cuarto cada uno">
+<g fill="none" stroke-linecap="butt">
+<line class="f0" x1="120" x2="220" y1="35" y2="35"/><line class="f1" x1="220" x2="320" y1="35" y2="35"/><line class="mid" style="stroke-width:2.5;opacity:1" x1="320" x2="520" y1="35" y2="35"/>
+<line class="f0" x1="120" x2="320" y1="85" y2="85"/><line class="f1" x1="320" x2="420" y1="85" y2="85"/><line class="mid" style="stroke-width:2.5;opacity:1" x1="420" x2="520" y1="85" y2="85"/>
+</g>
+<text x="108" y="40" text-anchor="end">(f·g)·h</text><text x="108" y="90" text-anchor="end">f·(g·h)</text>
+<text x="170" y="24" text-anchor="middle">f</text><text x="270" y="24" text-anchor="middle">g</text><text x="420" y="24" text-anchor="middle">h</text>
+<text x="220" y="74" text-anchor="middle">f</text><text x="370" y="74" text-anchor="middle">g</text><text x="470" y="74" text-anchor="middle">h</text>
+<text class="dim" x="120" y="115" text-anchor="middle">0</text><text class="dim" x="220" y="115" text-anchor="middle">1/4</text><text class="dim" x="320" y="115" text-anchor="middle">1/2</text><text class="dim" x="420" y="115" text-anchor="middle">3/4</text><text class="dim" x="520" y="115" text-anchor="middle">1</text>
+</svg>
+<figcaption>Las dos concatenaciones recorren los mismos tres lazos, pero en tiempos distintos: la primera dedica un cuarto del tiempo a \(f\), otro a \(g\) y la mitad a \(h\); la segunda, la mitad a \(f\) y un cuarto a cada uno de \(g\) y \(h\).</figcaption>
+</figure>
+<p>Lo que sí sucede es que estos dos lazos son homotópicos relativos a los extremos, y con eso se obtiene la igualdad de las clases. La homotopía es fácil de imaginar: se reparametriza, estirando el pedazo de \(f\) hasta que ocupe la mitad del intervalo, desplazando el pedazo de \(g\) y achicando el de \(h\) hasta que quede de tamaño un cuarto. Formalmente, se quiere ver que \((f\cdot g)\cdot h\simeq f\cdot(g\cdot h)\ \mathrm{rel}\ \{0,1\}\); para ello se define \(F\colon I\times I\to X\) como
+\[ F(s,t)=\begin{cases} f\!\left(\dfrac{4s}{t+1}\right) & \text{si } s\in\bigl[0,\tfrac{t+1}{4}\bigr],\\[8pt] g(4s-t-1) & \text{si } s\in\bigl[\tfrac{t+1}{4},\tfrac{t+2}{4}\bigr],\\[8pt] h\!\left(\dfrac{4s-t-2}{2-t}\right) & \text{si } s\in\bigl[\tfrac{t+2}{4},1\bigr]. \end{cases} \]
+</p>
+<figure>
+<svg viewBox="0 0 400 270" role="img" aria-label="Cuadrado con (f·g)·h arriba y f·(g·h) abajo; dos diagonales muestran cómo se desplazan los puntos de corte">
+<g fill="none" stroke-linecap="round">
+<line class="f0" x1="150" x2="340" y1="34" y2="34"/>
+<line class="f1" x1="150" x2="340" y1="224" y2="224"/>
+<line class="end" x1="150" x2="150" y1="34" y2="224"/>
+<line class="end" x1="340" x2="340" y1="34" y2="224"/>
+<line class="mid" style="stroke-width:2;opacity:1" x1="197.5" x2="245.0" y1="34" y2="224"/>
+<line class="mid" style="stroke-width:2;opacity:1" x1="245.0" x2="292.5" y1="34" y2="224"/>
+</g>
+<text x="140" y="39" text-anchor="end">(f·g)·h</text>
+<text class="c1" x="140" y="229" text-anchor="end">f·(g·h)</text>
+<text class="dim" x="173.8" y="26" text-anchor="middle">f</text>
+<text class="dim" x="221.2" y="26" text-anchor="middle">g</text>
+<text class="dim" x="292.5" y="26" text-anchor="middle">h</text>
+<text class="dim" x="197.5" y="242" text-anchor="middle">f</text>
+<text class="dim" x="268.8" y="242" text-anchor="middle">g</text>
+<text class="dim" x="316.2" y="242" text-anchor="middle">h</text>
+<text class="dim" x="176.6" y="133.0" text-anchor="middle">f</text>
+<text class="dim" x="245.0" y="133.0" text-anchor="middle">g</text>
+<text class="dim" x="309.6" y="133.0" text-anchor="middle">h</text>
+</svg>
+<figcaption>Cuadrado de la homotopía de asociatividad: arriba (\(t=0\)) está \((f\cdot g)\cdot h\) y abajo (\(t=1\)) está \(f\cdot(g\cdot h)\). Las dos diagonales siguen cómo se desplazan los puntos donde terminan \(f\) y \(g\): de \(\tfrac14\) y \(\tfrac12\) arriba a \(\tfrac12\) y \(\tfrac34\) abajo. Los lados verticales (en verde) van a \(x_0\).</figcaption>
+</figure>
+<p>El video deja como un ejercicio muy divertido verificar que \(F\) es, en efecto, una homotopía relativa a los extremos entre esos dos lazos.</p>
+
+<h4>Elemento neutro</h4>
+<p>Se quiere ver que existe un elemento \([c]\in\pi_1(X,x_0)\) tal que
+\[ [f][c]=[c][f]=[f]\qquad\text{para todo } [f]\in\pi_1(X,x_0). \]
+Este lazo misterioso es el <i>lazo constante</i> \(c\colon I\to X\), dado por \(c(s)=x_0\) para todo \(s\in I\): comienza en \(x_0\), nunca se mueve y termina en \(x_0\). El video verifica solo una de las igualdades, \([f\cdot c]=[f]\), es decir, que \(f\cdot c\simeq f\ \mathrm{rel}\ \{0,1\}\). La idea es similar a la anterior: se toma el pedazo de \(f\) y se estira hasta que ocupe todo el intervalo, mientras el lazo constante queda completamente comprimido a un punto del lado derecho; siempre se respetan los extremos. Formalmente, la homotopía \(F\colon I\times I\to X\) es
+\[ F(s,t)=\begin{cases} f\!\left(\dfrac{2s}{t+1}\right) & \text{si } s\in\bigl[0,\tfrac{t+1}{2}\bigr],\\[8pt] x_0 & \text{si } s\in\bigl[\tfrac{t+1}{2},1\bigr]. \end{cases} \]
+</p>
+<figure>
+<svg viewBox="0 0 400 270" role="img" aria-label="Cuadrado con f·c arriba y f abajo; una diagonal va del punto medio de arriba a la esquina inferior derecha">
+<g fill="none" stroke-linecap="round">
+<line class="f0" x1="150" x2="340" y1="34" y2="34"/>
+<line class="f1" x1="150" x2="340" y1="224" y2="224"/>
+<line class="end" x1="150" x2="150" y1="34" y2="224"/>
+<line class="end" x1="340" x2="340" y1="34" y2="224"/>
+<line class="mid" style="stroke-width:2;opacity:1" x1="245.0" x2="340" y1="34" y2="224"/>
+</g>
+<text x="140" y="39" text-anchor="end">f·c</text>
+<text class="c1" x="140" y="229" text-anchor="end">f</text>
+<text class="dim" x="197.5" y="26" text-anchor="middle">f</text>
+<text class="dim" x="292.5" y="26" text-anchor="middle">c</text>
+<text class="dim" x="245.0" y="242" text-anchor="middle">f</text>
+<text class="dim" x="207.0" y="142.5" text-anchor="middle">f</text>
+<text class="dim" x="302.0" y="85.5" text-anchor="middle">x₀</text>
+</svg>
+<figcaption>Cuadrado de la homotopía del neutro: arriba (\(t=0\)) está \(f\cdot c\) y abajo (\(t=1\)) está \(f\). La diagonal sigue el punto donde termina \(f\): va de \(\tfrac12\) arriba a \(1\) abajo, de modo que el lazo constante queda comprimido a un punto en el lado derecho. Los lados verticales (en verde) van a \(x_0\).</figcaption>
+</figure>
+<p>Con esto \([c]\) es un neutro para la multiplicación.</p>
+
+<h4>Inversos</h4>
+<p>Se quiere ver que para cada \([f]\in\pi_1(X,x_0)\) existe \([\bar f]\in\pi_1(X,x_0)\) tal que
+\[ [f][\bar f]=[\bar f][f]=[c]. \]
+La idea: \(\bar f\) es el mismo lazo \(f\) parametrizado al revés, con la misma imagen pero recorrido en la dirección opuesta. Entonces \(f\cdot\bar f\) es ir y regresar por el mismo camino, y eso se puede contraer al lazo constante, como si se aventara una cuerda y luego se fuera recogiendo: cada vez se regresa un poco antes, hasta que solo queda \(x_0\). Es esencial que en ningún momento se muevan los extremos; si se movieran, ya no se estaría respetando la relación de equivalencia.</p>
+<p>Formalmente, se define \(\bar f\colon I\to X\) por
+\[ \bar f(s)=f(1-s), \]
+y se define \(F\colon I\times I\to X\) por
+\[ F(s,t)=\begin{cases} f(2s) & \text{si } 2s\in[0,t],\\[2pt] f(t) & \text{si } 2s\in[t,2-t],\\[2pt] \bar f(2s-1) & \text{si } 2s\in[2-t,2]. \end{cases} \]
+</p>
+<figure>
+<svg viewBox="0 0 400 270" role="img" aria-label="Cuadrado con el lazo constante arriba y f·f̄ abajo; dos diagonales parten de las esquinas de arriba y se juntan en el punto medio de abajo">
+<g fill="none" stroke-linecap="round">
+<line class="f0" x1="150" x2="340" y1="34" y2="34"/>
+<line class="f1" x1="150" x2="340" y1="224" y2="224"/>
+<line class="end" x1="150" x2="150" y1="34" y2="224"/>
+<line class="end" x1="340" x2="340" y1="34" y2="224"/>
+<line class="mid" style="stroke-width:2;opacity:1" x1="150" x2="245.0" y1="34" y2="224"/>
+<line class="mid" style="stroke-width:2;opacity:1" x1="340" x2="245.0" y1="34" y2="224"/>
+</g>
+<text x="140" y="39" text-anchor="end">c</text>
+<text class="c1" x="140" y="229" text-anchor="end">f·f̄</text>
+<text class="dim" x="197.5" y="242" text-anchor="middle">f</text>
+<text class="dim" x="292.5" y="242" text-anchor="middle">f̄</text>
+<text class="dim" x="176.6" y="171.0" text-anchor="middle">f</text>
+<text class="dim" x="245.0" y="95.0" text-anchor="middle">f(t)</text>
+<text class="dim" x="313.4" y="171.0" text-anchor="middle">f̄</text>
+</svg>
+<figcaption>Cuadrado de la homotopía de los inversos: arriba (\(t=0\)) está el lazo constante \(c\) y abajo (\(t=1\)) está \(f\cdot\bar f\). Las dos diagonales parten de las esquinas de arriba y se juntan en el punto medio de abajo: a la izquierda se recorre \(f\) cada vez más lejos, a la derecha \(\bar f\), y en el triángulo del centro el lazo se queda quieto en \(f(t)\). Los lados verticales (en verde) van a \(x_0\).</figcaption>
+</figure>
+<p>Con esta fórmula, \(F(s,0)=c(s)\) y \(F(s,1)=(f\cdot\bar f)(s)\): la tapa de arriba va al lazo constante, la de abajo a la concatenación de \(f\) con \(\bar f\) (figura), y los lados del cuadrado van a \(x_0\). El video invita a comprobar que \(F\) es una homotopía relativa a los extremos entre esos dos lazos. Por lo tanto \(f\cdot\bar f\simeq c\ \mathrm{rel}\ \{0,1\}\) (como \(\simeq\) es simétrica, da lo mismo en qué sentido se lea), es decir, \([f][\bar f]=[c]\), y así existen inversos.</p>
+<p>Se demostró que el producto está bien definido, que es asociativo, que hay neutro y que hay inversos; por lo tanto \(\pi_1(X,x_0)\) es un grupo. \(\square\)</p>
+<p>El video cierra señalando que ya se tiene el grupo fundamental, con el que se trabajará en los siguientes videos.</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+<li><a href="https://www.youtube.com/watch?v=q9YDDtvI7fI&amp;t=1045" target="_blank" rel="noopener">17:25</a> Se dice que la tapa de arriba va a \(f\cdot\bar f\) y la de abajo al lazo constante, pero con la fórmula escrita se tiene \(F(s,0)=c\) y \(F(s,1)=f\cdot\bar f\): arriba va el lazo constante y abajo \(f\cdot\bar f\).</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/definicion-de-grupo-fundamental-2.tex">definicion-de-grupo-fundamental-2.tex</a>.</p>
