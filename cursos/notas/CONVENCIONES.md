@@ -38,7 +38,7 @@ Al terminar una nota, actualizar esta tabla con el siguiente número libre de su
 
 | Unidad | Notas (en orden) | Definiciones usadas | Siguiente libre |
 |---|---|---|---|
-| 1. Grupo fundamental | `caminos-y-homotopias` (Video 1) | 1.1 a 1.4 | 1.5 |
+| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin definiciones), `caminos-y-homotopias` (Video 1) | 1.1 a 1.4 | 1.5 |
 | 2. Teorema de van Kampen | | | 2.1 |
 | 3. Espacios cubrientes | | | 3.1 |
 | 4. Homología | | | 4.1 |
