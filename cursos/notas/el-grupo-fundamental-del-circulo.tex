@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{P4kudEdU4mE}
+\input{preambulo}
+\unidad{1}{14} % unidad 1; primer enunciado: 1.14
+
+\title{El grupo fundamental del círculo (parte 1)}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=P4kudEdU4mE}{\guillemotleft{}El grupo fundamental del círculo -- parte 1\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Comienza el primer cálculo explícito del grupo fundamental, el del círculo: se presentan la función exponencial $\varphi\colon\mathbb{R}\to S^1$ y los dos lemas de levantamiento que se usarán en el siguiente video.
+\normalsize
+
+\section*{El círculo y la función exponencial}
+
+En este video y en los que siguen, el círculo es
+\[
+  S^1=\{z\in\mathbb{C}\mid |z|=1\},
+\]
+los números complejos de norma $1$. Como $S^1$ es conexo, por el video anterior (cambio de punto base) no importa qué punto base se tome para calcular el grupo fundamental: se obtienen grupos isomorfos. Por eso se toma $x_0=1\in S^1$ (el número $1$ es un elemento de $S^1$), y toda la cuenta será respecto de ese punto base.
+
+Además se considera la función
+\[
+  \varphi\colon\mathbb{R}\longrightarrow S^1,
+  \qquad
+  \varphi(x)=e^{2\pi i x}.
+\]
+Esta función será muy importante: es el primer ejemplo de lo que se conoce como una \emph{función cubriente}, que se estudiará más adelante. Tiene dos propiedades que se usarán constantemente.
+
+\begin{prop}
+Para $\varphi\colon\mathbb{R}\to S^1$, $\varphi(x)=e^{2\pi i x}$:
+\begin{enumerate}
+  \item Cualquier intervalo abierto $(a,b)$ de longitud menor que $1$ se manda homeomorfamente sobre su imagen; es decir, $\varphi$ es un homeomorfismo local.
+  \item Todo punto $x\in S^1$ tiene una vecindad $U$ tal que $\varphi^{-1}(U)$ es una unión disjunta de intervalos $\bigsqcup_n U_n$ de modo que la restricción $\varphi|_{U_n}\colon U_n\to U$ es un homeomorfismo para cada $n$.
+\end{enumerate}
+\end{prop}
+
+\noindent\textbf{Comentario.} El video enuncia estas propiedades sin demostrarlas y solo las ilustra con el dibujo de la figura.
+
+\medskip
+El dibujo es el siguiente. Se piensa en $\mathbb{R}$ no como una recta derecha sino enrollada como una espiral sobre el círculo, y la función $\varphi$ es la proyección de la espiral al círculo. Si se toma un punto $x\in S^1$ y una vecindad $U$ no demasiado grande, su preimagen son varios intervalos disjuntos (los $U_n$), cada uno de los cuales se proyecta homeomórficamente sobre $U$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[thick] plot[smooth] coordinates {(310.0,150.0) (309.6,147.9) (308.5,145.8) (306.6,143.7) (303.9,141.6) (300.6,139.7) (296.6,137.8) (292.0,136.0) (286.8,134.3) (281.1,132.7) (275.0,131.2) (268.5,129.9) (261.6,128.7) (254.6,127.6) (247.3,126.7) (240.0,126.0) (232.7,125.4) (225.4,125.0) (218.4,124.7) (211.5,124.5) (205.0,124.5) (198.9,124.7) (193.2,124.9) (188.0,125.3) (183.4,125.8) (179.4,126.3) (176.1,127.0) (173.4,127.7) (171.5,128.4) (170.4,129.2) (170.0,130.0) (170.4,130.8) (171.5,131.6) (173.4,132.3) (176.1,133.0) (179.4,133.7) (183.4,134.2) (188.0,134.7) (193.2,135.1) (198.9,135.3) (205.0,135.5) (211.5,135.5) (218.4,135.3) (225.4,135.0) (232.7,134.6) (240.0,134.0) (247.3,133.3) (254.6,132.4) (261.6,131.3) (268.5,130.1) (275.0,128.8) (281.1,127.3) (286.8,125.7) (292.0,124.0) (296.6,122.2) (300.6,120.3) (303.9,118.4) (306.6,116.3) (308.5,114.2) (309.6,112.1) (310.0,110.0) (309.6,107.9) (308.5,105.8) (306.6,103.7) (303.9,101.6) (300.6,99.7) (296.6,97.8) (292.0,96.0) (286.8,94.3) (281.1,92.7) (275.0,91.2) (268.5,89.9) (261.6,88.7) (254.6,87.6) (247.3,86.7) (240.0,86.0) (232.7,85.4) (225.4,85.0) (218.4,84.7) (211.5,84.5) (205.0,84.5) (198.9,84.7) (193.2,84.9) (188.0,85.3) (183.4,85.8) (179.4,86.3) (176.1,87.0) (173.4,87.7) (171.5,88.4) (170.4,89.2) (170.0,90.0) (170.4,90.8) (171.5,91.6) (173.4,92.3) (176.1,93.0) (179.4,93.7) (183.4,94.2) (188.0,94.7) (193.2,95.1) (198.9,95.3) (205.0,95.5) (211.5,95.5) (218.4,95.3) (225.4,95.0) (232.7,94.6) (240.0,94.0) (247.3,93.3) (254.6,92.4) (261.6,91.3) (268.5,90.1) (275.0,88.8) (281.1,87.3) (286.8,85.7) (292.0,84.0) (296.6,82.2) (300.6,80.3) (303.9,78.4) (306.6,76.3) (308.5,74.2) (309.6,72.1) (310.0,70.0) (309.6,67.9) (308.5,65.8) (306.6,63.7) (303.9,61.6) (300.6,59.7) (296.6,57.8) (292.0,56.0) (286.8,54.3) (281.1,52.7) (275.0,51.2) (268.5,49.9) (261.6,48.7) (254.6,47.6) (247.3,46.7) (240.0,46.0) (232.7,45.4) (225.4,45.0) (218.4,44.7) (211.5,44.5) (205.0,44.5) (198.9,44.7) (193.2,44.9) (188.0,45.3) (183.4,45.8) (179.4,46.3) (176.1,47.0) (173.4,47.7) (171.5,48.4) (170.4,49.2) (170.0,50.0) (170.4,50.8) (171.5,51.6) (173.4,52.3) (176.1,53.0) (179.4,53.7) (183.4,54.2) (188.0,54.7) (193.2,55.1) (198.9,55.3) (205.0,55.5) (211.5,55.5) (218.4,55.3) (225.4,55.0) (232.7,54.6) (240.0,54.0) (247.3,53.3) (254.6,52.4) (261.6,51.3) (268.5,50.1) (275.0,48.8) (281.1,47.3) (286.8,45.7) (292.0,44.0) (296.6,42.2) (300.6,40.3) (303.9,38.4) (306.6,36.3) (308.5,34.2) (309.6,32.1) (310.0,30.0)};
+  \draw[thick] (240,250) ellipse (70 and 14);
+  \draw[very thick,azul] plot[smooth] coordinates {(273.9,129.0) (276.7,128.4) (279.5,127.8) (282.1,127.1) (284.7,126.4) (287.1,125.6) (289.5,124.9) (291.8,124.1) (293.9,123.3) (295.9,122.5) (297.8,121.7) (299.6,120.9) (301.2,120.0)};
+  \draw[very thick,azul] plot[smooth] coordinates {(273.9,89.0) (276.7,88.4) (279.5,87.8) (282.1,87.1) (284.7,86.4) (287.1,85.6) (289.5,84.9) (291.8,84.1) (293.9,83.3) (295.9,82.5) (297.8,81.7) (299.6,80.9) (301.2,80.0)};
+  \draw[very thick,azul] plot[smooth] coordinates {(273.9,49.0) (276.7,48.4) (279.5,47.8) (282.1,47.1) (284.7,46.4) (287.1,45.6) (289.5,44.9) (291.8,44.1) (293.9,43.3) (295.9,42.5) (297.8,41.7) (299.6,40.9) (301.2,40.0)};
+  \draw[very thick,azul] plot[smooth] coordinates {(273.9,262.2) (276.7,261.9) (279.5,261.6) (282.1,261.2) (284.7,260.8) (287.1,260.4) (289.5,259.9) (291.8,259.4) (293.9,258.9) (295.9,258.4) (297.8,257.9) (299.6,257.3) (301.2,256.8)};
+  \draw[gray,dashed] (289.5,128.9) -- (289.5,255.9);
+  \draw[gray,dashed] (289.5,88.9) -- (289.5,255.9);
+  \draw[gray,dashed] (289.5,48.9) -- (289.5,255.9);
+  \draw[-{Stealth[length=7pt]}] (400,120) -- (400,215);
+  \node at (418,168) {$\varphi$};
+  \node at (400,36) {$\mathbb{R}$};
+  \node at (340,252) {$S^1$};
+  \node[azul] at (303.5,285.9) {$U$};
+  \node[azul] at (325.5,130.9) {\small $U_0$};
+  \node[azul] at (325.5,90.9) {\small $U_1$};
+  \node[azul] at (325.5,50.9) {\small $U_2$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: $\mathbb{R}$ enrollada como una espiral sobre $S^1$. Un abierto $U$ del círculo y su preimagen $\bigsqcup_n U_n$ (en azul).
+
+\begin{defn}[vecindad normal]
+Una \emph{vecindad normal} de un punto de $S^1$ es una vecindad $U$ como en el inciso~2 de la Proposición~1.14: $\varphi^{-1}(U)$ es una unión disjunta de intervalos $U_n$ y cada restricción $\varphi|_{U_n}\colon U_n\to U$ es un homeomorfismo.
+\end{defn}
+
+Así, la propiedad 2 dice que todo punto de $S^1$ tiene una vecindad normal. (Más adelante se definirá una proyección cubriente justamente como una función con esta propiedad.)
+
+\section*{El lema de levantamiento}
+
+\begin{lema}[Lema de levantamiento]
+Si $f\colon I\to S^1$ es un camino con $f(0)=1$, existe un único camino $\tilde f\colon I\to\mathbb{R}$ tal que $\tilde f(0)=0$ y $\varphi\circ\tilde f=f$.
+\end{lema}
+
+Se le llama lema del levantamiento porque lo que se hace es levantar el camino $f$ de $S^1$ a $\mathbb{R}$, y se afirma que el levantamiento existe, que es único y que comienza en $0$.
+
+\begin{proof}[Demostración (existencia)]
+La demostración es muy geométrica y así se hace en el video. Como $I$ es compacto y $f$ es continua, se puede subdividir el intervalo unitario en subintervalos de modo que la imagen de $f$ restringida a cada uno esté contenida en una vecindad normal: un pedacito suficientemente pequeño de $I$ no hace cosas raras, sino que su imagen se queda dentro de una vecindad normal de cualquiera de sus puntos.
+
+Se levanta cada subintervalo, uno tras otro. Para el primero, $f$ comienza en $1$, y se toma una vecindad normal $U$ de $1$. El $0$ está en alguno de los intervalos $U_n$ de $\varphi^{-1}(U)$, y $\varphi|_{U_n}\colon U_n\to U$ es un homeomorfismo, así que se puede componer con su inversa para levantar el primer pedazo de $f$ a $U_n$, comenzando en $0$. Para el siguiente subintervalo se toma una vecindad normal que lo contenga y se levanta al intervalo de su preimagen que contiene el punto donde terminó el levantamiento anterior, y así sucesivamente. Como los subintervalos son una cantidad finita, el proceso termina en tiempo finito y da el levantamiento $\tilde f$. El video no escribe todos los detalles, solo deja esta idea geométrica.
+\end{proof}
+
+\begin{proof}[Demostración (unicidad)]
+Supongamos que existe otro levantamiento $\tilde f'$ con las mismas características: $\tilde f'(0)=0$ y $\varphi\circ\tilde f'=f$. Se quiere ver que $\tilde f'=\tilde f$, siendo $\tilde f$ el levantamiento construido. Se usa un truco muy recurrente en topología: definir el conjunto de puntos del dominio donde las funciones coinciden y el de los puntos donde son diferentes,
+\[
+  A=\{s\in I\mid \tilde f(s)=\tilde f'(s)\},
+  \qquad
+  B=\{s\in I\mid \tilde f(s)\neq\tilde f'(s)\}.
+\]
+Como $\tilde f(0)=0=\tilde f'(0)$ (esta condición es muy importante), $0\in A$, así que $A\neq\emptyset$. Se prueba que $A$ y $B$ son abiertos; como $I$ es conexo y $I=A\sqcup B$, esto fuerza $B=\emptyset$.
+
+Para ver que $A$ es abierto, sea $y\in A$ y sea $U$ una vecindad normal de $\varphi(\tilde f(y))$. Como $\tilde f(y)=\tilde f'(y)$ es un elemento de $\mathbb{R}$, vive en alguno de los intervalos $U_n$ asociados a $U$. Las preimágenes de $U_n$ bajo $\tilde f$ y $\tilde f'$ dan una vecindad abierta $V$ de $y$ con $\tilde f(V)\subset U_n$ y $\tilde f'(V)\subset U_n$. Como $\varphi|_{U_n}$ es un homeomorfismo (en particular, inyectiva) y $\varphi\circ\tilde f=\varphi\circ\tilde f'$ en $V$, resulta $\tilde f=\tilde f'$ en $V$, es decir, $V\subset A$. Por lo tanto $A$ es abierto. El argumento para $B$ es completamente análogo (en ese caso $\tilde f(y)$ y $\tilde f'(y)$ viven en intervalos distintos y disjuntos de la preimagen de la vecindad normal). Con esto, los levantamientos son únicos.
+\end{proof}
+
+\section*{El lema de levantamiento de homotopías}
+
+\begin{lema}[Lema de levantamiento de homotopías]
+Sean $f,g$ caminos en $S^1$ con $f(0)=g(0)=1$ tales que $f\simeq g\ \mathrm{rel}\ \{0,1\}$ vía una homotopía $F\colon I\times I\to S^1$. Entonces existe una única $\tilde F\colon I\times I\to\mathbb{R}$ que es una homotopía entre los levantamientos $\tilde f$ y $\tilde g$ (los del Lema~1.16) relativa a los extremos, y tal que el diagrama conmuta, es decir, $\varphi\circ\tilde F=F$.
+\end{lema}
+
+Este lema dice que no solo se pueden levantar caminos de $S^1$ a $\mathbb{R}$, sino que si hay una homotopía relativa a los extremos entre dos caminos, también se puede levantar la homotopía a los levantamientos de cada uno de los caminos.
+
+\begin{proof}[Idea de la demostración]
+Sorprendentemente, la demostración es casi idéntica a la del lema anterior. Para la existencia, en el lema anterior se dividía el intervalo en intervalos más chicos, cada uno con imagen en una vecindad normal. Ahora la función $F$ está definida en el cuadrado $I\times I$, y se hace exactamente lo mismo pero dividiendo el cuadrado en subcuadritos de una cuadrícula, de modo que cada subcuadrito caiga en una vecindad normal; se levantan los cuadritos con mucho cuidado de manera que se vayan pegando bien. Para la unicidad, de nuevo se definen los conjuntos $A$ y $B$ donde las funciones coinciden y donde difieren, se demuestra que ambos son abiertos y que uno de ellos es no vacío, y por lo tanto coinciden. El video deja la demostración como un buen ejercicio, pues es exactamente la misma.
+\end{proof}
+
+Estos dos lemas serán las herramientas principales para calcular el grupo fundamental del círculo, lo cual se completa en el siguiente video.
+
+\end{document}

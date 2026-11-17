@@ -38,7 +38,7 @@ Definiciones, proposiciones, teoremas, lemas y corolarios comparten **un solo co
 
 | Unidad | Notas (en orden) | Enunciados numerados usados | Siguiente libre |
 |---|---|---|---|
-| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin enunciados numerados), `que-estudiamos-en-topologia-algebraica` (Video 1, sin enunciados numerados), `caminos-y-homotopias` (Video 1), `caminos-y-homotopias-2` (Video 2), `definicion-de-grupo-fundamental` (Video 1), `definicion-de-grupo-fundamental-2` (Video 2), `cambio-de-punto-base` (Video 1) | 1.1 a 1.4; 1.5 a 1.6; 1.7 a 1.10; 1.11; 1.12 a 1.13 | 1.14 |
+| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin enunciados numerados), `que-estudiamos-en-topologia-algebraica` (Video 1, sin enunciados numerados), `caminos-y-homotopias` (Video 1), `caminos-y-homotopias-2` (Video 2), `definicion-de-grupo-fundamental` (Video 1), `definicion-de-grupo-fundamental-2` (Video 2), `cambio-de-punto-base` (Video 1), `el-grupo-fundamental-del-circulo` (Video 1) | 1.1 a 1.4; 1.5 a 1.6; 1.7 a 1.10; 1.11; 1.12 a 1.13; 1.14 a 1.17 | 1.18 |
 | 2. Teorema de van Kampen | | | 2.1 |
 | 3. Espacios cubrientes | | | 3.1 |
 | 4. Homología | | | 4.1 |
