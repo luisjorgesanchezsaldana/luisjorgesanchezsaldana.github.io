@@ -2,8 +2,8 @@
 """Herramienta para las notas de los videos del curso (ver cursos/notas/CONVENCIONES.md).
 
   python3 tools/nueva-nota.py crear --slug S --unidad U --titulo T --video-id ID [--titulo-video TV] [--resumen R]
-      Crea cursos/notas/S.tex y S.html desde las plantillas. El primer número de definición
-      sale de la tabla de CONVENCIONES.md ("Siguiente libre" de la unidad). No toca la página.
+      Crea cursos/notas/S.tex y S.html desde las plantillas. El primer número de enunciado
+      (definiciones, proposiciones, teoremas, lemas y corolarios comparten contador) sale de la tabla de CONVENCIONES.md ("Siguiente libre" de la unidad). No toca la página.
 
   python3 tools/nueva-nota.py enganchar --slug S --tema "Título exacto del tema" [--video N]
       Agrega el campo "nb" al tema en cursos/topologia-algebraica.html (la nota queda visible
@@ -62,7 +62,7 @@ def crear(a):
             s = s.replace(k, v)
         escribir(dest, s)
         print("creado", os.path.relpath(dest, ROOT))
-    print("Primera definición de la nota: %d.%d" % (a.unidad, n))
+    print("Primer enunciado numerado de la nota: %d.%d" % (a.unidad, n))
 
 
 def enganchar(a):
@@ -71,7 +71,7 @@ def enganchar(a):
     if not m:
         sys.exit("El .tex no declara \\unidad{u}{n}")
     u, n = int(m.group(1)), int(m.group(2))
-    usadas = len(re.findall(r"\\begin\{defn\}", tex))
+    usadas = len(re.findall(r"\\begin\{(?:defn|prop|teo|lema|cor)\}", tex))
     for ext in ("tex", "html", "pdf"):
         if not os.path.exists(os.path.join(NOTAS, a.slug + "." + ext)):
             sys.exit("Falta cursos/notas/%s.%s" % (a.slug, ext))

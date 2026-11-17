@@ -5,7 +5,8 @@
 
 Revisa, para cada nota en cursos/notas/*.tex:
   - que existan .tex, .html y .pdf, y que el .tex declare \\videoid y \\unidad{u}{n};
-  - que las definiciones del .tex y las del .html tengan los mismos números (u.n, u.n+1, ...);
+  - que los enunciados numerados (definiciones, proposiciones, teoremas, lemas, corolarios; un solo
+    contador por unidad) del .tex y del .html tengan los mismos tipos y números (u.n, u.n+1, ...);
   - que la sección de erratas esté en los dos o en ninguno;
   - que las notas enganchadas a la página estén en la unidad correcta y que su campo "nb" apunte a archivos existentes;
   - que, dentro de cada unidad, la numeración sea continua entre notas (sin huecos ni solapes);
@@ -59,14 +60,16 @@ for tex in sorted(glob.glob(os.path.join(NOTAS, "*.tex"))):
         errores.append("%s.tex: no declara \\unidad{u}{n}" % slug)
         continue
     u, n = int(m.group(1)), int(m.group(2))
-    k = len(re.findall(r"\\begin\{defn\}", t))
-    esperadas = ["%d.%d" % (u, n + i) for i in range(k)]
+    NOMBRES = {"defn": "Definición", "prop": "Proposición", "teo": "Teorema", "lema": "Lema", "cor": "Corolario"}
+    tipos = re.findall(r"\\begin\{(defn|prop|teo|lema|cor)\}", t)
+    k = len(tipos)
+    esperadas = [(NOMBRES[x], "%d.%d" % (u, n + i)) for i, x in enumerate(tipos)]
     h = os.path.join(NOTAS, slug + ".html")
     if os.path.exists(h):
         hs = re.sub(r"<!--.*?-->", "", leer(h), flags=re.S)
-        etiquetas = re.findall(r'<div class="def"><b>Definición (\d+\.\d+)', hs)
+        etiquetas = re.findall(r'<div class="(?:def|thm)"><b>(Definición|Proposición|Teorema|Lema|Corolario) (\d+\.\d+)', hs)
         if etiquetas != esperadas:
-            errores.append("%s: definiciones del .tex %s no coinciden con las del .html %s" % (slug, esperadas, etiquetas))
+            errores.append("%s: enunciados numerados del .tex %s no coinciden con los del .html %s" % (slug, esperadas, etiquetas))
         if ("\\begin{erratas}" in t) != ('class="erratas"' in hs):
             errores.append("%s: la sección de erratas está en un formato y no en el otro" % slug)
     notas[slug] = (u, n, k)

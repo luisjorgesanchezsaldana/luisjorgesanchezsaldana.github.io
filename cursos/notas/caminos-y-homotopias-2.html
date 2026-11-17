@@ -1,0 +1,53 @@
+<h4>El espacio de caminos y la relación</h4>
+<p>Sea \(X\) un espacio topológico cualquiera, fijo durante todo el video. Se recuerda que un camino es una función continua del intervalo unitario \(I\) en \(X\).</p>
+<div class="def"><b>Definición 1.5 (espacio de caminos y la relación \(\sim\)).</b> Se denota por \(\Omega(X)\) al conjunto de todos los caminos en \(X\),
+\[ \Omega(X)=\{\,f\colon I\to X\ \mid\ f \text{ es continua}\,\}. \]
+Para \(f_1,f_2\in\Omega(X)\) se dice que \(f_1\) está relacionado con \(f_2\), y se escribe \(f_1\sim f_2\), si
+\[ f_1\simeq f_2\ \ \mathrm{rel}\ \{0,1\}, \]
+es decir, si son homotópicos relativos a los extremos.</div>
+<p>El teorema principal del video es que esta relación es en realidad una relación de equivalencia.</p>
+<div class="thm"><b>Proposición 1.6.</b> <i>La relación \(\sim\) en \(\Omega(X)\) es una relación de equivalencia.</i></div>
+<p>Para demostrarlo hay que probar que es reflexiva, simétrica y transitiva. Se procede por partes.</p>
+
+<h4>Reflexividad</h4>
+<p>Se quiere ver que cualquier camino \(f\) en \(X\) cumple \(f\simeq f\ \mathrm{rel}\ \{0,1\}\). Intuitivamente, un camino se puede deformar a sí mismo dejando fijos los extremos sin deformarlo: basta tomar la deformación que es el camino quieto todo el tiempo. Formalmente, la homotopía \(F\colon I\times I\to X\) dada por
+\[ F(s,t)=f(s) \]
+manda cada horizontal del cuadrado (cada \(t\) fijo) al mismo camino \(f\). Además, los extremos siempre quedan fijos, pues \(F(0,t)=f(0)\) y \(F(1,t)=f(1)\) para todo \(t\). Así, \(F\) es una homotopía de \(f\) en \(f\) relativa a \(\{0,1\}\).</p>
+
+<h4>Simetría</h4>
+<p>Se quiere ver que si \(f\simeq g\ \mathrm{rel}\ \{0,1\}\), entonces \(g\simeq f\ \mathrm{rel}\ \{0,1\}\).</p>
+<p>Antes de la demostración formal, la idea: si se puede deformar \(f\) en \(g\) dejando fijos los extremos, también se puede empezar con \(g\) y deformar en \(f\); basta tomar esa deformación pero al revés. En el cuadrado \(I\times I\), esto es reflejarlo: la homotopía que se tiene empieza con \(f\) arriba y va deformando hasta \(g\) abajo, y al reflejar el cuadrado se empieza con \(g\) y se termina con \(f\), y los extremos siguen fijos aunque se vaya de abajo hacia arriba.</p>
+<p>Formalmente, sea \(F\colon I\times I\to X\) una homotopía de \(f\) a \(g\) relativa a los extremos. Se define \(G\colon I\times I\to X\) como
+\[ G(s,t)=F(s,1-t), \]
+es decir, se cambia \(t\) por \(1-t\), lo que «voltea» la homotopía. El video deja como un ejercicio muy bonito verificar que \(G\) es, en efecto, una homotopía de \(g\) a \(f\) relativa a los extremos.</p>
+
+<h4>Transitividad</h4>
+<p>Se quiere ver que si \(f\simeq g\ \mathrm{rel}\ \{0,1\}\) y \(g\simeq h\ \mathrm{rel}\ \{0,1\}\), entonces \(f\simeq h\ \mathrm{rel}\ \{0,1\}\).</p>
+<p>La idea: se puede deformar \(f\) en \(g\) dejando fijos los extremos y luego deformar \(g\) en \(h\) dejando fijos los extremos; basta pegar las dos deformaciones, primero deformando \(f\) hasta llegar a \(g\) y luego siguiendo de largo hasta \(h\). Esquemáticamente, se pegan los dos cuadrados de las homotopías, uno encima del otro (figura). El único detalle es que al pegarlos se obtiene un rectángulo de tamaño \(2\times1\) y no el cuadrado unitario, por lo que hay que reescalar para que la nueva homotopía salga de \(I\times I\).</p>
+<figure>
+<svg viewBox="0 0 400 230" role="img" aria-label="Cuadrado I×I dividido en dos mitades: la de arriba es la homotopía F de f a g y la de abajo es la homotopía G de g a h; los lados verticales van a los extremos">
+<g fill="none" stroke-linecap="round">
+<line class="f0" x1="160" x2="320" y1="20" y2="20"/>
+<line class="mid" x1="160" x2="320" y1="100" y2="100"/>
+<line class="f1" x1="160" x2="320" y1="180" y2="180"/>
+<line class="end" x1="160" x2="160" y1="20" y2="180"/><line class="end" x1="320" x2="320" y1="20" y2="180"/>
+</g>
+<text x="240" y="64" text-anchor="middle">F</text><text x="240" y="144" text-anchor="middle">G</text>
+<text x="148" y="25" text-anchor="end">t = 0 ↦ f</text><text x="148" y="105" text-anchor="end">t = ½ ↦ g</text><text class="c1" x="148" y="185" text-anchor="end">t = 1 ↦ h</text>
+<text class="dim" x="240" y="208" text-anchor="middle">I × I</text>
+</svg>
+<figcaption>La parte de arriba es la homotopía \(F\) de \(f\) a \(g\) y la de abajo es la homotopía \(G\) de \(g\) a \(h\); los lados verticales (en verde) van a los extremos.</figcaption>
+</figure>
+<p>Formalmente, sean \(F\colon I\times I\to X\) y \(G\colon I\times I\to X\) homotopías de \(f\) a \(g\) y de \(g\) a \(h\), respectivamente, ambas relativas a los extremos. Se define \(H\colon I\times I\to X\) por casos como
+\[ H(s,t)=\begin{cases} F(s,2t) & \text{si } t\in[0,\tfrac12],\\[2pt] G(s,2t-1) & \text{si } t\in[\tfrac12,1]. \end{cases} \]
+El video deja como un muy buen ejercicio verificar que \(H\) es una homotopía de \(f\) a \(h\) relativa a los extremos: hay que revisar con cuidado las definiciones y evaluar.</p>
+
+<h4>Conclusión</h4>
+<p>Con esto queda demostrado que la relación de homotopía relativa a los extremos es una relación de equivalencia en el conjunto de todos los caminos de \(X\). Este es un paso más hacia la definición del grupo fundamental.</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+<li><a href="https://www.youtube.com/watch?v=qFL_OneuFwI&amp;t=110" target="_blank" rel="noopener">1:50</a> En la reflexividad se escribe \(F(s,t)=f(t)\), pero debe decir \(F(s,t)=f(s)\) (con \(f(t)\) los extremos no quedan fijos).</li>
+<li><a href="https://www.youtube.com/watch?v=qFL_OneuFwI&amp;t=255" target="_blank" rel="noopener">4:15</a> En la simetría se define \(G(s,t)=F(1-s,t)\), pero debe decir \(G(s,t)=F(s,1-t)\) (así \(G\) va de \(g\) a \(f\); con \(F(1-s,t)\) solo se recorre cada camino al revés).</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/caminos-y-homotopias-2.tex">caminos-y-homotopias-2.tex</a>.</p>

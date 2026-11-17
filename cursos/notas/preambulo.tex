@@ -18,11 +18,18 @@
 \definecolor{extremo}{RGB}{47,107,79}
 \definecolor{azul}{RGB}{44,74,154}
 
-% Definiciones numeradas por unidad
+% Enunciados numerados por unidad: definiciones, proposiciones, teoremas, lemas y
+% corolarios comparten UN solo contador (u.n), para poder hacer referencias cruzadas
+% (\label / \ref) sin ambigüedad. Entornos: defn, prop, teo, lema, cor.
 \theoremstyle{definition}
 \newtheorem{defn}{Definición}
-% Numeración por unidad: \unidad{u}{n} (después de \input{preambulo}) hace que las
-% definiciones de la nota se llamen u.n, u.(n+1), ...; n es el primer número
+\theoremstyle{plain}
+\newtheorem{prop}[defn]{Proposición}
+\newtheorem{teo}[defn]{Teorema}
+\newtheorem{lema}[defn]{Lema}
+\newtheorem{cor}[defn]{Corolario}
+% Numeración por unidad: \unidad{u}{n} (después de \input{preambulo}) hace que los
+% enunciados numerados de la nota se llamen u.n, u.(n+1), ...; n es el primer número
 % libre de esa unidad (ver la tabla de CONVENCIONES.md).
 \newcommand{\unidad}[2]{\renewcommand{\thedefn}{#1.\arabic{defn}}\setcounter{defn}{\numexpr#2-1\relax}}
 

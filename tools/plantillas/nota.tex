@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \newcommand{\videoid}{@VIDEOID@}
 \input{preambulo}
-\unidad{@UNIDAD@}{@N@} % unidad @UNIDAD@; primera definición: @UNIDAD@.@N@
+\unidad{@UNIDAD@}{@N@} % unidad @UNIDAD@; primer enunciado: @UNIDAD@.@N@
 
 \title{@TITULO@}
 \author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
@@ -16,7 +16,8 @@
 \normalsize
 
 % Contenido: seguir el video; no agregar resultados que no estén en él.
-% Definiciones con \begin{defn}[Nombre] ... \end{defn} (se numeran solas).
+% Enunciados numerados (un solo contador por unidad): \begin{defn}[Nombre], \begin{prop}, \begin{teo},
+% \begin{lema}, \begin{cor} (se numeran solos; se pueden etiquetar con \label y citar con \ref).
 \section*{Título de la primera sección}
 
 % Solo si hay errores CONFIRMADOS por el autor (ver CONVENCIONES.md):

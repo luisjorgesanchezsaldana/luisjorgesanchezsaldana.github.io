@@ -10,7 +10,7 @@ Cada nota vive en `cursos/notas/` con el mismo nombre base (el *slug*: minúscul
 - `<slug>.pdf`: PDF compilado con LuaLaTeX (`lualatex <slug>.tex`).
 - `<slug>.html`: fragmento HTML que la página carga al desplegar las notas.
 - Si un tema tiene dos videos, el segundo lleva el sufijo `-2` (por ejemplo `caminos-y-homotopias-2`).
-- `preambulo.tex`: paquetes, colores, entorno `defn` y entorno `erratas`, compartidos por todas las notas. Un cambio de estilo se hace ahí, una sola vez.
+- `preambulo.tex`: paquetes, colores, entornos de enunciados (`defn`, `prop`, `teo`, `lema`, `cor`) y entorno `erratas`, compartidos por todas las notas. Un cambio de estilo se hace ahí, una sola vez.
 
 ## Cómo se engancha una nota a la página
 
@@ -26,19 +26,19 @@ En `cursos/topologia-algebraica.html`, el tema correspondiente (objeto `C`, list
 
 1. Leer este archivo y las notas ya hechas (`.tex`) para reutilizar notación y estilo.
 2. Obtener del video la transcripción y capturas de los dibujos del pizarrón.
-3. `python3 tools/nueva-nota.py crear --slug ... --unidad N --titulo ... --video-id ...` crea el `.tex` y el `.html` desde `tools/plantillas/` con el número de definición que toca.
+3. `python3 tools/nueva-nota.py crear --slug ... --unidad N --titulo ... --video-id ...` crea el `.tex` y el `.html` desde `tools/plantillas/` con el número de enunciado que toca.
 4. Escribir el contenido del `.tex` y del `.html` (la figura en TikZ y en SVG) y compilar el PDF con LuaLaTeX.
 5. `python3 tools/verificar-notas.py --compilar` debe terminar sin errores.
 6. **Borrador:** mostrar al autor el PDF y una captura de cómo se ve en la página, y esperar su aprobación. Nada se sube a `main` antes.
 7. Con la aprobación: `python3 tools/nueva-nota.py enganchar --slug ... --tema "..." [--video N]` (agrega `nb` a la página y actualiza la tabla de numeración), verificar de nuevo, subir a `main` y comprobar la página en línea.
 
-## Numeración de definiciones por unidad
+## Numeración de enunciados por unidad
 
-Al terminar una nota, actualizar esta tabla con el siguiente número libre de su unidad. Las notas de una unidad deben escribirse en el orden del curso; si se escribe una nota intermedia después, hay que renumerar las que le siguen.
+Definiciones, proposiciones, teoremas, lemas y corolarios comparten **un solo contador por unidad** (1.1, 1.2, ...), pensado para poder hacer referencias cruzadas. Al terminar una nota, actualizar esta tabla con el siguiente número libre de su unidad. Las notas de una unidad deben escribirse en el orden del curso; si se escribe una nota intermedia después, hay que renumerar las que le siguen.
 
-| Unidad | Notas (en orden) | Definiciones usadas | Siguiente libre |
+| Unidad | Notas (en orden) | Enunciados numerados usados | Siguiente libre |
 |---|---|---|---|
-| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin definiciones), `que-estudiamos-en-topologia-algebraica` (Video 1, sin definiciones), `caminos-y-homotopias` (Video 1) | 1.1 a 1.4 | 1.5 |
+| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin enunciados numerados), `que-estudiamos-en-topologia-algebraica` (Video 1, sin enunciados numerados), `caminos-y-homotopias` (Video 1), `caminos-y-homotopias-2` (Video 2) | 1.1 a 1.4; 1.5 a 1.6 | 1.7 |
 | 2. Teorema de van Kampen | | | 2.1 |
 | 3. Espacios cubrientes | | | 3.1 |
 | 4. Homología | | | 4.1 |
@@ -55,7 +55,7 @@ Al terminar una nota, actualizar esta tabla con el siguiente número libre de su
 ## Estilo
 
 - Las notas siguen el video: no agregan resultados ni demostraciones que no estén en él. Si se agrega un comentario propio, se marca como «Comentario».
-- Las definiciones usan el entorno `defn` y **se numeran por unidad**: `u.n` (Definición 1.1, 1.2, ...). En el `.tex`, cada nota declara `\unidad{u}{n}` justo después de `\input{preambulo}`, con `n` el primer número libre de esa unidad según la tabla de abajo. En HTML la etiqueta se escribe a mano («Definición 1.2 (nombre)») dentro de `<div class="def">`. Los números deben coincidir en el PDF y en el HTML.
+- Los enunciados numerados son las definiciones (`defn`), proposiciones (`prop`), teoremas (`teo`), lemas (`lema`) y corolarios (`cor`). **Comparten un solo contador por unidad**: `u.n` (Definición 1.5, Proposición 1.6, Teorema 1.7, ...). En el `.tex`, cada nota declara `\unidad{u}{n}` justo después de `\input{preambulo}`, con `n` el primer número libre de esa unidad según la tabla de abajo; los enunciados se pueden etiquetar con `\label` y citar con `\ref`. En HTML la etiqueta se escribe a mano: las definiciones van en `<div class="def"><b>Definición 1.5 (nombre).</b> ...</div>` y los demás en `<div class="thm"><b>Proposición 1.6.</b> <i>enunciado</i></div>`. Los tipos y los números deben coincidir en el PDF y en el HTML. Las demostraciones usan `proof` en el `.tex` y no se numeran.
 - Figuras: TikZ en el PDF y SVG en el HTML, con los mismos colores (negro para `f_0`, azul para `f_1`, verde para los extremos).
 - En el `.tex`, el signo ¿ se escribe con la ligadura `?``: con el preámbulo actual, un ¿ escrito directamente sale como «£» en el PDF. En el `.html` se escribe ¿ normal.
 - Se compila con LuaLaTeX. En el entorno donde se prepararon las primeras notas no estaba el paquete de español de TeX Live, por eso el preámbulo usa `babel` con `provide=*` y desactiva los guiones de palabra; con la instalación completa se puede cambiar a `\usepackage[spanish]{babel}`.
