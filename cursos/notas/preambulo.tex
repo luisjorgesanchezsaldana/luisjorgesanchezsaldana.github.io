@@ -1,0 +1,34 @@
+% Preámbulo compartido de las notas del curso de topología algebraica.
+% Cada nota empieza con \documentclass[11pt]{article}, define \videoid{...}
+% (el identificador del video de YouTube) y luego hace \input{preambulo}.
+% Compilar con LuaLaTeX:  lualatex nombre-de-la-nota.tex
+\usepackage[spanish,provide=*]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,babel}
+\usepackage[colorlinks=true,urlcolor=blue!50!black,linkcolor=blue!50!black]{hyperref}
+
+\hyphenpenalty=10000 \exhyphenpenalty=10000 \emergencystretch=3em
+
+% Colores de las figuras (los mismos que usa la página)
+\definecolor{extremo}{RGB}{47,107,79}
+\definecolor{azul}{RGB}{44,74,154}
+
+% Definiciones numeradas dentro de cada nota
+\theoremstyle{definition}
+\newtheorem{defn}{Definición}
+
+% Observaciones y erratas del video. Usar SOLO si hay algo que señalar:
+%   \begin{erratas}
+%     \errata{203}{3:23}{Se dice ..., pero debe decir ...}
+%   \end{erratas}
+% El primer argumento son los segundos (enlaza al minuto exacto del video),
+% el segundo es la marca visible, el tercero es el texto.
+\newenvironment{erratas}{\section*{Observaciones y erratas del video}\begin{itemize}}{\end{itemize}}
+\newcommand{\errata}[3]{%
+  \edef\errurl{https://www.youtube.com/watch?v=\videoid\string&t=#1}%
+  \item[\textbf{\expandafter\href\expandafter{\errurl}{#2}}] #3}
