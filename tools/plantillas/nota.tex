@@ -1,0 +1,27 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{@VIDEOID@}
+\input{preambulo}
+\unidad{@UNIDAD@}{@N@} % unidad @UNIDAD@; primera definición: @UNIDAD@.@N@
+
+\title{@TITULO@}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=@VIDEOID@}{\guillemotleft{}@TITULOVIDEO@\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). @RESUMEN@
+\normalsize
+
+% Contenido: seguir el video; no agregar resultados que no estén en él.
+% Definiciones con \begin{defn}[Nombre] ... \end{defn} (se numeran solas).
+\section*{Título de la primera sección}
+
+% Solo si hay errores CONFIRMADOS por el autor (ver CONVENCIONES.md):
+% \begin{erratas}
+%   \errata{203}{3:23}{Se dice ..., pero debe decir ...}
+% \end{erratas}
+
+\end{document}

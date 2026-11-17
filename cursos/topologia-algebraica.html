@@ -191,8 +191,10 @@ meta+=C.credits.length?`<div><h3>Créditos</h3><ul>${C.credits.map(([r,n])=>`<li
 document.getElementById("meta").innerHTML=meta;
 
 const lbl=(arr,word,i)=>arr.length>1?`${word} ${i+1}`:word;
-const nbBar=(it,id)=>{const n=it.nb;if(!n)return"";const w=it.videos.length>1?"Notas del Video "+(n.video||1):"Notas";
-  return `<div class="nb"><div class="nbar"><button type="button" class="r nbt" aria-expanded="false" aria-controls="${id}-nb" data-src="${esc(n.src)}"><span class="ch" aria-hidden="true"></span>${esc(w)}</button>${n.pdf?`<a class="r pdf" href="${esc(n.pdf)}" download>Descargar PDF</a>`:""}</div><div class="nbp" id="${id}-nb" hidden></div></div>`};
+const nbBar=(it,id)=>{const L=[].concat(it.nb||[]);if(!L.length)return"";
+  const bar=L.map((n,i)=>{const w=it.videos.length>1?"Notas del Video "+(n.video||1):"Notas";
+    return `<button type="button" class="r nbt" aria-expanded="false" aria-controls="${id}-nb${i}" data-src="${esc(n.src)}"><span class="ch" aria-hidden="true"></span>${esc(w)}</button>${n.pdf?`<a class="r pdf" href="${esc(n.pdf)}" download>Descargar PDF${L.length>1?" (Video "+(n.video||1)+")":""}</a>`:""}`}).join("");
+  return `<div class="nb"><div class="nbar">${bar}</div>${L.map((n,i)=>`<div class="nbp" id="${id}-nb${i}" hidden></div>`).join("")}</div>`};
 document.getElementById("units").innerHTML=C.units.map((u,ui)=>{
   const rows=u.items.map((it,ii)=>{
     const id=`c-${ui+1}-${ii+1}`,r=[];

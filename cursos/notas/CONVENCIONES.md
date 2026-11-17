@@ -26,10 +26,11 @@ En `cursos/topologia-algebraica.html`, el tema correspondiente (objeto `C`, list
 
 1. Leer este archivo y las notas ya hechas (`.tex`) para reutilizar notación y estilo.
 2. Obtener del video la transcripción y capturas de los dibujos del pizarrón.
-3. Escribir el `.tex`, compilarlo y revisar el PDF.
-4. Escribir el fragmento `.html` con el mismo contenido (la figura en SVG).
-5. Agregar el campo `nb` al tema en la página.
-6. Subir a `main` y comprobar la página en línea.
+3. `python3 tools/nueva-nota.py crear --slug ... --unidad N --titulo ... --video-id ...` crea el `.tex` y el `.html` desde `tools/plantillas/` con el número de definición que toca.
+4. Escribir el contenido del `.tex` y del `.html` (la figura en TikZ y en SVG) y compilar el PDF con LuaLaTeX.
+5. `python3 tools/verificar-notas.py --compilar` debe terminar sin errores.
+6. **Borrador:** mostrar al autor el PDF y una captura de cómo se ve en la página, y esperar su aprobación. Nada se sube a `main` antes.
+7. Con la aprobación: `python3 tools/nueva-nota.py enganchar --slug ... --tema "..." [--video N]` (agrega `nb` a la página y actualiza la tabla de numeración), verificar de nuevo, subir a `main` y comprobar la página en línea.
 
 ## Numeración de definiciones por unidad
 
