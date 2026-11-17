@@ -1,0 +1,53 @@
+<h4>Enunciado</h4>
+<div class="thm"><b>Teorema 1.23 (Teorema de Borsuk–Ulam en dimensión 2).</b> <i>Para toda función continua \(f\colon S^2\to\mathbb{R}^2\) existe \(x\in S^2\) tal que \(f(x)=f(-x)\). Es decir, existe un par de puntos antípodas de \(S^2\) con exactamente la misma imagen bajo \(f\).</i></div>
+<p>El enunciado no es nada obvio. Un ejemplo muy rápido de cómo aplicarlo: se piensa que la Tierra es una esfera y que a cada punto se le asocian su temperatura y su presión atmosférica; uno puede convencerse de que esto es una función continua con valores en \(\mathbb{R}^2\). El teorema dice entonces que siempre hay dos puntos antípodas del planeta que tienen la misma temperatura y la misma presión atmosférica, lo cual es sorprendente (bajo el supuesto, claro, de que la Tierra no es plana).</p>
+
+<h4>La demostración</h4>
+<p>La demostración es por contradicción. Supongamos que existe \(f\colon S^2\to\mathbb{R}^2\) continua tal que \(f(x)\neq f(-x)\) para todo \(x\in S^2\), es decir, dos puntos antípodas cualesquiera tienen imágenes distintas.</p>
+<p><i>La función \(g\colon S^2\to S^1\).</i> Bajo esta suposición se define
+\[ g(x)=\frac{f(x)-f(-x)}{\lVert f(x)-f(-x)\rVert}. \]
+Está bien definida porque el denominador nunca se anula, y se divide entre la norma del numerador para que \(g\) caiga en \(S^1\). Además \(g\) es continua.</p>
+<p><i>La idea.</i> Se define un lazo \(h\) en \(S^1\) que, al mismo tiempo, será contraíble y no contraíble; esa es la contradicción. Falta entonces definir el lazo \(h\) y demostrar las dos cosas.</p>
+<p><i>El lazo \(h\).</i> Primero se define un lazo \(\eta\) en \(S^2\) que da una vuelta al ecuador (figura):
+\[ \eta(s)=(\cos 2\pi s,\ \sin 2\pi s,\ 0),\qquad s\in I. \]
+(La fórmula no es lo importante; sirve para tener claro cómo está definido \(\eta\).) El lazo \(h\) es el que se obtiene empujando \(\eta\) a \(S^1\) con \(g\):
+\[ h=g\circ\eta\colon I\to S^1. \]</p>
+<figure>
+<svg viewBox="0 0 480 300" role="img" aria-label="La esfera S² con su ecuador: los puntos η(s) y η(s+1/2) son antípodas">
+<circle class="f0" fill="none" cx="240" cy="150" r="110"/>
+<polyline class="f1" fill="none" stroke-dasharray="5 4" points="130.0,150.0 130.2,148.4 130.6,146.9 131.4,145.3 132.4,143.8 133.7,142.2 135.4,140.7 137.3,139.2 139.5,137.8 142.0,136.4 144.7,135.0 147.7,133.7 151.0,132.4 154.5,131.1 158.3,129.9 162.2,128.8 166.4,127.7 170.8,126.7 175.3,125.7 180.1,124.8 185.0,124.0 190.1,123.3 195.3,122.6 200.6,122.0 206.0,121.5 211.5,121.0 217.1,120.7 222.8,120.4 228.5,120.2 234.2,120.0 240.0,120.0 245.8,120.0 251.5,120.2 257.2,120.4 262.9,120.7 268.5,121.0 274.0,121.5 279.4,122.0 284.7,122.6 289.9,123.3 295.0,124.0 299.9,124.8 304.7,125.7 309.2,126.7 313.6,127.7 317.8,128.8 321.7,129.9 325.5,131.1 329.0,132.4 332.3,133.7 335.3,135.0 338.0,136.4 340.5,137.8 342.7,139.2 344.6,140.7 346.3,142.2 347.6,143.8 348.6,145.3 349.4,146.9 349.8,148.4 350.0,150.0"/>
+<polyline class="f1" fill="none" points="350.0,150.0 349.8,151.6 349.4,153.1 348.6,154.7 347.6,156.2 346.3,157.8 344.6,159.3 342.7,160.8 340.5,162.2 338.0,163.6 335.3,165.0 332.3,166.3 329.0,167.6 325.5,168.9 321.7,170.1 317.8,171.2 313.6,172.3 309.2,173.3 304.7,174.3 299.9,175.2 295.0,176.0 289.9,176.7 284.7,177.4 279.4,178.0 274.0,178.5 268.5,179.0 262.9,179.3 257.2,179.6 251.5,179.8 245.8,180.0 240.0,180.0 234.2,180.0 228.5,179.8 222.8,179.6 217.1,179.3 211.5,179.0 206.0,178.5 200.6,178.0 195.3,177.4 190.1,176.7 185.0,176.0 180.1,175.2 175.3,174.3 170.8,173.3 166.4,172.3 162.2,171.2 158.3,170.1 154.5,168.9 151.0,167.6 147.7,166.3 144.7,165.0 142.0,163.6 139.5,162.2 137.3,160.8 135.4,159.3 133.7,157.8 132.4,156.2 131.4,154.7 130.6,153.1 130.2,151.6 130.0,150.0"/>
+<line class="end" x1="310.7" y1="173.0" x2="169.3" y2="127.0"/>
+<circle class="endpt" cx="310.7" cy="173.0" r="4"/><circle class="endpt" cx="169.3" cy="127.0" r="4"/>
+<circle cx="240" cy="40" r="3.5" style="fill:var(--fg)"/>
+<text x="318.7" y="197.0" text-anchor="middle" style="fill:var(--ok)">η(s)</text>
+<text x="183.3" y="103.0" text-anchor="middle" style="fill:var(--ok)">η(s+½)</text>
+<text x="240" y="22" text-anchor="middle">polo norte</text>
+<text class="c1" x="390" y="160" text-anchor="middle">η</text>
+<text class="dim" x="90" y="90" text-anchor="middle">S²</text>
+</svg>
+<figcaption>El lazo \(\eta\) (el ecuador de \(S^2\)) y dos puntos antípodas \(\eta(s)\) y \(\eta(s+\tfrac12)\).</figcaption>
+</figure>
+
+<p><b>Primera parte: \(h\) no es contraíble.</b> Primero se observa que
+\[ g(-x)=-g(x)\qquad\text{para todo }x\in S^2, \]
+lo cual se ve de inmediato de la fórmula de \(g\): al cambiar \(x\) por \(-x\) se cambia el signo del numerador y el denominador no cambia. Esta observación dice que \(g\) manda puntos antípodas de \(S^2\) en puntos antípodas de \(S^1\).</p>
+<p>Como \(\eta(s)\) y \(\eta(s+\tfrac12)\) son puntos antípodas (figura) y \(h=g\circ\eta\), se obtiene
+\[ h\bigl(s+\tfrac12\bigr)=-h(s)\qquad\text{para todo }s\in\bigl[0,\tfrac12\bigr]. \tag{1} \]
+Esta ecuación solo tiene sentido para esos valores de \(s\), pues son los únicos para los que \(s+\tfrac12\) sigue en el intervalo \(I\).</p>
+<p>Como al calcular \(\pi_1(S^1)\), el lazo \(h\) en \(S^1\) se levanta a un camino \(\tilde h\colon I\to\mathbb{R}\) con \(\tilde h(0)=0\) y \(\varphi\circ\tilde h=h\), donde \(\varphi(x)=e^{2\pi i x}\) es la proyección cubriente (la espiral). La ecuación (1) implica que
+\[ \tilde h\bigl(s+\tfrac12\bigr)=\tilde h(s)+\frac{q}{2}\qquad\text{con }q\text{ un entero impar,} \tag{2} \]
+donde, en principio, \(q\) depende de \(s\). En efecto, si se toma una preimagen de \(h(s)\) y una preimagen de \(h(s+\tfrac12)=-h(s)\) bajo \(\varphi\), estas difieren por \(\tfrac12\) módulo un entero, y es de esa diferencia entera de donde sale \(q\): para pasar de una preimagen a la otra hay que avanzar una cantidad entera y en algún momento dar un brinquito de \(\tfrac12\). (Convencerse de esto con la imagen de la espiral es un buen ejercicio.)</p>
+<p><b>Comentario.</b> Como en el cálculo de \(\pi_1(S^1)\), se toma el levantamiento con punto inicial \(0\), lo cual supone \(h(0)=1\). Si no fuera así, se puede componer \(g\) con una rotación \(\rho\) de \(S^1\) que mande \(h(0)\) a \(1\); como \(\rho(-z)=-\rho(z)\), la propiedad \(g(-x)=-g(x)\) se conserva y nada de lo anterior cambia.</p>
+<p><i>\(q\) no depende de \(s\).</i> De la ecuación (2) se puede despejar \(q=2\bigl(\tilde h(s+\tfrac12)-\tilde h(s)\bigr)\), que es una función continua de \(s\in[0,\tfrac12]\) (pues \(\tilde h\) lo es). Como \(q\) toma valores enteros y \([0,\tfrac12]\) es conexo, \(q\) es constante por continuidad. (También es un buen ejercicio.)</p>
+<p><i>Cálculo de \(\tilde h(1)\).</i> Se evalúa la ecuación (2) en \(s=0\) y en \(s=\tfrac12\):
+\[ \tilde h\bigl(\tfrac12\bigr)=\tilde h(0)+\frac q2,\qquad \tilde h(1)=\tilde h\bigl(\tfrac12\bigr)+\frac q2 . \]
+Sustituyendo la primera en la segunda se obtiene \(\tilde h(1)=\tilde h(0)+q=q\). Es decir, el levantamiento de \(h\) empieza en \(0\) y termina en \(q\), de modo que \(h\) es homotópico (relativamente a los extremos) al lazo en \(S^1\) que da \(q\) vueltas, y por el Teorema 1.19 su clase en \(\pi_1(S^1)\cong\mathbb{Z}\) es \([h]=q\). Como \(q\) es impar, \(q\neq 0\); por lo tanto \(h\) <i>no es homotópico al lazo constante</i>. Esto demuestra la primera afirmación.</p>
+
+<p><b>Segunda parte: \(h\) sí es contraíble.</b> Ahora se demuestra que \(h\) también se puede contraer al lazo constante. Recuérdese que \(h\) se obtiene de dar una vuelta al ecuador con \(\eta\) y empujar con \(g\). El lazo \(\eta\) se puede ir contrayendo al polo norte de \(S^2\): se empuja hacia el polo norte (por los paralelos) y eventualmente se llega al lazo constante en el polo norte. Si cada uno de los lazos de esta deformación se empuja a \(S^1\) con \(g\), se obtiene una deformación de \(h\) al lazo constante.</p>
+<p><b>Comentario.</b> Como en la demostración del teorema de Brouwer, esta homotopía deforma \(\eta\) al lazo constante en el polo norte, y al hacerlo <i>mueve el punto base</i>: los extremos de \(\eta_t\) recorren un meridiano desde \(\eta(0)=(1,0,0)\) hasta el polo norte. Entonces \(g\circ\eta_t\) es una homotopía libre de \(h\) a un lazo constante, no relativa a los extremos. Esto basta: si \(c(t)=g(\eta_t(0))\) es el camino que recorre el punto base, una homotopía libre de lazos da \([h]=\beta_c([k])\), donde \(k\) es el lazo constante final y \(\beta_c\) es el isomorfismo de cambio de punto base (Definición 1.13, Teorema 1.12), y como \([k]\) es el neutro, también lo es \([h]\). Así se completa la segunda afirmación.</p>
+<p><i>La contradicción.</i> Hemos demostrado que \(h\) es no contraíble (primera parte) y contraíble (segunda parte), lo cual es una contradicción. Por lo tanto, no puede existir una \(f\) con \(f(x)\neq f(-x)\) para todo \(x\): existe \(x\in S^2\) con \(f(x)=f(-x)\), y esto demuestra el teorema. \(\square\)</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=HlZCNLpj8qw&amp;t=643" target="_blank" rel="noopener">10:43</a> Se contrae \(\eta\) al polo norte y se concluye que \(h\) es homotópico al lazo constante; pero esa homotopía mueve los extremos del lazo, así que no es relativa a los extremos y no basta para contradecir \([h]=q\neq 0\) en \(\pi_1(S^1)\). Basta observar que una homotopía libre de \(h\) a un lazo constante da \([h]=\beta_c([k])\), que es el neutro (cambio de punto base).</li></ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/teorema-de-borsuk-ulam.tex">teorema-de-borsuk-ulam.tex</a>.</p>
