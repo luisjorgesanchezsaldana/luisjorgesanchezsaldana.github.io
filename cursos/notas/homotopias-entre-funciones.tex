@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{Ts7i-Am3nf8}
+\input{preambulo}
+\unidad{1}{29} % unidad 1; primer enunciado: 1.29
+
+\title{Homotopías entre funciones}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=Ts7i-Am3nf8}{\guillemotleft{}Homotopías entre funciones\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se define la homotopía entre funciones continuas y la homotopía que preserva el punto base, y se demuestra que funciones homotópicas (preservando el punto base) inducen el mismo homomorfismo en grupos fundamentales.
+\normalsize
+
+\section*{Homotopías entre funciones}
+
+En este video se define la homotopía entre funciones, y también un tipo particular de homotopía que será útil al estudiar las funciones inducidas entre grupos fundamentales. Todas las funciones son continuas.
+
+\begin{defn}[Homotopía entre funciones]\label{def:homotopia-funciones}
+Sean $g,f\colon X\to Y$ dos funciones (continuas) con el mismo dominio y el mismo codominio. Se dice que $g$ es \emph{homotópica} a $f$, y se escribe $g\simeq f$, si existe una función continua $H\colon X\times I\to Y$, $(x,t)\mapsto H(x,t)$, tal que
+\[
+  H(x,0)=g(x),\qquad H(x,1)=f(x)\qquad\text{para todo }x\in X.
+\]
+\end{defn}
+
+Aquí $I=[0,1]$ es el intervalo unitario y el segundo parámetro se piensa como el tiempo: en tiempo $0$ la función $H$ recupera $g$ y en tiempo $1$ recupera $f$, de modo que $g$ se \emph{deforma} en $f$ a través del tiempo. Esto generaliza la homotopía entre caminos: cuando $X=I$, se tiene justamente una homotopía entre caminos.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (80,60) -- (80,200); \draw[gray] (240,60) -- (240,200);
+  \draw[thick,black] (80,60) -- (240,60);
+  \draw[gray] (80,95) -- (240,95);
+  \draw[gray] (80,130) -- (240,130);
+  \draw[gray] (80,165) -- (240,165);
+  \draw[thick,azul] (80,200) -- (240,200);
+  \draw[gray] (470,138) ellipse (105 and 92);
+  \draw[thick] (385,90) .. controls (420,70) and (470,115) .. (545,90);
+  \draw[gray] (385,115) .. controls (425,100) and (475,140) .. (545,118);
+  \draw[gray] (385,138) .. controls (425,125) and (475,165) .. (545,142);
+  \draw[gray] (385,160) .. controls (425,150) and (475,188) .. (545,166);
+  \draw[thick,azul] (385,185) .. controls (425,175) and (475,210) .. (545,188);
+  \draw[->,gray] (262,130) -- (340,130); \node at (301,112) {\small $H$};
+  \node[anchor=east] at (72,62) {\small $X\times\{0\}$}; \node[anchor=east,azul] at (72,200) {\small $X\times\{1\}$};
+  \node at (160,35) {$X\times I$}; \node at (470,22) {$Y$};
+  \node at (565,75) {\small $g$}; \node[azul] at (565,198) {\small $f$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: cada una de las líneas horizontales de $X\times I$ es una copia de $X$; la de arriba, $X\times\{0\}$, se manda con $H$ a la imagen de $g$, la de abajo, $X\times\{1\}$, a la de $f$, y las intermedias (en gris) a las etapas de la deformación.
+
+\section*{Homotopías que preservan el punto base}
+
+Ahora se define una variante de la definición anterior, muy útil para trabajar con homomorfismos inducidos en grupos fundamentales. Además de $X$ y $Y$ se consideran subespacios $A\subseteq X$ y $B\subseteq Y$. Primero, un poco de notación: si $f\colon X\to Y$ es una función tal que $f(A)\subseteq B$, se escribe
+\[
+  f\colon (X,A)\to(Y,B).
+\]
+De ahora en adelante, si se escribe esto, quiere decir que es una función de $X$ en $Y$ que manda $A$ en $B$. En particular, si $A=\{x_0\}$ y $B=\{y_0\}$ constan de un punto (los puntos base que se venían tomando), la función se escribe sin las llaves, $f\colon (X,x_0)\to(Y,y_0)$, y lo único que quiere decir es que $f$ manda el punto base $x_0$ en el punto base $y_0$. Como se vio en videos anteriores, estas funciones inducen homomorfismos entre los grupos fundamentales basados en $x_0$ y en $y_0$ (Teorema~1.25).
+
+\begin{defn}[Homotopía entre funciones de pares]\label{def:homotopia-pares}
+Sean $g,f\colon (X,A)\to(Y,B)$. Una \emph{homotopía entre $g$ y $f$ como funciones de pares} es una función continua $H\colon X\times I\to Y$ tal que, para cada $t\in I$,
+\[
+  H(\,\cdot\,,t)\colon (X,A)\to(Y,B),
+\]
+y además $H(x,0)=g(x)$ y $H(x,1)=f(x)$ para todo $x\in X$.
+
+En particular, una homotopía entre $g,f\colon (X,x_0)\to(Y,y_0)$ es una función $H\colon X\times I\to Y$ como en la Definición~\ref{def:homotopia-funciones} tal que
+\[
+  H(x_0,t)=y_0\qquad\text{para todo }t\in I.
+\]
+Estas se llaman \emph{homotopías que preservan el punto base}.
+\end{defn}
+
+Es decir, es una deformación de $g$ en $f$ de manera que todas las etapas de la deformación siguen siendo funciones entre las parejas $(X,A)\to(Y,B)$; en el caso del punto base, $x_0$ se manda siempre en $y_0$ en todo momento. Cuando se dice que dos funciones $g,f\colon (X,x_0)\to(Y,y_0)$ son homotópicas, se entiende que lo son mediante una homotopía que preserva el punto base.
+
+\section*{El resultado: homotopía e inducidos}
+
+La gracia de estas homotopías es el siguiente resultado: funciones homotópicas que preservan el punto base inducen el mismo homomorfismo en grupos fundamentales.
+
+\begin{prop}\label{prop:homotopia-inducido}
+Si $g,f\colon (X,x_0)\to(Y,y_0)$ son homotópicas (mediante una homotopía que preserva el punto base), entonces
+\[
+  g_*=f_*\colon\pi_1(X,x_0)\to\pi_1(Y,y_0).
+\]
+\end{prop}
+
+\begin{proof}
+Tanto $g_*$ como $f_*$ son funciones con el mismo dominio y el mismo codominio, de modo que solo hay que verificar que tienen la misma imagen en cada elemento. Sea $[\gamma]\in\pi_1(X,x_0)$, con $\gamma$ un lazo en $X$ basado en $x_0$. Por definición, $g_*[\gamma]=[g\circ\gamma]$ y $f_*[\gamma]=[f\circ\gamma]$. Lo que se quiere demostrar es que los lazos $g\circ\gamma$ y $f\circ\gamma$, que viven en $Y$ y están basados en $y_0$, son homotópicos relativos a $\{0,1\}$.
+
+Sea $H\colon X\times I\to Y$ una homotopía que preserva el punto base entre $g$ y $f$, que existe por hipótesis. Se considera la función $\gamma\times\mathrm{id}_I\colon I\times I\to X\times I$ y se compone con $H$:
+\[
+  H\circ(\gamma\times\mathrm{id}_I)\colon I\times I\to Y,\qquad (s,t)\mapsto H(\gamma(s),t).
+\]
+Esta composición es justamente la homotopía relativa a los extremos entre $g\circ\gamma$ y $f\circ\gamma$ que se buscaba. Verificarlo es un ejercicio sencillo: en $t=0$ y $t=1$ se obtienen $g\circ\gamma$ y $f\circ\gamma$, y para ver que es relativa a $\{0,1\}$ se usa que la homotopía $H$ siempre manda el punto base en el punto base, es decir, $H(\gamma(0),t)=H(\gamma(1),t)=H(x_0,t)=y_0$ para todo $t$.
+\end{proof}
+
+Lo que debe pensarse de esta proposición es que funciones homotópicas mediante homotopías que preservan el punto base inducen el mismo homomorfismo en grupos fundamentales.
+
+\begin{erratas}
+  \errata{336}{5:36}{En la definición de homotopía entre funciones de pares se escribe $H(x,0)=f(x)$ y $H(x,1)=g(x)$, al revés que en la definición anterior ($H(x,0)=g(x)$ y $H(x,1)=f(x)$). En estas notas se usa el mismo orden en ambas definiciones.}
+\end{erratas}
+
+\end{document}

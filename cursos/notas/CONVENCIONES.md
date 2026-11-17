@@ -38,7 +38,7 @@ Definiciones, proposiciones, teoremas, lemas y corolarios comparten **un solo co
 
 | Unidad | Notas (en orden) | Enunciados numerados usados | Siguiente libre |
 |---|---|---|---|
-| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin enunciados numerados), `que-estudiamos-en-topologia-algebraica` (Video 1, sin enunciados numerados), `caminos-y-homotopias` (Video 1), `caminos-y-homotopias-2` (Video 2), `definicion-de-grupo-fundamental` (Video 1), `definicion-de-grupo-fundamental-2` (Video 2), `cambio-de-punto-base` (Video 1), `el-grupo-fundamental-del-circulo` (Video 1), `el-grupo-fundamental-del-circulo-2` (Video 2), `teorema-fundamental-del-algebra` (Video 1), `teorema-del-punto-fijo-de-brouwer` (Video 1), `teorema-de-borsuk-ulam` (Video 1), `el-grupo-fundamental-de-un-producto` (Video 1), `homomorfismos-inducidos` (Video 1), `el-grupo-fundamental-de-la-n-esfera` (Video 1), `r2-no-es-homeomorfo-a-rn` (Video 1) | 1.1 a 1.4; 1.5 a 1.6; 1.7 a 1.10; 1.11; 1.12 a 1.13; 1.14 a 1.17; 1.18 a 1.19; 1.20; 1.21 a 1.22; 1.23; 1.24; 1.25; 1.26 a 1.27; 1.28 | 1.29 |
+| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin enunciados numerados), `que-estudiamos-en-topologia-algebraica` (Video 1, sin enunciados numerados), `caminos-y-homotopias` (Video 1), `caminos-y-homotopias-2` (Video 2), `definicion-de-grupo-fundamental` (Video 1), `definicion-de-grupo-fundamental-2` (Video 2), `cambio-de-punto-base` (Video 1), `el-grupo-fundamental-del-circulo` (Video 1), `el-grupo-fundamental-del-circulo-2` (Video 2), `teorema-fundamental-del-algebra` (Video 1), `teorema-del-punto-fijo-de-brouwer` (Video 1), `teorema-de-borsuk-ulam` (Video 1), `el-grupo-fundamental-de-un-producto` (Video 1), `homomorfismos-inducidos` (Video 1), `el-grupo-fundamental-de-la-n-esfera` (Video 1), `r2-no-es-homeomorfo-a-rn` (Video 1), `homotopias-entre-funciones` (Video 1) | 1.1 a 1.4; 1.5 a 1.6; 1.7 a 1.10; 1.11; 1.12 a 1.13; 1.14 a 1.17; 1.18 a 1.19; 1.20; 1.21 a 1.22; 1.23; 1.24; 1.25; 1.26 a 1.27; 1.28; 1.29 a 1.31 | 1.32 |
 | 2. Teorema de van Kampen | | | 2.1 |
 | 3. Espacios cubrientes | | | 3.1 |
 | 4. Homología | | | 4.1 |
@@ -50,6 +50,8 @@ Definiciones, proposiciones, teoremas, lemas y corolarios comparten **un solo co
 - Una homotopía de caminos es una familia `f_t`, `0 ≤ t ≤ 1`, con función asociada `F: I × I → X`, `F(s,t) = f_t(s)`. La variable `s` recorre el camino y `t` es el tiempo.
 - En los dibujos, `t = 0` queda arriba (camino `f_0`) y `t = 1` abajo (camino `f_1`); los lados verticales del cuadrado van a los extremos `x_0` y `x_1`.
 - Homotopía relativa a los extremos: se escribe `rel {0,1}`; caminos homotópicos: `f_0 ≃ f_1 rel {0,1}`.
+- Pares y puntos base: si $A\subseteq X$, $B\subseteq Y$ y $f(A)\subseteq B$, se escribe `f: (X,A) → (Y,B)`; con $A=\{x_0\}$, $B=\{y_0\}$ se escribe `f: (X,x_0) → (Y,y_0)` (que $f$ manda el punto base en el punto base). El homomorfismo inducido es `f_*: π_1(X,x_0) → π_1(Y,y_0)`, `f_*[γ] = [f∘γ]` (notas 1.11 y 1.14).
+- Homotopía entre funciones (no entre caminos): `H: X × I → Y` con `H(x,0) = g(x)` (tiempo 0, arriba en los dibujos, negro) y `H(x,1) = f(x)` (tiempo 1, abajo, azul); «preserva el punto base» si `H(x_0,t) = y_0` para todo `t`. Se mantiene el mismo orden `g` en 0 y `f` en 1 en las definiciones de la nota.
 - Cuando una nota introduzca notación nueva, agregarla aquí.
 
 ## Estilo

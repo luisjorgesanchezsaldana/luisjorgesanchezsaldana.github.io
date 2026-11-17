@@ -1,0 +1,59 @@
+<!-- Fragmento de las notas de homotopias-entre-funciones. Mismo contenido que el .tex.
+     Fórmulas con \( ... \) y \[ ... \] (KaTeX). Definiciones: <div class="def"><b>Definición 1.29 (nombre).</b> ...</div>.
+     Proposiciones, teoremas, lemas y corolarios: <div class="thm"><b>Proposición 1.29.</b> <i>enunciado</i></div> (igual con Teorema, Lema, Corolario).
+     Todos comparten un solo contador por unidad y deben coincidir (tipo y número) con el PDF. Figuras: SVG con las clases f0, f1, mid, end, endpt, arr, mk (ver caminos-y-homotopias.html).
+     Erratas (solo si hay errores confirmados), al final:
+     <div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=Ts7i-Am3nf8&amp;t=203" target="_blank" rel="noopener">3:23</a> Se dice ..., pero debe decir ...</li></ul></div> -->
+<h4>Homotopías entre funciones</h4>
+<p>En este video se define la homotopía entre funciones, y también un tipo particular de homotopía que será útil al estudiar las funciones inducidas entre grupos fundamentales. Todas las funciones son continuas.</p>
+<div class="def"><b>Definición 1.29 (homotopía entre funciones).</b> Sean \(g,f\colon X\to Y\) dos funciones (continuas) con el mismo dominio y el mismo codominio. Se dice que \(g\) es <i>homotópica</i> a \(f\), y se escribe \(g\simeq f\), si existe una función continua \(H\colon X\times I\to Y\), \((x,t)\mapsto H(x,t)\), tal que
+\[ H(x,0)=g(x),\qquad H(x,1)=f(x)\qquad\text{para todo }x\in X. \]</div>
+<p>Aquí \(I=[0,1]\) es el intervalo unitario y el segundo parámetro se piensa como el tiempo: en tiempo \(0\) la función \(H\) recupera \(g\) y en tiempo \(1\) recupera \(f\), de modo que \(g\) se <i>deforma</i> en \(f\) a través del tiempo. Esto generaliza la homotopía entre caminos: cuando \(X=I\), se tiene justamente una homotopía entre caminos.</p>
+<figure>
+<svg viewBox="0 0 600 250" role="img" aria-label="El cilindro X×I se envía con H a Y: la copia de arriba X×{0} va a g y la de abajo X×{1} va a f">
+<defs><marker id="nbarrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<line class="mid" x1="80" x2="80" y1="60" y2="200"/><line class="mid" x1="240" x2="240" y1="60" y2="200"/>
+<line class="f0" x1="80" x2="240" y1="60" y2="60"/>
+<line class="mid" x1="80" x2="240" y1="95" y2="95"/>
+<line class="mid" x1="80" x2="240" y1="130" y2="130"/>
+<line class="mid" x1="80" x2="240" y1="165" y2="165"/>
+<line class="f1" x1="80" x2="240" y1="200" y2="200"/>
+<ellipse class="mid" fill="none" cx="470" cy="138" rx="105" ry="92"/>
+<path class="f0" fill="none" d="M385 90C420 70 470 115 545 90"/>
+<path class="mid" fill="none" d="M385 115C425 100 475 140 545 118"/>
+<path class="mid" fill="none" d="M385 138C425 125 475 165 545 142"/>
+<path class="mid" fill="none" d="M385 160C425 150 475 188 545 166"/>
+<path class="f1" fill="none" d="M385 185C425 175 475 210 545 188"/>
+<path class="arr" d="M262 130H336" marker-end="url(#nbarrow)"/><text x="301" y="116" text-anchor="middle">H</text>
+<text x="72" y="66" text-anchor="end">X×{0}</text><text class="c1" x="72" y="204" text-anchor="end">X×{1}</text>
+<text class="dim" x="160" y="38" text-anchor="middle">X × I</text><text class="dim" x="470" y="24" text-anchor="middle">Y</text>
+<text x="565" y="79" text-anchor="middle">g</text><text class="c1" x="565" y="202" text-anchor="middle">f</text>
+</svg>
+<figcaption>Cada una de las líneas horizontales de \(X\times I\) es una copia de \(X\); la de arriba, \(X\times\{0\}\), se manda con \(H\) a la imagen de \(g\), la de abajo, \(X\times\{1\}\), a la de \(f\), y las intermedias (en gris) a las etapas de la deformación.</figcaption>
+</figure>
+
+<h4>Homotopías que preservan el punto base</h4>
+<p>Ahora se define una variante de la definición anterior, muy útil para trabajar con homomorfismos inducidos en grupos fundamentales. Además de \(X\) y \(Y\) se consideran subespacios \(A\subseteq X\) y \(B\subseteq Y\). Primero, un poco de notación: si \(f\colon X\to Y\) es una función tal que \(f(A)\subseteq B\), se escribe
+\[ f\colon (X,A)\to(Y,B). \]
+De ahora en adelante, si se escribe esto, quiere decir que es una función de \(X\) en \(Y\) que manda \(A\) en \(B\). En particular, si \(A=\{x_0\}\) y \(B=\{y_0\}\) constan de un punto (los puntos base que se venían tomando), la función se escribe sin las llaves, \(f\colon (X,x_0)\to(Y,y_0)\), y lo único que quiere decir es que \(f\) manda el punto base \(x_0\) en el punto base \(y_0\). Como se vio en videos anteriores, estas funciones inducen homomorfismos entre los grupos fundamentales basados en \(x_0\) y en \(y_0\) (Teorema 1.25).</p>
+<div class="def"><b>Definición 1.30 (homotopía entre funciones de pares).</b> Sean \(g,f\colon (X,A)\to(Y,B)\). Una <i>homotopía entre \(g\) y \(f\) como funciones de pares</i> es una función continua \(H\colon X\times I\to Y\) tal que, para cada \(t\in I\),
+\[ H(\,\cdot\,,t)\colon (X,A)\to(Y,B), \]
+y además \(H(x,0)=g(x)\) y \(H(x,1)=f(x)\) para todo \(x\in X\).
+<br>En particular, una homotopía entre \(g,f\colon (X,x_0)\to(Y,y_0)\) es una función \(H\colon X\times I\to Y\) como en la Definición 1.29 tal que
+\[ H(x_0,t)=y_0\qquad\text{para todo }t\in I. \]
+Estas se llaman <i>homotopías que preservan el punto base</i>.</div>
+<p>Es decir, es una deformación de \(g\) en \(f\) de manera que todas las etapas de la deformación siguen siendo funciones entre las parejas \((X,A)\to(Y,B)\); en el caso del punto base, \(x_0\) se manda siempre en \(y_0\) en todo momento. Cuando se dice que dos funciones \(g,f\colon (X,x_0)\to(Y,y_0)\) son homotópicas, se entiende que lo son mediante una homotopía que preserva el punto base.</p>
+
+<h4>El resultado: homotopía e inducidos</h4>
+<p>La gracia de estas homotopías es el siguiente resultado: funciones homotópicas que preservan el punto base inducen el mismo homomorfismo en grupos fundamentales.</p>
+<div class="thm"><b>Proposición 1.31.</b> <i>Si \(g,f\colon (X,x_0)\to(Y,y_0)\) son homotópicas (mediante una homotopía que preserva el punto base), entonces
+\[ g_*=f_*\colon\pi_1(X,x_0)\to\pi_1(Y,y_0). \]</i></div>
+<p>Tanto \(g_*\) como \(f_*\) son funciones con el mismo dominio y el mismo codominio, de modo que solo hay que verificar que tienen la misma imagen en cada elemento. Sea \([\gamma]\in\pi_1(X,x_0)\), con \(\gamma\) un lazo en \(X\) basado en \(x_0\). Por definición, \(g_*[\gamma]=[g\circ\gamma]\) y \(f_*[\gamma]=[f\circ\gamma]\). Lo que se quiere demostrar es que los lazos \(g\circ\gamma\) y \(f\circ\gamma\), que viven en \(Y\) y están basados en \(y_0\), son homotópicos relativos a \(\{0,1\}\).</p>
+<p>Sea \(H\colon X\times I\to Y\) una homotopía que preserva el punto base entre \(g\) y \(f\), que existe por hipótesis. Se considera la función \(\gamma\times\mathrm{id}_I\colon I\times I\to X\times I\) y se compone con \(H\):
+\[ H\circ(\gamma\times\mathrm{id}_I)\colon I\times I\to Y,\qquad (s,t)\mapsto H(\gamma(s),t). \]
+Esta composición es justamente la homotopía relativa a los extremos entre \(g\circ\gamma\) y \(f\circ\gamma\) que se buscaba. Verificarlo es un ejercicio sencillo: en \(t=0\) y \(t=1\) se obtienen \(g\circ\gamma\) y \(f\circ\gamma\), y para ver que es relativa a \(\{0,1\}\) se usa que la homotopía \(H\) siempre manda el punto base en el punto base, es decir, \(H(\gamma(0),t)=H(\gamma(1),t)=H(x_0,t)=y_0\) para todo \(t\). \(\square\)</p>
+<p>Lo que debe pensarse de esta proposición es que funciones homotópicas mediante homotopías que preservan el punto base inducen el mismo homomorfismo en grupos fundamentales.</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=Ts7i-Am3nf8&amp;t=336" target="_blank" rel="noopener">5:36</a> En la definición de homotopía entre funciones de pares se escribe \(H(x,0)=f(x)\) y \(H(x,1)=g(x)\), al revés que en la definición anterior (\(H(x,0)=g(x)\) y \(H(x,1)=f(x)\)). En estas notas se usa el mismo orden en ambas definiciones.</li></ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/homotopias-entre-funciones.tex">homotopias-entre-funciones.tex</a>.</p>
