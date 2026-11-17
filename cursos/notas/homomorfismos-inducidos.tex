@@ -1,0 +1,101 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{jBuvlWhNWkg}
+\input{preambulo}
+\unidad{1}{25} % unidad 1; primer enunciado: 1.25
+
+\title{Homomorfismos inducidos}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=jBuvlWhNWkg}{\guillemotleft{}Homomorfismos inducidos\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Una función continua que preserva puntos base induce un homomorfismo entre los grupos fundamentales, y esta asignación respeta composiciones e identidades.
+\normalsize
+
+\section*{Notación y enunciado}
+
+Sea $f\colon X\to Y$ una función continua entre espacios topológicos, y sean $x_0\in X$ y $y_0\in Y$ puntos base con $f(x_0)=y_0$. Para ahorrar notación, en ese caso se escribe
+\[
+  f\colon (X,x_0)\to(Y,y_0),
+\]
+es decir, $f$ va de la pareja $X$ con su punto marcado $x_0$ a la pareja $Y$ con su punto marcado $y_0$.
+
+\begin{teo}\label{teo:inducido}
+Si $f\colon (X,x_0)\to(Y,y_0)$, entonces $f$ induce un homomorfismo
+\[
+  f_*\colon \pi_1(X,x_0)\to\pi_1(Y,y_0).
+\]
+Además:
+\begin{enumerate}
+  \item si $g\colon (Y,y_0)\to(Z,z_0)$ es continua, entonces $(g\circ f)_*=g_*\circ f_*$;
+  \item $(\mathrm{id}_X)_*=\mathrm{id}_{\pi_1(X,x_0)}$.
+\end{enumerate}
+\end{teo}
+
+\section*{La demostración}
+
+\subsection*{La función inducida}
+
+Primero se ve cómo se define la función inducida, que es fácil. Un elemento $[\gamma]\in\pi_1(X,x_0)$ es la clase de un lazo $\gamma\colon I\to X$ basado en $x_0$. Se puede componer con $f$: la composición $f\circ\gamma\colon I\to Y$ es un lazo basado en $y_0$ (pues $f(x_0)=y_0$). En el dibujo, el lazo $\gamma$ en $X$ se \emph{empuja} con $f$ y se obtiene el lazo $f\circ\gamma$ en $Y$: primero se aplica $\gamma$ y luego $f$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[thick] (130,110) ellipse (105 and 90);
+  \draw[thick] (490,110) ellipse (105 and 90);
+  \draw[very thick] (130,165) .. controls (50,165) and (55,55) .. (130,70) .. controls (205,55) and (210,165) .. (130,165);
+  \draw[very thick,azul] (490,165) .. controls (410,155) and (425,50) .. (500,62) .. controls (570,80) and (565,175) .. (490,165);
+  \draw[->,thick] (250,110) -- (370,110);
+  \fill[extremo] (130,165) circle (4); \fill[extremo] (490,165) circle (4);
+  \node at (130,188) {\small $x_0$};
+  \node[extremo] at (490,188) {\small $y_0$};
+  \node at (130,112) {\small $\gamma$};
+  \node[azul] at (490,112) {\small $f\circ\gamma$};
+  \node at (310,92) {\small $f$};
+  \node at (30,30) {$X$}; \node at (590,30) {$Y$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: el lazo $\gamma$ en $X$ y el lazo empujado $f\circ\gamma$ en $Y$.
+
+Se define entonces
+\[
+  f_*\colon\pi_1(X,x_0)\to\pi_1(Y,y_0),\qquad f_*[\gamma]=[f\circ\gamma].
+\]
+Hay que verificar dos cosas: que $f_*$ está bien definida (pues $\pi_1$ es un conjunto de clases de equivalencia) y que es un homomorfismo de grupos.
+
+\subsection*{$f_*$ está bien definida}
+
+Sean $\gamma$ y $\gamma'$ lazos en $X$ basados en $x_0$ que son homotópicos relativos a los extremos; hay que ver que $f\circ\gamma$ y $f\circ\gamma'$ también lo son. Si $H\colon I\times I\to X$ es una homotopía relativa a los extremos entre $\gamma$ y $\gamma'$, lo más natural es considerar la composición
+\[
+  f\circ H\colon I\times I\to Y,
+\]
+y es un ejercicio muy sencillo verificar que es una homotopía relativa a los extremos entre los lazos empujados $f\circ\gamma$ y $f\circ\gamma'$. Esto demuestra que $f_*$ está bien definida: dos representantes de la misma clase en $\pi_1(X,x_0)$ dan la misma clase en $\pi_1(Y,y_0)$.
+
+\subsection*{$f_*$ es un homomorfismo}
+
+Hay que ver que $f_*[\gamma\cdot\beta]=f_*[\gamma]\cdot f_*[\beta]$, donde $\gamma\cdot\beta$ es el lazo que resulta de concatenar: primero se recorre $\gamma$ y luego $\beta$. Basta ver que empujar el concatenado es concatenar los empujados:
+\[
+  f\circ(\gamma\cdot\beta)=(f\circ\gamma)\cdot(f\circ\beta).
+\]
+En el dibujo es bastante claro: al empujar $\gamma$ con $f$ se obtiene $f\circ\gamma$, al empujar $\beta$ se obtiene $f\circ\beta$, y al empujar el concatenado se obtiene el concatenado de las imágenes de los lazos empujados. Lo único que restaría es escribir bien las parametrizaciones de la concatenación y de la imagen del concatenado, lo cual es un ejercicio muy sencillo.
+
+\subsection*{La parte 2: la identidad}
+
+Esta parte es muy sencilla. Un lazo $\gamma$ en $X$ empujado con la identidad es el mismo lazo, de modo que $(\mathrm{id}_X)_*[\gamma]=[\gamma]$ y no hay nada que demostrar.
+
+\subsection*{La parte 1: composiciones}
+
+Sean $f\colon(X,x_0)\to(Y,y_0)$ y $g\colon(Y,y_0)\to(Z,z_0)$, y la composición $g\circ f\colon (X,x_0)\to(Z,z_0)$. Sea $\gamma$ un lazo en $X$ basado en $x_0$. Para calcular $g_*\bigl(f_*[\gamma]\bigr)$ se empuja primero $\gamma$ con $f$ y luego el resultado con $g$, lo cual da el lazo $g\circ(f\circ\gamma)$. Como la composición de funciones es asociativa, esto es lo mismo que empujar $\gamma$ directamente con la composición:
+\[
+  g\circ(f\circ\gamma)=(g\circ f)\circ\gamma.
+\]
+Por lo tanto $(g\circ f)_*[\gamma]=g_*\bigl(f_*[\gamma]\bigr)$, es decir, $(g\circ f)_*=g_*\circ f_*$. Con esto termina la demostración del teorema. \qed
+
+\section*{Lenguaje de categorías}
+
+El teorema dice que las funciones inducidas se comportan a las mil maravillas: abren composiciones y la identidad va a la identidad. En el lenguaje de categorías, esto dice que el grupo fundamental es un \emph{funtor} de la categoría de espacios topológicos con puntos base a la categoría de grupos. Por ahora no se habla más de categorías; es solo una observación para quien sepa qué significa. Es un funtor de una categoría topológica a una categoría algebraica, y esto ya comienza a mostrar el espíritu de la topología algebraica: traducir problemas del mundo topológico al algebraico, es decir, al grupo fundamental. Lo que se hizo en los videos anteriores muestra que esto tiene aplicaciones directas a la topología y ayuda a entender más fenómenos topológicos.
+
+\end{document}

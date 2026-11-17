@@ -1,0 +1,56 @@
+<!-- Fragmento de las notas de homomorfismos-inducidos. Mismo contenido que el .tex.
+     Fórmulas con \( ... \) y \[ ... \] (KaTeX). Definiciones: <div class="def"><b>Definición 1.25 (nombre).</b> ...</div>.
+     Proposiciones, teoremas, lemas y corolarios: <div class="thm"><b>Proposición 1.25.</b> <i>enunciado</i></div> (igual con Teorema, Lema, Corolario).
+     Todos comparten un solo contador por unidad y deben coincidir (tipo y número) con el PDF. Figuras: SVG con las clases f0, f1, mid, end, endpt, arr, mk (ver caminos-y-homotopias.html).
+     Erratas (solo si hay errores confirmados), al final:
+     <div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=jBuvlWhNWkg&amp;t=203" target="_blank" rel="noopener">3:23</a> Se dice ..., pero debe decir ...</li></ul></div> -->
+<h4>Notación y enunciado</h4>
+<p>Sea \(f\colon X\to Y\) una función continua entre espacios topológicos, y sean \(x_0\in X\) y \(y_0\in Y\) puntos base con \(f(x_0)=y_0\). Para ahorrar notación, en ese caso se escribe
+\[ f\colon (X,x_0)\to(Y,y_0), \]
+es decir, \(f\) va de la pareja \(X\) con su punto marcado \(x_0\) a la pareja \(Y\) con su punto marcado \(y_0\).</p>
+<div class="thm"><b>Teorema 1.25.</b> <i>Si \(f\colon (X,x_0)\to(Y,y_0)\), entonces \(f\) induce un homomorfismo
+\[ f_*\colon \pi_1(X,x_0)\to\pi_1(Y,y_0). \]
+Además:
+<br>1) si \(g\colon (Y,y_0)\to(Z,z_0)\) es continua, entonces \((g\circ f)_*=g_*\circ f_*\);
+<br>2) \((\mathrm{id}_X)_*=\mathrm{id}_{\pi_1(X,x_0)}\).</i></div>
+
+<h4>La demostración</h4>
+<p><b>La función inducida.</b> Primero se ve cómo se define la función inducida, que es fácil. Un elemento \([\gamma]\in\pi_1(X,x_0)\) es la clase de un lazo \(\gamma\colon I\to X\) basado en \(x_0\). Se puede componer con \(f\): la composición \(f\circ\gamma\colon I\to Y\) es un lazo basado en \(y_0\) (pues \(f(x_0)=y_0\)). En el dibujo, el lazo \(\gamma\) en \(X\) se <i>empuja</i> con \(f\) y se obtiene el lazo \(f\circ\gamma\) en \(Y\): primero se aplica \(\gamma\) y luego \(f\).</p>
+<figure>
+<svg viewBox="0 0 620 220" role="img" aria-label="El lazo γ en X, basado en x₀, se envía con f al lazo f∘γ en Y, basado en y₀">
+<defs><marker id="nbarrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<ellipse class="mid" fill="none" cx="130" cy="110" rx="105" ry="90"/>
+<ellipse class="mid" fill="none" cx="490" cy="110" rx="105" ry="90"/>
+<path class="f0" fill="none" d="M130 165C50 165 55 55 130 70C205 55 210 165 130 165"/>
+<path class="f1" fill="none" d="M490 165C410 155 425 50 500 62C570 80 565 175 490 165"/>
+<path class="arr" d="M250 110H366" marker-end="url(#nbarrow)"/>
+<circle class="endpt" cx="130" cy="165" r="4.5"/><circle class="endpt" cx="490" cy="165" r="4.5"/>
+<text x="130" y="192" text-anchor="middle">x₀</text><text x="490" y="192" text-anchor="middle" style="fill:var(--ok)">y₀</text>
+<text x="130" y="114" text-anchor="middle">γ</text><text class="c1" x="490" y="114" text-anchor="middle">f∘γ</text>
+<text x="310" y="92" text-anchor="middle">f</text>
+<text class="dim" x="30" y="30">X</text><text class="dim" x="590" y="30">Y</text>
+</svg>
+<figcaption>El lazo \(\gamma\) en \(X\) y el lazo empujado \(f\circ\gamma\) en \(Y\).</figcaption>
+</figure>
+<p>Se define entonces
+\[ f_*\colon\pi_1(X,x_0)\to\pi_1(Y,y_0),\qquad f_*[\gamma]=[f\circ\gamma]. \]
+Hay que verificar dos cosas: que \(f_*\) está bien definida (pues \(\pi_1\) es un conjunto de clases de equivalencia) y que es un homomorfismo de grupos.</p>
+
+<p><b>\(f_*\) está bien definida.</b> Sean \(\gamma\) y \(\gamma'\) lazos en \(X\) basados en \(x_0\) que son homotópicos relativos a los extremos; hay que ver que \(f\circ\gamma\) y \(f\circ\gamma'\) también lo son. Si \(H\colon I\times I\to X\) es una homotopía relativa a los extremos entre \(\gamma\) y \(\gamma'\), lo más natural es considerar la composición
+\[ f\circ H\colon I\times I\to Y, \]
+y es un ejercicio muy sencillo verificar que es una homotopía relativa a los extremos entre los lazos empujados \(f\circ\gamma\) y \(f\circ\gamma'\). Esto demuestra que \(f_*\) está bien definida: dos representantes de la misma clase en \(\pi_1(X,x_0)\) dan la misma clase en \(\pi_1(Y,y_0)\).</p>
+
+<p><b>\(f_*\) es un homomorfismo.</b> Hay que ver que \(f_*[\gamma\cdot\beta]=f_*[\gamma]\cdot f_*[\beta]\), donde \(\gamma\cdot\beta\) es el lazo que resulta de concatenar: primero se recorre \(\gamma\) y luego \(\beta\). Basta ver que empujar el concatenado es concatenar los empujados:
+\[ f\circ(\gamma\cdot\beta)=(f\circ\gamma)\cdot(f\circ\beta). \]
+En el dibujo es bastante claro: al empujar \(\gamma\) con \(f\) se obtiene \(f\circ\gamma\), al empujar \(\beta\) se obtiene \(f\circ\beta\), y al empujar el concatenado se obtiene el concatenado de las imágenes de los lazos empujados. Lo único que restaría es escribir bien las parametrizaciones de la concatenación y de la imagen del concatenado, lo cual es un ejercicio muy sencillo.</p>
+
+<p><b>La parte 2: la identidad.</b> Esta parte es muy sencilla. Un lazo \(\gamma\) en \(X\) empujado con la identidad es el mismo lazo, de modo que \((\mathrm{id}_X)_*[\gamma]=[\gamma]\) y no hay nada que demostrar.</p>
+
+<p><b>La parte 1: composiciones.</b> Sean \(f\colon(X,x_0)\to(Y,y_0)\) y \(g\colon(Y,y_0)\to(Z,z_0)\), y la composición \(g\circ f\colon (X,x_0)\to(Z,z_0)\). Sea \(\gamma\) un lazo en \(X\) basado en \(x_0\). Para calcular \(g_*\bigl(f_*[\gamma]\bigr)\) se empuja primero \(\gamma\) con \(f\) y luego el resultado con \(g\), lo cual da el lazo \(g\circ(f\circ\gamma)\). Como la composición de funciones es asociativa, esto es lo mismo que empujar \(\gamma\) directamente con la composición:
+\[ g\circ(f\circ\gamma)=(g\circ f)\circ\gamma. \]
+Por lo tanto \((g\circ f)_*[\gamma]=g_*\bigl(f_*[\gamma]\bigr)\), es decir, \((g\circ f)_*=g_*\circ f_*\). Con esto termina la demostración del teorema. \(\square\)</p>
+
+<h4>Lenguaje de categorías</h4>
+<p>El teorema dice que las funciones inducidas se comportan a las mil maravillas: abren composiciones y la identidad va a la identidad. En el lenguaje de categorías, esto dice que el grupo fundamental es un <i>funtor</i> de la categoría de espacios topológicos con puntos base a la categoría de grupos. Por ahora no se habla más de categorías; es solo una observación para quien sepa qué significa. Es un funtor de una categoría topológica a una categoría algebraica, y esto ya comienza a mostrar el espíritu de la topología algebraica: traducir problemas del mundo topológico al algebraico, es decir, al grupo fundamental. Lo que se hizo en los videos anteriores muestra que esto tiene aplicaciones directas a la topología y ayuda a entender más fenómenos topológicos.</p>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/homomorfismos-inducidos.tex">homomorfismos-inducidos.tex</a>.</p>
