@@ -1,0 +1,121 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{fTB5eN1axOI}
+\input{preambulo}
+\unidad{1}{7} % unidad 1; primer enunciado: 1.7
+
+\title{Definición del grupo fundamental}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=fTB5eN1axOI}{\guillemotleft{}Definición del grupo fundamental\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Definen la concatenación de caminos, los lazos basados en un punto y, finalmente, el conjunto que será el grupo fundamental.
+\normalsize
+
+\section*{Clases de homotopía de caminos}
+
+Como en los videos anteriores, $X$ es un espacio topológico cualquiera, que ahora se deja fijo durante todo el video. Se recuerda que $\Omega(X)$ es el conjunto de todos los caminos en $X$; por ahora se piensa solo como un conjunto, pues no se le ha definido ninguna topología (se le podría definir una). Sobre $\Omega(X)$ se tiene la relación de homotopía relativa a los extremos, $\simeq\ \mathrm{rel}\ \{0,1\}$, que ya se demostró que es una relación de equivalencia.
+
+\medskip\noindent\textbf{Notación.} Para $f\in\Omega(X)$ se denota por $[f]$ su clase de equivalencia, y se le llama la \emph{clase de homotopía de $f$ relativa a los extremos}. Es decir, $[f]$ es el conjunto de todos los caminos a los que $f$ se puede deformar dejando fijos los extremos de $f$.
+
+\section*{Concatenación de caminos}
+
+Sean $f$ y $g$ dos caminos en $X$ tales que $g$ comienza donde $f$ termina: se recorre primero $f$ y luego $g$, y así se forma un nuevo camino, que se denota $f\cdot g$ como si se estuvieran multiplicando. Para poder hacerlo se pide desde el principio que uno empiece donde termina el otro.
+
+Como un camino es una función definida en el intervalo unitario, hay que definir $f\cdot g$ como una función de $I$ en $X$. Si se recorriera $f$ en una unidad de tiempo y luego $g$ en otra, se usarían dos unidades de tiempo. Para que sea un camino de verdad, se recorre primero $f$ al doble de velocidad y luego $g$ también al doble de velocidad, cada uno en media unidad de tiempo, de modo que el camino concatenado se recorre en una unidad.
+
+\begin{defn}[Concatenación de caminos]
+Sean $f,g\colon I\to X$ caminos tales que $f(1)=g(0)$. La \emph{concatenación} de $f$ y $g$ es el camino $f\cdot g\colon I\to X$ dado por
+\[
+  (f\cdot g)(s)=
+  \begin{cases}
+    f(2s) & \text{si } s\in[0,\tfrac12],\\[2pt]
+    g(2s-1) & \text{si } s\in[\tfrac12,1].
+  \end{cases}
+\]
+\end{defn}
+
+El factor $2s$ indica que $f$ se recorre al doble de velocidad, y lo mismo con $g$. Con esto se tiene una función bien definida que sale de $I$ y cae en $X$; es decir, $f\cdot g\in\Omega(X)$.
+
+\section*{La concatenación respeta las clases de homotopía}
+
+\begin{prop}
+Sean $f,g\in\Omega(X)$ con $f(1)=g(0)$. Si $f\simeq f_1\ \mathrm{rel}\ \{0,1\}$ y $g\simeq g_1\ \mathrm{rel}\ \{0,1\}$, entonces
+\[
+  f\cdot g\simeq f_1\cdot g_1\ \ \mathrm{rel}\ \{0,1\}.
+\]
+Dicho con clases de equivalencia: si $[f]=[f_1]$ y $[g]=[g_1]$, entonces $[f\cdot g]=[f_1\cdot g_1]$.
+\end{prop}
+
+\begin{proof}[Idea de la demostración]
+El video da una razón geométrica y deja como ejercicio escribir las homotopías de manera formal, de modo muy parecido a lo hecho en el video anterior.
+
+Como $f\simeq f_1\ \mathrm{rel}\ \{0,1\}$, hay una homotopía $F$ de $f$ a $f_1$, y como $g\simeq g_1\ \mathrm{rel}\ \{0,1\}$, hay una homotopía $G$ de $g$ a $g_1$. Los caminos $f$ y $f_1$ tienen los mismos extremos, y lo mismo $g$ y $g_1$; además $f$ termina donde $g$ comienza. En los cuadrados de $F$ y de $G$, el lado donde se pegan (el lado derecho del cuadrado de $F$ y el izquierdo del de $G$) se manda completo al mismo punto, el punto donde terminan $f$ y $f_1$ y comienzan $g$ y $g_1$. Por eso las dos homotopías se pueden pegar a lo largo de esos lados, y lo que se obtiene es una homotopía que deforma la concatenación de arriba, $f\cdot g$, en la concatenación de abajo, $f_1\cdot g_1$. Los extremos siguen fijos.
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,line cap=round]
+  \def\w{2.6}\def\hh{2.4}
+  % cuadrado de F
+  \draw[very thick] (0,\hh) -- (\w,\hh);
+  \draw[very thick,azul] (0,0) -- (\w,0);
+  % cuadrado de G
+  \draw[very thick] ({\w+1.2},\hh) -- ({2*\w+1.2},\hh);
+  \draw[very thick,azul] ({\w+1.2},0) -- ({2*\w+1.2},0);
+  % lados verticales
+  \draw[very thick,extremo] (0,0) -- (0,\hh);
+  \draw[very thick,extremo] (\w,0) -- (\w,\hh);
+  \draw[very thick,extremo] ({\w+1.2},0) -- ({\w+1.2},\hh);
+  \draw[very thick,extremo] ({2*\w+1.2},0) -- ({2*\w+1.2},\hh);
+  \draw[<->,gray] ({\w+0.15},{\hh/2}) -- ({\w+1.05},{\hh/2}) node[midway,above] {\small pegar};
+  \node at ({\w/2},{\hh/2}) {$F$};
+  \node at ({\w+1.2+\w/2},{\hh/2}) {$G$};
+  \node[above] at ({\w/2},\hh) {$f$};
+  \node[above] at ({\w+1.2+\w/2},\hh) {$g$};
+  \node[below,azul] at ({\w/2},0) {$f_1$};
+  \node[below,azul] at ({\w+1.2+\w/2},0) {$g_1$};
+\end{tikzpicture}
+\par\smallskip
+\begin{minipage}{0.9\textwidth}\small\centering
+Los cuadrados de las homotopías $F$ (de $f$ a $f_1$) y $G$ (de $g$ a $g_1$) se pegan a lo largo de los lados comunes, que se mandan al mismo punto. Los lados verticales (en verde) van a los extremos.
+\end{minipage}
+\end{center}
+\end{proof}
+
+\section*{Lazos basados en un punto}
+
+Para lo que sigue se fija un punto $x_0\in X$, cualquiera, que ya no se mueve (igual que $X$, que se tomó desde el principio). Ahora solo se consideran caminos cuyo punto inicial y cuyo punto final son exactamente $x_0$.
+
+\begin{defn}[Lazo basado en $x_0$]
+Un camino $f\colon I\to X$ con $f(0)=f(1)=x_0$ se llama un \emph{lazo basado en $x_0$}. Se denota por
+\[
+  \Omega(X,x_0)=\{\,f\colon I\to X\ \mid\ f(0)=f(1)=x_0\,\}\subseteq\Omega(X)
+\]
+al conjunto de todos los lazos basados en $x_0$.
+\end{defn}
+
+Gráficamente, son caminos que salen de $x_0$, dan alguna vuelta y regresan eventualmente a $x_0$.
+
+Notemos que la relación de equivalencia $\simeq\ \mathrm{rel}\ \{0,1\}$ se restringe a $\Omega(X,x_0)$: si se deforma un lazo dejando fijos los extremos, se está deformando a través de lazos. Por eso se puede hablar de las clases de equivalencia de este conjunto de lazos basados en $x_0$.
+
+\section*{El grupo fundamental}
+
+\begin{defn}[Grupo fundamental]
+El \emph{grupo fundamental de $X$ basado en $x_0$} es el conjunto de clases de equivalencia de lazos basados en $x_0$ módulo la homotopía relativa a los extremos:
+\[
+  \pi_1(X,x_0)=\Omega(X,x_0)\big/\!\simeq\ \mathrm{rel}\ \{0,1\}.
+\]
+\end{defn}
+
+Por ahora no se sabe que esto sea un grupo, pues ni siquiera se ha definido la operación; eso se demuestra en el siguiente video, donde se define la operación (la concatenación ya definida) y se prueba que, en efecto, $\pi_1(X,x_0)$ es un grupo en el sentido de la teoría de grupos.
+
+Lo que sí hay que notar es que un elemento de $\pi_1(X,x_0)$ es una clase de equivalencia $[f]$ de lazos basados en $x_0$. Siempre que se quiera tomar un elemento del grupo fundamental, hay que pensar que está representado por un lazo $f$ en $X$ que comienza y termina en $x_0$.
+
+\begin{erratas}
+  \errata{17}{0:17}{Se dice que $\Omega(X)$ es el \guillemotleft{}espacio de lazos\guillemotright{}, pero debe decir espacio de \emph{caminos} (los lazos basados en $x_0$ se definen más adelante, en 9:26).}
+  \errata{253}{4:13}{Se escribe $f\cdot g(t)$ del lado izquierdo y $f(2s)$, $g(2s-1)$ del derecho; la variable debe ser la misma en los dos lados, es decir, $(f\cdot g)(s)$.}
+\end{erratas}
+
+\end{document}
