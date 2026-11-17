@@ -1,0 +1,62 @@
+<h4>La pregunta</h4>
+<p>Hasta ahora se tiene un espacio topológico cualquiera \(X\), fijo, y un punto arbitrario pero fijo \(x_0\in X\). El grupo fundamental de \(X\) basado en \(x_0\) es el conjunto de lazos basados en \(x_0\) módulo la homotopía relativa a los extremos,
+\[ \pi_1(X,x_0)=\Omega(X,x_0)\big/\!\simeq\ \mathrm{rel}\ \{0,1\}. \]
+Lo primero que se observa en esta definición es que el grupo fundamental no solo depende de \(X\), sino también del punto base. Entonces surge la pregunta natural:
+\[ ¿\pi_1(X,x_0)=\pi_1(X,x_1)\ \text{para otro punto } x_1\in X? \]
+Es decir, si se cambia de punto base, ¿se obtiene otro grupo o el mismo? Esa es la pregunta que se contesta en este video.</p>
+
+<h4>Un ejemplo: el punto base sí importa</h4>
+<p>Sea \(X=S^1\sqcup\{y\}\), la unión disjunta de un círculo y un punto, y sean \(x_0\in S^1\) y \(x_1=y\) como puntos base. Entonces
+\[ \pi_1(X,x_0)=\pi_1(S^1,x_0)\neq 1, \qquad \pi_1(X,x_1)=\pi_1(\{y\},y)=1. \]
+El video no demuestra todavía que \(\pi_1(S^1,x_0)\) es no trivial (lo anuncia para los próximos videos, y pide creerlo por ahora); en cambio, el grupo fundamental de un punto se verifica fácilmente: solo hay un lazo, el trivial. Por lo tanto estos dos grupos no son iguales (ni isomorfos), y el grupo fundamental sí depende del punto base.</p>
+<p>La razón es que el grupo fundamental solo reconoce lo que pasa en la componente conexa, y en realidad arco-conexa (esto se verá con más detalle después), en la que vive el punto base. Aquí los dos puntos base están en componentes distintas, y cada grupo solo «ve» la suya.</p>
+<p><b>Respuesta parcial.</b> Si los puntos base viven en componentes arco-conexas diferentes, es decir, si no se pueden conectar por un camino, entonces los grupos fundamentales podrían ser diferentes.</p>
+<p>Queda la otra situación: ¿qué pasa si los dos puntos base sí se pueden conectar por un camino? Aquí está la respuesta.</p>
+
+<h4>El teorema</h4>
+<div class="thm"><b>Teorema 1.12 (Cambio de punto base).</b> <i>Si \(x_0,x_1\in X\) se pueden conectar por un camino, entonces
+\[ \pi_1(X,x_0)\cong\pi_1(X,x_1). \]</i></div>
+<p>Antes de demostrarlo, conviene pensar geométricamente qué está pasando. Se dibujan \(X\), los puntos \(x_0\) y \(x_1\) y un camino \(h\) que los conecta. Se quiere definir un morfismo de grupos entre \(\pi_1(X,x_0)\) y \(\pi_1(X,x_1)\); ni siquiera es claro cómo definir una función entre ellos. Un elemento de \(\pi_1(X,x_0)\) es la clase de un lazo \(f\) basado en \(x_0\), y se necesita un lazo basado en \(x_1\). La idea es la siguiente: se comienza en \(x_1\), se recorre \(h\) hasta llegar a \(x_0\), se recorre \(f\) y luego se recorre \(h\) al revés para regresar a \(x_1\). Aquí \(\bar h\) denota \(h\) parametrizado en la dirección contraria: \(\bar h(s)=h(1-s)\).</p>
+<figure>
+<svg viewBox="0 0 480 220" role="img" aria-label="Una región X con los puntos x₀ y x₁, un camino h de x₁ a x₀ y un lazo f basado en x₀">
+<defs><marker id="nbarrowh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker></defs>
+<rect class="mid" x="10" y="10" width="460" height="200" rx="14" fill="none"/>
+<text x="448" y="38" text-anchor="middle">X</text>
+<path class="f0" fill="none" d="M120 140C90 60 30 100 45 150C55 185 105 185 120 140"/>
+<text x="22" y="122" text-anchor="middle">f</text>
+<path class="f1" fill="none" d="M390 60C320 30 260 130 120 140" marker-end="url(#nbarrowh)"/>
+<text class="c1" x="292" y="70" text-anchor="middle">h</text>
+<circle class="endpt" cx="120" cy="140" r="4"/><circle class="endpt" cx="390" cy="60" r="4"/>
+<text x="140" y="166" text-anchor="middle">x₀</text><text x="404" y="48" text-anchor="middle">x₁</text>
+</svg>
+<figcaption>El camino \(h\) va de \(x_1\) a \(x_0\) y \(f\) es un lazo basado en \(x_0\). El lazo \(h\cdot f\cdot\bar h\) comienza en \(x_1\), recorre \(h\), luego \(f\) y regresa a \(x_1\) por \(\bar h\).</figcaption>
+</figure>
+<p><b>Observación sobre el sentido de \(h\).</b> Para que la concatenación \(h\cdot f\cdot\bar h\) tenga sentido, \(h\) debe ser un camino que comienza en \(x_1\) y termina en \(x_0\): así \(h\) termina donde comienza \(f\), y \(\bar h\) comienza donde termina \(f\). En lo que sigue, \(h\) es un camino de \(x_1\) a \(x_0\) (si \(x_0\) y \(x_1\) se conectan por un camino en un sentido, se conectan en el otro por el camino inverso).</p>
+<p><b>Comentario.</b> Como en el video, se escribe \(h\cdot f\cdot\bar h\) sin paréntesis. Cualquier manera de poner los paréntesis da la misma clase de homotopía relativa a los extremos, porque la concatenación es asociativa salvo homotopía; la homotopía que se usó para la asociatividad en el video anterior (Teorema 1.11) funciona igual para caminos que no son lazos. Del mismo modo, \(\bar h\cdot h\simeq c_{x_0}\) y \(h\cdot\bar h\simeq c_{x_1}\) rel \(\{0,1\}\) se obtienen con la homotopía de los inversos de ese video, que solo usa que \(h\) es un camino.</p>
+<div class="def"><b>Definición 1.13 (cambio de punto base).</b> Sea \(h\) un camino de \(x_1\) a \(x_0\). Se define
+\[ \beta_h\colon \pi_1(X,x_0)\longrightarrow\pi_1(X,x_1), \qquad [f]\longmapsto[h\cdot f\cdot\bar h]. \]</div>
+<p><i>Demostración.</i> Se prueba que \(\beta_h\) (Definición 1.13) es un isomorfismo. Para ello hay que verificar tres cosas: (1) \(\beta_h\) está bien definida; (2) \(\beta_h\) es un homomorfismo de grupos; (3) \(\beta_h\) es biyectiva.</p>
+
+<h4>(1) \(\beta_h\) está bien definida</h4>
+<p>Hay que ver que el resultado no depende del representante elegido de la clase de \(f\). Sea \(f'\) otro lazo basado en \(x_0\) con \(f'\simeq f\ \mathrm{rel}\ \{0,1\}\). Como la concatenación respeta la homotopía relativa a los extremos (Proposición 1.8, vista en un video anterior), se obtiene
+\[ h\cdot f'\cdot\bar h\simeq h\cdot f\cdot\bar h\ \mathrm{rel}\ \{0,1\}, \qquad\text{es decir,}\qquad [h\cdot f'\cdot\bar h]=[h\cdot f\cdot\bar h]. \]
+En el pizarrón esto se escribe de manera más general: si \(h'\simeq h\), \(\bar h'\simeq\bar h\) y \(f'\simeq f\) rel \(\{0,1\}\), entonces \(h'\cdot f'\cdot\bar h'\simeq h\cdot f\cdot\bar h\) rel \(\{0,1\}\). Así, la clase no depende de los representantes elegidos ni de nada más, y \(\beta_h\) está bien definida como función.</p>
+
+<h4>(2) \(\beta_h\) es un homomorfismo</h4>
+<p>Sean \([f],[g]\in\pi_1(X,x_0)\). Por definición de \(\beta_h\),
+\[ \beta_h([f][g])=\beta_h[f\cdot g]=[h\cdot f\cdot g\cdot\bar h]. \]
+Ahora se hace el viejo truco de multiplicar por \(\bar h\cdot h\) en medio:
+\[ [h\cdot f\cdot g\cdot\bar h] =[h\cdot f\cdot\bar h\cdot h\cdot g\cdot\bar h] =[h\cdot f\cdot\bar h]\,[h\cdot g\cdot\bar h] =\beta_h[f]\,\beta_h[g]. \]
+¿Por qué es legal el truco? Porque es muy geométrico. El lazo \(h\cdot f\cdot g\cdot\bar h\) recorre \(h\), luego \(f\), luego \(g\) y finalmente \(h\) al revés. El otro lazo, \(h\cdot f\cdot\bar h\cdot h\cdot g\cdot\bar h\), recorre \(h\), \(f\), luego \(h\) hacia atrás, luego \(h\) hacia adelante, luego \(g\) y de nuevo \(h\) hacia atrás. Cuando se recorre \(\bar h\) y luego \(h\) se forma una especie de lacito en medio, que se puede ir recogiendo y contraer hasta el punto \(x_0\). Es decir, \(\bar h\cdot h\simeq c_{x_0}\) rel \(\{0,1\}\), donde \(c_{x_0}\) es el lazo constante en \(x_0\), y entonces los dos lazos son homotópicos relativamente a los extremos; basta contraer el pedacito de en medio. Esto da la primera igualdad. La segunda es la definición del producto en \(\pi_1(X,x_1)\).</p>
+
+<h4>(3) \(\beta_h\) es biyectiva</h4>
+<p>Para esto se da una inversa. Se define el mismo morfismo pero ahora con el camino \(\bar h\), que va en sentido contrario (\(\bar h\) va de \(x_0\) a \(x_1\)):
+\[ \beta_{\bar h}\colon\pi_1(X,x_1)\longrightarrow\pi_1(X,x_0), \qquad [f]\longmapsto[\bar h\cdot f\cdot h]. \]
+Se afirma que \(\beta_{\bar h}\) es inversa de \(\beta_h\). Para \([f]\in\pi_1(X,x_1)\),
+\[ \beta_h\beta_{\bar h}[f] =\beta_h[\bar h\cdot f\cdot h] =[h\cdot\bar h\cdot f\cdot h\cdot\bar h] =[f], \]
+porque \(h\cdot\bar h\) y \(c_{x_1}\) son homotópicos relativamente a los extremos, igual que en el dibujo de hace rato (el video invita a convencerse geométricamente). Análogamente se demuestra que \(\beta_{\bar h}\beta_h[f]=[f]\) para \([f]\in\pi_1(X,x_0)\). Por lo tanto \(\beta_h\) y \(\beta_{\bar h}\) son inversas una de la otra, y \(\beta_h\) es biyectiva.</p>
+<p>Con esto \(\beta_h\) es un homomorfismo biyectivo, es decir, un isomorfismo entre el grupo fundamental de \(X\) basado en \(x_0\) y el basado en \(x_1\). \(\square\)</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=8tnjx0tEn4g&amp;t=217" target="_blank" rel="noopener">3:37</a> Se dice que \(h\) es un camino que comienza en \(x_0\) y termina en \(x_1\), pero para que \(h\cdot f\cdot\bar h\) sea un lazo basado en \(x_1\) (con \(f\) basado en \(x_0\)), \(h\) debe comenzar en \(x_1\) y terminar en \(x_0\), que es lo que se usa después.</li></ul></div>
+
+<p class="nbsrc">Notas basadas en el <a href="https://www.youtube.com/watch?v=8tnjx0tEn4g" target="_blank" rel="noopener">video</a>. Fuente en LaTeX: <a href="notas/cambio-de-punto-base.tex">cambio-de-punto-base.tex</a>.</p>
