@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{Ba1E9TC3dKA}
+\input{preambulo}
+\unidad{1}{21} % unidad 1; primer enunciado: 1.21
+
+\title{Aplicaciones: el teorema del punto fijo de Brouwer en dimensión 2}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=Ba1E9TC3dKA}{\guillemotleft{}El teorema del punto fijo de Brouwer en dimensión 2\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Segunda aplicación del cálculo $\pi_1(S^1)\cong\mathbb{Z}$: toda función continua del disco en sí mismo tiene un punto fijo.
+\normalsize
+
+\section*{Notación y enunciado}
+
+Se denota por $D^n$ el disco unitario en $\mathbb{R}^n$,
+\[
+  D^n=\{x\in\mathbb{R}^n\mid \|x\|\le 1\},
+\]
+es decir, los puntos de norma menor o igual que $1$. Como es estándar, su frontera es la esfera de dimensión $n-1$: $\partial D^n=S^{n-1}$.
+
+\begin{teo}[Teorema del punto fijo de Brouwer en dimensión 2]
+Toda función continua $h\colon D^2\to D^2$ tiene un punto fijo, es decir, existe $x\in D^2$ tal que $h(x)=x$.
+\end{teo}
+
+\noindent\textbf{Comentario.} El video señala que si se cambia $2$ por $n$ el enunciado sigue siendo cierto, pero su demostración requiere otro tipo de invariante; aquí solo se usa el grupo fundamental del círculo, que alcanza para dimensión $2$. Se espera demostrar el caso general en un video posterior.
+
+\section*{La demostración}
+
+La demostración es muy geométrica y es por contradicción. Supongamos que $h$ no tiene ningún punto fijo, es decir, $h(x)\neq x$ para todo $x\in D^2$.
+
+\medskip\noindent\textit{La función $r\colon D^2\to S^1$.}
+Se define una función del disco en su frontera como sigue. Dado $x\in D^2$, como $h(x)\neq x$ tiene sentido hablar de la recta que comienza en $h(x)$ y pasa por $x$; se sigue derecho y en algún momento choca contra la frontera de $D^2$, que es el círculo $S^1$. Ese punto de la frontera es, por definición, $r(x)$: se proyecta $x$ a la frontera usando la recta que parte de $h(x)$ y pasa por $x$ (figura).
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[very thick,azul] (240,150) circle (120);
+  \draw[thick,extremo] (272.0,82.0) -- (123.1,177.1);
+  \draw[thick,extremo] (302.1,126.9) -- (354.1,112.9);
+  \fill (272.0,82.0) circle (3.5); \fill (200.0,128.0) circle (3.5);
+  \fill[extremo] (123.1,177.1) circle (4); \fill[azul] (354.1,112.9) circle (4); \fill (302.1,126.9) circle (3.5);
+  \node at (298.0,74.0) {\small $h(x)$};
+  \node at (204.0,144.0) {\small $x$};
+  \node[extremo] at (140.1,200.1) {\small $r(x)$};
+  \node[azul] at (400.1,104.9) {\small $y=r(y)$};
+  \node at (298.1,144.9) {\small $h(y)$};
+  \node[azul] at (400,60) {$S^1$};
+  \node at (240,150) {\small $D^2$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: construcción de $r(x)$ y observación de que $r(y)=y$ para $y\in S^1$.
+
+Hay dos observaciones sobre $r$:
+\begin{enumerate}
+  \item \emph{$r$ es continua.} Si se toman puntos cercanos a $x$, sus imágenes bajo $h$ son cercanas a $h(x)$ (pues $h$ es continua), y al proyectarlos a la frontera con las rectas correspondientes se obtienen puntos cercanos; es un asunto de topología básica. Una manera de verlo con todo detalle es escribir una fórmula para $r$, lo cual el video no hace y propone como un bonito ejercicio.
+  \item \emph{$r|_{S^1}=\mathrm{Id}_{S^1}$.} Si $y\in S^1$, para formar $r(y)$ se comienza en $h(y)$, se recorre la recta hasta llegar a $y$, que ya está en la frontera; por lo tanto $r(y)=y$.
+\end{enumerate}
+
+\begin{defn}[retracción]
+Una función continua $r\colon D^2\to S^1$ con $r|_{S^1}=\mathrm{Id}_{S^1}$ se llama una \emph{retracción} de $D^2$ en $S^1$.
+\end{defn}
+
+\noindent\textbf{Comentario.} El video dice que esto es pura notación, para darle un nombre. Se numera como definición para facilitar las referencias.
+
+\medskip\noindent\textit{La contradicción.}
+Con esta retracción se llega a una contradicción: se toma un lazo cualquiera en $S^1$ y se ve que se puede deformar al lazo constante, lo cual es una contradicción porque entonces $\pi_1(S^1)$ sería trivial, y ya se demostró (Teorema~1.19) que $\pi_1(S^1)\cong\mathbb{Z}$ es cíclico infinito, en particular no trivial.
+
+Sea $f_0$ un lazo en $S^1$, basado en un punto $x_0\in S^1$. Se puede considerar también como un lazo en $D^2$, pues $S^1\subset D^2$. En $D^2$ el lazo $f_0$ se puede contraer al lazo constante: el lazo $f_0$ puede dar muchas vueltas, pero se va empujando hasta el centro del disco, y eso da una homotopía $f_t$, $t\in I$, de $f_0$ a un lazo constante en $D^2$.
+
+\medskip\noindent\textbf{Comentario.} En el video el lazo se empuja radialmente al centro (el lazo constante en $0$), como en el dibujo del pizarrón. Si se quiere que la homotopía sea relativa a los extremos, como exige la definición de $\pi_1$, hay que contraerlo al lazo constante en el punto base: por ejemplo $f_t(s)=(1-t)f_0(s)+t\,x_0$, que está en $D^2$ por convexidad y deja fijo $f_t(0)=f_t(1)=x_0$. Así se escribe aquí.
+
+\medskip
+Ahora cada una de las etapas de esta contracción se empuja a $S^1$ con la retracción $r$: se toma la composición $r\circ f_t$ para cada $t\in I$. Esta es una homotopía de $f_0$ al lazo constante, porque $r$ es la identidad en $S^1$, y por lo tanto $r\circ f_0=f_0$. Así, $f_0$ se puede deformar (relativamente a los extremos) al lazo constante en $S^1$, es decir, $[f_0]$ es el neutro de $\pi_1(S^1,x_0)$.
+
+Como $f_0$ era un lazo cualquiera, esto dice que $\pi_1(S^1,x_0)$ es trivial, lo cual contradice el Teorema~1.19. Por lo tanto $h$ tiene un punto fijo, y esto termina la demostración.
+
+\begin{erratas}
+  \errata{308}{5:08}{La contracción de $f_0$ en $D^2$ se hace radialmente hasta el centro, es decir, a un lazo constante en $0$; pero esa homotopía mueve los extremos del lazo, así que $r\circ f_t$ no es una homotopía relativa a los extremos, y para concluir que $[f_0]$ es trivial en $\pi_1(S^1)$ se necesita que lo sea. Basta contraer al lazo constante en el punto base, por ejemplo con $f_t(s)=(1-t)f_0(s)+t\,x_0$.}
+\end{erratas}
+
+\end{document}

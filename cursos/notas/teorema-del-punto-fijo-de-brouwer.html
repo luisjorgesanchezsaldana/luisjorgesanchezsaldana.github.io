@@ -1,0 +1,43 @@
+<h4>Notación y enunciado</h4>
+<p>Se denota por \(D^n\) el disco unitario en \(\mathbb{R}^n\),
+\[ D^n=\{x\in\mathbb{R}^n\mid \|x\|\le 1\}, \]
+es decir, los puntos de norma menor o igual que \(1\). Como es estándar, su frontera es la esfera de dimensión \(n-1\): \(\partial D^n=S^{n-1}\).</p>
+<div class="thm"><b>Teorema 1.21 (Teorema del punto fijo de Brouwer en dimensión 2).</b> <i>Toda función continua \(h\colon D^2\to D^2\) tiene un punto fijo, es decir, existe \(x\in D^2\) tal que \(h(x)=x\).</i></div>
+<p><b>Comentario.</b> El video señala que si se cambia \(2\) por \(n\) el enunciado sigue siendo cierto, pero su demostración requiere otro tipo de invariante; aquí solo se usa el grupo fundamental del círculo, que alcanza para dimensión \(2\). Se espera demostrar el caso general en un video posterior.</p>
+
+<h4>La demostración</h4>
+<p>La demostración es muy geométrica y es por contradicción. Supongamos que \(h\) no tiene ningún punto fijo, es decir, \(h(x)\neq x\) para todo \(x\in D^2\).</p>
+<p><i>La función \(r\colon D^2\to S^1\).</i> Se define una función del disco en su frontera como sigue. Dado \(x\in D^2\), como \(h(x)\neq x\) tiene sentido hablar de la recta que comienza en \(h(x)\) y pasa por \(x\); se sigue derecho y en algún momento choca contra la frontera de \(D^2\), que es el círculo \(S^1\). Ese punto de la frontera es, por definición, \(r(x)\): se proyecta \(x\) a la frontera usando la recta que parte de \(h(x)\) y pasa por \(x\) (figura).</p>
+<figure>
+<svg viewBox="0 0 480 300" role="img" aria-label="El disco D² con un punto x, su imagen h(x), la recta que parte de h(x), pasa por x y llega a la frontera en r(x); y un punto y de la frontera con r(y)=y">
+<circle class="f1" fill="none" cx="240" cy="150" r="120"/>
+<line class="end" x1="272.0" y1="82.0" x2="123.1" y2="177.1"/>
+<line class="end" x1="302.1" y1="126.9" x2="354.1" y2="112.9"/>
+<circle cx="272.0" cy="82.0" r="3.5" style="fill:var(--fg)"/><circle cx="200.0" cy="128.0" r="3.5" style="fill:var(--fg)"/><circle cx="302.1" cy="126.9" r="3.5" style="fill:var(--fg)"/>
+<circle class="endpt" cx="123.1" cy="177.1" r="4"/><circle cx="354.1" cy="112.9" r="4" style="fill:var(--accent)"/>
+<text x="298.0" y="74.0" text-anchor="middle">h(x)</text>
+<text x="204.0" y="144.0" text-anchor="middle">x</text>
+<text x="140.1" y="200.1" text-anchor="middle" style="fill:var(--ok)">r(x)</text>
+<text class="c1" x="400.1" y="104.9" text-anchor="middle">y = r(y)</text>
+<text x="298.1" y="144.9" text-anchor="middle">h(y)</text>
+<text class="c1" x="400" y="64" text-anchor="middle">S¹</text>
+<text class="dim" x="240" y="154" text-anchor="middle">D²</text>
+</svg>
+<figcaption>La función \(r\): para cada \(x\in D^2\), la recta que parte de \(h(x)\) y pasa por \(x\) (que tiene sentido porque \(h(x)\neq x\)) toca la frontera \(S^1\) en el punto \(r(x)\). Si \(y\in S^1\), la recta sale de \(D^2\) justo en \(y\), así que \(r(y)=y\).</figcaption>
+</figure>
+<p>Hay dos observaciones sobre \(r\):</p>
+<ol>
+<li><i>\(r\) es continua.</i> Si se toman puntos cercanos a \(x\), sus imágenes bajo \(h\) son cercanas a \(h(x)\) (pues \(h\) es continua), y al proyectarlos a la frontera con las rectas correspondientes se obtienen puntos cercanos; es un asunto de topología básica. Una manera de verlo con todo detalle es escribir una fórmula para \(r\), lo cual el video no hace y propone como un bonito ejercicio.</li>
+<li><i>\(r|_{S^1}=\mathrm{Id}_{S^1}\).</i> Si \(y\in S^1\), para formar \(r(y)\) se comienza en \(h(y)\), se recorre la recta hasta llegar a \(y\), que ya está en la frontera; por lo tanto \(r(y)=y\).</li>
+</ol>
+<div class="def"><b>Definición 1.22 (retracción).</b> Una función continua \(r\colon D^2\to S^1\) con \(r|_{S^1}=\mathrm{Id}_{S^1}\) se llama una <i>retracción</i> de \(D^2\) en \(S^1\).</div>
+<p><b>Comentario.</b> El video dice que esto es pura notación, para darle un nombre. Se numera como definición para facilitar las referencias.</p>
+<p><i>La contradicción.</i> Con esta retracción se llega a una contradicción: se toma un lazo cualquiera en \(S^1\) y se ve que se puede deformar al lazo constante, lo cual es una contradicción porque entonces \(\pi_1(S^1)\) sería trivial, y ya se demostró (Teorema 1.19) que \(\pi_1(S^1)\cong\mathbb{Z}\) es cíclico infinito, en particular no trivial.</p>
+<p>Sea \(f_0\) un lazo en \(S^1\), basado en un punto \(x_0\in S^1\). Se puede considerar también como un lazo en \(D^2\), pues \(S^1\subset D^2\). En \(D^2\) el lazo \(f_0\) se puede contraer al lazo constante: el lazo \(f_0\) puede dar muchas vueltas, pero se va empujando hasta el centro del disco, y eso da una homotopía \(f_t\), \(t\in I\), de \(f_0\) a un lazo constante en \(D^2\).</p>
+<p><b>Comentario.</b> En el video el lazo se empuja radialmente al centro (el lazo constante en \(0\)), como en el dibujo del pizarrón. Si se quiere que la homotopía sea relativa a los extremos, como exige la definición de \(\pi_1\), hay que contraerlo al lazo constante en el punto base: por ejemplo \(f_t(s)=(1-t)f_0(s)+t\,x_0\), que está en \(D^2\) por convexidad y deja fijo \(f_t(0)=f_t(1)=x_0\). Así se escribe aquí.</p>
+<p>Ahora cada una de las etapas de esta contracción se empuja a \(S^1\) con la retracción \(r\): se toma la composición \(r\circ f_t\) para cada \(t\in I\). Esta es una homotopía de \(f_0\) al lazo constante, porque \(r\) es la identidad en \(S^1\), y por lo tanto \(r\circ f_0=f_0\). Así, \(f_0\) se puede deformar (relativamente a los extremos) al lazo constante en \(S^1\), es decir, \([f_0]\) es el neutro de \(\pi_1(S^1,x_0)\).</p>
+<p>Como \(f_0\) era un lazo cualquiera, esto dice que \(\pi_1(S^1,x_0)\) es trivial, lo cual contradice el Teorema 1.19. Por lo tanto \(h\) tiene un punto fijo, y esto termina la demostración. \(\square\)</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=Ba1E9TC3dKA&amp;t=308" target="_blank" rel="noopener">5:08</a> La contracción de \(f_0\) en \(D^2\) se hace radialmente hasta el centro, es decir, a un lazo constante en \(0\); pero esa homotopía mueve los extremos del lazo, así que \(r\circ f_t\) no es una homotopía relativa a los extremos, y para concluir que \([f_0]\) es trivial en \(\pi_1(S^1)\) se necesita que lo sea. Basta contraer al lazo constante en el punto base, por ejemplo con \(f_t(s)=(1-t)f_0(s)+t\,x_0\).</li></ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/teorema-del-punto-fijo-de-brouwer.tex">teorema-del-punto-fijo-de-brouwer.tex</a>.</p>
