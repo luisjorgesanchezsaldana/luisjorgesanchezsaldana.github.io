@@ -1,6 +1,6 @@
 <h4>Notación y caminos</h4>
 <p>Se denota por \(I\) al intervalo unitario \([0,1]\subset\mathbb{R}\). Además, \(X\) es un espacio topológico cualquiera, fijo durante todo el video.</p>
-<div class="def"><b>Definición (camino).</b> Un <i>camino</i> en \(X\) es una función continua
+<div class="def"><b>Definición 1.1 (camino).</b> Un <i>camino</i> en \(X\) es una función continua
 \[ f\colon I\longrightarrow X. \]</div>
 <p>Gráficamente, \(X\) se dibuja como una región y el camino manda el intervalo \(I\) a una curva dentro de ella; a menudo se dibuja solo la imagen.</p>
 <p><b>Observación.</b> Un camino es la función, no solo su imagen: lo que se tiene son caminos parametrizados. El dibujo de la curva es una forma cómoda de pensarlos.</p>
@@ -9,7 +9,7 @@
 <p>La idea que viene de la topología algebraica, y que aparecerá una y otra vez, es <b>deformar un camino continuamente en un tiempo finito</b>. Se empieza con un camino (en el dibujo del video, el blanco) y se mueve como si fuera una cuerda, pasando por una sucesión de caminos intermedios (los amarillos) hasta llegar a otro camino (el rojo). Se dice entonces que el camino rojo se obtuvo del blanco mediante una deformación. Lo que sigue formaliza esta idea.</p>
 
 <h4>Homotopía de caminos</h4>
-<div class="def"><b>Definición (homotopía de caminos).</b> Una <i>homotopía de caminos</i> en \(X\) es una familia de caminos
+<div class="def"><b>Definición 1.2 (homotopía de caminos).</b> Una <i>homotopía de caminos</i> en \(X\) es una familia de caminos
 \[ f_t\colon I\longrightarrow X,\qquad 0\le t\le 1, \]
 indexada por un parámetro \(t\) en \(I\) (el «tiempo»), tal que la función asociada
 \[ F\colon I\times I\longrightarrow X,\qquad F(s,t)=f_t(s), \]
@@ -18,7 +18,7 @@ es continua.</div>
 
 <h4>Homotopía relativa a los extremos</h4>
 <p>Ahora se complementa la definición. El video lo señala como un detalle técnico cuya importancia se verá muy rápido, al definir el grupo fundamental.</p>
-<div class="def"><b>Definición (homotopía relativa a los extremos).</b> Sean \(x_0,x_1\in X\). La homotopía \(F\colon I\times I\to X\) es <i>relativa a los extremos</i>, denotado \(\mathrm{rel}\ \{0,1\}\), si
+<div class="def"><b>Definición 1.3 (homotopía relativa a los extremos).</b> Sean \(x_0,x_1\in X\). La homotopía \(F\colon I\times I\to X\) es <i>relativa a los extremos</i>, denotado \(\mathrm{rel}\ \{0,1\}\), si
 \[ F(0,t)=x_0\ \text{ para todo } t,\qquad F(1,t)=x_1\ \text{ para todo } t. \]</div>
 <p>Es decir: todos los caminos de las etapas de la deformación tienen el mismo punto inicial \(x_0\) y el mismo punto final \(x_1\). En el cuadrado, el lado izquierdo (\(s=0\)) se manda completo a \(x_0\) y el lado derecho (\(s=1\)) se manda completo a \(x_1\); el lado de arriba va al camino blanco y el de abajo al rojo.</p>
 <figure>
@@ -47,7 +47,7 @@ es continua.</div>
 
 <h4>Caminos homotópicos relativos a \(\{0,1\}\)</h4>
 <p>La última definición continúa la anterior, pero ahora se parte de dos caminos dados desde el principio, \(f_0\) y \(f_1\) en \(X\), con los mismos puntos iniciales y los mismos puntos finales.</p>
-<div class="def"><b>Definición (caminos homotópicos).</b> Dos caminos \(f_0\) y \(f_1\) en \(X\) son <i>homotópicos relativos a \(\{0,1\}\)</i> si existe una homotopía entre ellos, es decir, una función continua \(F\colon I\times I\to X\), relativa a los extremos, tal que
+<div class="def"><b>Definición 1.4 (caminos homotópicos).</b> Dos caminos \(f_0\) y \(f_1\) en \(X\) son <i>homotópicos relativos a \(\{0,1\}\)</i> si existe una homotopía entre ellos, es decir, una función continua \(F\colon I\times I\to X\), relativa a los extremos, tal que
 \[ F(s,0)=f_0(s)\quad\text{y}\quad F(s,1)=f_1(s). \]</div>
 <p>En el dibujo, el camino de arriba (blanco) es \(f_0\) y el de abajo (rojo) es \(f_1\): \(f_0\) se deforma de manera continua en el tiempo hasta \(f_1\), siempre dejando fijos los extremos.</p>
 <p><b>Notación.</b> \(f_0\simeq f_1\ \ \mathrm{rel}\ \{0,1\}.\)</p>

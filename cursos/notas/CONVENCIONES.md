@@ -31,6 +31,17 @@ En `cursos/topologia-algebraica.html`, el tema correspondiente (objeto `C`, list
 5. Agregar el campo `nb` al tema en la página.
 6. Subir a `main` y comprobar la página en línea.
 
+## Numeración de definiciones por unidad
+
+Al terminar una nota, actualizar esta tabla con el siguiente número libre de su unidad. Las notas de una unidad deben escribirse en el orden del curso; si se escribe una nota intermedia después, hay que renumerar las que le siguen.
+
+| Unidad | Notas (en orden) | Definiciones usadas | Siguiente libre |
+|---|---|---|---|
+| 1. Grupo fundamental | `caminos-y-homotopias` (Video 1) | 1.1 a 1.4 | 1.5 |
+| 2. Teorema de van Kampen | | | 2.1 |
+| 3. Espacios cubrientes | | | 3.1 |
+| 4. Homología | | | 4.1 |
+
 ## Notación
 
 - `I` es el intervalo unitario `[0,1]`; `X` es un espacio topológico cualquiera.
@@ -43,7 +54,7 @@ En `cursos/topologia-algebraica.html`, el tema correspondiente (objeto `C`, list
 ## Estilo
 
 - Las notas siguen el video: no agregan resultados ni demostraciones que no estén en él. Si se agrega un comentario propio, se marca como «Comentario».
-- Las definiciones usan el entorno `defn` y se numeran desde 1 dentro de cada nota; en HTML van en `<div class="def">` sin número. (Si se decide numerar por unidad o por tema, cambiarlo aquí y en `preambulo.tex`.)
+- Las definiciones usan el entorno `defn` y **se numeran por unidad**: `u.n` (Definición 1.1, 1.2, ...). En el `.tex`, cada nota declara `\unidad{u}{n}` justo después de `\input{preambulo}`, con `n` el primer número libre de esa unidad según la tabla de abajo. En HTML la etiqueta se escribe a mano («Definición 1.2 (nombre)») dentro de `<div class="def">`. Los números deben coincidir en el PDF y en el HTML.
 - Figuras: TikZ en el PDF y SVG en el HTML, con los mismos colores (negro para `f_0`, azul para `f_1`, verde para los extremos).
 - Se compila con LuaLaTeX. En el entorno donde se prepararon las primeras notas no estaba el paquete de español de TeX Live, por eso el preámbulo usa `babel` con `provide=*` y desactiva los guiones de palabra; con la instalación completa se puede cambiar a `\usepackage[spanish]{babel}`.
 

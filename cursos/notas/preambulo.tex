@@ -18,9 +18,13 @@
 \definecolor{extremo}{RGB}{47,107,79}
 \definecolor{azul}{RGB}{44,74,154}
 
-% Definiciones numeradas dentro de cada nota
+% Definiciones numeradas por unidad
 \theoremstyle{definition}
 \newtheorem{defn}{Definición}
+% Numeración por unidad: \unidad{u}{n} (después de \input{preambulo}) hace que las
+% definiciones de la nota se llamen u.n, u.(n+1), ...; n es el primer número
+% libre de esa unidad (ver la tabla de CONVENCIONES.md).
+\newcommand{\unidad}[2]{\renewcommand{\thedefn}{#1.\arabic{defn}}\setcounter{defn}{\numexpr#2-1\relax}}
 
 % Observaciones y erratas del video. Usar SOLO si hay algo que señalar:
 %   \begin{erratas}
