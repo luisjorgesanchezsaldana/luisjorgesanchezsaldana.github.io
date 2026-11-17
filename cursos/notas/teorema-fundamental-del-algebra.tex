@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{9Pb5F2l8Rhc}
+\input{preambulo}
+\unidad{1}{20} % unidad 1; primer enunciado: 1.20
+
+\title{Aplicaciones: el teorema fundamental del álgebra}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=9Pb5F2l8Rhc}{\guillemotleft{}Demostración del teorema fundamental del álgebra usando el grupo fundamental del círculo\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Primera aplicación del cálculo $\pi_1(S^1)\cong\mathbb{Z}$: todo polinomio complejo no constante tiene una raíz compleja.
+\normalsize
+
+\section*{El enunciado}
+
+En este video se demuestra el teorema fundamental del álgebra usando el hecho del video anterior de que el grupo fundamental del círculo es isomorfo a $\mathbb{Z}$ (Teorema~1.19).
+
+\begin{teo}[Teorema fundamental del álgebra]
+Todo polinomio no constante con coeficientes en $\mathbb{C}$ tiene una raíz en $\mathbb{C}$.
+\end{teo}
+
+Es decir, si $p$ es un polinomio con coeficientes complejos, existe $z_0\in\mathbb{C}$ tal que $p(z_0)=0$.
+
+\section*{La idea de la demostración}
+
+Se fija un polinomio
+\[
+  p(z)=z^n+a_1z^{n-1}+\cdots+a_n,\qquad n\ge 1,
+\]
+y se procede por contradicción. (\textbf{Comentario.} En el pizarrón el polinomio es mónico; esto no pierde generalidad, pues dividir un polinomio no constante entre su coeficiente principal no cambia sus raíces.)
+
+La idea es la siguiente. Sea
+\[
+  w_n\colon I\to S^1,\qquad w_n(s)=e^{2\pi i n s},
+\]
+el lazo que le da $n$ vueltas al círculo; aquí $n$ es el grado del polinomio. Se va a demostrar que $w_n$ es homotópico relativamente a los extremos al lazo constante, de modo que $w_n$ representa el elemento trivial de $\pi_1(S^1,1)$. Pero esto es una contradicción: por el video anterior, $w_n$ representa al elemento $n\in\mathbb{Z}\cong\pi_1(S^1,1)$ (su levantamiento es $s\mapsto ns$, que termina en $n$), y $n\neq 0$.
+
+Para construir la homotopía se supone que $p$ no tiene ninguna raíz en $\mathbb{C}$, y se hace en dos pasos:
+\begin{itemize}
+  \item \textbf{Paso 1.} Se construye un lazo $f_r$ en $S^1$ usando el polinomio $p$, con $r$ un parámetro, y se ve que $f_r\simeq c\ \mathrm{rel}\ \{0,1\}$, donde $c$ es el lazo constante.
+  \item \textbf{Paso 2.} Se muestra que $f_r\simeq w_n\ \mathrm{rel}\ \{0,1\}$ para $r$ suficientemente grande.
+\end{itemize}
+Con los dos pasos, $w_n\simeq f_r\simeq c$ rel $\{0,1\}$, que es la contradicción buscada.
+
+\section*{Paso 1: $f_r$ es homotópico al lazo constante}
+
+Como se está suponiendo que $p$ no tiene raíces, para cada $r\in\mathbb{R}$ se puede definir el lazo
+\[
+  f_r(s)=\frac{p(re^{2\pi i s})/p(r)}{\bigl|p(re^{2\pi i s})/p(r)\bigr|}.
+\]
+Está bien definido precisamente porque $p$ no se anula. Geométricamente, lo que hace es lo siguiente (figura). El polinomio transforma $\mathbb{C}$ en $\mathbb{C}$. Se toma el círculo de radio $r$; su imagen bajo $p$ es un lazo en algún lugar de $\mathbb{C}$, que no toca al origen. Se divide entre $p(r)$, que manda $p(r)$ a $1$, de modo que el lazo comienza en $1$. Finalmente se proyecta radialmente el lazo al círculo unitario, y el resultado es $f_r$, un lazo en $S^1$ basado en $1$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  % izquierda: plano complejo con el círculo de radio r
+  \draw[gray] (30,115) -- (190,115); \draw[gray] (110,35) -- (110,195);
+  \draw[very thick] (110,115) circle (70);
+  \fill[extremo] (180,115) circle (4);
+  \node at (196,134) {\small $r$};
+  \node at (50,45) {$\mathbb{C}$};
+  % flecha P
+  \draw[-{Stealth[length=7pt]}] (225,115) -- (285,115);
+  \node at (255,98) {$p$};
+  % derecha: imagen, círculo unitario y lazo proyectado
+  \draw[gray] (330,125) -- (475,125); \draw[gray] (400,100) -- (400,195);
+  \draw[thick,gray] (400,125) circle (55);
+  \draw[thick,azul] (470,85) .. controls (480,30) and (400,20) .. (360,60) .. controls (330,90) and (380,100) .. (420,95) .. controls (450,92) and (460,95) .. (470,85);
+  \fill[azul] (470,85) circle (3);
+  \node[azul] at (500,80) {\small $p(r)$};
+  \draw[very thick,red!80!black] (455,125) arc (0:-150:55);
+  \node[red!80!black] at (338,92) {\small $f_r$};
+  \node at (500,35) {$\mathbb{C}$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: construcción de $f_r$ (esquema).
+
+\medskip
+Usando esta interpretación geométrica se ve que, al aplicar la construcción con radios $r$ cada vez más pequeños, el lazo se va deformando, hasta que finalmente se obtiene el lazo constante. Es decir, $f_r\simeq c\ \mathrm{rel}\ \{0,1\}$. Con esto termina el paso 1.
+
+\medskip\noindent\textbf{Comentario.} Una manera de escribir esta deformación: como $p$ no tiene raíces (en particular $p(0)=a_n\neq 0$), la fórmula de $f_r$ tiene sentido para todo $r\ge 0$, depende continuamente de $r$ y para $r=0$ da el lazo constante en $1$; además $f_r(0)=f_r(1)=1$ para todo $r$. El video solo describe la idea.
+
+\section*{Paso 2: $f_r$ es homotópico a $w_n$}
+
+Este paso es más largo. Se fija $r\in\mathbb{R}$ con $r>1$ y $r>|a_1|+\cdots+|a_n|$. Entonces, para $|z|=r$ se tiene
+\[
+  |z^n|>\bigl(|a_1|+\cdots+|a_n|\bigr)|z^{n-1}|
+  \ge |a_1z^{n-1}|+\cdots+|a_n|
+  \ge |a_1z^{n-1}+\cdots+a_n|.
+\]
+(La primera desigualdad sale de $r>|a_1|+\cdots+|a_n|$ y la segunda de $r>1$ y de la desigualdad del triángulo.) De aquí se sigue que el polinomio
+\[
+  P_t(z)=z^n+t\bigl(a_1z^{n-1}+\cdots+a_n\bigr),\qquad 0\le t\le 1,
+\]
+que depende del parámetro $t$, no tiene raíces en el círculo $|z|=r$: el segundo término es demasiado pequeño para contrarrestar a $z^n$, y por eso $P_t$ no se puede anular allí para ningún $t\in[0,1]$.
+
+Ahora sí se puede definir la homotopía de $f_r$ a $w_n$:
+\[
+  f_{r,t}(s)=\frac{P_t(re^{2\pi i s})/P_t(r)}{\bigl|P_t(re^{2\pi i s})/P_t(r)\bigr|}.
+\]
+\textbf{Comentario.} En el pizarrón el denominador es $p(r)$, en vez de $P_t(r)$. Aquí se escribe $P_t(r)$, que es el que hace que $f_{r,t}(0)=f_{r,t}(1)=1$ para todo $t$ (homotopía relativa a los extremos) y que $f_{r,0}=w_n$.
+
+Se puede verificar a mano que $f_{r,0}=w_n$ y que $f_{r,1}=f_r$: en efecto, $P_0(z)=z^n$, así que $f_{r,0}(s)=r^ne^{2\pi i n s}/r^n=e^{2\pi i n s}$ (de módulo $1$), y $P_1=p$. Entonces, al variar $t$ de $0$ a $1$, se tiene una homotopía que conecta $f_r$ con $w_n$.
+
+\section*{Conclusión}
+
+Por el paso 1, $f_r\simeq c$ rel $\{0,1\}$, y por el paso 2, $f_r\simeq w_n$ rel $\{0,1\}$. Entonces $w_n\simeq c$ rel $\{0,1\}$, así que $[w_n]$ es el neutro de $\pi_1(S^1,1)$. Pero por el Teorema~1.19, $[w_n]$ corresponde al entero $n\neq 0$. Esta contradicción demuestra que $p$ sí tiene una raíz en $\mathbb{C}$.
+
+\begin{erratas}
+  \errata{475}{7:55}{En la homotopía $f_{r,t}$ el denominador debe ser $P_t(r)$ y no $p(r)$: con $p(r)$ fijo, $f_{r,0}$ es $w_n$ multiplicado por la constante unitaria $|p(r)|/p(r)$, que en general no es $1$, y la homotopía no fija el punto $1$. Además, donde se escribe $f_{r,1}=w_n$ debe decir $f_{r,1}=f_r$.}
+\end{erratas}
+
+\end{document}
