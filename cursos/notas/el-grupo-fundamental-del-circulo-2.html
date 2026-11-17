@@ -1,0 +1,47 @@
+<h4>Un corolario de los lemas de levantamiento</h4>
+<p>Se recuerda lo visto en el video anterior. La función \(\varphi\colon\mathbb{R}\to S^1\), \(\varphi(x)=e^{2\pi i x}\), enrolla \(\mathbb{R}\) sobre \(S^1\), y todo camino de \(S^1\) que comienza en \(1\) se puede levantar a \(\mathbb{R}\) comenzando en \(0\) (Lema 1.16); además, cualquier homotopía relativa a los extremos entre dos caminos se puede levantar (Lema 1.17). Con esto se obtiene un corolario inmediato.</p>
+<div class="thm"><b>Corolario 1.18.</b> <i>Sean \(f,g\colon I\to S^1\) caminos con \(f(0)=g(0)=1\) que son homotópicos relativamente a los extremos, \(f\simeq g\ \mathrm{rel}\ \{0,1\}\). Entonces sus levantamientos \(\tilde f,\tilde g\colon I\to\mathbb{R}\) (con punto inicial \(0\)) son homotópicos relativamente a los extremos. En particular, \(\tilde f(1)=\tilde g(1)\).</i></div>
+<p><b>Comentario.</b> En el pizarrón el corolario se enuncia para \(f,g\colon I\to S^1\) homotópicos rel \(\{0,1\}\); la condición \(f(0)=g(0)=1\) es la de los lemas de levantamiento, y la segunda afirmación es la que el video dice «en particular».</p>
+<p>La idea es la siguiente. Se tienen dos caminos en \(S^1\) con los mismos extremos y una deformación de uno en el otro que deja los extremos fijos. Al levantarlos (con punto inicial \(0\)), no se sabe cómo quedan, pero independientemente de eso los levantamientos son de nuevo homotópicos relativamente a los extremos. Como esa deformación deja los extremos fijos, ambos levantamientos tienen el mismo punto inicial, el \(0\), y el mismo punto final, que no se sabe cuál es pero sigue siendo el mismo para ambos.</p>
+
+<h4>El teorema</h4>
+<div class="thm"><b>Teorema 1.19 (El grupo fundamental del círculo).</b> <i>\(\pi_1(S^1)\cong\mathbb{Z}\) como grupos abelianos. Es decir, el grupo fundamental del círculo es un grupo cíclico infinito.</i></div>
+<p><i>Demostración.</i> Se define una función del grupo fundamental del círculo en los enteros: a la clase de \(f\) se le asigna el punto final de su levantamiento,
+\[ \Phi\colon\pi_1(S^1,1)\longrightarrow\mathbb{Z}, \qquad [f]\longmapsto\tilde f(1). \]
+<b>Comentario.</b> En el pizarrón se usa la misma letra \(\varphi\) para esta función y para la función exponencial \(\mathbb{R}\to S^1\); aquí se escribe \(\Phi\) para el homomorfismo, para no confundirlas. Además, \(\tilde f(1)\) es en efecto un entero: \(\varphi(\tilde f(1))=f(1)=1\) y \(e^{2\pi i x}=1\) si y solo si \(x\in\mathbb{Z}\).</p>
+<p>Hay que demostrar que \(\Phi\) está bien definida (los elementos del dominio son clases de equivalencia, así que hay que ver que no depende del representante), que es un homomorfismo y que es biyectiva.</p>
+
+<h4>\(\Phi\) está bien definida</h4>
+<p>Si \([f]=[g]\), por definición de la relación de equivalencia \(f\simeq g\ \mathrm{rel}\ \{0,1\}\). Por el Corolario 1.18, los puntos finales de los levantamientos son iguales:
+\[ \Phi[f]=\tilde f(1)=\tilde g(1)=\Phi[g]. \]</p>
+
+<h4>\(\Phi\) es un homomorfismo</h4>
+<p>Sean \([f],[g]\in\pi_1(S^1,1)\) y sean \(m=\tilde f(1)\) y \(n=\tilde g(1)\) los puntos finales de sus levantamientos. Se define el camino \(f'\colon I\to\mathbb{R}\) como \(\tilde f\) desplazado \(n\) unidades (a la derecha o a la izquierda según el signo de \(n\)):
+\[ f'(s)=\tilde f(s)+n. \]
+Entonces \(\tilde g\) va de \(0\) a \(n\) y \(f'\) va de \(n\) a \(n+m\) (figura), de modo que \(\tilde g\cdot f'\) tiene sentido.</p>
+<figure>
+<svg viewBox="0 0 480 120" role="img" aria-label="La recta real con el camino g̃ de 0 a n seguido del camino f' de n a n+m">
+<defs><marker id="nbarrowd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<line class="mid" x1="20" y1="70" x2="460" y2="70"/>
+<line class="f0" x1="60" y1="70" x2="220" y2="70"/>
+<line class="f1" x1="220" y1="70" x2="380" y2="70"/>
+<circle class="endpt" cx="60" cy="70" r="4"/><circle cx="220" cy="70" r="4" style="fill:var(--fg)"/><circle cx="380" cy="70" r="4" style="fill:var(--accent)"/>
+<text x="140" y="50" text-anchor="middle">g̃</text><text class="c1" x="300" y="50" text-anchor="middle">f′</text>
+<text class="dim" x="60" y="100" text-anchor="middle">0</text><text class="dim" x="220" y="100" text-anchor="middle">n</text><text class="dim" x="380" y="100" text-anchor="middle">n+m</text>
+<text x="452" y="52" text-anchor="middle">ℝ</text>
+</svg>
+<figcaption>El camino \(\tilde g\) va de \(0\) a \(n\) y \(f'=\tilde f+n\) va de \(n\) a \(n+m\); así se pueden concatenar y \(\tilde g\cdot f'\) comienza en \(0\) y termina en \(n+m\).</figcaption>
+</figure>
+<p>Se verifica fácilmente que \(\tilde g\cdot f'\) es el levantamiento de \(g\cdot f\), el producto de los dos lazos: comienza en \(0\) y su composición con \(\varphi\) es \(g\cdot f\), pues \(\varphi(x+n)=\varphi(x)\) para \(n\in\mathbb{Z}\). Por lo tanto el punto final de ese levantamiento es \(\Phi([g][f])\), y se tiene
+\[ \Phi([g][f])=(\tilde g\cdot f')(1)=n+m=\Phi[g]+\Phi[f]. \]
+Esto dice que \(\Phi\) es un homomorfismo.</p>
+
+<h4>\(\Phi\) es suprayectiva</h4>
+<p>Sea \(n\in\mathbb{Z}\). Se define \(\tilde f\colon I\to\mathbb{R}\) por \(\tilde f(s)=ns\), el camino que va de \(0\) a \(n\), y se proyecta al círculo: \(f=\varphi\circ\tilde f\colon I\to S^1\). Este es un lazo basado en \(1\) (pues \(f(0)=1\) y \(f(1)=e^{2\pi i n}=1\)). Como el levantamiento es único, \(\tilde f\) es el levantamiento de \(f\) que comienza en \(0\), así que \(\Phi[f]=\tilde f(1)=n\).</p>
+
+<h4>\(\Phi\) es inyectiva</h4>
+<p>Para esto basta ver que el núcleo es trivial. Sea \([f]\in\pi_1(S^1,1)\) con \(\Phi[f]=0\). Entonces \(\tilde f(1)=0\), y como \(\tilde f(0)=0\), el camino \(\tilde f\) es un lazo en \(\mathbb{R}\) basado en \(0\). Como ejercicio sencillo, \(\tilde f\) es homotópico rel \(\{0,1\}\) al camino constante en \(0\) (por ejemplo, con la homotopía lineal). Proyectando esa homotopía a \(S^1\) con \(\varphi\) se obtiene una homotopía relativa a los extremos de \(f\) al lazo constante en \(1\). Es decir, \(f\) se puede deformar rel \(\{0,1\}\) al lazo constante, y por lo tanto \([f]\) es el neutro de \(\pi_1(S^1,1)\). Así el núcleo es trivial y \(\Phi\) es inyectiva.</p>
+<p>Como \(\Phi\) es un homomorfismo biyectivo, es un isomorfismo, y esto demuestra el teorema. \(\square\)</p>
+<p>Este es el primer cálculo explícito de un grupo fundamental y, de manera sorprendente, no fue tan complicado. Tiene varias aplicaciones, y en los siguientes videos se verán tres de ellas.</p>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/el-grupo-fundamental-del-circulo-2.tex">el-grupo-fundamental-del-circulo-2.tex</a>.</p>
