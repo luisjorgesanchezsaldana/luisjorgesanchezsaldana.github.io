@@ -38,7 +38,7 @@ Al terminar una nota, actualizar esta tabla con el siguiente número libre de su
 
 | Unidad | Notas (en orden) | Definiciones usadas | Siguiente libre |
 |---|---|---|---|
-| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin definiciones), `caminos-y-homotopias` (Video 1) | 1.1 a 1.4 | 1.5 |
+| 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin definiciones), `que-estudiamos-en-topologia-algebraica` (Video 1, sin definiciones), `caminos-y-homotopias` (Video 1) | 1.1 a 1.4 | 1.5 |
 | 2. Teorema de van Kampen | | | 2.1 |
 | 3. Espacios cubrientes | | | 3.1 |
 | 4. Homología | | | 4.1 |
@@ -57,6 +57,7 @@ Al terminar una nota, actualizar esta tabla con el siguiente número libre de su
 - Las notas siguen el video: no agregan resultados ni demostraciones que no estén en él. Si se agrega un comentario propio, se marca como «Comentario».
 - Las definiciones usan el entorno `defn` y **se numeran por unidad**: `u.n` (Definición 1.1, 1.2, ...). En el `.tex`, cada nota declara `\unidad{u}{n}` justo después de `\input{preambulo}`, con `n` el primer número libre de esa unidad según la tabla de abajo. En HTML la etiqueta se escribe a mano («Definición 1.2 (nombre)») dentro de `<div class="def">`. Los números deben coincidir en el PDF y en el HTML.
 - Figuras: TikZ en el PDF y SVG en el HTML, con los mismos colores (negro para `f_0`, azul para `f_1`, verde para los extremos).
+- En el `.tex`, el signo ¿ se escribe con la ligadura `?``: con el preámbulo actual, un ¿ escrito directamente sale como «£» en el PDF. En el `.html` se escribe ¿ normal.
 - Se compila con LuaLaTeX. En el entorno donde se prepararon las primeras notas no estaba el paquete de español de TeX Live, por eso el preámbulo usa `babel` con `provide=*` y desactiva los guiones de palabra; con la instalación completa se puede cambiar a `\usepackage[spanish]{babel}`.
 
 ## Observaciones y erratas del video

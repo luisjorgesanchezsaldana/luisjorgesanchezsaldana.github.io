@@ -1,0 +1,31 @@
+<h4>La pregunta y una primera respuesta</h4>
+<p>Si se quiere empezar a estudiar topología algebraica, una buena primera pregunta es qué se estudia en ella. Una primera respuesta es que se estudian <b>espacios topológicos y sus funciones</b>, igual que en un curso de topología. Lo novedoso es que, para estudiarlos, se usan <b>objetos algebraicos y sus funciones</b>.</p>
+<p>Dicho de otra manera, la topología algebraica toma un problema de topología (en el pizarrón, \(\mathrm{Top}\)) y lo <i>traduce</i> a un problema de álgebra (\(\mathrm{Alg}\)).</p>
+
+<h4>La traducción: un funtor</h4>
+<p>En términos más técnicos, del lado de la topología se tiene la <i>categoría de espacios topológicos</i>: sus objetos son todos los espacios topológicos y sus funciones son las funciones continuas. Del lado del álgebra puede haber distintas categorías; en la primera parte del curso se usa la <i>categoría de grupos y homomorfismos</i>, y otras posibles son las de anillos o de álgebras. La traducción es lo que se conoce como un <i>funtor</i> de la categoría de espacios topológicos a una categoría algebraica.</p>
+<p>Concretamente, a cada espacio topológico \(X\) se le asocia un objeto algebraico \(F(X)\) (un grupo, un anillo, un álgebra, etc.), y a cada función continua \(f\colon X\to Y\) se le asocia una función entre los objetos correspondientes,</p>
+\[ X\ \rightsquigarrow\ F(X),\qquad f\colon X\to Y\ \rightsquigarrow\ F(f)\colon F(X)\to F(Y). \]
+<p>Si \(F(X)\) y \(F(Y)\) son grupos, entonces \(F(f)\) es un homomorfismo de grupos, es decir, un morfismo en la categoría de grupos. Además, la asignación debe cumplir dos propiedades:</p>
+<ol>
+<li>La identidad se manda a la identidad: \(F(\mathrm{id}_X)=\mathrm{id}_{F(X)}\).</li>
+<li>Respeta composiciones: si \(g\circ f\) tiene sentido, entonces \(F(g\circ f)=F(g)\circ F(f)\).</li>
+</ol>
+
+<h4>¿Y luego qué? Cómo se usa</h4>
+<p>El video da un ejemplo que no es tan concreto, pero ilustra la filosofía detrás de estas asignaciones. Con solo las dos propiedades anteriores es fácil ver que:</p>
+\[ \text{si } f\colon X\to Y \text{ es un homeomorfismo, entonces } F(f)\colon F(X)\to F(Y) \text{ es un isomorfismo.} \]
+<p>Por ejemplo, si \(F(X)\) y \(F(Y)\) son grupos, \(F(f)\) es un isomorfismo de grupos.</p>
+<p>En consecuencia, para demostrar que dos espacios topológicos \(X\) y \(Y\) <i>no</i> son homeomorfos basta verificar que \(F(X)\) y \(F(Y)\) <i>no</i> son isomorfos (por ejemplo, que no son grupos isomorfos). En algunas ocasiones esto es bastante más sencillo que verificar directamente que los espacios no son homeomorfos.</p>
+<p>Así funciona, más o menos, la topología algebraica: se toma un problema de topología (aquí, decidir si \(X\) y \(Y\) son homeomorfos) y se traduce a un problema algebraico; si el problema algebraico no tiene solución, entonces el problema topológico tampoco la tiene. En los siguientes videos se verán varios ejemplos de esto.</p>
+
+<h4>Ejemplos clásicos de estas asignaciones</h4>
+<p>Antes de terminar, el video menciona los ejemplos más clásicos de funtores \(F\) en topología algebraica:</p>
+<ul>
+<li>\(\pi_1\), el <b>grupo fundamental</b>. Es el funtor que se estudiará en los siguientes videos y, en general, en este curso.</li>
+<li>\(\pi_n\), el <b>\(n\)-ésimo grupo de homotopía</b>. El subíndice \(1\) de \(\pi_1\) sugiere que hay más de uno de estos funtores.</li>
+<li>\(H_n\), el <b>\(n\)-ésimo grupo de homología</b>. Estos se estudian usualmente a continuación del grupo fundamental y de las propiedades más básicas de los grupos de homotopía.</li>
+<li>\(H^{*}\), el <b>anillo de cohomología</b>.</li>
+</ul>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/que-estudiamos-en-topologia-algebraica.tex">que-estudiamos-en-topologia-algebraica.tex</a>.</p>

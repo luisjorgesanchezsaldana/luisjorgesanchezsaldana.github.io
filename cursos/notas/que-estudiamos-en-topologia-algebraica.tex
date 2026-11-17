@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{h9I4SazsV6E}
+\input{preambulo}
+\unidad{1}{1} % unidad 1; la nota no define nada formalmente; siguiente definición libre: 1.1
+
+\title{?`Qué estudiamos en topología algebraica?}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=h9I4SazsV6E}{\guillemotleft{}?`Qué estudiamos en topología algebraica?\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Explican la idea general de la topología algebraica: traducir problemas de topología a problemas de álgebra.
+\normalsize
+
+\section*{La pregunta y una primera respuesta}
+
+Si se quiere empezar a estudiar topología algebraica, una buena primera pregunta es qué se estudia en ella. Una primera respuesta es que se estudian \textbf{espacios topológicos y sus funciones}, igual que en un curso de topología. Lo novedoso es que, para estudiarlos, se usan \textbf{objetos algebraicos y sus funciones}.
+
+Dicho de otra manera, la topología algebraica toma un problema de topología (en el pizarrón, $\mathrm{Top}$) y lo \emph{traduce} a un problema de álgebra ($\mathrm{Alg}$).
+
+\section*{La traducción: un funtor}
+
+En términos más técnicos, del lado de la topología se tiene la \emph{categoría de espacios topológicos}: sus objetos son todos los espacios topológicos y sus funciones son las funciones continuas. Del lado del álgebra puede haber distintas categorías; en la primera parte del curso se usa la \emph{categoría de grupos y homomorfismos}, y otras posibles son las de anillos o de álgebras. La traducción es lo que se conoce como un \emph{funtor} de la categoría de espacios topológicos a una categoría algebraica.
+
+Concretamente, a cada espacio topológico $X$ se le asocia un objeto algebraico $F(X)$ (un grupo, un anillo, un álgebra, etc.), y a cada función continua $f\colon X\to Y$ se le asocia una función entre los objetos correspondientes,
+\[
+  X\ \rightsquigarrow\ F(X),\qquad
+  f\colon X\to Y\ \rightsquigarrow\ F(f)\colon F(X)\to F(Y).
+\]
+Si $F(X)$ y $F(Y)$ son grupos, entonces $F(f)$ es un homomorfismo de grupos, es decir, un morfismo en la categoría de grupos. Además, la asignación debe cumplir dos propiedades:
+\begin{enumerate}
+  \item La identidad se manda a la identidad: $F(\mathrm{id}_X)=\mathrm{id}_{F(X)}$.
+  \item Respeta composiciones: si $g\circ f$ tiene sentido, entonces $F(g\circ f)=F(g)\circ F(f)$.
+\end{enumerate}
+
+\section*{?`Y luego qué? Cómo se usa}
+
+El video da un ejemplo que no es tan concreto, pero ilustra la filosofía detrás de estas asignaciones. Con solo las dos propiedades anteriores es fácil ver que:
+\[
+  \text{si } f\colon X\to Y \text{ es un homeomorfismo, entonces } F(f)\colon F(X)\to F(Y) \text{ es un isomorfismo.}
+\]
+Por ejemplo, si $F(X)$ y $F(Y)$ son grupos, $F(f)$ es un isomorfismo de grupos.
+
+En consecuencia, para demostrar que dos espacios topológicos $X$ y $Y$ \emph{no} son homeomorfos basta verificar que $F(X)$ y $F(Y)$ \emph{no} son isomorfos (por ejemplo, que no son grupos isomorfos). En algunas ocasiones esto es bastante más sencillo que verificar directamente que los espacios no son homeomorfos.
+
+Así funciona, más o menos, la topología algebraica: se toma un problema de topología (aquí, decidir si $X$ y $Y$ son homeomorfos) y se traduce a un problema algebraico; si el problema algebraico no tiene solución, entonces el problema topológico tampoco la tiene. En los siguientes videos se verán varios ejemplos de esto.
+
+\section*{Ejemplos clásicos de estas asignaciones}
+
+Antes de terminar, el video menciona los ejemplos más clásicos de funtores $F$ en topología algebraica:
+\begin{itemize}
+  \item $\pi_1$, el \textbf{grupo fundamental}. Es el funtor que se estudiará en los siguientes videos y, en general, en este curso.
+  \item $\pi_n$, el \textbf{$n$-ésimo grupo de homotopía}. El subíndice $1$ de $\pi_1$ sugiere que hay más de uno de estos funtores.
+  \item $H_n$, el \textbf{$n$-ésimo grupo de homología}. Estos se estudian usualmente a continuación del grupo fundamental y de las propiedades más básicas de los grupos de homotopía.
+  \item $H^{*}$, el \textbf{anillo de cohomología}.
+\end{itemize}
+
+\end{document}
