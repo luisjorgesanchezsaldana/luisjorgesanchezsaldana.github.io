@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{pI16TtLD0tM}
+\input{preambulo}
+\unidad{1}{28} % unidad 1; primer enunciado: 1.28
+
+\title{$\mathbb{R}^2$ no es homeomorfo a $\mathbb{R}^n$ para $n\neq 2$}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=pI16TtLD0tM}{\guillemotleft{}$\mathbb{R}^2$ no es homeomorfo a $\mathbb{R}^n$ para $n\neq 2$\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se demuestra que $\mathbb{R}^2$ no es homeomorfo a $\mathbb{R}^n$ si $n\neq 2$: el caso $n=1$ con componentes conexas y el caso $n\geq 3$ con el grupo fundamental.
+\normalsize
+
+\section*{Enunciado}
+
+\begin{teo}\label{teo:r2rn}
+$\mathbb{R}^2$ no es homeomorfo a $\mathbb{R}^n$ si $n\neq 2$.
+\end{teo}
+
+Este es un resultado de topología: dice que dos espacios concretos, $\mathbb{R}^2$ y $\mathbb{R}^n$, no son homeomorfos. Si se quisiera demostrar directamente de la definición, habría que ver que para cualquier función entre $\mathbb{R}^2$ y $\mathbb{R}^n$ la función no es un homeomorfismo, es decir, no tiene inversa continua; y de manera directa es bastante complicado, sobre todo pensando que sí existen, por ejemplo, funciones sobreyectivas continuas de $\mathbb{R}$ en $\mathbb{R}^2$ y funciones inyectivas continuas de $\mathbb{R}^2$ en $\mathbb{R}^3$. Lo que no va a existir es una función biyectiva continua con inversa continua. Para demostrarlo se usan las herramientas ya desarrolladas: el grupo fundamental del círculo y de las esferas.
+
+La demostración se divide en casos: $n=1$ y $n\geq 3$.
+
+\section*{Caso 1: $n=1$}
+
+\begin{proof}[Demostración del caso $n=1$]
+Se procede por contradicción. Si hubiera un homeomorfismo $f\colon\mathbb{R}^2\to\mathbb{R}$, se podría quitar un punto; por ejemplo, la restricción
+\[
+  f|_{\mathbb{R}^2\setminus\{0\}}\colon\mathbb{R}^2\setminus\{0\}\longrightarrow\mathbb{R}\setminus\{f(0)\}
+\]
+también es un homeomorfismo (esto se puede verificar fácilmente). Sin embargo, del lado izquierdo $\mathbb{R}^2\setminus\{0\}$ es conexo (una sola componente conexa), mientras que del lado derecho, al quitarle un punto a $\mathbb{R}$, quedan dos pedazos separados, es decir, dos componentes conexas. El número de componentes conexas es un invariante bajo homeomorfismos, y así se llega a una contradicción. Por lo tanto tal homeomorfismo no puede existir, y $\mathbb{R}^2$ no es homeomorfo a $\mathbb{R}$.
+\end{proof}
+
+\section*{Caso 2: $n\geq 3$}
+
+El truco anterior no se puede utilizar cuando $n\geq 3$: si se quita un punto de $\mathbb{R}^2$ y su imagen en $\mathbb{R}^3$ (o en $\mathbb{R}^n$), queda un espacio con una sola componente conexa de ambos lados, y no se llega a una contradicción de la misma manera. Hay que hacer algo diferente: usar el cálculo del grupo fundamental de las esferas de los videos anteriores. El truco es casi el mismo (se quita un punto del lado izquierdo y su imagen del lado derecho), pero ahora se usa el grupo fundamental para llegar a una contradicción, en lugar del número de componentes conexas.
+
+Para continuar se necesita la siguiente observación.
+
+\medskip\noindent\textbf{Observación.} Si $x\in\mathbb{R}^n$, entonces $\mathbb{R}^n\setminus\{x\}$ (a $\mathbb{R}^n$ se le quita un punto, como una ponchadura) es homeomorfo a $S^{n-1}\times\mathbb{R}$.
+
+Este es un ejercicio bonito e interesante que se deja al lector: la manera de demostrarlo es exhibir el homeomorfismo, construyéndolo de manera explícita.
+
+\begin{proof}[Demostración del caso $n\geq 3$]
+Supongamos que $f\colon\mathbb{R}^2\to\mathbb{R}^n$ es un homeomorfismo, con $n\geq 3$. Igual que en el caso 1, quitando un punto del lado izquierdo y su imagen del lado derecho,
+\[
+  \bar f=f|_{\mathbb{R}^2\setminus\{0\}}\colon\mathbb{R}^2\setminus\{0\}\longrightarrow\mathbb{R}^n\setminus\{f(0)\}
+\]
+sigue siendo un homeomorfismo. Utilizando la observación (que se supone demostrada), $\bar f$ induce un homeomorfismo
+\[
+  g\colon S^1\times\mathbb{R}\longrightarrow S^{n-1}\times\mathbb{R},
+\]
+que a su vez induce un isomorfismo en grupos fundamentales (Teorema~1.25, aplicado a $g$ y a su inversa):
+\[
+  g_*\colon\pi_1(S^1\times\mathbb{R})\xrightarrow{\ \cong\ }\pi_1(S^{n-1}\times\mathbb{R}).
+\]
+Por otro lado, se sabe que el grupo fundamental abre productos (Teorema~1.24). Del lado izquierdo,
+\[
+  \pi_1(S^1\times\mathbb{R})\cong\pi_1(S^1)\times\pi_1(\mathbb{R})\cong\pi_1(S^1)\cong\mathbb{Z},
+\]
+pues $\pi_1(\mathbb{R})=0$ y $\pi_1(S^1)\cong\mathbb{Z}$. Del lado derecho,
+\[
+  \pi_1(S^{n-1}\times\mathbb{R})\cong\pi_1(S^{n-1})\times\pi_1(\mathbb{R})\cong\pi_1(S^{n-1})=0,
+\]
+porque $n\geq 3$ implica $n-1\geq 2$, y por lo que se demostró en el video anterior (Proposición~1.26) $\pi_1(S^{n-1})=0$. Entonces $\mathbb{Z}$ sería isomorfo al grupo trivial, lo cual claramente es absurdo. Esto es una contradicción, y así termina la demostración: no puede existir un homeomorfismo entre $\mathbb{R}^2$ y $\mathbb{R}^n$ para $n\geq 3$.
+\end{proof}
+
+Con los dos casos queda demostrado el Teorema~\ref{teo:r2rn}.
+
+\noindent\textbf{Comentario.} En el video se omiten los puntos base. Todos los espacios que aparecen aquí son arco-conexos ($S^1\times\mathbb{R}$, $S^{n-1}\times\mathbb{R}$ con $n-1\geq 1$, y los espacios $\mathbb{R}^n$), de modo que sus grupos fundamentales no dependen del punto base salvo isomorfismo (cambio de punto base, Teorema~1.12); por eso se puede hablar de «el» grupo fundamental sin escribir el punto.
+
+\begin{erratas}
+  \errata{60}{1:00}{Se dice que incluso hay funciones biyectivas continuas entre estos espacios; pero no existe una biyección continua de $\mathbb{R}$ en $\mathbb{R}^2$ ni de $\mathbb{R}^2$ en $\mathbb{R}^3$: $\mathbb{R}^2$ sería una unión creciente de discos compactos cuyas imágenes en $\mathbb{R}^3$ tienen interior vacío, lo cual contradice el teorema de Baire (el caso $\mathbb{R}\to\mathbb{R}^2$ es análogo, con arcos).}
+\end{erratas}
+
+\end{document}
