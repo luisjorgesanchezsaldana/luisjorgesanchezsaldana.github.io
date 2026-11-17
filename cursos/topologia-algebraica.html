@@ -223,9 +223,11 @@ document.getElementById("units").addEventListener("click",async e=>{const b=e.ta
   b.setAttribute("aria-expanded",String(!open));p.hidden=open;
   if(open||p.dataset.ok)return;
   p.innerHTML='<p class="nbl">Cargando…</p>';
-  try{const r=await fetch(b.dataset.src);if(!r.ok)throw 0;p.innerHTML=await r.text();p.dataset.ok="1"}
+  let h;try{const r=await fetch(b.dataset.src);if(!r.ok)throw 0;h=await r.text()}
   catch(_){p.innerHTML='<p class="nbl">No se pudieron cargar las notas; descarga el PDF.</p>';return}
-  try{await katex();renderMathInElement(p,{delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],throwOnError:false})}catch(_){}
+  const d=document.createElement("div");d.innerHTML=h;
+  try{await katex();renderMathInElement(d,{delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],throwOnError:false})}catch(_){}
+  p.replaceChildren(...d.childNodes);p.dataset.ok="1";
 });
 let armed=false;const rb=document.getElementById("reset");
 rb.addEventListener("click",()=>{if(!armed){armed=true;rb.textContent="¿Seguro? Haz clic otra vez";setTimeout(()=>{armed=false;rb.textContent="Desmarcar todo"},3000);return}
