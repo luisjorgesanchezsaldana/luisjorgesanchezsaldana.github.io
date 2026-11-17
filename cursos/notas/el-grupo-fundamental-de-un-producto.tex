@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{lvDPAcjvnvE}
+\input{preambulo}
+\unidad{1}{24} % unidad 1; primer enunciado: 1.24
+
+\title{El grupo fundamental de un producto}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=lvDPAcjvnvE}{\guillemotleft{}El grupo fundamental de un producto\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). El grupo fundamental de un producto de espacios es el producto de los grupos fundamentales; como ejemplo, se calcula el grupo fundamental del $n$-toro.
+\normalsize
+
+\section*{Enunciado}
+
+En este video se calcula el grupo fundamental de un producto de espacios topológicos.
+
+\begin{teo}\label{teo:producto}
+Sean $X$ y $Y$ espacios topológicos, $x_0\in X$ y $y_0\in Y$. Entonces
+\[
+  \pi_1\bigl(X\times Y,(x_0,y_0)\bigr)\cong\pi_1(X,x_0)\times\pi_1(Y,y_0).
+\]
+\end{teo}
+
+Es decir, el grupo fundamental del producto, respecto del punto base $(x_0,y_0)$, es isomorfo al producto de los grupos fundamentales: primero el de $X$ respecto de $x_0$ y luego el de $Y$ respecto de $y_0$. Así, el grupo fundamental se comporta bien con los productos de espacios topológicos.
+
+\section*{La demostración}
+
+Una primera observación: cuando se habla de un producto, por ejemplo de $X\times Y$, se piensa que tiene la topología de espacio producto, como en el curso básico de topología. Se usarán además un par de propiedades que usualmente no se ven en un primer curso de topología; no se demuestran aquí, se dan por hechas.
+
+\begin{proof}
+Se comienza por recordar que hay una biyección entre los siguientes dos conjuntos. Si $Z$ es un espacio topológico, se consideran todas las funciones (continuas) de $Z$ al producto $X\times Y$; este conjunto está en biyección con el de las parejas de funciones $(g,h)$ tales que $g$ va de $Z$ a $X$ y $h$ va de $Z$ a $Y$:
+\[
+  \{\,f\colon Z\to X\times Y\,\}\ \longleftrightarrow\ \{\,(g,h) : g\colon Z\to X,\ h\colon Z\to Y\,\}.
+\]
+Esta biyección se puede dar de manera muy explícita. La flecha de ida consiste en descomponer $f$ en sus componentes: $f(z)=(g(z),h(z))$, con $g(z)\in X$ y $h(z)\in Y$ (así es como se trabaja con un producto). La flecha de regreso consiste en tomar el producto de las funciones $g$ y $h$, es decir, formar la función $z\mapsto(g(z),h(z))$, cuyas componentes son $g$ y $h$.
+
+En particular, tomando $Z=I$, se tiene una biyección entre el conjunto de lazos en $X\times Y$ basados en $(x_0,y_0)$ y el de las parejas $(g,h)$ donde $g$ es un lazo en $X$ basado en $x_0$ y $h$ es un lazo en $Y$ basado en $y_0$:
+\[
+  \{\,f\colon I\to X\times Y : f(0)=f(1)=(x_0,y_0)\,\}\ \longleftrightarrow\
+  \left\{\,(g,h) :
+  \begin{array}{ll}
+    g\colon I\to X, & g(0)=g(1)=x_0\\
+    h\colon I\to Y, & h(0)=h(1)=y_0
+  \end{array}\right\}.
+\]
+
+Además, usando de nuevo la observación inicial, se puede verificar fácilmente que esta biyección respeta la relación de equivalencia que viene de la homotopía de lazos relativa a los extremos, $\operatorname{rel}\{0,1\}$. Lo que se obtiene en automático es una biyección entre los grupos fundamentales
+\[
+  \pi_1\bigl(X\times Y,(x_0,y_0)\bigr)\longrightarrow\pi_1(X,x_0)\times\pi_1(Y,y_0),\qquad [f]\longmapsto([g],[h]).
+\]
+
+Para finalizar la demostración hay que observar que esta biyección es, en efecto, un isomorfismo; como ya es biyección, falta ver que es un homomorfismo.
+
+\medskip\noindent\textbf{Ejercicio.} Nuestra biyección es un homomorfismo. (Sugerencia del video: si se concatenan dos lazos en $X\times Y$, la descomposición en componentes de la concatenación es la concatenación de las componentes de los lazos originales.)
+
+\medskip\noindent Con esto termina la demostración.
+\end{proof}
+
+\section*{Ejemplo: el grupo fundamental del $n$-toro}
+
+El \emph{$n$-toro} se define como el producto
+\[
+  T^n=\underbrace{S^1\times S^1\times\cdots\times S^1}_{n\text{ veces}}.
+\]
+Por ejemplo, el $2$-toro $T^2=S^1\times S^1$ es el toro usual, la superficie de una dona. El $n$-toro tiene como grupo fundamental el producto de los grupos fundamentales de $S^1$ consigo mismo $n$ veces:
+\[
+  \pi_1(T^n)=\pi_1(S^1)\times\cdots\times\pi_1(S^1)=\mathbb{Z}\times\cdots\times\mathbb{Z}=\mathbb{Z}^n.
+\]
+Esto se demuestra con el Teorema~\ref{teo:producto} y una inducción muy sencilla, junto con $\pi_1(S^1)\cong\mathbb{Z}$ (Teorema~1.19). Así, el grupo fundamental del $n$-toro es el grupo abeliano libre en $n$ generadores. Aparte del círculo, este es el segundo ejemplo de un espacio al que se le calcula su grupo fundamental de manera muy explícita.
+
+\end{document}
