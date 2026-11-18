@@ -39,7 +39,7 @@ Definiciones, proposiciones, teoremas, lemas y corolarios comparten **un solo co
 | Unidad | Notas (en orden) | Enunciados numerados usados | Siguiente libre |
 |---|---|---|---|
 | 1. Grupo fundamental | `prerrequisitos-y-bibliografia` (Video 1, sin enunciados numerados), `que-estudiamos-en-topologia-algebraica` (Video 1, sin enunciados numerados), `caminos-y-homotopias` (Video 1), `caminos-y-homotopias-2` (Video 2), `definicion-de-grupo-fundamental` (Video 1), `definicion-de-grupo-fundamental-2` (Video 2), `cambio-de-punto-base` (Video 1), `el-grupo-fundamental-del-circulo` (Video 1), `el-grupo-fundamental-del-circulo-2` (Video 2), `teorema-fundamental-del-algebra` (Video 1), `teorema-del-punto-fijo-de-brouwer` (Video 1), `teorema-de-borsuk-ulam` (Video 1), `el-grupo-fundamental-de-un-producto` (Video 1), `homomorfismos-inducidos` (Video 1), `el-grupo-fundamental-de-la-n-esfera` (Video 1), `r2-no-es-homeomorfo-a-rn` (Video 1), `homotopias-entre-funciones` (Video 1), `homotopias-y-homomorfismos-inducidos` (Video 2) | 1.1 a 1.4; 1.5 a 1.6; 1.7 a 1.10; 1.11; 1.12 a 1.13; 1.14 a 1.17; 1.18 a 1.19; 1.20; 1.21 a 1.22; 1.23; 1.24; 1.25; 1.26 a 1.27; 1.28; 1.29 a 1.31; 1.32 | 1.33 |
-| 2. Teorema de van Kampen | `grupos-libres` (Video 1) | 2.1 a 2.2 | 2.3 |
+| 2. Teorema de van Kampen | `grupos-libres` (Video 1), `productos-libres` (Video 1) | 2.1 a 2.2; 2.3 | 2.4 |
 | 3. Espacios cubrientes | | | 3.1 |
 | 4. Homología | | | 4.1 |
 
@@ -60,6 +60,8 @@ Definiciones, proposiciones, teoremas, lemas y corolarios comparten **un solo co
 - Los enunciados numerados son las definiciones (`defn`), proposiciones (`prop`), teoremas (`teo`), lemas (`lema`) y corolarios (`cor`). **Comparten un solo contador por unidad**: `u.n` (Definición 1.5, Proposición 1.6, Teorema 1.7, ...). En el `.tex`, cada nota declara `\unidad{u}{n}` justo después de `\input{preambulo}`, con `n` el primer número libre de esa unidad según la tabla de abajo; los enunciados se pueden etiquetar con `\label` y citar con `\ref`. En HTML la etiqueta se escribe a mano: las definiciones van en `<div class="def"><b>Definición 1.5 (nombre).</b> ...</div>` y los demás en `<div class="thm"><b>Proposición 1.6.</b> <i>enunciado</i></div>`. Los tipos y los números deben coincidir en el PDF y en el HTML. Las demostraciones usan `proof` en el `.tex` y no se numeran.
 - Figuras: TikZ en el PDF y SVG en el HTML, con los mismos colores (negro para `f_0`, azul para `f_1`, verde para los extremos).
 - En el `.tex`, el signo ¿ se escribe con la ligadura `?``: con el preámbulo actual, un ¿ escrito directamente sale como «£» en el PDF. En el `.html` se escribe ¿ normal.
+- Lo mismo pasa con las comillas latinas: en el `.tex` se escriben `\guillemotleft{}` y `\guillemotright{}` (un « o » escrito directamente sale como «ń» y «ż»). En el `.html` se escriben « y » normales.
+- `verificar-notas.py --compilar` compila en una copia aparte y **no** actualiza el `.pdf` del repositorio: después de cualquier cambio al `.tex` hay que recompilar el PDF (`latexmk -lualatex <slug>.tex`) antes de subirlo.
 - Se compila con LuaLaTeX. En el entorno donde se prepararon las primeras notas no estaba el paquete de español de TeX Live, por eso el preámbulo usa `babel` con `provide=*` y desactiva los guiones de palabra; con la instalación completa se puede cambiar a `\usepackage[spanish]{babel}`.
 
 ## Observaciones y erratas del video

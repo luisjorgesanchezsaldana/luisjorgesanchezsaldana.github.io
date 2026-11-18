@@ -1,0 +1,68 @@
+<!-- Fragmento de las notas de productos-libres. Mismo contenido que el .tex.
+     Fórmulas con \( ... \) y \[ ... \] (KaTeX). Definiciones: <div class="def"><b>Definición 2.3 (nombre).</b> ...</div>.
+     Proposiciones, teoremas, lemas y corolarios: <div class="thm"><b>Proposición 2.3.</b> <i>enunciado</i></div> (igual con Teorema, Lema, Corolario).
+     Todos comparten un solo contador por unidad y deben coincidir (tipo y número) con el PDF. Figuras: SVG con las clases f0, f1, mid, end, endpt, arr, mk (ver caminos-y-homotopias.html).
+     Erratas (solo si hay errores confirmados), al final:
+     <div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=bZZU7kzLI1s&amp;t=203" target="_blank" rel="noopener">3:23</a> Se dice ..., pero debe decir ...</li></ul></div> -->
+<h4>Motivación: el producto directo</h4>
+<p>En teoría de grupos ya se conocen algunas formas de construir grupos a partir de otros. Por ejemplo, si \(G\) y \(H\) son grupos, se puede formar el producto directo \(G\times H\), que es otro grupo que contiene a \(G\) y a \(H\): \(G\) se encaja en la primera coordenada, \(g\mapsto(g,1)\), y \(H\) en la segunda, \(h\mapsto(1,h)\). Una de las propiedades principales del producto directo es que los elementos de \(G\) y de \(H\), vistos dentro de \(G\times H\), conmutan entre ellos:
+\[ (g,1)(1,h)=(1,h)(g,1). \]</p>
+<p>En este video se define otro producto de dos grupos \(G\) y \(H\), el <i>producto libre</i>, que se denota \(G*H\). De nuevo \(G\) y \(H\) están metidos ahí, pero ahora sus elementos <i>no</i> conmutan entre ellos, y esto da origen a un nuevo tipo de grupo.</p>
+
+<h4>Un ejemplo: el grupo libre en dos letras</h4>
+<p>Antes de dar la definición, se ve el grupo libre \(F_2\) como un producto libre de grupos cíclicos. Sean \(\mathbb{Z}\langle a\rangle\) el grupo cíclico infinito generado por \(a\), cuyos elementos son las potencias \(a^n\) con \(n\in\mathbb{Z}\), y \(\mathbb{Z}\langle b\rangle\) el generado por \(b\), cuyos elementos son las potencias \(b^m\) con \(m\in\mathbb{Z}\). Se piensa que el grupo libre \(F_2\) está generado por las letras \(a\) y \(b\).</p>
+<p>Como se vio en el video anterior, todo elemento de \(F_2\) es una clase de equivalencia \([w]\), donde \(w\) es una palabra en \(a\) y \(b\), que incluso se puede tomar reducida. Por ejemplo, una palabra que empieza como \(w=aabb\cdots\) se puede escribir como \(w=a^2b^2\cdots\). En general, una forma de describir \(w\) es como una palabra que alterna potencias: por ejemplo, se comienza con una potencia de \(a\), luego una potencia de \(b\), luego otra vez una potencia de \(a\), y así hasta que se termina (o se comienza con una potencia de \(b\)). Pero cada potencia de \(a\), como \(a^2\), vive en el grupo cíclico \(\mathbb{Z}\langle a\rangle\), y cada potencia de \(b\) vive en \(\mathbb{Z}\langle b\rangle\). Así, la palabra \(w\) se puede repensar como una concatenación alternada de elementos de \(\mathbb{Z}\langle a\rangle\) y de \(\mathbb{Z}\langle b\rangle\).</p>
+<p>Esta es la idea: \(F_2\) está construido a partir de \(\mathbb{Z}\langle a\rangle\) y \(\mathbb{Z}\langle b\rangle\) formando todas las palabras con elementos de uno y otro grupo, alternándolos. Es decir, se forma el producto libre
+\[ F_2=\mathbb{Z}\langle a\rangle*\mathbb{Z}\langle b\rangle. \]
+Este ejemplo da intuición para la definición, que se da de una vez para una cantidad arbitraria de grupos.</p>
+
+<h4>El producto libre</h4>
+<div class="def"><b>Definición 2.3 (Producto libre).</b> Sea \(\{G_\alpha\}_{\alpha\in I}\) una colección de grupos, indexada por un conjunto \(I\). Como conjunto, el <i>producto libre</i>
+\[ \mathop{\Large *}\limits_{\alpha\in I}G_\alpha \]
+consiste de las palabras \(g_1g_2\cdots g_m\), con \(m\in\mathbb{N}\cup\{0\}\), donde
+<br>• cada \(g_i\) pertenece a algún \(G_\alpha\) y \(g_i\neq1\), y
+<br>• \(g_i\) y \(g_{i+1}\) pertenecen a grupos \(G_\alpha\) diferentes; es decir, si \(g_i\in G_\alpha\) y \(g_{i+1}\in G_\beta\), entonces \(\alpha\neq\beta\).
+<br>Una palabra \(g_1g_2\cdots g_m\) con estas propiedades se llama <i>palabra reducida</i>. La longitud \(m=0\) corresponde a la palabra vacía. La operación binaria en el producto libre es la concatenación.</div>
+<p>Es decir, se forman palabras con elementos de los \(G_\alpha\), ninguno de los cuales es la identidad, y no se permite que dos letras consecutivas pertenezcan al mismo grupo. Esta noción de palabra reducida es muy parecida a la que se tenía para los grupos libres. Los \(G_\alpha\) pueden ser cualesquiera grupos.</p>
+<p>Como en el grupo libre, la operación es la concatenación: dadas dos palabras, se pegan. La palabra vacía es la identidad, la operación es asociativa y el inverso de una palabra se obtiene, de nuevo, volteándola e invirtiendo cada una de sus letras. Con esto el producto libre es un grupo.</p>
+<p><b>Ejercicio.</b> La definición anterior es un poco diferente a la del grupo libre, donde primero se tomaban todas las palabras y luego una relación de equivalencia. Pero se puede dar una definición muy parecida: tomar el conjunto de <i>todas</i> las palabras con letras en los \(G_\alpha\) y la relación de equivalencia en la que, si dos letras consecutivas están en el mismo grupo, se pueden multiplicar en su respectivo grupo. Se obtiene el mismo grupo que antes, y con esta definición es muy fácil ver que la operación es asociativa y que hay inversos.</p>
+<p>Cuando solo hay dos grupos se escribe \(G_\alpha*G_\beta\); con tres, \(G_\alpha*G_\beta*G_\gamma\), y así.</p>
+<p><b>Observación.</b> Para todo \(\beta\in I\), el grupo \(G_\beta\) está contenido en el producto libre:
+\[ G_\beta\hookrightarrow \mathop{\Large *}\limits_{\alpha\in I}G_\alpha,\qquad g\longmapsto g. \]
+Del lado izquierdo \(g\) se piensa como un elemento de \(G_\beta\), y del lado derecho como una palabra con una sola letra. Este homomorfismo es inyectivo, porque esencialmente por definición es una palabra reducida. Así, todos los grupos de la colección están incluidos en el producto libre, de modo parecido a lo que pasa en el producto directo o en la suma directa.</p>
+
+<h4>La propiedad universal</h4>
+<p>El siguiente ejercicio es muy análogo a la propiedad universal del grupo libre.</p>
+<p><b>Ejercicio.</b> El producto libre \(*_{\alpha\in I}G_\alpha\) satisface la siguiente propiedad universal. Dados un grupo \(H\) y homomorfismos \(\varphi_\alpha\colon G_\alpha\to H\), existe un único homomorfismo
+\[ \varphi\colon \mathop{\Large *}\limits_{\alpha\in I}G_\alpha\to H \]
+que extiende a los \(\varphi_\alpha\); es decir, para cada \(\alpha\) el siguiente diagrama conmuta:</p>
+<figure>
+<svg viewBox="0 0 260 200" style="max-width:300px" role="img" aria-label="Diagrama conmutativo: φ_α de G_α en H, la inclusión de G_α en el producto libre y la extensión punteada φ del producto libre en H">
+<defs><marker id="nbarrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<path class="arr" d="M86 40H176" marker-end="url(#nbarrow)"/>
+<path class="arr" d="M60 60V138" marker-end="url(#nbarrow)"/>
+<path class="arr" d="M60 60a6 6 0 0 0 -12 0" fill="none"/>
+<path class="arr" stroke-dasharray="6 5" d="M96 150L178 58" marker-end="url(#nbarrow)"/>
+<text x="60" y="46" text-anchor="middle">G<tspan font-size="70%" dy="4">α</tspan></text>
+<text x="196" y="46" text-anchor="middle">H</text>
+<text x="48" y="170" text-anchor="middle" font-size="130%">∗</text><text x="72" y="168" text-anchor="middle">G<tspan font-size="70%" dy="4">α</tspan></text>
+<text x="48" y="188" font-size="70%" text-anchor="middle">α∈I</text>
+<text x="131" y="30" text-anchor="middle">φ<tspan font-size="70%" dy="4">α</tspan></text>
+<text x="152" y="124" text-anchor="middle">φ</text>
+</svg>
+<figcaption>La propiedad universal: \(\varphi\) extiende a cada \(\varphi_\alpha\).</figcaption>
+</figure>
+<p>La propiedad se demuestra de manera muy análoga a la del grupo libre, usando palabras y que el producto es la concatenación; es un muy bonito ejercicio para ver si se está entendiendo bien la definición. Rapidísimamente, así se definiría \(\varphi\): una palabra se descompone como \(g_1\cdots g_m\), con \(g_i\in G_{\alpha_i}\), y se hace lo usual:
+\[ \varphi(g_1\cdots g_m)=\varphi_{\alpha_1}(g_1)\cdots\varphi_{\alpha_m}(g_m). \]
+Solo hay que verificar todos los detalles: que en efecto es un homomorfismo bien definido, que los diagramas conmutan y que si hay dos homomorfismos de este estilo, entonces son iguales.</p>
+<p>Estas herramientas ayudarán a demostrar un teorema muy importante en la teoría del grupo fundamental: el teorema de van Kampen, que se verá en un video futuro.</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+<li><a href="https://www.youtube.com/watch?v=bZZU7kzLI1s&amp;t=14" target="_blank" rel="noopener">0:14</a> Se dice «podemos definir el producto libre \(G\times H\)», pero debe decir «el producto <i>directo</i> \(G\times H\)», como está en el pizarrón.</li>
+<li><a href="https://www.youtube.com/watch?v=bZZU7kzLI1s&amp;t=407" target="_blank" rel="noopener">6:47</a> Se dice que la operación es simplemente la concatenación, pero al pegar dos palabras reducidas el resultado puede no ser reducido: si la primera termina en \(g\in G_\alpha\) y la segunda empieza en \(g'\in G_\alpha\), hay que multiplicar \(gg'\) en \(G_\alpha\); si el producto es \(1\), se borra esa letra y se repite el proceso con las letras que quedan juntas. La operación es «concatenar y luego reducir», que es justo lo que hace la definición con relación de equivalencia del ejercicio.</li>
+<li><a href="https://www.youtube.com/watch?v=bZZU7kzLI1s&amp;t=423" target="_blank" rel="noopener">7:03</a> Se dice «diferente al producto libre, porque el producto libre primero agarraba todas las palabras y luego hacía una relación de equivalencia», pero debe decir «grupo libre» en ambos casos.</li>
+<li><a href="https://www.youtube.com/watch?v=bZZU7kzLI1s&amp;t=526" target="_blank" rel="noopener">8:46</a> En la inclusión \(G_\beta\hookrightarrow *_{\alpha\in I}G_\alpha\), \(g\mapsto g\), la identidad de \(G_\beta\) no va a una palabra con una sola letra (las letras deben ser distintas de \(1\)), sino a la palabra vacía.</li>
+<li><a href="https://www.youtube.com/watch?v=bZZU7kzLI1s&amp;t=607" target="_blank" rel="noopener">10:07</a> Se dice «se demuestra de manera muy análoga a como se demuestra para el producto libre», pero debe decir «para el grupo libre».</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/productos-libres.tex">productos-libres.tex</a>.</p>

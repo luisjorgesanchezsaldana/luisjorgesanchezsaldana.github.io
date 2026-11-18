@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{bZZU7kzLI1s}
+\input{preambulo}
+\unidad{2}{3} % unidad 2; primer enunciado: 2.3
+
+\title{Productos libres}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=bZZU7kzLI1s}{\guillemotleft{}Productos libres\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se define el producto libre de una colección de grupos como el conjunto de palabras reducidas con la concatenación, se ve que cada grupo de la colección vive dentro del producto libre y se enuncia su propiedad universal.
+\normalsize
+
+\section*{Motivación: el producto directo}
+
+En teoría de grupos ya se conocen algunas formas de construir grupos a partir de otros. Por ejemplo, si $G$ y $H$ son grupos, se puede formar el producto directo $G\times H$, que es otro grupo que contiene a $G$ y a $H$: $G$ se encaja en la primera coordenada, $g\mapsto(g,1)$, y $H$ en la segunda, $h\mapsto(1,h)$. Una de las propiedades principales del producto directo es que los elementos de $G$ y de $H$, vistos dentro de $G\times H$, conmutan entre ellos:
+\[
+  (g,1)(1,h)=(1,h)(g,1).
+\]
+
+En este video se define otro producto de dos grupos $G$ y $H$, el \emph{producto libre}, que se denota $G*H$. De nuevo $G$ y $H$ están metidos ahí, pero ahora sus elementos \emph{no} conmutan entre ellos, y esto da origen a un nuevo tipo de grupo.
+
+\section*{Un ejemplo: el grupo libre en dos letras}
+
+Antes de dar la definición, se ve el grupo libre $F_2$ como un producto libre de grupos cíclicos. Sean $\mathbb{Z}\langle a\rangle$ el grupo cíclico infinito generado por $a$, cuyos elementos son las potencias $a^n$ con $n\in\mathbb{Z}$, y $\mathbb{Z}\langle b\rangle$ el generado por $b$, cuyos elementos son las potencias $b^m$ con $m\in\mathbb{Z}$. Se piensa que el grupo libre $F_2$ está generado por las letras $a$ y $b$.
+
+Como se vio en el video anterior, todo elemento de $F_2$ es una clase de equivalencia $[w]$, donde $w$ es una palabra en $a$ y $b$, que incluso se puede tomar reducida. Por ejemplo, una palabra que empieza como $w=aabb\cdots$ se puede escribir como $w=a^2b^2\cdots$. En general, una forma de describir $w$ es como una palabra que alterna potencias: por ejemplo, se comienza con una potencia de $a$, luego una potencia de $b$, luego otra vez una potencia de $a$, y así hasta que se termina (o se comienza con una potencia de $b$). Pero cada potencia de $a$, como $a^2$, vive en el grupo cíclico $\mathbb{Z}\langle a\rangle$, y cada potencia de $b$ vive en $\mathbb{Z}\langle b\rangle$. Así, la palabra $w$ se puede repensar como una concatenación alternada de elementos de $\mathbb{Z}\langle a\rangle$ y de $\mathbb{Z}\langle b\rangle$.
+
+Esta es la idea: $F_2$ está construido a partir de $\mathbb{Z}\langle a\rangle$ y $\mathbb{Z}\langle b\rangle$ formando todas las palabras con elementos de uno y otro grupo, alternándolos. Es decir, se forma el producto libre
+\[
+  F_2=\mathbb{Z}\langle a\rangle*\mathbb{Z}\langle b\rangle.
+\]
+Este ejemplo da intuición para la definición, que se da de una vez para una cantidad arbitraria de grupos.
+
+\section*{El producto libre}
+
+\begin{defn}[Producto libre]\label{defn:producto-libre}
+Sea $\{G_\alpha\}_{\alpha\in I}$ una colección de grupos, indexada por un conjunto $I$. Como conjunto, el \emph{producto libre}
+\[
+  \mathop{\scalebox{1.4}{$*$}}_{\alpha\in I}G_\alpha
+\]
+consiste de las palabras $g_1g_2\cdots g_m$, con $m\in\mathbb{N}\cup\{0\}$, donde
+\begin{itemize}
+  \item cada $g_i$ pertenece a algún $G_\alpha$ y $g_i\neq1$, y
+  \item $g_i$ y $g_{i+1}$ pertenecen a grupos $G_\alpha$ diferentes; es decir, si $g_i\in G_\alpha$ y $g_{i+1}\in G_\beta$, entonces $\alpha\neq\beta$.
+\end{itemize}
+Una palabra $g_1g_2\cdots g_m$ con estas propiedades se llama \emph{palabra reducida}. La longitud $m=0$ corresponde a la palabra vacía. La operación binaria en el producto libre es la concatenación.
+\end{defn}
+
+Es decir, se forman palabras con elementos de los $G_\alpha$, ninguno de los cuales es la identidad, y no se permite que dos letras consecutivas pertenezcan al mismo grupo. Esta noción de palabra reducida es muy parecida a la que se tenía para los grupos libres. Los $G_\alpha$ pueden ser cualesquiera grupos.
+
+Como en el grupo libre, la operación es la concatenación: dadas dos palabras, se pegan. La palabra vacía es la identidad, la operación es asociativa y el inverso de una palabra se obtiene, de nuevo, volteándola e invirtiendo cada una de sus letras. Con esto el producto libre es un grupo.
+
+\medskip\noindent\textbf{Ejercicio.} La definición anterior es un poco diferente a la del grupo libre, donde primero se tomaban todas las palabras y luego una relación de equivalencia. Pero se puede dar una definición muy parecida: tomar el conjunto de \emph{todas} las palabras con letras en los $G_\alpha$ y la relación de equivalencia en la que, si dos letras consecutivas están en el mismo grupo, se pueden multiplicar en su respectivo grupo. Se obtiene el mismo grupo que antes, y con esta definición es muy fácil ver que la operación es asociativa y que hay inversos.
+
+Cuando solo hay dos grupos se escribe $G_\alpha*G_\beta$; con tres, $G_\alpha*G_\beta*G_\gamma$, y así.
+
+\medskip\noindent\textbf{Observación.} Para todo $\beta\in I$, el grupo $G_\beta$ está contenido en el producto libre:
+\[
+  G_\beta\hookrightarrow\mathop{\scalebox{1.4}{$*$}}_{\alpha\in I}G_\alpha,\qquad g\longmapsto g.
+\]
+Del lado izquierdo $g$ se piensa como un elemento de $G_\beta$, y del lado derecho como una palabra con una sola letra. Este homomorfismo es inyectivo, porque esencialmente por definición es una palabra reducida. Así, todos los grupos de la colección están incluidos en el producto libre, de modo parecido a lo que pasa en el producto directo o en la suma directa.
+
+\section*{La propiedad universal}
+
+El siguiente ejercicio es muy análogo a la propiedad universal del grupo libre.
+
+\medskip\noindent\textbf{Ejercicio.} El producto libre $\mathop{\scalebox{1.1}{$*$}}_{\alpha\in I}G_\alpha$ satisface la siguiente propiedad universal. Dados un grupo $H$ y homomorfismos $\varphi_\alpha\colon G_\alpha\to H$, existe un único homomorfismo
+\[
+  \varphi\colon\mathop{\scalebox{1.4}{$*$}}_{\alpha\in I}G_\alpha\to H
+\]
+que extiende a los $\varphi_\alpha$; es decir, para cada $\alpha$ el siguiente diagrama conmuta:
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node (G) at (0,1.6) {$G_\alpha$};
+  \node (H) at (2.4,1.6) {$H$};
+  \node (P) at (0,-0.1) {$\displaystyle\mathop{\scalebox{1.4}{$*$}}_{\alpha\in I}G_\alpha$};
+  \draw[-{Stealth[length=5pt]}] (G) -- node[above] {\small $\varphi_\alpha$} (H);
+  \draw[{Hooks[right,length=3pt]}-{Stealth[length=5pt]}] (G) -- (P);
+  \draw[dashed,-{Stealth[length=5pt]}] (P) -- node[below right] {\small $\varphi$} (H);
+\end{tikzpicture}
+\end{center}
+
+La propiedad se demuestra de manera muy análoga a la del grupo libre, usando palabras y que el producto es la concatenación; es un muy bonito ejercicio para ver si se está entendiendo bien la definición. Rapidísimamente, así se definiría $\varphi$: una palabra se descompone como $g_1\cdots g_m$, con $g_i\in G_{\alpha_i}$, y se hace lo usual:
+\[
+  \varphi(g_1\cdots g_m)=\varphi_{\alpha_1}(g_1)\cdots\varphi_{\alpha_m}(g_m).
+\]
+Solo hay que verificar todos los detalles: que en efecto es un homomorfismo bien definido, que los diagramas conmutan y que si hay dos homomorfismos de este estilo, entonces son iguales.
+
+Estas herramientas ayudarán a demostrar un teorema muy importante en la teoría del grupo fundamental: el teorema de van Kampen, que se verá en un video futuro.
+
+\begin{erratas}
+  \errata{14}{0:14}{Se dice \guillemotleft{}podemos definir el producto libre $G\times H$\guillemotright{}, pero debe decir \guillemotleft{}el producto \emph{directo} $G\times H$\guillemotright{}, como está en el pizarrón.}
+  \errata{407}{6:47}{Se dice que la operación es simplemente la concatenación, pero al pegar dos palabras reducidas el resultado puede no ser reducido: si la primera termina en $g\in G_\alpha$ y la segunda empieza en $g'\in G_\alpha$, hay que multiplicar $gg'$ en $G_\alpha$; si el producto es $1$, se borra esa letra y se repite el proceso con las letras que quedan juntas. La operación es \guillemotleft{}concatenar y luego reducir\guillemotright{}, que es justo lo que hace la definición con relación de equivalencia del ejercicio.}
+  \errata{423}{7:03}{Se dice \guillemotleft{}diferente al producto libre, porque el producto libre primero agarraba todas las palabras y luego hacía una relación de equivalencia\guillemotright{}, pero debe decir \guillemotleft{}grupo libre\guillemotright{} en ambos casos.}
+  \errata{526}{8:46}{En la inclusión $G_\beta\hookrightarrow\mathop{\scalebox{1.1}{$*$}}_{\alpha\in I}G_\alpha$, $g\mapsto g$, la identidad de $G_\beta$ no va a una palabra con una sola letra (las letras deben ser distintas de $1$), sino a la palabra vacía.}
+  \errata{607}{10:07}{Se dice \guillemotleft{}se demuestra de manera muy análoga a como se demuestra para el producto libre\guillemotright{}, pero debe decir \guillemotleft{}para el grupo libre\guillemotright{}.}
+\end{erratas}
+
+\end{document}
