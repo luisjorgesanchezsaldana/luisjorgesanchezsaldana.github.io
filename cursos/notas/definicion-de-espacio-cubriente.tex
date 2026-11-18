@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{CQEi2Hn-UGY}
+\input{preambulo}
+\unidad{3}{1} % unidad 3; primer enunciado: 3.1
+
+\title{Definición de espacio cubriente y primeros ejemplos}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=CQEi2Hn-UGY}{\guillemotleft{}Definición de proyección cubriente\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se define qué es un espacio (o proyección) cubriente, con la terminología de vecindades regulares y hojas, y se dan los primeros ejemplos, entre ellos los cubrientes del círculo.
+\normalsize
+
+\section*{La definición}
+
+A partir de este video se comienzan a estudiar los espacios cubrientes. En realidad no son nuevos: ya aparecieron cuando se calculó el grupo fundamental del círculo. Primero se da la definición y luego se ve que la función exponencial, que va de los reales al círculo, es el primer ejemplo de un espacio cubriente.
+
+\begin{defn}[Espacio cubriente]\label{defn:cubriente}
+Un \emph{espacio cubriente} de $X$ es un espacio $\tilde X$ junto con una función
+\[
+  p\colon\tilde X\to X
+\]
+tal que cada punto $x\in X$ tiene una vecindad abierta $U\subseteq X$ tal que $p^{-1}(U)$ es una unión disjunta de abiertos de $\tilde X$ de manera que cada uno se proyecta homeomorfamente a $U$ vía $p$.
+\end{defn}
+
+Como en todo el curso, \guillemotleft{}función\guillemotright{} quiere decir función continua, a menos que se diga lo contrario. Precisamente porque la función va de $\tilde X$ en $X$ se piensa que $\tilde X$ \guillemotleft{}cubre\guillemotright{} a $X$. En el video se dice indistintamente \emph{espacio cubriente} o \emph{proyección cubriente}: esencialmente se trata de la función $p$, y en ella ya van implícitos tanto el espacio $\tilde X$ como el espacio $X$.
+
+El dibujo que uno puede tener en mente es el siguiente: alrededor de $x$ hay un abierto $U$, y su preimagen bajo $p$ es una unión disjunta de abiertos de $\tilde X$ tales que la restricción de $p$ a cada uno de ellos es un homeomorfismo con $U$. Dicho de otra manera, abajo se tiene una tortilla y arriba un montón de tortillas, que se proyectan homeomorfamente en la de abajo.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[thick] (140,20) rectangle (300,200);
+  \draw[thick,azul] (220,55) ellipse (50 and 12);
+  \draw[thick,azul] (220,100) ellipse (50 and 12);
+  \fill (220,128) circle (1.5); \fill (220,136) circle (1.5); \fill (220,144) circle (1.5);
+  \draw[thick,azul] (220,172) ellipse (50 and 12);
+  \draw[-{Stealth[length=6pt]}] (220,208) -- (220,242);
+  \draw[thick] (60,295) -- (120,255) -- (380,255) -- (320,295) -- cycle;
+  \draw[thick] (220,275) ellipse (50 and 12);
+  \fill[extremo] (220,275) circle (4);
+  \node[extremo] at (236,270) {\small $x$};
+  \node at (232,225) {\small $p$};
+  \node at (283,276) {\small $U$};
+  \node at (40,280) {$X$};
+  \node at (318,30) {$\tilde X$};
+  \node[azul] at (345,100) {\small $p^{-1}(U)$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: La preimagen de la vecindad $U$ de $x$ es una unión disjunta de abiertos (en azul), y cada uno se proyecta homeomorfamente a $U$ vía $p$.
+
+\medskip
+Ahora un poco más de terminología.
+
+\begin{defn}[Vecindad regular y hojas]\label{defn:hojas}
+Sea $p\colon\tilde X\to X$ un espacio cubriente.
+\begin{itemize}
+  \item A una vecindad $U$ como en la Definición~\ref{defn:cubriente} se le llama \emph{vecindad regular}.
+  \item A los abiertos de $p^{-1}(U)$ que se proyectan homeomorfamente a $U$ vía $p$ se les llama \emph{hojas} de $\tilde X$ sobre $U$.
+\end{itemize}
+\end{defn}
+
+En el dibujo, las hojas son justamente las tortillas de arriba.
+
+\medskip\noindent\textbf{Observaciones.}
+\begin{itemize}
+  \item Si $U$ es conexo, entonces las hojas sobre $U$ son las componentes conexas de $p^{-1}(U)$. Se pide que $U$ sea conexo porque en la definición en ningún momento se pidió que la vecindad lo fuera: puede ser cualquier vecindad que cumpla la propiedad de la definición.
+  \item El número de hojas sobre $U$ es la cardinalidad de $p^{-1}(x)$.
+  \item Este número es localmente constante: para cada $x\in X$ hay un abierto de $X$ tal que, para cualquier punto $y$ de ese abierto, $p^{-1}(y)$ tiene la misma cardinalidad que $p^{-1}(x)$.
+\end{itemize}
+Como consecuencia inmediata, si $X$ es conexo, la preimagen de cualquier punto tiene siempre la misma cantidad de puntos: si $x,y\in X$, los conjuntos $p^{-1}(x)$ y $p^{-1}(y)$ están en biyección. Esto se desprende de la definición de cubriente, y verificarlo es un ejercicio muy sencillo.
+
+\section*{Ejemplos}
+
+Antes de ver ejemplos interesantes, se ven algunos que podrían no ser tan interesantes.
+
+\begin{enumerate}
+  \item La función identidad $\mathrm{Id}\colon X\to X$ es un cubriente. Tiene su valor, pero no es la proyección más interesante del mundo.
+  \item Se toman copias de $X$, tantas como se quiera, y la proyección
+  \[
+    p\colon\bigsqcup_{\alpha\in I}X\to X
+  \]
+  que en cada copia es la identidad. Es muy fácil ver que es una proyección cubriente: para cualquier punto $x\in X$ se puede tomar $U=X$ como vecindad regular, y su preimagen es la unión disjunta de las copias, cada una de las cuales se proyecta homeomorfamente a $U=X$.
+  \item Este ejemplo se generaliza: si $p\colon\tilde X\to X$ y $q\colon\hat X\to X$ son cubrientes, entonces
+  \[
+    r\colon\tilde X\sqcup\hat X\to X,
+  \]
+  definida de la manera obvia ($r$ es $p$ en $\tilde X$ y es $q$ en $\hat X$), también es una proyección cubriente.
+\end{enumerate}
+
+Por estos ejemplos, para estudiar los cubrientes de un espacio $X$ basta concentrarse en el caso en que $X$ es conexo y el espacio de arriba también es conexo: los demás se pueden ver esencialmente como uniones de cubrientes de este tipo. De aquí en adelante solo se consideran espacios conexos y sus cubrientes conexos.
+
+\medskip
+El primer ejemplo interesante es el que ya se conoce:
+\begin{enumerate}\setcounter{enumi}{3}
+  \item La función
+  \[
+    p\colon\mathbb{R}\to S^1,\qquad x\mapsto e^{2\pi ix}.
+  \]
+  En vez de pensar a $\mathbb{R}$ como una línea recta, se puede pensar como una espiral que se proyecta hacia abajo a $S^1$. Es un cubriente: para cada punto del círculo hay un intervalo suficientemente pequeño a su alrededor cuya preimagen consiste en copias de ese intervalo, que se proyectan homeomorfamente vía $p$ al intervalo de abajo.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[thick] (260.0,45.0) -- (259.3,47.9) -- (257.1,50.7) -- (253.5,53.5) -- (248.5,56.1) -- (242.4,58.5) -- (235.3,60.7) -- (227.2,62.6) -- (218.5,64.3) -- (209.4,65.6) -- (200.0,66.6) -- (190.6,67.3) -- (181.5,67.7) -- (172.8,67.8) -- (164.7,67.6) -- (157.6,67.2) -- (151.5,66.5) -- (146.5,65.6) -- (142.9,64.6) -- (140.7,63.4) -- (140.0,62.3) -- (140.7,61.1) -- (142.9,60.0) -- (146.5,59.0) -- (151.5,58.1) -- (157.6,57.4) -- (164.7,56.9) -- (172.8,56.7) -- (181.5,56.8) -- (190.6,57.2) -- (200.0,57.9) -- (209.4,58.9) -- (218.5,60.3) -- (227.2,61.9) -- (235.3,63.9) -- (242.4,66.0) -- (248.5,68.5) -- (253.5,71.1) -- (257.1,73.8) -- (259.3,76.7) -- (260.0,79.6) -- (259.3,82.5) -- (257.1,85.3) -- (253.5,88.1) -- (248.5,90.7) -- (242.4,93.1) -- (235.3,95.3) -- (227.2,97.2) -- (218.5,98.8) -- (209.4,100.2) -- (200.0,101.2) -- (190.6,101.9) -- (181.5,102.3) -- (172.8,102.4) -- (164.7,102.2) -- (157.6,101.7) -- (151.5,101.0) -- (146.5,100.1) -- (142.9,99.1) -- (140.7,98.0) -- (140.0,96.8) -- (140.7,95.7) -- (142.9,94.5) -- (146.5,93.5) -- (151.5,92.7) -- (157.6,92.0) -- (164.7,91.5) -- (172.8,91.3) -- (181.5,91.4) -- (190.6,91.8) -- (200.0,92.5) -- (209.4,93.5) -- (218.5,94.8) -- (227.2,96.5) -- (235.3,98.4) -- (242.4,100.6) -- (248.5,103.0) -- (253.5,105.6) -- (257.1,108.4) -- (259.3,111.2) -- (260.0,114.1) -- (259.3,117.0) -- (257.1,119.9) -- (253.5,122.6) -- (248.5,125.2) -- (242.4,127.6) -- (235.3,129.8) -- (227.2,131.7) -- (218.5,133.4) -- (209.4,134.7) -- (200.0,135.8) -- (190.6,136.5) -- (181.5,136.8) -- (172.8,136.9) -- (164.7,136.7) -- (157.6,136.3) -- (151.5,135.6) -- (146.5,134.7) -- (142.9,133.7) -- (140.7,132.6) -- (140.0,131.4) -- (140.7,130.2) -- (142.9,129.1) -- (146.5,128.1) -- (151.5,127.2) -- (157.6,126.5) -- (164.7,126.1) -- (172.8,125.9) -- (181.5,125.9) -- (190.6,126.3) -- (200.0,127.0) -- (209.4,128.1) -- (218.5,129.4) -- (227.2,131.0) -- (235.3,133.0) -- (242.4,135.2) -- (248.5,137.6) -- (253.5,140.2) -- (257.1,142.9) -- (259.3,145.8) -- (260.0,148.7);
+  \draw[very thick,extremo] (220.6,63.9) -- (216.6,64.6) -- (212.5,65.2) -- (208.4,65.7) -- (204.2,66.2) -- (200.0,66.6) -- (195.8,67.0) -- (191.6,67.3) -- (187.5,67.5) -- (183.4,67.7) -- (179.4,67.8);
+  \draw[very thick,extremo] (220.6,98.5) -- (216.6,99.2) -- (212.5,99.8) -- (208.4,100.3) -- (204.2,100.8) -- (200.0,101.2) -- (195.8,101.6) -- (191.6,101.8) -- (187.5,102.1) -- (183.4,102.2) -- (179.4,102.3);
+  \draw[very thick,extremo] (220.6,133.0) -- (216.6,133.7) -- (212.5,134.3) -- (208.4,134.9) -- (204.2,135.3) -- (200.0,135.8) -- (195.8,136.1) -- (191.6,136.4) -- (187.5,136.6) -- (183.4,136.8) -- (179.4,136.9);
+  \draw[-{Stealth[length=6pt]}] (200,172) -- (200,222);
+  \draw[thick,azul] (200,240) ellipse (60 and 10);
+  \draw[very thick,extremo] (220.6,249.4) -- (216.6,249.6) -- (212.5,249.8) -- (208.4,249.9) -- (204.2,250.0) -- (200.0,250.0) -- (195.8,250.0) -- (191.6,249.9) -- (187.5,249.8) -- (183.4,249.6) -- (179.4,249.4);
+  \node at (212,197) {\small $p$};
+  \node at (285,90) {$\mathbb{R}$};
+  \node[azul] at (285,240) {$S^1$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: $\mathbb{R}$ como una espiral que se proyecta hacia abajo al círculo. La preimagen del intervalo pequeño de $S^1$ (en verde) consiste en copias de ese intervalo.
+
+\begin{enumerate}\setcounter{enumi}{4}
+  \item Otros cubrientes del círculo: para $n\in\mathbb{N}$ se define
+  \[
+    p\colon S^1\to S^1,\qquad z\mapsto z^n,
+  \]
+  donde $S^1$ se ve como los complejos unitarios. Como en el ejemplo anterior, cada punto del círculo tiene una vecindad cuya preimagen es una unión disjunta de intervalos, y
+  \[
+    |p^{-1}(z)|=n,
+  \]
+  pues los elementos de $p^{-1}(z)$ son justamente las $n$ raíces $n$-ésimas de $z$. Si $n=1$, esta es la función identidad.
+\end{enumerate}
+
+\section*{Hacia la clasificación de cubrientes}
+
+El ejemplo de $\mathbb{R}\to S^1$ y los cubrientes $z\mapsto z^n$ son todos los cubrientes conexos de la circunferencia. Esto no es del todo obvio, pero se va a demostrar cuando se desarrolle la teoría de espacios cubrientes.
+
+A modo de \emph{spoiler}: se sugiere una correspondencia entre estos cubrientes y los subgrupos del grupo fundamental del círculo, $\pi_1(S^1)\cong\mathbb{Z}$. La imagen del homomorfismo inducido en grupos fundamentales por $\mathbb{R}\to S^1$ es trivial, así que este cubriente corresponde al subgrupo trivial de $\mathbb{Z}$; mientras que la imagen del inducido por $z\mapsto z^n$ es $n\mathbb{Z}$, un subgrupo de $\mathbb{Z}$.
+
+Ese es el objetivo de la teoría de cubrientes, y es lo que va a decir el \emph{teorema de clasificación de cubrientes conexos}: hay una correspondencia entre los cubrientes conexos de un espacio y los subgrupos de su grupo fundamental. Esta correspondencia da una especie de diccionario de ida y vuelta entre información de los subgrupos del grupo fundamental y los cubrientes. Por ejemplo, va a ser muy útil para estudiar subgrupos de grupos libres: si se toma una \guillemotleft{}florecita\guillemotright{} con $3$ pétalos, su grupo fundamental es el grupo libre $F_3$, y los subgrupos de $F_3$ se pueden estudiar estudiando los cubrientes de esa florecita.
+
+\end{document}
