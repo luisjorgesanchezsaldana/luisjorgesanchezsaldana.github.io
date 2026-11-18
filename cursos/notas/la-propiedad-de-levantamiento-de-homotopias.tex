@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{gurE_L4nTK8}
+\input{preambulo}
+\unidad{3}{3} % unidad 3; primer enunciado: 3.3
+
+\title{La propiedad de levantamiento de homotopías}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=gurE_L4nTK8}{\guillemotleft{}La propiedad de levantamiento de homotopías para cubrientes\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se define el levantamiento de una función con respecto a un cubriente y se demuestra el teorema de levantamiento de homotopías: una homotopía cuya primera etapa ya se levantó se levanta de manera única.
+\normalsize
+
+\section*{Levantamientos}
+
+Esta propiedad es probablemente la más importante, la más fundamental, de los espacios cubrientes. Para comenzar se da la definición de levantamiento.
+
+\begin{defn}[Levantamiento]\label{defn:levantamiento}
+Sea $p\colon\tilde X\to X$ un cubriente y sea $f\colon Y\to X$ una función. Un \emph{levantamiento} de $f$ con respecto a $p$ es una función $\tilde f\colon Y\to\tilde X$ tal que $p\circ\tilde f=f$.
+\end{defn}
+
+Esencialmente se tiene el siguiente diagrama, y que $\tilde f$ sea un levantamiento quiere decir justamente que el diagrama conmuta.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm]
+  \node (y) at (40,200) {$Y$};
+  \node (xt) at (300,30) {$\tilde X$};
+  \node (x) at (300,200) {$X$};
+  \draw[->] (y) -- node[below,font=\small] {$f$} (x);
+  \draw[->] (xt) -- node[right,font=\small] {$p$} (x);
+  \draw[->,dashed,azul] (y) -- node[above left,font=\small] {$\tilde f$} (xt);
+\end{tikzpicture}
+\end{center}
+
+\section*{El teorema}
+
+Ahora sí se enuncia el teorema de levantamiento de homotopías. Se comienza con un cubriente como el de la definición y una homotopía, es decir, una función $f_t\colon Y\to X$ parametrizada por $t\in I$, que se escribe como una función $H\colon Y\times I\to X$, $H(y,t)=f_t(y)$. Se supone que ya se levantó la primera etapa de la homotopía, es decir, $f_0$; esto es muy importante: se podrá afirmar que se levanta toda la homotopía, pero siempre hay que tener desde el principio un levantamiento de la primera etapa.
+
+\begin{teo}[Levantamiento de homotopías]\label{teo:levantamiento-homotopias}
+Sea $p\colon\tilde X\to X$ un cubriente, sea $f_t\colon Y\to X$ una homotopía y sea $\tilde f_0\colon Y\to\tilde X$ un levantamiento de $f_0$. Entonces existe una única homotopía $\tilde f_t\colon Y\to\tilde X$ que levanta a cada uno de los $f_t$ y que comienza en el levantamiento dado $\tilde f_0$.
+\end{teo}
+
+En términos de un diagrama: si $H\colon Y\times I\to X$ es la homotopía, se tiene el siguiente diagrama, en el que $Y\times\{0\}$ se ve contenido en $Y\times I$ como la primera etapa de la homotopía y $\tilde f_0$ es el levantamiento que ya se conoce. La conclusión del teorema es que existe una función $\tilde H\colon Y\times I\to\tilde X$ (la homotopía $\tilde f_t$) que se muestra con la flecha punteada, de manera que todo el diagrama conmuta.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm]
+  \node (a) at (20,40) {$Y\times\{0\}$};
+  \node (b) at (330,40) {$\tilde X$};
+  \node (c) at (20,230) {$Y\times I$};
+  \node (d) at (330,230) {$X$};
+  \draw[->] (a) -- node[above,font=\small] {$\tilde f_0$} (b);
+  \draw[->] (a) -- (c);
+  \draw[->] (c) -- node[below,font=\small] {$H$} (d);
+  \draw[->] (b) -- node[right,font=\small] {$p$} (d);
+  \draw[->,dashed,azul] (c) -- node[above right,font=\small,pos=0.4] {$\tilde H$} (b);
+\end{tikzpicture}
+\end{center}
+
+\section*{Demostración}
+
+\begin{proof}[Demostración del Teorema~\ref{teo:levantamiento-homotopias}]
+Sea $H\colon Y\times I\to X$ la homotopía. Se considera una cubierta abierta $\{U_\alpha\}$ de $X$ tal que cada $U_\alpha$ es una vecindad regular (esto se puede hacer por la definición de cubriente), de modo que $p^{-1}(U_\alpha)$ es una unión disjunta de abiertos de $\tilde X$, cada uno de los cuales se proyecta homeomorfamente a $U_\alpha$ vía $p$. Se fija $y_0\in Y$; a partir de ahora este punto está fijo.
+
+\medskip\noindent\emph{Un dibujo para entender lo que se va a hacer.} Se dibuja $Y\times I$ pensando que los círculos horizontales son copias de $Y$ y que las líneas verticales son copias de $I$. Se considera la línea vertical $\{y_0\}\times I$, que se manda con $H$ en $X$, el cual está cubierto por vecindades regulares.
+
+Para cada punto $(y_0,t)$ de esa línea existe una vecindad que se puede pensar como una caja, es decir, el producto de una vecindad abierta conexa de $y_0$ en $Y$ por un intervalo abierto, tal que $H$ manda esa caja dentro de alguno de los $U_\alpha$. Esto se puede hacer para cualquier punto de la línea, con cajas de diferentes tamaños, hasta cubrir toda la línea $\{y_0\}\times I$. Por un argumento de compacidad muy estándar se obtiene una vecindad tubular alrededor de esa línea contenida en la unión de las cajas. En resumen, se puede encontrar una vecindad abierta $N$ de $y_0$ en $Y$ (que se puede tomar conexa) y una partición
+\[
+  0=t_0<t_1<\cdots<t_m=1
+\]
+tales que $H(N\times[t_i,t_{i+1}])$ está contenido en alguno de los $U_\alpha$ para cada $i$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \fill[extremo,opacity=0.15] (40,225) rectangle (90,260);
+  \draw[gray] (40,60) rectangle (90,260);
+  \draw[gray] (40,225) -- (90,225); \draw[gray] (40,190) -- (90,190);
+  \draw[gray] (40,100) -- (90,100);
+  \fill (65,160) circle (1.2); \fill (65,148) circle (1.2); \fill (65,136) circle (1.2);
+  \draw[very thick,azul] (40,260) -- (90,260);
+  \node at (65,40) {$N$};
+  \node[anchor=west,font=\small] at (97,260) {$t_0=0$};
+  \node[anchor=west,font=\small] at (97,225) {$t_1$};
+  \node[anchor=west,font=\small] at (97,190) {$t_2$};
+  \node[anchor=west,font=\small] at (97,60) {$t_m=1$};
+  \draw[gray] (330,30) rectangle (530,110); \node at (550,70) {$\tilde X$};
+  \draw[thick,azul] (420,70) ellipse (45 and 20);
+  \draw[gray] (330,190) rectangle (530,270); \node at (550,230) {$X$};
+  \draw[thick] (420,230) ellipse (45 and 20);
+  \fill[extremo,opacity=0.15] (420,230) ellipse (45 and 20);
+  \node[font=\small] at (470,255) {$U_\alpha$};
+  \node[azul,font=\small] at (470,95) {$\tilde U$};
+  \draw[->,gray] (420,118) -- (420,182); \node[font=\small] at (433,150) {$p$};
+  \draw[->,gray] (170,240) -- (300,230); \node[font=\small] at (235,218) {$H$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: la franja $N\times I$ dividida por la partición $t_0<\cdots<t_m$. El borde inferior $N\times\{0\}$ (en azul) ya está levantado, y cada cajita $N\times[t_i,t_{i+1}]$ se manda con $H$ dentro de algún $U_\alpha$.
+
+\medskip\noindent\emph{Levantamiento en la franja $N\times I$.} Se define el levantamiento $\tilde H$ caja por caja, comenzando con la primera, $N\times[t_0,t_1]$. Su imagen bajo $H$ está contenida en algún $U_\alpha$. Por definición de vecindad regular, $p^{-1}(U_\alpha)$ es una unión disjunta de abiertos, cada uno de los cuales se proyecta homeomorfamente a $U_\alpha$ vía $p$. El borde inferior $N\times\{0\}$ ya está levantado: por hipótesis se tiene el levantamiento $\tilde f_0$ de $f_0$, que es la restricción de $\tilde H$ a $Y\times\{0\}$. Como $\tilde f_0$ es un levantamiento, la imagen de $N\times\{0\}$ está en $p^{-1}(U_\alpha)$, y como $N$ es conexo, cae en uno solo de esos abiertos, digamos $\tilde U$. Entonces se puede tomar el homeomorfismo inverso $(p|_{\tilde U})^{-1}\colon U_\alpha\to\tilde U$ y definir el levantamiento de la primera cajita como
+\[
+  \tilde H=(p|_{\tilde U})^{-1}\circ H\quad\text{en }N\times[t_0,t_1].
+\]
+Este es un levantamiento de la primera cajita, y coincide con $\tilde f_0$ en $N\times\{0\}$.
+
+Se aplica el mismo truco para ir levantando todas las demás cajitas: primero la segunda, luego la tercera, y así, por inducción. En cada paso, el borde inferior de la cajita ya está levantado, y se levanta la caja usando el homeomorfismo inverso de la hoja que contiene a ese borde. Así se obtiene el levantamiento en toda la franja $N\times I$, que es solo un pedazo del levantamiento que se quiere construir. Como $y_0$ era arbitrario, se tiene un levantamiento en una franja alrededor de cada punto de $Y$.
+
+\medskip\noindent\emph{Los levantamientos de las franjas coinciden.} El problema es que, en principio, estos levantamientos no están relacionados entre sí. Lo que hay que ver es que, al levantar todas las franjas de un solo golpe, se define una función continua; la continuidad en cada franja es clara, y lo que hay que verificar es qué pasa cuando dos franjas se traslapan: en el traslape, ?`los levantamientos coinciden? Para esto se hace un pequeño paréntesis: se demuestra la unicidad del levantamiento cuando $Y$ consiste solamente de un punto, es decir, cuando la homotopía es un camino.
+
+\emph{Unicidad cuando $Y$ es un punto.} En este caso la homotopía es un camino $H\colon I\to X$ y la primera etapa es el punto inicial $H(0)$, que por hipótesis ya está levantado. Supóngase que hay dos levantamientos $\tilde H,\tilde H'\colon I\to\tilde X$ de $H$ tales que $\tilde H(0)=\tilde H'(0)$ (los dos comienzan en el mismo lugar, el levantamiento dado de la primera etapa). Se particiona el intervalo $I$ de manera que cada uno de los intervalos de la partición caiga en una vecindad regular de $X$, que es exactamente la misma construcción de las cajitas, pero con cajas muy flacas. Sea $U$ una vecindad regular que contiene a la imagen del primer intervalo. La preimagen $p^{-1}(U)$ es una unión disjunta de abiertos, cada uno de los cuales se proyecta homeomorfamente a $U$. Como $\tilde H(0)=\tilde H'(0)$, la imagen de la primera parte de $\tilde H$ y de $\tilde H'$ está en uno solo de estos abiertos (el que contiene a ese punto), y restringida a ese abierto la función $p$ es un homeomorfismo. La única forma de levantar ese pedacito de camino es utilizando el inverso de este homeomorfismo; por lo tanto $\tilde H$ y $\tilde H'$ coinciden en el primer intervalo. Después, por inducción, coinciden en cada uno de los intervalos siguientes. De estos tres hechos (el diagrama conmuta, la preimagen es una unión disjunta de abiertos y $p$ restringida al abierto relevante es un homeomorfismo) se desprende que $\tilde H=\tilde H'$. Esto demuestra la unicidad cuando $Y$ es un punto.
+
+\emph{Cuando las franjas se traslapan.} Se regresa al dibujo de $Y\times I$. Si se tienen dos franjas que se traslapan, se puede levantar cada una de ellas. Para cada punto $y$ del traslape, los levantamientos de las dos franjas restringidos a la línea $\{y\}\times I$ son dos levantamientos del mismo camino $H|_{\{y\}\times I}$ que comienzan en el mismo punto, $\tilde f_0(y)$. Por la unicidad que acaba de verificarse, estos dos levantamientos coinciden. Es decir, en los puntos donde se traslapan, los levantamientos de las dos franjas coinciden. Entonces se pueden levantar todas las franjas ``sin ningún remordimiento'' y se obtiene un buen levantamiento $\tilde H\colon Y\times I\to\tilde X$ de todo $Y\times I$, que es continuo porque lo es en cada franja.
+
+Finalmente, la unicidad del levantamiento en general se sigue esencialmente del mismo argumento que se acaba de hacer para el caso en que $Y$ es un punto. Este último argumento se deja de tarea; es muy cortito, pero es muy bueno para terminar de entender la demostración.
+\end{proof}
+
+Este es el teorema de levantamiento de homotopías, que es uno de los temas más importantes y más básicos de los cubrientes: se acaba de demostrar esencialmente a partir de la pura definición de cubriente, pero tiene una cantidad de implicaciones muy interesantes y será muy útil para demostrar eventualmente el teorema de clasificación de cubrientes.
+
+\end{document}
