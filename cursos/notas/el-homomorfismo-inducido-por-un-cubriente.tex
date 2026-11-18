@@ -1,0 +1,120 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{jjm_k9aTTyE}
+\input{preambulo}
+\unidad{3}{5} % unidad 3; primer enunciado: 3.5
+
+\title{El homomorfismo inducido en grupos fundamentales por un cubriente}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=jjm_k9aTTyE}{\guillemotleft{}El homomorfismo inducido por un cubriente\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se demuestra que el homomorfismo inducido en grupos fundamentales por una proyección cubriente es inyectivo y se describe su imagen, usando el teorema de levantamiento de homotopías.
+\normalsize
+
+\section*{La pregunta}
+
+Si $p\colon\tilde X\to X$ es una proyección cubriente, se tiene el homomorfismo inducido en grupos fundamentales
+\[
+  p_*\colon\pi_1(\tilde X,\tilde x_0)\to\pi_1(X,x_0),
+\]
+donde $x_0=p(\tilde x_0)$. La pregunta es si este homomorfismo cumple alguna propiedad. Como \emph{spoiler}: va a resultar que $p_*$ es inyectivo, y la forma de demostrarlo es utilizar el teorema de levantamiento de homotopías (Teorema~3.4), que se demostró en el video anterior y que se recuerda aquí: dado un cubriente $p\colon\tilde X\to X$, una homotopía $f_t\colon Y\to X$ y un levantamiento $\tilde f_0\colon Y\to\tilde X$ de $f_0$, existe una única homotopía $\tilde f_t\colon Y\to\tilde X$ que levanta a cada $f_t$ (y que comienza en $\tilde f_0$).
+
+\section*{Dos casos particulares del teorema}
+
+Se observa qué dice el teorema de levantamiento en un par de casos particulares.
+
+\medskip\noindent\textbf{El caso $Y=\{\mathrm{pt}\}$.} Si $Y$ consiste de un solo punto, una homotopía $Y\times I\to X$ es simplemente una función $I\to X$, es decir, un camino. Entonces el teorema dice que siempre se puede encontrar un levantamiento de un camino a $\tilde X$. Además, ese levantamiento es único si se dice exactamente a qué punto se va a levantar el punto inicial: si $x_0$ es el punto inicial del camino, solamente se puede levantar a algún punto de $p^{-1}(x_0)$, porque el diagrama tiene que conmutar. Una vez que se escoge a cuál, en automático se tiene un único levantamiento del camino.
+
+\begin{cor}[Propiedad de levantamiento de caminos]\label{cor:levantamiento-caminos}
+Sea $p\colon\tilde X\to X$ un cubriente, sea $\gamma\colon I\to X$ un camino y sea $\tilde x\in p^{-1}(\gamma(0))$. Entonces existe un único camino $\tilde\gamma\colon I\to\tilde X$ tal que $p\circ\tilde\gamma=\gamma$ y $\tilde\gamma(0)=\tilde x$.
+\end{cor}
+
+A este caso particular se le llama la \emph{propiedad de levantamiento de caminos}: se dice que una proyección cubriente tiene la propiedad de levantamiento de caminos.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (330,20) rectangle (510,95); \node at (535,45) {$\tilde X$};
+  \fill[extremo] (360,45) circle (3); \fill[extremo] (395,60) circle (3); \fill[extremo] (430,40) circle (3); \fill[extremo] (470,65) circle (3);
+  \node[extremo,font=\small] at (415,82) {$p^{-1}(x_0)$};
+  \draw[gray] (330,150) rectangle (510,225); \node at (535,175) {$X$};
+  \fill[extremo] (395,190) circle (3.5); \node[extremo,font=\small] at (410,208) {$x_0$};
+  \draw[thick] (60,200) -- (180,200); \node at (40,200) {$I$};
+  \draw[->,gray] (200,200) -- (310,195); \node[font=\small] at (255,183) {$\gamma$};
+  \draw[->,gray] (420,102) -- (420,142); \node[font=\small] at (434,125) {$p$};
+  \draw[->,dashed,azul] (120,175) -- (320,70); \node[azul,font=\small] at (200,100) {$\tilde\gamma$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: un camino en $X$ con punto inicial $x_0$ se levanta, de manera única, una vez que se elige a cuál de los puntos de $p^{-1}(x_0)$ se levanta el punto inicial.
+
+\medskip\noindent\textbf{Una observación sobre caminos constantes.}
+
+\begin{lema}\label{lema:camino-constante}
+El levantamiento de un camino constante es un camino constante.
+\end{lema}
+
+\begin{proof}
+Sea $\gamma$ un camino constante en $x\in X$. Para levantarlo se escoge dónde levantar el punto inicial, y luego no es posible moverse: en el momento en que el levantamiento se moviera un poquito, tendría que moverse también un poquito su imagen en $X$. Dicho de otra forma, el levantamiento debe estar contenido en $p^{-1}(x)$. Pero este conjunto, por definición de cubriente, es un subconjunto discreto de $\tilde X$, y por lo tanto cualquier camino que cae en este conjunto discreto tiene que ser constante.
+\end{proof}
+
+\medskip\noindent\textbf{El caso $Y=I$.} Ahora el teorema dice que cualquier homotopía de caminos $H\colon I\times I\to X$ se levanta a una homotopía de caminos en $\tilde X$, siempre que se levante la primera etapa de la homotopía, es decir, el camino inicial que se va a deformar. Pero se tiene todavía más. Supóngase que $H$ es una homotopía relativa a $\{0,1\}$ entre dos caminos. Entonces el dibujo es el siguiente: el camino inicial va a algún camino de $X$ en la etapa de arriba y en la etapa de abajo va a dar a algún otro camino, que comparte extremos con el primero, y cada etapa horizontal va a dar a un camino con esos mismos extremos. Por lo tanto, los segmentos verticales laterales de $I\times I$ (en la figura, los lados que se dibujan en verde) se mandan a los puntos extremos, es decir, determinan caminos constantes en $X$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (30,60) rectangle (130,160);
+  \draw[gray] (30,85) -- (130,85); \draw[gray] (30,110) -- (130,110); \draw[gray] (30,135) -- (130,135);
+  \draw[very thick] (30,60) -- (130,60);
+  \draw[very thick,azul] (30,160) -- (130,160);
+  \draw[very thick,extremo] (30,60) -- (30,160); \draw[very thick,extremo] (130,60) -- (130,160);
+  \node at (80,40) {$I\times I$};
+  \draw[gray] (380,10) rectangle (560,100); \node at (585,35) {$\tilde X$};
+  \draw[thick] (410,65) .. controls (440,35) and (500,85) .. (530,45);
+  \fill[extremo] (410,65) circle (3.5); \fill[extremo] (530,45) circle (3.5);
+  \draw[gray] (380,165) rectangle (560,255); \node at (585,190) {$X$};
+  \draw[thick] (410,220) .. controls (440,190) and (500,240) .. (530,200);
+  \draw[gray] (410,220) .. controls (430,205) and (500,225) .. (530,200);
+  \draw[thick,azul] (410,220) .. controls (440,240) and (500,215) .. (530,200);
+  \fill[extremo] (410,220) circle (3.5); \fill[extremo] (530,200) circle (3.5);
+  \draw[->,gray] (470,108) -- (470,158); \node[font=\small] at (485,135) {$p$};
+  \draw[->,gray] (170,95) -- (360,50); \node[font=\small] at (255,58) {$\tilde H$};
+  \draw[->,gray] (170,130) -- (360,200); \node[font=\small] at (255,185) {$H$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: una homotopía $H$ relativa a $\{0,1\}$ y su levantamiento $\tilde H$. Los lados verticales de $I\times I$ (en verde) se mandan a los extremos, y por el Lema~\ref{lema:camino-constante} su levantamiento es constante.
+
+\begin{lema}\label{lema:levantamiento-rel}
+Sean $\alpha,\beta\colon I\to X$ caminos y sea $H\colon I\times I\to X$ una homotopía entre ellos relativa a $\{0,1\}$. Sea $\tilde\alpha$ un levantamiento de $\alpha$ y sea $\tilde H\colon I\times I\to\tilde X$ el levantamiento de $H$ que comienza en $\tilde\alpha$ (Teorema~3.4). Entonces $\tilde H$ también es una homotopía relativa a $\{0,1\}$; en particular, todas las etapas de $\tilde H$ tienen los mismos extremos.
+\end{lema}
+
+\begin{proof}
+Los lados verticales $\{0\}\times I$ y $\{1\}\times I$ de $I\times I$ se mandan con $H$ a caminos constantes en $X$, pues $H$ es relativa a $\{0,1\}$. Su levantamiento a $\tilde X$ (la restricción de $\tilde H$) es un levantamiento de un camino constante y, por el Lema~\ref{lema:camino-constante}, es también un camino constante. Es decir, conforme se levanta la homotopía, los extremos de las etapas se quedan fijos. Resumidas cuentas: al levantar la homotopía $H$, $\tilde H$ también es una homotopía relativa a $\{0,1\}$.
+\end{proof}
+
+\section*{El resultado principal}
+
+Esta última observación se utiliza a continuación.
+
+\begin{prop}\label{prop:inyectivo}
+Sea $p\colon\tilde X\to X$ una proyección cubriente. Entonces
+\[
+  p_*\colon\pi_1(\tilde X,\tilde x_0)\to\pi_1(X,x_0)
+\]
+es inyectivo. Más aún, la imagen $p_*(\pi_1(\tilde X,\tilde x_0))\le\pi_1(X,x_0)$ consiste de los lazos en $X$ basados en $x_0$ que se levantan a lazos en $\tilde X$ basados en $\tilde x_0$.
+\end{prop}
+
+Este es el resultado principal del video.
+
+\begin{proof}
+\emph{Inyectividad.} Como $p_*$ es un homomorfismo, basta demostrar que su núcleo es trivial. Sea $[f]\in\ker p_*$, representado por un lazo $f\colon I\to\tilde X$ basado en $\tilde x_0$. Entonces el lazo $p\circ f\colon I\to X$ es homotópico relativo a $\{0,1\}$ al lazo constante $c_{x_0}$, mediante una homotopía $H\colon I\times I\to X$. Esta homotopía se puede levantar a una homotopía $\tilde H\colon I\times I\to\tilde X$ que comienza en $f$ (que es un levantamiento de $p\circ f$). Por lo observado anteriormente (Lema~\ref{lema:levantamiento-rel}), $\tilde H$ es una homotopía relativa a $\{0,1\}$ de $f$ al levantamiento del lazo constante $c_{x_0}$ que comienza en $\tilde x_0$, que por el Lema~\ref{lema:camino-constante} es el lazo constante $c_{\tilde x_0}$. Por lo tanto $[f]=1$, y así $\ker p_*=1$. Esto demuestra que $p_*$ es inyectivo.
+
+\medskip\noindent\emph{La imagen.} Sea $\gamma$ un lazo en $X$ basado en $x_0$. Si $\gamma$ se levanta a un lazo $\tilde\gamma$ en $\tilde X$ basado en $\tilde x_0$, entonces $[\gamma]=p_*[\tilde\gamma]$ está en la imagen, pues $\gamma$ es justamente el proyectado de $\tilde\gamma$. Así que los lazos que se levantan a lazos están contenidos en la imagen.
+
+Recíprocamente, hay que ver que todos los elementos de la imagen son lazos que se levantan a lazos. Si $[\gamma]\in p_*(\pi_1(\tilde X,\tilde x_0))$, existe una clase $[\beta]\in\pi_1(\tilde X,\tilde x_0)$ tal que $[p\circ\beta]=[\gamma]$, es decir, $p\circ\beta\simeq\gamma$ relativa a $\{0,1\}$. En principio no se sabe si $\gamma$ se levanta a un lazo, pero se sabe que es homotópico a $p\circ\beta$, que sí se levanta a un lazo, a saber $\beta$. La homotopía entre $p\circ\beta$ y $\gamma$ se levanta, comenzando en $\beta$ (que levanta a $p\circ\beta$), a una homotopía en $\tilde X$ que, por el Lema~\ref{lema:levantamiento-rel}, es relativa a $\{0,1\}$. En la última etapa de la homotopía (o en la primera, según como se vea) se obtiene un levantamiento de $\gamma$, que comienza en $\tilde x_0$ y, por ser la homotopía relativa a $\{0,1\}$, termina en $\tilde x_0$. Entonces $\gamma$ se levanta a un lazo basado en $\tilde x_0$. Para esta última parte de la demostración se usa fuertemente el teorema de levantamiento de homotopías.
+\end{proof}
+
+\end{document}
