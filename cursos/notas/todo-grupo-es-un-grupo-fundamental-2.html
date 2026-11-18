@@ -1,0 +1,96 @@
+<!-- Fragmento de las notas de todo-grupo-es-un-grupo-fundamental-2. Mismo contenido que el .tex.
+     Fórmulas con \( ... \) y \[ ... \] (KaTeX). Definiciones: <div class="def"><b>Definición 2.9 (nombre).</b> ...</div>.
+     Proposiciones, teoremas, lemas y corolarios: <div class="thm"><b>Proposición 2.9.</b> <i>enunciado</i></div> (igual con Teorema, Lema, Corolario).
+     Todos comparten un solo contador por unidad y deben coincidir (tipo y número) con el PDF. Figuras: SVG con las clases f0, f1, mid, end, endpt, arr, mk (ver caminos-y-homotopias.html).
+     Erratas (solo si hay errores confirmados), al final:
+     <div class="erratas"><h4>Observaciones y erratas del video</h4><ul><li><a href="https://www.youtube.com/watch?v=VTzBXDAMEn0&amp;t=203" target="_blank" rel="noopener">3:23</a> Se dice ..., pero debe decir ...</li></ul></div> -->
+<h4>Pegar un disco</h4>
+<p>En este video se demuestra que todo grupo es isomorfo al grupo fundamental de algún espacio topológico. Para esto se comienza con un lema.</p>
+<div class="thm"><b>Lema 2.9.</b> <i>Sean \(X\) un espacio topológico y \(x_0\in X\) un punto base. Sea \(f\colon S^1\to X\) una función tal que \(f(1)=x_0\), y sea \(Y=X\cup_f D^2\). Entonces
+\[ \pi_1(Y,x_0)\cong\pi_1(X,x_0)\big/\langle\!\langle[f]\rangle\!\rangle. \]</i></div>
+<p>La condición \(f(1)=x_0\) dice que \(f\) se puede pensar esencialmente como un lazo basado en \(x_0\). El espacio \(Y\) se obtiene de pegar un disco a \(X\) usando \(f\) como función de pegado: la frontera del disco se pega a lo largo de la imagen del lazo \(f\). Aquí se abusa un poco de la notación al escribir \([f]\): aunque formalmente \(f\) es una función del círculo en \(X\) y no un lazo, se puede considerar fácilmente como un lazo.</p>
+<figure>
+<svg viewBox="0 0 400 300" style="max-width:420px" role="img" aria-label="Un espacio X con un lazo f basado en x_0; un disco D^2 se pega a lo largo de f; una línea punteada en el disco marca el circulito que limita la franja">
+<rect class="f0" fill="none" x="20" y="90" width="360" height="200"/>
+<path class="f0" fill="none" d="M120 170C110 130 180 120 200 125C250 120 300 135 280 170C260 195 140 200 120 170"/>
+<path class="f1" fill="none" d="M120 170C110 40 290 40 280 170"/>
+<path class="mid" fill="none" stroke-dasharray="6 5" d="M130 140C150 115 250 115 270 140"/>
+<circle class="endpt" cx="120" cy="170" r="4.5"/>
+<text x="110" y="190" text-anchor="middle" style="fill:var(--ok)">x₀</text>
+<text x="230" y="209" text-anchor="middle">f</text>
+<text class="c1" x="300" y="74" text-anchor="middle">D²</text>
+<text class="dim" x="34" y="114">X</text><text x="70" y="50" text-anchor="middle">Y = X ∪<tspan font-size="70%" dy="4">f</tspan><tspan dy="-4"> D²</tspan></text>
+</svg>
+<figcaption>El disco \(D^2\) (en azul) se pega a \(X\) a lo largo del lazo \(f\). La línea punteada es el circulito que se toma en el disco; entre él y \(f\) queda la franja que se agrega a \(X\) para formar \(Z\).</figcaption>
+</figure>
+<p><i>Demostración.</i> 
+Para usar el teorema de van Kampen hay que hacer un pequeño truco técnico. En el disco que se pegó se toma un circulito un poco más arriba que el lazo \(f\), y se define \(Z\) como \(X\) unión la franja (la «franja blanca» del dibujo) que queda entre el borde del disco y ese circulito. No es muy difícil notar que \(X\) es un retracto por deformación de \(Z\), así que ambos son homotópicamente equivalentes y tienen el mismo grupo fundamental.</p>
+<p>Ahora se aplica el teorema de van Kampen a \(Z\) y al interior \(\mathring{D}^2\) del disco, que son abiertos en \(Y\). Se tiene el homomorfismo
+\[ \Phi\colon\pi_1(Z)*\pi_1(\mathring{D}^2)\to\pi_1(Y), \]
+que es suprayectivo por van Kampen. El dominio parece un producto libre, pero el segundo factor es el grupo trivial (es el grupo fundamental de un disco), así que el dominio es isomorfo a \(\pi_1(Z)\), que a su vez es isomorfo a \(\pi_1(X)\), porque \(X\) es un retracto por deformación de \(Z\). Así, \(\pi_1(Y)\) es un cociente de \(\pi_1(X)\).</p>
+<p>Falta ver quién es el núcleo. Por el teorema de van Kampen,
+\[ \ker\Phi=\bigl\langle\!\bigl\langle\, i_{\alpha\beta}[\gamma]\,i_{\beta\alpha}[\bar\gamma] : [\gamma]\in\pi_1(Z\cap\mathring{D}^2)\,\bigr\rangle\!\bigr\rangle. \]
+La intersección \(Z\cap\mathring{D}^2\) es la franja, que es un círculo salvo homotopía, así que \(\pi_1(Z\cap\mathring{D}^2)\cong\pi_1(S^1)\cong\mathbb{Z}\). En este caso concreto, \(i_{\alpha\beta}\) es el homomorfismo inducido por la inclusión de la intersección en \(Z\), e \(i_{\beta\alpha}\) el inducido por la inclusión de la intersección en \(\mathring{D}^2\):
+\[ i_{\alpha\beta}\colon\pi_1(Z\cap\mathring{D}^2)\to\pi_1(Z),\qquad i_{\beta\alpha}\colon\pi_1(Z\cap\mathring{D}^2)\to\pi_1(\mathring{D}^2)=0. \]
+Como \(\pi_1(\mathring{D}^2)\) es trivial, toda imagen bajo \(i_{\beta\alpha}\) es trivial, y el núcleo está normalmente generado por los elementos \(i_{\alpha\beta}[\gamma]\), con \([\gamma]\) recorriendo \(\pi_1(Z\cap\mathring{D}^2)\cong\mathbb{Z}\). No hacen falta tantos elementos: basta tomar \([\gamma]\) el generador. Por construcción, el generador es dar una vuelta a la franja, y al bajarlo a \(Z\) (y luego a \(X\)) se obtiene esencialmente el lazo \(f\) del principio. Por lo tanto \(\ker\Phi=\langle\!\langle[f]\rangle\!\rangle\).
+ \(\square\)</p>
+<h4>Pegar muchos discos</h4>
+<p>Este primer lema se hizo pegando una sola \(2\)-célula porque conceptualmente y en notación es más sencillo. Pero se puede hacer exactamente lo mismo si desde el principio se pega una cantidad arbitraria de \(2\)-células, ni siquiera un número finito: el núcleo queda generado por todas las funciones de pegado, con exactamente el mismo argumento.</p>
+<div class="thm"><b>Lema 2.10.</b> <i>Sean \(X\) un espacio topológico, \(x_0\in X\) y \(f_\alpha\colon S^1\to X\), \(\alpha\in I\), funciones tales que \(f(1)=x_0\), y sea \(Y=X\cup_{\{f_\alpha\}}\{D^2_\alpha\}\). Entonces
+\[ \pi_1(Y,x_0)\cong\pi_1(X)\big/\langle\!\langle[f_\alpha],\ \alpha\in I\rangle\!\rangle. \]</i></div>
+<p>El video no demuestra este lema; es un buen ejercicio, y la demostración puede basarse en la del lema anterior. La imagen con la que uno se puede quedar es que cada vez que se pegan \(2\)-células a \(X\) se matan elementos del grupo fundamental: se van matando clases y el grupo fundamental se hace cada vez más pequeño.</p>
+<p><b>Comentario (demostración del Lema 2.10).</b> Para cada \(\alpha\in I\) sea \(A_\alpha\) la unión de \(X\), todas las franjas y el interior de \(D^2_\alpha\); es decir, \(A_\alpha\) se parece a lo que se obtiene de \(X\) pegando solamente el disco \(D^2_\alpha\), y por la prueba del Lema 2.9, \(\pi_1(A_\alpha)\cong\pi_1(X)/\langle\!\langle[f_\alpha]\rangle\!\rangle\). Los \(A_\alpha\) son abiertos arco-conexos que contienen a \(x_0\), y toda intersección de dos o tres de ellos se retrae por deformación a \(X\) (se omiten las partes de discos), así que es arco-conexa y tiene grupo fundamental \(\pi_1(X)\). Por el teorema de van Kampen, \(\pi_1(Y)\) es el cociente del producto libre de los \(\pi_1(X)/\langle\!\langle[f_\alpha]\rangle\!\rangle\) que identifica las copias de cada elemento de \(\pi_1(X)\); es decir, \(\pi_1(X)\) módulo todos los \([f_\alpha]\) a la vez.</p>
+
+<h4>El teorema principal</h4>
+<div class="thm"><b>Teorema 2.11.</b> <i>Sea \(G\) un grupo. Entonces existe un espacio topológico \(X\) tal que \(\pi_1(X,x_0)\cong G\).</i></div>
+<p><i>Demostración.</i> 
+Recuerde que todo grupo tiene una presentación, esencialmente porque todo grupo es cociente de un grupo libre. Sea \(G=\langle S\mid R\rangle\) una presentación de \(G\). Se considera el espacio
+\[ Y=\bigvee_{s\in S}S^1, \]
+una cuña de círculos con un círculo por cada generador, así que \(\pi_1(Y)\cong F_S\), como se vio en un video anterior.</p>
+<p>Una relación \(r\in R\) es una palabra en los generadores y sus inversos,
+\[ r=s_1^{\varepsilon_1}s_2^{\varepsilon_2}\cdots s_m^{\varepsilon_m},\qquad s_i\in S,\ \varepsilon_i=\pm1. \]
+Esta palabra induce una función \(S^1\to Y\), que por abuso de notación también se llama \(r\): se divide el círculo en \(m\) pedazos, etiquetados \(1,2,\dots,m\), y el pedazo \(i\), que es un intervalo, se manda a dar una vuelta al pétalo de la cuña etiquetado por el generador \(s_i\), en un sentido si \(\varepsilon_i=1\) y al revés si \(\varepsilon_i=-1\).</p>
+<figure>
+<svg viewBox="0 0 440 240" style="max-width:440px" role="img" aria-label="Una cuña de tres círculos Y con pétalos s_1, s_2, s_3, y un círculo dividido en m arcos numerados 1, 2, ..., m que la función r manda a la cuña">
+<defs><marker id="nbarrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<path class="f0" fill="none" d="M110 130C144 60 76 60 110 130"/>
+<text x="110" y="57" text-anchor="middle">s₁</text>
+<path class="f0" fill="none" d="M110 130C32 136 66 194 110 130"/>
+<text x="42" y="174" text-anchor="middle">s₂</text>
+<path class="f0" fill="none" d="M110 130C154 194 188 136 110 130"/>
+<text x="178" y="174" text-anchor="middle">s₃</text>
+<circle class="endpt" cx="110" cy="130" r="4.5"/><text class="dim" x="24" y="44">Y</text>
+<circle class="f1" fill="none" cx="340" cy="130" r="60"/>
+<line class="mid" x1="340" y1="77" x2="340" y2="63"/>
+<text x="379" y="67" text-anchor="middle">1</text>
+<line class="mid" x1="386" y1="104" x2="398" y2="96"/>
+<text x="418" y="135" text-anchor="middle">2</text>
+<line class="mid" x1="386" y1="156" x2="398" y2="164"/>
+<text x="379" y="203" text-anchor="middle">3</text>
+<line class="mid" x1="340" y1="183" x2="340" y2="197"/>
+<text x="301" y="203" text-anchor="middle">4</text>
+<line class="mid" x1="294" y1="156" x2="282" y2="164"/>
+<text x="262" y="135" text-anchor="middle">…</text>
+<line class="mid" x1="294" y1="104" x2="282" y2="96"/>
+<text x="301" y="67" text-anchor="middle">m</text>
+<path class="arr" d="M265 120H209" marker-end="url(#nbarrow)"/><text x="235" y="108" text-anchor="middle">r</text><text class="c1" x="340" y="44" text-anchor="middle">S¹</text>
+</svg>
+<figcaption>La cuña de círculos \(Y\) y la función \(r\colon S^1\to Y\): el círculo se divide en \(m\) pedazos y el pedazo \(i\) da una vuelta al pétalo \(s_i\).</figcaption>
+</figure>
+<p>Ahora se define el espacio
+\[ X=Y\cup_{\{r\in R\}}D^2, \]
+pegándole a \(Y\) una \(2\)-célula por cada relación \(r\in R\). Por el Lema 2.10,
+\[ \pi_1(X)\cong F_S\big/\langle\!\langle R\rangle\!\rangle, \]
+que es justamente lo que denota \(\langle S\mid R\rangle\). Así \(\pi_1(X)\cong G\).
+ \(\square\)</p>
+<p><b>Comentario.</b> El isomorfismo \(\pi_1(Y)\cong F_S\) que se usa aquí no se demuestra en un video anterior del curso. Sale del teorema de van Kampen: se toma \(A_s\) igual al círculo \(s\) unido con un pequeño entorno contraíble del punto base en los otros círculos; las intersecciones son contraíbles, así que el núcleo es trivial y \(\pi_1(Y)\cong\mathop{\Large *}\limits_{s\in S}\pi_1(S^1)\cong\mathop{\Large *}\limits_{s\in S}\mathbb{Z}\cong F_S\).</p>
+
+<p>La demostración es muy constructiva: se toma una cuña de círculos, uno por cada generador de la presentación, y se pega una \(2\)-célula por cada relación. El grupo fundamental de ese espacio es isomorfo a \(G\), y la demostración recae en una aplicación muy rápida del teorema de van Kampen.</p>
+
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+<li><a href="https://www.youtube.com/watch?v=VTzBXDAMEn0&amp;t=15" target="_blank" rel="noopener">0:15</a> En el enunciado del Lema 2.9 (pizarrón) falta la hipótesis de que \(X\) sea arco-conexo; sin ella \(Z\) no es arco-conexo y no se puede aplicar el teorema de van Kampen.</li>
+<li><a href="https://www.youtube.com/watch?v=VTzBXDAMEn0&amp;t=136" target="_blank" rel="noopener">2:16</a> Se aplica el teorema de van Kampen con el punto base \(x_0\in X\), pero \(x_0\) no está en el interior del disco, y el teorema pide que el punto base esté en ambos abiertos. Hay que tomar el punto base en la franja \(Z\cap\mathring{D}^2\) y usar después el isomorfismo de cambio de punto base.</li>
+<li><a href="https://www.youtube.com/watch?v=VTzBXDAMEn0&amp;t=389" target="_blank" rel="noopener">6:29</a> En el enunciado del Lema 2.10 (pizarrón) se escribe \(f(1)=x_0\), pero debe decir \(f_\alpha(1)=x_0\) para cada \(\alpha\in I\).</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/todo-grupo-es-un-grupo-fundamental-2.tex">todo-grupo-es-un-grupo-fundamental-2.tex</a>.</p>

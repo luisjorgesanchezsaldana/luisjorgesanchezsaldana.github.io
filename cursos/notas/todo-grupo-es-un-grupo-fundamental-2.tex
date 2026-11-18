@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{VTzBXDAMEn0}
+\input{preambulo}
+\unidad{2}{9} % unidad 2; primer enunciado: 2.9
+
+\title{Todo grupo es el grupo fundamental de algún espacio}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=VTzBXDAMEn0}{\guillemotleft{}Todo grupo es el grupo fundamental de algún espacio\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Con el teorema de van Kampen se calcula el grupo fundamental de un espacio al que se le pegan discos, y con eso se construye, a partir de una presentación, un espacio cuyo grupo fundamental es un grupo dado.
+\normalsize
+
+\section*{Pegar un disco}
+
+En este video se demuestra que todo grupo es isomorfo al grupo fundamental de algún espacio topológico. Para esto se comienza con un lema.
+
+\begin{lema}\label{lema:un-disco}
+Sean $X$ un espacio topológico y $x_0\in X$ un punto base. Sea $f\colon S^1\to X$ una función tal que $f(1)=x_0$, y sea $Y=X\cup_f D^2$. Entonces
+\[
+  \pi_1(Y,x_0)\cong\pi_1(X,x_0)\big/\langle\!\langle[f]\rangle\!\rangle.
+\]
+\end{lema}
+
+La condición $f(1)=x_0$ dice que $f$ se puede pensar esencialmente como un lazo basado en $x_0$. El espacio $Y$ se obtiene de pegar un disco a $X$ usando $f$ como función de pegado: la frontera del disco se pega a lo largo de la imagen del lazo $f$. Aquí se abusa un poco de la notación al escribir $[f]$: aunque formalmente $f$ es una función del círculo en $X$ y no un lazo, se puede considerar fácilmente como un lazo.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[thick] (20,90) rectangle (380,290);
+  \draw[very thick] (120,170) .. controls (110,130) and (180,120) .. (200,125) .. controls (250,120) and (300,135) .. (280,170) .. controls (260,195) and (140,200) .. (120,170);
+  \draw[thick,azul] (120,170) .. controls (110,40) and (290,40) .. (280,170);
+  \draw[gray,dashed] (130,140) .. controls (150,115) and (250,115) .. (270,140);
+  \fill[extremo] (120,170) circle (4); \node[extremo] at (110,186) {\small $x_0$};
+  \node at (230,205) {\small $f$}; \node[azul] at (295,70) {\small $D^2$};
+  \node at (40,110) {$X$}; \node at (70,45) {$Y=X\cup_f D^2$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: El disco $D^2$ (en azul) se pega a $X$ a lo largo del lazo $f$. La línea punteada es el circulito que se toma en el disco; entre él y $f$ queda la franja que se agrega a $X$ para formar $Z$.
+
+\begin{proof}
+Para usar el teorema de van Kampen hay que hacer un pequeño truco técnico. En el disco que se pegó se toma un circulito un poco más arriba que el lazo $f$, y se define $Z$ como $X$ unión la franja (la \guillemotleft{}franja blanca\guillemotright{} del dibujo) que queda entre el borde del disco y ese circulito. No es muy difícil notar que $X$ es un retracto por deformación de $Z$, así que ambos son homotópicamente equivalentes y tienen el mismo grupo fundamental.
+
+Ahora se aplica el teorema de van Kampen a $Z$ y al interior $\mathring{D}^2$ del disco, que son abiertos en $Y$. Se tiene el homomorfismo
+\[
+  \Phi\colon\pi_1(Z)*\pi_1(\mathring{D}^2)\to\pi_1(Y),
+\]
+que es suprayectivo por van Kampen. El dominio parece un producto libre, pero el segundo factor es el grupo trivial (es el grupo fundamental de un disco), así que el dominio es isomorfo a $\pi_1(Z)$, que a su vez es isomorfo a $\pi_1(X)$, porque $X$ es un retracto por deformación de $Z$. Así, $\pi_1(Y)$ es un cociente de $\pi_1(X)$.
+
+Falta ver quién es el núcleo. Por el teorema de van Kampen,
+\[
+  \ker\Phi=\bigl\langle\!\bigl\langle\, i_{\alpha\beta}[\gamma]\,i_{\beta\alpha}[\bar\gamma] : [\gamma]\in\pi_1(Z\cap\mathring{D}^2)\,\bigr\rangle\!\bigr\rangle.
+\]
+La intersección $Z\cap\mathring{D}^2$ es la franja, que es un círculo salvo homotopía, así que $\pi_1(Z\cap\mathring{D}^2)\cong\pi_1(S^1)\cong\mathbb{Z}$. En este caso concreto, $i_{\alpha\beta}$ es el homomorfismo inducido por la inclusión de la intersección en $Z$, e $i_{\beta\alpha}$ el inducido por la inclusión de la intersección en $\mathring{D}^2$:
+\[
+  i_{\alpha\beta}\colon\pi_1(Z\cap\mathring{D}^2)\to\pi_1(Z),\qquad i_{\beta\alpha}\colon\pi_1(Z\cap\mathring{D}^2)\to\pi_1(\mathring{D}^2)=0.
+\]
+Como $\pi_1(\mathring{D}^2)$ es trivial, toda imagen bajo $i_{\beta\alpha}$ es trivial, y el núcleo está normalmente generado por los elementos $i_{\alpha\beta}[\gamma]$, con $[\gamma]$ recorriendo $\pi_1(Z\cap\mathring{D}^2)\cong\mathbb{Z}$. No hacen falta tantos elementos: basta tomar $[\gamma]$ el generador. Por construcción, el generador es dar una vuelta a la franja, y al bajarlo a $Z$ (y luego a $X$) se obtiene esencialmente el lazo $f$ del principio. Por lo tanto $\ker\Phi=\langle\!\langle[f]\rangle\!\rangle$.
+\end{proof}
+
+\section*{Pegar muchos discos}
+
+Este primer lema se hizo pegando una sola $2$-célula porque conceptualmente y en notación es más sencillo. Pero se puede hacer exactamente lo mismo si desde el principio se pega una cantidad arbitraria de $2$-células, ni siquiera un número finito: el núcleo queda generado por todas las funciones de pegado, con exactamente el mismo argumento.
+
+\begin{lema}\label{lema:muchos-discos}
+Sean $X$ un espacio topológico, $x_0\in X$ y $f_\alpha\colon S^1\to X$, $\alpha\in I$, funciones tales que $f(1)=x_0$, y sea $Y=X\cup_{\{f_\alpha\}}\{D^2_\alpha\}$. Entonces
+\[
+  \pi_1(Y,x_0)\cong\pi_1(X)\big/\langle\!\langle[f_\alpha],\ \alpha\in I\rangle\!\rangle.
+\]
+\end{lema}
+
+El video no demuestra este lema; es un buen ejercicio, y la demostración puede basarse en la del lema anterior. La imagen con la que uno se puede quedar es que cada vez que se pegan $2$-células a $X$ se matan elementos del grupo fundamental: se van matando clases y el grupo fundamental se hace cada vez más pequeño.
+
+\medskip\noindent\textbf{Comentario (demostración del Lema~\ref{lema:muchos-discos}).} Para cada $\alpha\in I$ sea $A_\alpha$ la unión de $X$, todas las franjas y el interior de $D^2_\alpha$; es decir, $A_\alpha$ se parece a lo que se obtiene de $X$ pegando solamente el disco $D^2_\alpha$, y por la prueba del Lema~\ref{lema:un-disco}, $\pi_1(A_\alpha)\cong\pi_1(X)/\langle\!\langle[f_\alpha]\rangle\!\rangle$. Los $A_\alpha$ son abiertos arco-conexos que contienen a $x_0$, y toda intersección de dos o tres de ellos se retrae por deformación a $X$ (se omiten las partes de discos), así que es arco-conexa y tiene grupo fundamental $\pi_1(X)$. Por el teorema de van Kampen, $\pi_1(Y)$ es el cociente del producto libre de los $\pi_1(X)/\langle\!\langle[f_\alpha]\rangle\!\rangle$ que identifica las copias de cada elemento de $\pi_1(X)$; es decir, $\pi_1(X)$ módulo todos los $[f_\alpha]$ a la vez.
+
+
+\section*{El teorema principal}
+
+\begin{teo}\label{teo:todo-grupo}
+Sea $G$ un grupo. Entonces existe un espacio topológico $X$ tal que $\pi_1(X,x_0)\cong G$.
+\end{teo}
+
+\begin{proof}
+Recuerde que todo grupo tiene una presentación, esencialmente porque todo grupo es cociente de un grupo libre. Sea $G=\langle S\mid R\rangle$ una presentación de $G$. Se considera el espacio
+\[
+  Y=\bigvee_{s\in S}S^1,
+\]
+una cuña de círculos con un círculo por cada generador, así que $\pi_1(Y)\cong F_S$, como se vio en un video anterior.
+
+Una relación $r\in R$ es una palabra en los generadores y sus inversos,
+\[
+  r=s_1^{\varepsilon_1}s_2^{\varepsilon_2}\cdots s_m^{\varepsilon_m},\qquad s_i\in S,\ \varepsilon_i=\pm1.
+\]
+Esta palabra induce una función $S^1\to Y$, que por abuso de notación también se llama $r$: se divide el círculo en $m$ pedazos, etiquetados $1,2,\dots,m$, y el pedazo $i$, que es un intervalo, se manda a dar una vuelta al pétalo de la cuña etiquetado por el generador $s_i$, en un sentido si $\varepsilon_i=1$ y al revés si $\varepsilon_i=-1$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[very thick] (110,130) .. controls (144,60) and (76,60) .. (110,130);
+  \node at (110,52) {\small $s_1$};
+  \draw[very thick] (110,130) .. controls (32,136) and (66,194) .. (110,130);
+  \node at (42,169) {\small $s_2$};
+  \draw[very thick] (110,130) .. controls (154,194) and (188,136) .. (110,130);
+  \node at (178,169) {\small $s_3$};
+  \fill[extremo] (110,130) circle (4); \node at (30,40) {$Y$};
+  \draw[very thick,azul] (340,130) circle (60);
+  \draw[thick] (340,77) -- (340,63);
+  \node at (379,62) {\small $1$};
+  \draw[thick] (386,104) -- (398,96);
+  \node at (418,130) {\small $2$};
+  \draw[thick] (386,156) -- (398,164);
+  \node at (379,198) {\small $3$};
+  \draw[thick] (340,183) -- (340,197);
+  \node at (301,198) {\small $4$};
+  \draw[thick] (294,156) -- (282,164);
+  \node at (262,130) {\small $\dots$};
+  \draw[thick] (294,104) -- (282,96);
+  \node at (301,62) {\small $m$};
+  \draw[-{Stealth[length=6pt]}] (265,120) -- (205,120); \node at (235,105) {\small $r$}; \node[azul] at (340,40) {\small $S^1$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: La cuña de círculos $Y$ y la función $r\colon S^1\to Y$: el círculo se divide en $m$ pedazos y el pedazo $i$ da una vuelta al pétalo $s_i$.
+
+Ahora se define el espacio
+\[
+  X=Y\cup_{\{r\in R\}}D^2,
+\]
+pegándole a $Y$ una $2$-célula por cada relación $r\in R$. Por el Lema~\ref{lema:muchos-discos},
+\[
+  \pi_1(X)\cong F_S\big/\langle\!\langle R\rangle\!\rangle,
+\]
+que es justamente lo que denota $\langle S\mid R\rangle$. Así $\pi_1(X)\cong G$.
+\end{proof}
+
+\medskip\noindent\textbf{Comentario.} El isomorfismo $\pi_1(Y)\cong F_S$ que se usa aquí no se demuestra en un video anterior del curso. Sale del teorema de van Kampen: se toma $A_s$ igual al círculo $s$ unido con un pequeño entorno contraíble del punto base en los otros círculos; las intersecciones son contraíbles, así que el núcleo es trivial y $\pi_1(Y)\cong\mathop{\scalebox{1.4}{$*$}}_{s\in S}\pi_1(S^1)\cong\mathop{\scalebox{1.4}{$*$}}_{s\in S}\mathbb{Z}\cong F_S$.
+
+
+La demostración es muy constructiva: se toma una cuña de círculos, uno por cada generador de la presentación, y se pega una $2$-célula por cada relación. El grupo fundamental de ese espacio es isomorfo a $G$, y la demostración recae en una aplicación muy rápida del teorema de van Kampen.
+
+\begin{erratas}
+  \errata{15}{0:15}{En el enunciado del Lema 2.9 (pizarrón) falta la hipótesis de que $X$ sea arco-conexo; sin ella $Z$ no es arco-conexo y no se puede aplicar el teorema de van Kampen.}
+  \errata{136}{2:16}{Se aplica el teorema de van Kampen con el punto base $x_0\in X$, pero $x_0$ no está en el interior del disco, y el teorema pide que el punto base esté en ambos abiertos. Hay que tomar el punto base en la franja $Z\cap\mathring{D}^2$ y usar después el isomorfismo de cambio de punto base.}
+  \errata{389}{6:29}{En el enunciado del Lema 2.10 (pizarrón) se escribe $f(1)=x_0$, pero debe decir $f_\alpha(1)=x_0$ para cada $\alpha\in I$.}
+\end{erratas}
+
+\end{document}
