@@ -1,0 +1,137 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{N-8tx7lDRBY}
+\input{preambulo}
+\unidad{2}{1} % unidad 2; primer enunciado: 2.1
+
+\title{Grupos libres}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=N-8tx7lDRBY}{\guillemotleft{}Grupos libres\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se construye el grupo libre $F_S$ en un conjunto $S$ a partir de palabras en el alfabeto $S\cup\bar S$, se definen las palabras reducidas y se enuncia la propiedad universal de los grupos libres.
+\normalsize
+
+\section*{Motivación}
+
+En álgebra lineal, todo espacio vectorial $V$ tiene una base, es decir, un conjunto de generadores $S\subseteq V$ con la siguiente propiedad: para definir una transformación lineal de $V$ en otro espacio vectorial $W$ basta decir a dónde va la base, y luego se extiende de manera lineal. Esa es la filosofía detrás de las bases.
+
+En el caso de grupos la cosa no es tan bonita: no cualquier grupo tiene una base. Pero sí se pueden construir ciertos grupos que tienen bases en ese sentido. Son los \emph{grupos libres}, que se denotan usualmente $F_S$, donde $S$ es el conjunto de generadores: para definir un homomorfismo de $F_S$ en algún otro grupo $G$ basta decir a dónde va $S$, y el homomorfismo se extiende a todo el grupo. En este video se construyen esos grupos.
+
+\section*{Palabras}
+
+Se comienza con un conjunto $S$, que será el conjunto de generadores. En el video se trabaja con un conjunto finito, solo para no complicar la notación, pero toda la construcción funciona para cualquier conjunto $S$, finito o infinito. Sea entonces
+\[
+  S=\{a_1,a_2,\dots,a_n\}.
+\]
+A partir de ahora los elementos de $S$ se consideran como \emph{letras} de un abecedario, es decir, como símbolos formales; la idea es concatenarlos para formar palabras. Antes de eso, se considera otro conjunto
+\[
+  \bar S=\{a_1^{-1},a_2^{-1},\dots,a_n^{-1}\},
+\]
+formado por los \emph{inversos formales} de los elementos de $S$, también como letras o símbolos formales. Al construir el grupo libre, estas letras van a servir tal cual como los inversos en el grupo, pero por ahora son solo símbolos formales.
+
+Una \emph{palabra} en el alfabeto $S\cup\bar S$ se obtiene de concatenar letras del alfabeto: se pueden concatenar las que se quiera, repitiendo las que se quiera, siempre y cuando sea un número finito de ellas. Algunos ejemplos:
+\begin{itemize}
+  \item La \emph{palabra vacía}, que no tiene ni una sola letra; se denota $\varnothing$.
+  \item Las palabras con una sola letra: $a_1$, $a_2$, $a_1^{-1}$, \dots
+  \item $a_1a_3a_1^{-1}a_1a_4a_4$. Note que se pueden repetir letras: $a_4$ aparece dos veces y $a_1$ también.
+  \item $a_1a_1a_1a_1a_1a_1$; la notación usual para esta palabra es $a_1^{6}$.
+  \item $a_2^{-1}a_2^{-1}a_2^{-1}a_2^{-1}$, que se denota $a_2^{-4}$.
+\end{itemize}
+
+Sea
+\[
+  P_S=\{\text{palabras en } S\cup\bar S\}
+\]
+el conjunto de todas las palabras; recuerde que todas son de longitud finita. En $P_S$ hay una operación binaria: la \emph{concatenación}. Si $w_1,w_2\in P_S$, su producto es la palabra $w_1w_2$, que consiste en $w_1$ seguida de $w_2$. Por ejemplo (suponiendo que el alfabeto tiene al menos cinco letras), el producto de $a_1a_2a_3$ y $a_1^{-1}a_4a_5$ es
+\[
+  a_1a_2a_3a_1^{-1}a_4a_5.
+\]
+Esta operación tiene un neutro, la palabra vacía, pues
+\[
+  w\varnothing=w,\qquad \varnothing w=w
+\]
+para toda palabra $w$, y claramente es asociativa.
+
+Con esto, $P_S$ tiene buenas posibilidades de ser un grupo. El problema es que no hay inversos: si $w$ es una palabra no vacía, al concatenarle otra palabra se le pegan más letras y nunca se obtiene la palabra vacía. Este problema se corrige fácilmente imponiendo una relación de equivalencia en $P_S$.
+
+\section*{El grupo libre}
+
+Se considera la relación de equivalencia en $P_S$ generada por
+\[
+  w_1\,a\,a^{-1}\,w_2\sim w_1w_2\qquad\text{para toda } a\in S,
+\]
+donde $w_1$ y $w_2$ son palabras. De manera intuitiva, en esta relación se puede cancelar una letra con su inverso formal: después de aplicar la relación, el inverso formal se convierte en un inverso de verdad.
+
+\begin{defn}[Grupo libre]\label{defn:grupo-libre}
+El \emph{grupo libre} en el conjunto $S$ es el conjunto de clases de equivalencia
+\[
+  F_S=P_S/{\sim}.
+\]
+\end{defn}
+
+En efecto, $F_S$ es un grupo:
+\begin{itemize}
+  \item La operación de $P_S$ se hereda a $F_S$: para multiplicar dos clases se multiplican (es decir, se concatenan) los representantes,
+  \[
+    [w_1][w_2]=[w_1w_2].
+  \]
+  \item Como la operación en $P_S$ es asociativa, la operación en $F_S$ también lo es: la asociatividad se hereda.
+  \item El neutro es la clase de la palabra vacía, $[\varnothing]$.
+  \item Ahora sí hay inversos. Si $s_1s_2\cdots s_m$ es una palabra, con cada $s_i$ una letra del alfabeto, su inverso es el que se usa siempre en teoría de grupos: se voltea la palabra y se invierte cada letra,
+  \[
+    [s_1s_2\cdots s_m]^{-1}=[s_m^{-1}\cdots s_2^{-1}s_1^{-1}].
+  \]
+  Esto es muy fácil de verificar: al multiplicar la palabra por su inverso, por la definición de la relación de equivalencia se pueden ir cancelando cada una de las letras, y al final queda la clase de la palabra vacía.
+\end{itemize}
+
+\subsection*{Ejemplos}
+
+\begin{itemize}
+  \item Si $S=\varnothing$, el alfabeto es vacío y la única palabra es la palabra vacía. Por lo tanto $F_S=\{1\}$ es el grupo con un solo elemento.
+  \item Si $S=\{a\}$ consiste de una sola letra, entonces $F_S\cong\mathbb{Z}$, el grupo cíclico infinito. Esto es porque todas las palabras que se pueden formar son, salvo equivalencia, potencias de $a$:
+  \[
+    F_S=\{[a^m] : m\in\mathbb{Z}\}.
+  \]
+\end{itemize}
+Con más letras ya es más difícil describir estos grupos; son un poco más misteriosos o exóticos.
+
+\section*{Palabras reducidas}
+
+\begin{defn}[Palabra reducida]\label{defn:reducida}
+Una palabra $w$ es \emph{reducida} si no tiene subpalabras de la forma $aa^{-1}$.
+\end{defn}
+
+Por ejemplo, la palabra $a_1a_2a_2^{-1}a_3$ no es reducida, porque en medio aparece una letra junto a su inverso. Para reducirla se cancelan esas dos letras y queda $a_1a_3$, que sí es reducida.
+
+\medskip\noindent\textbf{Ejercicio.} Toda palabra es equivalente a una única palabra reducida; es decir, todo elemento $[w]\in F_S$ tiene un único representante reducido.
+
+\section*{La propiedad universal}
+
+El video termina con otro ejercicio que en realidad es un teorema, y es una de las propiedades principales de los grupos libres.
+
+\medskip\noindent\textbf{Ejercicio.} $F_S$ satisface la siguiente propiedad universal. Dados un grupo $G$ y una \emph{función} $f\colon S\to G$, existe un único homomorfismo $\bar f\colon F_S\to G$ que extiende a $f$, es decir, tal que el siguiente diagrama conmuta:
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node (S) at (0,1.6) {$S$};
+  \node (G) at (2.2,1.6) {$G$};
+  \node (F) at (0,0) {$F_S$};
+  \draw[-{Stealth[length=5pt]}] (S) -- node[above] {\small $f$} (G);
+  \draw[{Hooks[right,length=3pt]}-{Stealth[length=5pt]}] (S) -- (F);
+  \draw[dashed,-{Stealth[length=5pt]}] (F) -- node[below right] {\small $\bar f$} (G);
+\end{tikzpicture}
+\end{center}
+Note que $f$ es solo una función: no se le pide absolutamente nada extra, ni siquiera tendría sentido pedir que sea un homomorfismo, porque $S$ es solamente un subconjunto.
+
+Esto es lo que se comentaba al inicio: dondequiera que se mande la base, es decir, el conjunto libre de generadores $S$, se puede extender a un homomorfismo. Para definir un homomorfismo de un grupo libre, lo único que hay que hacer es decir a dónde va la base.
+
+\begin{erratas}
+  \errata{405}{6:45}{La relación de equivalencia se escribe $w_1\,a\,a^{-1}\,w_2\sim w_1w_2$ para toda $a\in S$, pero debe ser para toda $a\in S\cup\bar S$, con la convención $(a^{-1})^{-1}=a$; es decir, también se cancela $a^{-1}a$. Si solo se cancelara $aa^{-1}$, la palabra $a^{-1}a$ no sería equivalente a la palabra vacía y $[a^{-1}]$ no tendría inverso; además, la fórmula del inverso $[s_1\cdots s_m]^{-1}=[s_m^{-1}\cdots s_1^{-1}]$ usa ambas cancelaciones.}
+  \errata{576}{9:36}{Se dice «si el conjunto generador consistiera de una sola palabra», pero debe decir «de una sola letra» ($S=\{a\}$, como está en el pizarrón).}
+  \errata{625}{10:25}{Por la misma razón, en la definición de palabra reducida debe decir que $w$ no tiene subpalabras de la forma $aa^{-1}$ con $a\in S\cup\bar S$, es decir, ni $aa^{-1}$ ni $a^{-1}a$ con $a\in S$.}
+\end{erratas}
+
+\end{document}
