@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{Hcp4r8Opq-M}
+\input{preambulo}
+\unidad{2}{4} % unidad 2; primer enunciado: 2.4
+
+\title{Subgrupos normalmente generados}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=Hcp4r8Opq-M}{\guillemotleft{}Subgrupos normalmente generados\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Después de recordar el subgrupo generado por un subconjunto, se define el subgrupo normalmente generado y se describe como intersección de subgrupos normales y como conjunto de productos de conjugados.
+\normalsize
+
+\section*{Recordatorio: el subgrupo generado por un conjunto}
+
+En un curso de teoría de grupos se define la noción de grupo y de subgrupo, y dado un subconjunto de un grupo siempre se puede definir el subgrupo generado por ese conjunto. Sea $G$ un grupo y sea $S\subseteq G$ un subconjunto, que no es necesariamente un subgrupo. El \emph{subgrupo generado por $S$}, $\langle S\rangle\leq G$, es por definición el subgrupo de $G$ más pequeño que contiene a $S$.
+
+Como la intersección de subgrupos es un subgrupo, se puede demostrar que
+\[
+  \langle S\rangle=\bigcap_{\substack{H\leq G\\ S\subseteq H}}H,
+\]
+la intersección de todos los subgrupos de $G$ que contienen a $S$. A su vez, también se puede demostrar que $\langle S\rangle$ es el conjunto de todos los posibles productos de elementos de $S$ o de inversos de elementos de $S$:
+\[
+  \langle S\rangle=\{s_1^{\varepsilon_1}\cdots s_m^{\varepsilon_m} : s_i\in S,\ \varepsilon_i=\pm1,\ m\in\mathbb{Z}\}.
+\]
+
+\section*{El subgrupo normalmente generado}
+
+Recuerde que un subgrupo $N$ de $G$ es \emph{normal}, $N\trianglelefteq G$, si es invariante bajo conjugación:
+\[
+  N\trianglelefteq G\iff gNg^{-1}=N\quad\text{para todo } g\in G.
+\]
+El elemento $gng^{-1}$ se llama el \emph{conjugado} de $n$ por el elemento $g$.
+
+\begin{defn}[Subgrupo normalmente generado]\label{defn:normalmente-generado}
+Sean $G$ un grupo y $S\subseteq G$ un subconjunto. El \emph{subgrupo normalmente generado por $S$}, que se denota
+\[
+  \langle\!\langle S\rangle\!\rangle\qquad\text{o}\qquad\langle S\rangle^{\trianglelefteq},
+\]
+es el subgrupo normal de $G$ más pequeño que contiene a $S$.
+\end{defn}
+
+En la segunda notación, el triangulito es el mismo que se usa para denotar subgrupos normales.
+
+\medskip\noindent\textbf{Ejercicio.} La intersección de subgrupos normales es normal.
+
+\medskip
+Con este ejercicio se tiene algo muy parecido a lo que pasaba con el subgrupo generado:
+\[
+  \langle\!\langle S\rangle\!\rangle=\bigcap_{\substack{H\trianglelefteq G\\ S\subseteq H}}H,
+\]
+la intersección de todos los subgrupos \emph{normales} de $G$ que contienen a $S$; aquí lo importante es que sean normales. También se puede dar una expresión en términos de productos. Ahora no solo se toman productos de elementos de $S$ y de sus inversos, sino productos de todos los conjugados de elementos de $S$ y de sus inversos:
+\[
+  \langle\!\langle S\rangle\!\rangle=\{g_1s_1^{\varepsilon_1}g_1^{-1}\cdots g_ms_m^{\varepsilon_m}g_m^{-1} : s_i\in S,\ \varepsilon_i=\pm1,\ m\in\mathbb{Z},\ g_i\in G\}.
+\]
+Es la misma expresión que para $\langle S\rangle$, pero con conjugados en lugar de solo elementos de $S$. Es importante que los elementos $g_i$ por los que se conjuga recorren \emph{todo} el grupo $G$, no solo $S$.
+
+\section*{Comparación con el subgrupo generado}
+
+\noindent\textbf{Observación.} Siempre se tiene
+\[
+  \langle S\rangle\leq\langle\!\langle S\rangle\!\rangle.
+\]
+Esto se ve de inmediato, por ejemplo, tanto de la expresión como intersección como de la expresión con productos: al conjugar se meten más elementos en el subgrupo normalmente generado.
+
+Además, el subgrupo normalmente generado puede ser muchísimo más grande que el subgrupo generado. Por ejemplo, sea $g$ un elemento (una palabra cualquiera) del grupo libre $F_2$. El subgrupo $\langle g\rangle$ es cíclico, generado por un solo elemento, e isomorfo a los enteros: aunque es infinito, es muy chiquito. En cambio, se puede demostrar que $\langle\!\langle g\rangle\!\rangle$ es muy grande; de hecho podría ser infinitamente generado. Cuando se estudie la teoría de espacios cubrientes se demostrará esto y también que todo subgrupo de un grupo libre es libre, de modo que $\langle\!\langle g\rangle\!\rangle$ podría ser isomorfo al grupo libre $F_\infty$ en una infinidad de generadores: un grupo súper grande.
+
+Este video solo establece la definición. Los subgrupos normalmente generados se usarán, por ejemplo, en el enunciado del teorema de van Kampen.
+
+\begin{erratas}
+  \errata{62}{1:02}{En la expresión $\langle S\rangle=\{s_1^{\varepsilon_1}\cdots s_m^{\varepsilon_m}:\dots,\ m\in\mathbb{Z}\}$ se escribe $m\in\mathbb{Z}$, pero $m$ es el número de factores, así que debe ser $m\in\mathbb{N}\cup\{0\}$ (con $m=0$ se obtiene el neutro).}
+  \errata{198}{3:18}{Lo mismo en la expresión de $\langle\!\langle S\rangle\!\rangle$ como productos de conjugados: debe ser $m\in\mathbb{N}\cup\{0\}$ en lugar de $m\in\mathbb{Z}$.}
+  \errata{278}{4:38}{Se dice que $\langle g\rangle$ es isomorfo a los enteros; esto vale para $g\neq1$. Si $g=1$, el subgrupo $\langle g\rangle$ es trivial.}
+\end{erratas}
+
+\end{document}
