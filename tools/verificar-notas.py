@@ -53,6 +53,9 @@ for tex in sorted(glob.glob(os.path.join(NOTAS, "*.tex"))):
     for ext in ("html", "pdf"):
         if not os.path.exists(os.path.join(NOTAS, slug + "." + ext)):
             errores.append("%s: falta %s.%s" % (slug, slug, ext))
+    for c, macro in (("«", "\\guillemotleft{}"), ("»", "\\guillemotright{}"), ("¿", "?`")):
+        if c in t:
+            errores.append("%s.tex: contiene %s escrito directamente (sale mal en el PDF); usar %s" % (slug, c, macro))
     if not re.search(r"\\newcommand\{\\videoid\}\{[\w-]+\}", t):
         errores.append("%s.tex: no define \\videoid" % slug)
     m = re.search(r"^\\unidad\{(\d+)\}\{(\d+)\}", t, re.M)
