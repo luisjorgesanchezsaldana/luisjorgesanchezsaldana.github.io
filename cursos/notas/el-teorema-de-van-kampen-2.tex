@@ -1,0 +1,217 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{QZ7msmYuT70}
+\input{preambulo}
+\unidad{2}{6} % unidad 2; primer enunciado: 2.6
+
+\title{El teorema de van Kampen (demostración)}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=QZ7msmYuT70}{\guillemotleft{}La demostración del teorema de van Kampen\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se demuestra el teorema de van Kampen: primero la suprayectividad del homomorfismo $\Phi$, subdividiendo un lazo en pedazos contenidos en los abiertos, y luego que su núcleo es el subgrupo normalmente generado por los elementos $i_{\alpha\beta}(\omega)\,i_{\beta\alpha}(\omega)^{-1}$, subdividiendo una homotopía en cuadraditos.
+\normalsize
+
+\section*{Recordatorio: el contexto del teorema}
+
+Antes de la demostración se recuerda rapidísimamente qué se tiene para el teorema de van Kampen:
+\begin{itemize}
+  \item $X$ es un espacio topológico y $X=\bigcup_{\alpha\in J}A_\alpha$, donde $\alpha$ recorre un conjunto de índices $J$;
+  \item cada $A_\alpha$ es \emph{abierto};
+  \item la intersección de cualesquiera tres de los $A_\alpha$, $A_\alpha\cap A_\beta\cap A_\gamma$, es arco-conexa, para todos $\alpha,\beta,\gamma\in J$;
+  \item hay un punto base $x_0$, fijo a partir de ahora, que está en todos los $A_\alpha$.
+\end{itemize}
+A partir de ahora todos los grupos fundamentales están basados en $x_0$, aunque no se diga. Se tienen además los homomorfismos inducidos por las inclusiones $A_\alpha\cap A_\beta\hookrightarrow A_\alpha$,
+\[
+  i_{\alpha\beta}\colon\pi_1(A_\alpha\cap A_\beta)\to\pi_1(A_\alpha),\qquad [\gamma]\longmapsto[\gamma].
+\]
+Como es inducido por la inclusión, la clase del lazo $\gamma$ va a dar a la clase del mismo lazo $\gamma$. La única diferencia es que en la izquierda $\gamma$ se piensa como un lazo en $A_\alpha\cap A_\beta$, mientras que en la derecha se piensa como un lazo en $A_\alpha$. Es decir, $i_{\alpha\beta}[\gamma]$ es el lazo $\gamma$ de la intersección \emph{pensado como lazo en $A_\alpha$}. Esto es súper importante y se usará varias veces a lo largo de toda la demostración.
+
+Por otro lado se tiene el homomorfismo
+\[
+  \Phi\colon \mathop{\scalebox{1.4}{$*$}}_{\alpha\in J}\pi_1(A_\alpha)\to\pi_1(X),\qquad [f_1]\cdots[f_m]\longmapsto[f_1\cdots f_m],
+\]
+inducido por las inclusiones de cada $A_\alpha$ en $X$. Recuerde que $[f_1]\cdots[f_m]$ es una palabra formal en elementos de los grupos fundamentales de los $A_\alpha$; $\Phi$ la manda a la clase del lazo concatenado de los representantes, que es un lazo en $X$. En particular, si $[f]\in\pi_1(A_\alpha)$, entonces $\Phi[f]$ es la clase del mismo lazo $f$, pero ahora pensado como lazo en $X$.
+
+\noindent\textbf{Teorema 2.5 (van Kampen).} \textit{Con las hipótesis anteriores:}
+\begin{enumerate}
+  \item \textit{$\Phi$ es suprayectivo;}
+  \item \textit{$\ker\Phi=\bigl\langle\!\bigl\langle\, i_{\alpha\beta}[\gamma]\,i_{\beta\alpha}[\bar\gamma] : \alpha,\beta\in J,\ [\gamma]\in\pi_1(A_\alpha\cap A_\beta)\,\bigr\rangle\!\bigr\rangle$.}
+\end{enumerate}
+
+\section*{Parte 1: $\Phi$ es suprayectivo}
+
+Sea $[f]\in\pi_1(X)$. Se quiere ver que $[f]$ tiene alguna preimagen, es decir, que
+\[
+  f\simeq f_1\cdots f_m\ \mathrm{rel}\ \{0,1\},\qquad\text{con }[f_i]\in\pi_1(A_{\alpha_i})\text{ para ciertos }\alpha_i\in J.
+\]
+Un truco muy parecido ya se hizo en un video anterior, así que aquí solo se da la idea geométrica.
+
+\noindent\textbf{Comentario.} Es el truco de la demostración del Lema~1.27 (nota \guillemotleft{}El grupo fundamental de la $n$-esfera\guillemotright{}).
+
+\medskip
+Supongamos que $X$ está cubierto por cuatro abiertos $A_1,A_2,A_3,A_4$, todos con el punto base, y que $f$ empieza en $x_0$, pasea por cada uno de ellos y termina de nuevo en $x_0$. Se recorre $f$ desde el principio mientras se quede en $A_1$, y uno se detiene al llegar a la intersección con otro abierto, digamos $A_2$. El siguiente tramo queda completamente contenido en $A_2$, hasta que llega a la intersección con otro, digamos $A_4$; el siguiente está en $A_4$, y el último tramo queda completamente en $A_3$. Esto siempre se puede conseguir con un argumento de compacidad.
+
+Cada punto donde se cambió de tramo está en la intersección de dos de los abiertos, y por hipótesis la intersección de cualesquiera tres es arco-conexa; en particular, la intersección de cualesquiera dos también lo es. Entonces cada uno de esos puntos se puede conectar con $x_0$ por un camino dentro de esa intersección. Recorriendo cada tramo y regresando a $x_0$ por estos caminos, se obtienen lazos basados en $x_0$: el primero vive completamente en $A_1$, el segundo en $A_2$, el siguiente en $A_4$ y el último en $A_3$. Así, $f$ es homotópico a la concatenación de lazos, cada uno de los cuales vive en uno de los abiertos $A_\alpha$, que es lo que se quería. Escribirlo formalmente es cuestión de detalles, y con esto $\Phi$ es suprayectivo.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[thick] (20,20) rectangle (420,300);
+  \draw[gray] (30,30) rectangle (250,180); \draw[gray] (190,30) rectangle (410,180);
+  \draw[gray] (30,130) rectangle (250,290); \draw[gray] (190,130) rectangle (410,290);
+  \draw[very thick] (220,155) .. controls (300,150) and (330,90) .. (300,70) .. controls (270,50) and (130,40) .. (110,90) .. controls (90,140) and (100,230) .. (150,240) .. controls (200,250) and (205,200) .. (220,155);
+  \fill (220,54) circle (3); \fill (100,152) circle (3); \fill (198,218) circle (3);
+  \draw[dashed,azul,thick] (220,155) -- (220,54); \draw[dashed,azul,thick] (220,155) -- (100,152); \draw[dashed,azul,thick] (220,155) -- (198,218);
+  \fill[extremo] (220,155) circle (4); \node[extremo] at (232,170) {\small $x_0$};
+  \node at (330,110) {\small $f$};
+  \node at (365,55) {$A_1$}; \node at (65,55) {$A_2$}; \node at (65,265) {$A_4$}; \node at (365,265) {$A_3$};
+  \node at (438,20) {$X$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: Los puntos donde se cambia de tramo se unen con $x_0$ (en azul, punteado) dentro de la intersección correspondiente; así $f$ es homotópico a una concatenación de lazos, cada uno en un solo $A_i$.
+
+\section*{Parte 2: el núcleo de $\Phi$}
+
+Sea $N$ el subgrupo del lado derecho de la igualdad en 2, es decir,
+\[
+  N=\bigl\langle\!\bigl\langle\, i_{\alpha\beta}[\gamma]\,i_{\beta\alpha}[\bar\gamma] : \alpha,\beta\in J,\ [\gamma]\in\pi_1(A_\alpha\cap A_\beta)\,\bigr\rangle\!\bigr\rangle.
+\]
+Se quiere demostrar que $N=\ker\Phi$. Nunca hay que perder de vista que ambos son subgrupos del producto libre $\mathop{\scalebox{1.4}{$*$}}_{\alpha\in J}\pi_1(A_\alpha)$: en todo lo que sigue se trabaja con palabras formales cuyas letras son elementos de los grupos fundamentales de los $A_\alpha$. Se demuestran las dos contenciones.
+
+\subsection*{$N\leq\ker\Phi$}
+
+Como el núcleo de cualquier homomorfismo es un subgrupo normal del dominio, $\ker\Phi\trianglelefteq \mathop{\scalebox{1.4}{$*$}}_{\alpha\in J}\pi_1(A_\alpha)$, y $N$ está normalmente generado por los elementos $i_{\alpha\beta}[\gamma]\,i_{\beta\alpha}[\bar\gamma]$, basta ver que estos generadores están en $\ker\Phi$, para todos $\alpha,\beta\in J$ y todo $[\gamma]\in\pi_1(A_\alpha\cap A_\beta)$.
+
+Esto se ve geométricamente muy rápido. Como $\Phi$ es un homomorfismo,
+\[
+  \Phi\bigl(i_{\alpha\beta}[\gamma]\,i_{\beta\alpha}[\bar\gamma]\bigr)=\Phi\bigl(i_{\alpha\beta}[\gamma]\bigr)\,\Phi\bigl(i_{\beta\alpha}[\bar\gamma]\bigr).
+\]
+En el primer factor, $i_{\alpha\beta}[\gamma]$ es $\gamma$ pensado como lazo en $A_\alpha$, y al aplicar $\Phi$ se piensa $\gamma$ como lazo en $X$. En el segundo pasa exactamente lo mismo, ahora con el lazo inverso $\bar\gamma$ pensado como lazo en $X$. Entonces el producto es $[\gamma\cdot\bar\gamma]=[c_{x_0}]=1\in\pi_1(X)$, y el generador está en $\ker\Phi$.
+
+\subsection*{$\ker\Phi\leq N$}
+
+Esta es la parte difícil de la demostración, la que va a costar un poco de trabajo. Sea $x\in\ker\Phi$. Como $\ker\Phi$ es un subgrupo del producto libre, $x$ se expresa como una palabra
+\[
+  x=[f_1]\cdots[f_m],
+\]
+donde cada $f_i$ es un lazo en algún $A_{\alpha_i}$. Que $\Phi(x)=1$ dice que la concatenación $f=f_1\cdots f_m$ es homotópica al lazo constante $c_{x_0}$ en $X$, relativa a los extremos. Sea $H\colon I\times I\to X$ dicha homotopía. La tapa de arriba del cuadrado $I\times I$ va al lazo $f$, y las otras tres tapas van a $x_0$: la de abajo porque $H$ es una homotopía entre $f$ y el lazo constante, y las de los lados porque es relativa a los extremos.
+
+\noindent\textbf{La cuadrícula.} Como $X$ está cubierto por los abiertos $A_\alpha$, un argumento de compacidad muy estándar, como el que se usó para el levantamiento de homotopías al calcular el grupo fundamental del círculo, permite subdividir $I\times I$ en cuadrados más pequeños de modo que cada cuadradito tenga imagen contenida en algún $A_\alpha$. Además la subdivisión se puede tomar suficientemente fina para que también subdivida la tapa de arriba en los pedazos que van a dar a $f_1,f_2,\dots,f_m$. Aquí es donde se usa fuertemente la hipótesis de que cada $A_\alpha$ es abierto.
+
+Después se perturba un poco cada uno de los segmentos verticales de la subdivisión, un poquito a la derecha o a la izquierda, de modo que cada cuadradito siga cayendo en alguno de los $A_\alpha$. Así, cada vértice de la nueva cuadrícula queda en a lo más tres cuadraditos, en vez de cuatro; esto es para poder usar la hipótesis de que la intersección de cualesquiera tres de los $A_\alpha$ es arco-conexa. Con menos cuadraditos, para no complicar el dibujo, la cuadrícula queda como en la figura.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[gray] (120,200) -- (120,260);
+  \draw[gray] (200,200) -- (200,260);
+  \draw[gray] (280,200) -- (280,260);
+  \draw[gray] (88,140) -- (88,200);
+  \draw[gray] (168,140) -- (168,200);
+  \draw[gray] (248,140) -- (248,200);
+  \draw[gray] (120,80) -- (120,140);
+  \draw[gray] (200,80) -- (200,140);
+  \draw[gray] (280,80) -- (280,140);
+  \draw[gray] (88,20) -- (88,80);
+  \draw[gray] (168,20) -- (168,80);
+  \draw[gray] (248,20) -- (248,80);
+  \draw[gray] (40,80) -- (360,80);
+  \draw[gray] (40,140) -- (360,140);
+  \draw[gray] (40,200) -- (360,200);
+  \draw[very thick,extremo] (40,20) -- (40,260) -- (360,260) -- (360,20);
+  \draw[very thick] (40,20) -- (360,20);
+  \node at (80,230) {\small $A_{1}$};
+  \node at (160,230) {\small $A_{2}$};
+  \node at (240,230) {\small $A_{3}$};
+  \node at (320,230) {\small $A_{4}$};
+  \node at (240,110) {\small $A_{11}$};
+  \node at (320,110) {\small $A_{12}$};
+  \node at (304,50) {\small $A_{16}$};
+  \fill (280,80) circle (3.5); \node at (290,92) {\small $v$};
+  \node at (200,8) {\small $f$}; \node[extremo] at (200,276) {\small $c_{x_0}$};
+  \node at (8,140) {\small $I\times I$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: La cuadrícula después de perturbarla: la tapa de arriba va a $f$ y las otras tres tapas a $x_0$; cada vértice queda en a lo más tres cuadraditos, como $v$, rodeado por $A_{11}$, $A_{12}$ y $A_{16}$.
+
+\noindent\textbf{Notación.} Los cuadraditos se numeran $1,2,\dots,16$ (de izquierda a derecha y de abajo hacia arriba), y se renombran los abiertos: $A_i$ denota uno de los $A_\alpha$ que contiene la imagen del cuadradito $i$. En el dibujo, el cuadradito $i$ se etiqueta simplemente con $A_i$.
+
+\begin{itemize}
+  \item Para cada vértice $v$ de la cuadrícula se toma un camino $g_v$ en $X$ que une $x_0$ con $H(v)$, y tal que $g_v$ tiene imagen contenida en la intersección de los $A_i$ adyacentes a $v$. Por ejemplo, el vértice $v$ del dibujo está rodeado por $A_{11}$, $A_{12}$ y $A_{16}$, y $g_v$ es un camino en $A_{11}\cap A_{12}\cap A_{16}$. Como cada vértice tiene a lo más tres cuadraditos adyacentes, este camino existe por la hipótesis de que la intersección de cualesquiera tres de los $A_\alpha$ es arco-conexa.
+  \item Las aristas del cuadradito $A_i$ se etiquetan $A_i^n$, $A_i^s$, $A_i^e$, $A_i^o$, según estén al norte, al sur, al este o al oeste. Al restringir $H$ a cada arista se obtiene un camino en $X$, que se denota $f_i^\varepsilon=H|_{A_i^\varepsilon}$, con $\varepsilon\in\{n,s,e,o\}$.
+  \item Cada $f_i^\varepsilon$ no es un lazo, pero determina uno: si $v_1$ y $v_2$ son los vértices de la arista $A_i^\varepsilon$, el lazo
+  \[
+    (f_i^\varepsilon)_{x_0}=g_{v_1}\,f_i^\varepsilon\,\bar g_{v_2}
+  \]
+  está basado en $x_0$. El subíndice $x_0$ indica que el camino se completó a un lazo basado en $x_0$ usando los caminos $g_v$.
+  \item Más en general, si se toma un camino formado por aristas de la cuadrícula, como $f_{j_1}^{\varepsilon_1}\cdots f_{j_k}^{\varepsilon_k}$, se completa de la misma manera a un lazo basado en $x_0$, y se denota $(f_{j_1}^{\varepsilon_1}\cdots f_{j_k}^{\varepsilon_k})_{x_0}$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[very thick,azul,-{Stealth[length=6pt]}] (60,200) .. controls (40,140) and (70,90) .. (80,40);
+  \draw[very thick,-{Stealth[length=6pt]}] (80,40) .. controls (160,20) and (230,60) .. (300,80);
+  \draw[very thick,azul,-{Stealth[length=6pt]}] (300,80) .. controls (220,140) and (140,190) .. (64,200);
+  \fill[extremo] (60,200) circle (4); \fill (80,40) circle (3); \fill (300,80) circle (3);
+  \node[extremo] at (60,218) {\small $x_0$};
+  \node at (80,24) {\small $H(v_1)$}; \node at (328,78) {\small $H(v_2)$};
+  \node[azul] at (32,120) {\small $g_{v_1}$}; \node at (190,28) {\small $f_i^\varepsilon$}; \node[azul] at (215,160) {\small $\bar g_{v_2}$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: El lazo $(f_i^\varepsilon)_{x_0}=g_{v_1}\,f_i^\varepsilon\,\bar g_{v_2}$ basado en $x_0$.
+
+\noindent\textbf{Lo que se quiere ver.} Recordemos que $x=[f_1]\cdots[f_m]\in\ker\Phi\leq \mathop{\scalebox{1.4}{$*$}}_{\alpha\in J}\pi_1(A_\alpha)$ y que se quiere ver que $x\in N$. Como $N$ está normalmente generado por los elementos $i_{\alpha\beta}[f]\,i_{\beta\alpha}[\bar f]$, lo que se quiere es escribir $x$ como un producto de conjugados de estos elementos. Para encontrar esa factorización se describe un procedimiento, un algoritmo, del que se dan los primeros pasos; después el algoritmo se repite, de manera recursiva.
+
+\noindent\textbf{Paso 1.} Sea $h_1$ el camino que separa el cuadradito $A_1$ de todos los demás: se recorre la arista norte de $A_1$ y luego su arista este. Por construcción,
+\[
+  h_1=f_1^n\,f_1^e=(f_1^n\,f_1^e)_{x_0}\simeq(f_1^n)_{x_0}\,(f_1^e)_{x_0}.
+\]
+En efecto, $h_1$ empieza y termina en vértices del borde del cuadrado, que van a dar a $x_0$, así que ya es un lazo, y para esos vértices los caminos $g_v$ se pueden tomar constantes. Que $(f_1^nf_1^e)_{x_0}\simeq(f_1^n)_{x_0}(f_1^e)_{x_0}$ es un ejercicio sencillo, parecido a los que se han hecho: completar a un lazo cada tramo por separado y concatenar da un lazo homotópico al original.
+
+Ahora se usa un truco que se aplicará muchas veces a lo largo del algoritmo:
+\[
+  (f_1^n)_{x_0}\simeq(\bar f_1^e)_{x_0}\ \mathrm{rel}\ \{0,1\},
+\]
+donde la homotopía se obtiene de \emph{empujar} $(f_1^n)_{x_0}$ a través de $A_1$: como $H$ manda todo el cuadradito $A_1$ dentro del abierto $A_1$, la arista norte se deforma, a través del cuadradito, en la arista este recorrida en sentido contrario. Por lo tanto
+\[
+  h_1\simeq(\bar f_1^e)_{x_0}\,(f_1^e)_{x_0}.
+\]
+El lazo $(\bar f_1^e)_{x_0}$ se puede pensar en $A_1$, y el lazo $(f_1^e)_{x_0}$, que está en $A_1\cap A_2$, se puede pensar en $A_2$, donde está el cuadradito vecino. Así, la palabra que determina $h_1$ es
+\[
+  [h_1]=i_{12}\bigl[(\bar f_1^e)_{x_0}\bigr]\,i_{21}\bigl[(f_1^e)_{x_0}\bigr]\in N,
+\]
+que es un generador de $N$. Así se empieza a obtener una factorización en elementos de $N$.
+
+\noindent\textbf{La idea general.} En el paso $k$ se considera el lazo $h_k$ que separa los primeros $k$ cuadraditos del resto de la cuadrícula. El último de estos lazos es justamente la tapa de arriba, el lazo $f$ que representa a $x$. Si se logra ver, de manera recursiva, que cada $h_k$ determina un elemento de $N$, entonces se termina demostrando que $x\in N$.
+
+\noindent\textbf{Paso 2.} El lazo $h_2$ separa $A_1$ y $A_2$ del resto: es la concatenación $h_2=f_1^n\,f_2^n\,f_2^e$. Pero lo que interesa no es esta concatenación como elemento geométrico, sino el elemento que determina en el producto libre:
+\[
+  \bigl[(f_1^n)_{x_0}\bigr]\,\bigl[(f_2^n)_{x_0}\bigr]\,\bigl[(f_2^e)_{x_0}\bigr]\in \mathop{\scalebox{1.4}{$*$}}_{\alpha\in J}\pi_1(A_\alpha),
+\]
+donde el primer factor vive en el grupo fundamental de $A_1$ y los otros dos en el de $A_2$, así que en efecto es una palabra en los grupos fundamentales de los $A_\alpha$. Este elemento se puede escribir como
+\[
+  [h_1]\,\bigl[\bar f_1^e\cdot f_2^n\cdot f_2^e\bigr],
+\]
+es decir, primero $h_1$ y luego el lazo que rodea al cuadradito $A_2$. Como ya se sabe que $[h_1]\in N$, basta demostrar que $\bigl[\bar f_1^e\cdot f_2^n\cdot f_2^e\bigr]\in N$. Para esto se aplica un truco parecido al del paso 1: se empuja $(\bar f_1^e\,f_2^n)_{x_0}$ a través del cuadradito $A_2$ y se obtiene
+\[
+  (\bar f_1^e\,f_2^n)_{x_0}\simeq(\bar f_2^e)_{x_0}.
+\]
+Con esto, de nuevo como en el paso 1, el lazo se escribe como un producto de generadores de $N$ (algo como $i_{23}[\,\cdot\,]\,i_{32}[\,\cdot\,]$), y así $\bigl[\bar f_1^e\cdot f_2^n\cdot f_2^e\bigr]\in N$.
+
+\noindent\textbf{Y así sucesivamente.} Después se construye $h_3$, que rodea a $A_1,A_2,A_3$, y así hasta rodear todos los cuadraditos hasta $A_{16}$, que da la tapa de arriba. De esta manera se demuestra que la palabra determinada por la concatenación de las aristas de arriba se puede expresar como un producto de generadores o de conjugados de generadores de $N$, y así termina la demostración. Para convencerse de que es correcta, lo más sano es hacer por cuenta propia dos o tres pasos más del algoritmo.
+
+\section*{Recapitulación}
+
+La demostración es sin duda algo sofisticada: la suprayectividad se obtiene subdividiendo un lazo en pedazos contenidos en los abiertos, y la descripción del núcleo, subdividiendo una homotopía en cuadraditos y recorriendo la cuadrícula cuadradito por cuadradito. En los próximos videos se verán ejemplos de cómo se aplica el teorema de van Kampen, que es una herramienta computacional poderosa para calcular explícitamente grupos fundamentales.
+
+\begin{erratas}
+  \errata{807}{13:27}{Se dice que la subdivisión se toma de modo que cada cuadradito caiga «en uno y solamente en alguno» de los $A_\alpha$, pero debe decir «en al menos uno»: un cuadradito puede caer en varios de los $A_\alpha$.}
+  \errata{1955}{32:35}{En el pizarrón se escribe «aplicamos un truco parecido al del paso 2 para empujar $(\bar f_2^e f_2^n)_{x_0}$ a través del cuadro $A_2$», pero debe decir «al del paso 1» y $(\bar f_1^e f_2^n)_{x_0}$: la arista oeste de $A_2$ es la arista este de $A_1$ recorrida al revés. Estas notas ya usan la versión corregida.}
+\end{erratas}
+
+\end{document}
