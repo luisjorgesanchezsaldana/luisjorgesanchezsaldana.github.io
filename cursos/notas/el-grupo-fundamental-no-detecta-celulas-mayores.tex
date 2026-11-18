@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{92qAWfRY5KE}
+\input{preambulo}
+\unidad{2}{12} % unidad 2; primer enunciado: 2.12
+
+\title{El grupo fundamental no detecta células de dimensión mayor que 2}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=92qAWfRY5KE}{\guillemotleft{}El grupo fundamental no detecta células de dimensión mayor que 2\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Con el teorema de van Kampen se muestra que pegarle a un espacio una célula de dimensión mayor que $2$ no cambia su grupo fundamental.
+\normalsize
+
+\section*{El enunciado}
+
+En este video se muestra que el grupo fundamental no detecta las células de dimensión mayor que $2$. Dicho así suena un poco ambiguo, así que se formaliza de la siguiente manera. Sean:
+\begin{itemize}
+  \item $X$ un espacio topológico conexo;
+  \item $e^n$ una célula de dimensión $n>2$, es decir, un espacio homeomorfo al disco cerrado $D^n$;
+  \item $f\colon S^{n-1}\to X$ una función definida en la frontera de la célula, que se usa como función de pegado;
+  \item $Y=X\cup_f e^n$, el espacio que resulta de pegarle a $X$ la célula $e^n$ por medio de $f$;
+  \item $x_0\in\operatorname{Im}(f)$ un punto base.
+\end{itemize}
+
+\begin{teo}\label{teo:no-detecta}
+La inclusión $i\colon X\hookrightarrow Y$ induce un isomorfismo
+\[
+  i_*\colon\pi_1(X,x_0)\to\pi_1(Y,x_0).
+\]
+\end{teo}
+
+La parte importante es que $i_*$ es un isomorfismo: si a $X$ se le pega una célula de dimensión mayor que $2$, el grupo fundamental ni se entera, es exactamente el mismo. Esto contrasta con lo que se demostró en el video anterior, donde al pegar una célula de dimensión $2$ (o incluso de dimensión $1$) el grupo fundamental sí se modifica.
+
+En pocas palabras, el grupo fundamental no detecta fenómenos de dimensión grande, es decir, por arriba de $2$: solo detecta lo que pasa en las dimensiones $0$, $1$ y $2$. Esto se va a formalizar más adelante, cuando se hable de los complejos CW, que son espacios que se arman pegando células: el grupo fundamental solamente detecta cuando se pegan células de dimensión $0$, $1$ y $2$, pero no las de dimensión más grande.
+
+\section*{La demostración}
+
+La demostración es muy análoga a la del video anterior; el video no da absolutamente todos los detalles, pero sí los puntos importantes. Se recuerda el dibujo: se tiene $X$, la imagen de $f$, que de manera aproximada (aunque no es del todo cierto) se puede pensar como una copia de $S^{n-1}$, y la célula pegada.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[thick] (20,90) rectangle (380,290);
+  \draw[very thick] (120,170) .. controls (110,130) and (180,120) .. (200,125) .. controls (250,120) and (300,135) .. (280,170) .. controls (260,195) and (140,200) .. (120,170);
+  \draw[thick,azul] (120,170) .. controls (110,40) and (290,40) .. (280,170);
+  \draw[gray,dashed] (130,140) .. controls (150,115) and (250,115) .. (270,140);
+  \fill[extremo] (120,170) circle (4); \node[extremo] at (108,188) {\small $x_1$};
+  \node at (230,205) {\small $f$}; \node[azul] at (300,70) {\small $e^n$};
+  \node at (330,250) {\small $U_\alpha\simeq X$}; \node at (200,98) {\small $U_\beta\cong\mathring{D}^n$};
+  \node at (40,110) {$X$}; \node at (70,45) {$Y=X\cup_f e^n$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: La célula $e^n$ (en azul) se pega a $X$ por medio de $f$. La línea punteada separa los dos abiertos: $U_\alpha$ es $X$ más una franja de la célula y $U_\beta$ es el interior de la célula más una franja más pequeña; su intersección es una franja que se retrae por deformación a una copia de $S^{n-1}$.
+
+\begin{proof}
+Se toma en la célula una pequeña franja, que es una copia de $S^{n-1}\times(\text{intervalo})$, y en ella un punto base $x_1$. Se aplica el teorema de van Kampen a dos abiertos:
+\begin{itemize}
+  \item $U_\alpha$, que es $X$ unido con una franja, y que tiene a $X$ como retracto por deformación;
+  \item $U_\beta$, que es el disco abierto $\mathring{D}^n$ unido con una franja un poco más pequeña, así que es homeomorfo al disco abierto $\mathring{D}^n$.
+\end{itemize}
+La intersección $U_\alpha\cap U_\beta$ se retrae por deformación a una copia de $S^{n-1}$. Lo importante es que, como $n>2$, se tiene $n-1\geq 2$, y por lo tanto esta esfera es simplemente conexa: tiene grupo fundamental trivial.
+
+Por el teorema de van Kampen se tiene el homomorfismo
+\[
+  \Phi\colon\pi_1(U_\alpha)*\pi_1(U_\beta)\to\pi_1(Y),
+\]
+y se calculan los dos factores del dominio. Como $U_\alpha$ es homotópicamente equivalente a $X$, $\pi_1(U_\alpha)\cong\pi_1(X)$. Como $U_\beta$ es homeomorfo a un disco abierto, es contraíble y $\pi_1(U_\beta)$ es trivial. Entonces el producto libre es isomorfo a $\pi_1(X)$.
+
+Falta ver que $\Phi$ es inyectivo. Recuerde que
+\[
+  \ker\Phi=\bigl\langle\!\bigl\langle\, \iota_{\alpha\beta}[\gamma]\,\iota_{\beta\alpha}[\gamma]^{-1} : [\gamma]\in\pi_1(U_\alpha\cap U_\beta)\,\bigr\rangle\!\bigr\rangle,
+\]
+donde $\iota_{\alpha\beta}\colon\pi_1(U_\alpha\cap U_\beta)\to\pi_1(U_\alpha)$ e $\iota_{\beta\alpha}\colon\pi_1(U_\alpha\cap U_\beta)\to\pi_1(U_\beta)$ son los homomorfismos inducidos por las inclusiones. Como $U_\alpha\cap U_\beta$ es homotópicamente equivalente a $S^{n-1}$ con $n-1\geq 2$, su grupo fundamental es trivial. Así, el dominio de $\iota_{\alpha\beta}$ e $\iota_{\beta\alpha}$ es trivial, y todas sus imágenes lo son; por lo tanto todos los generadores de $\ker\Phi$ son triviales y $\ker\Phi$ es trivial. Entonces $\Phi$ es un isomorfismo, y se obtiene un isomorfismo $\pi_1(X)\to\pi_1(Y)$.
+
+Por último, si se revisa el enunciado del teorema de van Kampen, se ve que este isomorfismo es justamente el inducido por la inclusión. Esto demuestra el teorema.
+\end{proof}
+
+Fue una demostración muy parecida a la del video pasado, pero más sencilla. Es otra aplicación directa del teorema de van Kampen, y muestra que este teorema no solamente sirve para hacer cálculos explícitos de grupos fundamentales, sino que además da información sobre la estructura y el alcance del grupo fundamental. El video termina con una recomendación: para practicar y aprender a usar bien el teorema de van Kampen y a calcular grupos fundamentales, hay que hacer muchos ejemplos y muchos ejercicios.
+
+\begin{erratas}
+  \errata{15}{0:15}{En el pizarrón se pide que $X$ sea conexo; debe ser arco-conexo, que es lo que necesita el teorema de van Kampen.}
+  \errata{45}{0:45}{En el pizarrón el enunciado escribe $i_*\colon\pi_1(X,x_0)\to\pi_1(Y,y_0)$. Como $x_0\in\operatorname{Im}(f)$, el punto base de $Y$ es también $x_0$, así que debe decir $\pi_1(Y,x_0)$.}
+  \errata{383}{6:23}{Se aplica el teorema de van Kampen con el punto base $x_1$ en la franja, pero se concluye que el isomorfismo va de $\pi_1(X,x_0)$ a $\pi_1(Y,x_0)$. Falta usar el isomorfismo de cambio de punto base, que conmuta con el homomorfismo inducido por la inclusión.}
+\end{erratas}
+
+\end{document}
