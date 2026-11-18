@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{V3OboR_tSEM}
+\input{preambulo}
+\unidad{2}{6} % unidad 2; primer enunciado: 2.6
+
+\title{Presentaciones de grupos}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=V3OboR_tSEM}{\guillemotleft{}Presentaciones de grupos\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se ve que todo grupo es cociente de un grupo libre, se definen las presentaciones de grupos con varios ejemplos y se enuncia cómo definir homomorfismos desde un grupo dado por una presentación.
+\normalsize
+
+\section*{Todo grupo es cociente de un grupo libre}
+
+Una \emph{presentación} es una forma de describir un grupo usando generadores y algunas reglas que hay que seguir para multiplicar los elementos del grupo, concretamente los generadores.
+
+Sea $G$ un grupo. Recuerde que un subconjunto $S\subseteq G$ (no un subgrupo, solo un subconjunto) es un \emph{conjunto generador} de $G$ si $\langle S\rangle=G$. Esto se puede ver de dos formas: el subgrupo más pequeño que contiene a $S$ es todo $G$, o bien, todo elemento de $G$ se puede escribir como producto de elementos de $S$ y sus inversos. Para los fines de este video, la segunda descripción es la más útil.
+
+Por otro lado, considerando a $S$ solo como conjunto, se puede formar el grupo libre $F_S$ generado por $S$, es decir, todas las palabras en el alfabeto formado por $S$ y sus inversos. Por la propiedad universal de los grupos libres, la inclusión $S\hookrightarrow G$ se extiende a un homomorfismo $\varphi\colon F_S\to G$, de modo que el siguiente diagrama conmuta:
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node (S) at (0,1.6) {$S$};
+  \node (G) at (2.2,1.6) {$G$};
+  \node (F) at (0,0) {$F_S$};
+  \draw[{Hooks[right,length=3pt]}-{Stealth[length=5pt]}] (S) -- (G);
+  \draw[{Hooks[right,length=3pt]}-{Stealth[length=5pt]}] (S) -- (F);
+  \draw[dashed,-{Stealth[length=5pt]}] (F) -- node[below right] {\small $\varphi$} (G);
+\end{tikzpicture}
+\end{center}
+
+Además $\varphi$ es suprayectivo, porque su imagen es un subgrupo que contiene a $S$, y como $S$ es un conjunto generador, la imagen es todo $G$. Con esto se ha demostrado el siguiente teorema.
+
+\begin{teo}\label{teo:cociente-libre}
+Dado un grupo $G$, existe un grupo libre $F_S$ que se suprayecta en $G$. En particular, todo grupo es cociente de un grupo libre.
+\end{teo}
+
+\section*{Presentaciones}
+
+Extrayendo la información del homomorfismo suprayectivo $\varphi\colon F_S\to G$, por el primer teorema de isomorfismo se tiene
+\[
+  G\cong F_S/\ker\varphi,
+\]
+y $\ker\varphi$ es un subgrupo normal de $F_S$. Si además se tiene un conjunto $R\subseteq\ker\varphi$ que genera normalmente al núcleo, es decir, tal que $\langle\!\langle R\rangle\!\rangle=\ker\varphi$, entonces
+\[
+  G\cong F_S/\ker\varphi=F_S/\langle\!\langle R\rangle\!\rangle.
+\]
+
+\begin{defn}[Presentación]\label{defn:presentacion}
+En la situación anterior se dice que $G$ es el grupo generado por $S$ sujeto a las relaciones $R$, y se denota
+\[
+  G=\langle S\mid R\rangle.
+\]
+A esto se le llama una \emph{presentación} de $G$.
+\end{defn}
+
+Recapitulando, una presentación de $G$ es, esencialmente, un homomorfismo suprayectivo de un grupo libre en $G$ junto con un conjunto de generadores normales de su núcleo. Una presentación dice que todo elemento de $G$ se ve como producto de los elementos de $S$, es decir, como palabras en $S$, sujetas a las condiciones $R$. Como $R$ está contenido en $\ker\varphi$, que es un subgrupo de $F_S$, el conjunto $R$ también consiste de palabras en $S$.
+
+\section*{Ejemplos}
+
+\begin{enumerate}
+  \item \emph{Grupos libres.} Para el grupo libre en un conjunto $S$ se tiene la presentación $F_S=\langle S\rangle$: la identidad $F_S\to F_S$ es suprayectiva y su núcleo es trivial, así que no hay ninguna relación. Cuando $R$ es vacío, simplemente no se escribe. Por ejemplo, si $F_2$ está generado por dos elementos $a,b$, entonces $F_2=\langle a,b\rangle$. Así, los grupos libres son grupos generados sin ninguna relación.
+
+  Este ejemplo también muestra que las presentaciones no son únicas, porque hay muchas suprayecciones de grupos libres en un mismo grupo. Por ejemplo,
+  \[
+    F_2=\langle a,b\rangle=\langle a,b,c\mid c\rangle:
+  \]
+  se toma $F_3\to F_2$ con $a\mapsto a$, $b\mapsto b$ y $c\mapsto1$; el núcleo está generado (normalmente) por el elemento $c$, que se fue a $1$, y esa es la relación.
+
+  \item \emph{El grupo abeliano libre en dos generadores.} Si los generadores de $\mathbb{Z}^2$ son $a$ y $b$ (que se pueden pensar como la base canónica $(1,0)$ y $(0,1)$), entonces
+  \[
+    \mathbb{Z}^2=\langle a,b\mid aba^{-1}b^{-1}\rangle.
+  \]
+  Otras formas muy comunes de escribirlo, aunque no son tal cual la notación, son $\langle a,b\mid ab=ba\rangle$ y $\langle a,b\mid aba^{-1}b^{-1}=1\rangle$, solo para especificar que ese elemento se va a $1$. Esto quiere decir que hay una suprayección $\varphi\colon F_2\to\mathbb{Z}^2$ cuyo núcleo está normalmente generado por el elemento $aba^{-1}b^{-1}$.
+
+  \noindent\textbf{Ejercicio.} Verificar que el núcleo de $\varphi\colon F_2\to\mathbb{Z}^2$ está normalmente generado por $aba^{-1}b^{-1}$.
+
+  \item \emph{El grupo abeliano libre en $n$ generadores.} De manera más general,
+  \[
+    \mathbb{Z}^n=\langle a_1,a_2,\dots,a_n\mid a_ia_j=a_ja_i\ \ \forall i,j\rangle,
+  \]
+  es decir, se impone que todos los generadores conmuten entre sí. Aunque se escribe una sola expresión, en realidad hay más de una relación, una por cada par $i,j$.
+
+  \item \emph{El grupo cíclico de $n$ elementos.} El grupo $C_n$ está generado por un solo elemento, que es justamente la definición de cíclico. Entonces hay una suprayección $F_1=\mathbb{Z}\to C_n$ cuyo núcleo está generado por $n$ veces el generador, y así
+  \[
+    C_n=\langle a\mid a^n\rangle.
+  \]
+
+  \item \emph{Un ejemplo más interesante.} Sean $G_1=\langle S_1\mid R_1\rangle$ y $G_2=\langle S_2\mid R_2\rangle$. Nada impide definir el grupo
+  \[
+    G=\langle S_1\cup S_2\mid R_1\cup R_2\rangle;
+  \]
+  en realidad, cualquier conjunto de generadores y cualquier conjunto de relaciones dan un grupo. ?`Hay alguna forma de describir este grupo? Todo elemento de $G$ es una palabra en letras de $S_1$ y de $S_2$. Si hay varias letras de $S_1$ juntas, siempre se pueden aplicar las relaciones $R_1$, y lo mismo con las letras de $S_2$ y las relaciones $R_2$. Pero una letra de $S_1$ junto a una de $S_2$ no interactúan, porque las relaciones son palabras solo en $S_1$ o solo en $S_2$.
+
+  \noindent\textbf{Ejercicio.} $\langle S_1\cup S_2\mid R_1\cup R_2\rangle\cong G_1*G_2$, el producto libre definido en un video anterior.
+\end{enumerate}
+
+\section*{Homomorfismos desde una presentación}
+
+La siguiente proposición es consecuencia inmediata de la propiedad universal del cociente de grupos.
+
+\begin{prop}\label{prop:hom-presentacion}
+Sean $G=\langle S\mid R\rangle$, $K$ otro grupo y $f\colon S\to K$ una función (no un homomorfismo, una función cualquiera) tal que para toda relación $s_1\cdots s_m\in R$, con $s_i\in S$, se cumple
+\[
+  f(s_1)\cdots f(s_m)=1
+\]
+en $K$. Entonces existe un único homomorfismo $\bar f\colon G\to K$ tal que el siguiente diagrama conmuta:
+\end{prop}
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node (S) at (0,1.6) {$S$};
+  \node (G) at (2.2,1.6) {$G$};
+  \node (K) at (0,0) {$K$};
+  \draw[-{Stealth[length=5pt]}] (S) -- (G);
+  \draw[-{Stealth[length=5pt]}] (S) -- node[left] {\small $f$} (K);
+  \draw[dashed,-{Stealth[length=5pt]}] (G) -- node[below right] {\small $\bar f$} (K);
+\end{tikzpicture}
+\end{center}
+
+Es decir, para definir un homomorfismo de un grupo dado por una presentación con generadores $S$ y relaciones $R$, basta mandar los generadores y verificar que las relaciones van a dar al elemento $1$; por decirlo de alguna manera, que las relaciones se respeten. Esto sale de ver a $G$ como el cociente del grupo libre $F_S$ entre el subgrupo normalmente generado por $R$.
+
+Esta es una introducción muy breve a las presentaciones de grupos, que se usarán para calcular grupos fundamentales con el teorema de van Kampen.
+
+\begin{erratas}
+  \errata{60}{1:00}{Se dice que todo elemento de $G$ es producto de elementos de $S$; debe decir producto de elementos de $S$ \emph{y de sus inversos} (así se escribe en estas notas).}
+  \errata{523}{8:43}{Para que $\langle S_1\cup S_2\mid R_1\cup R_2\rangle\cong G_1*G_2$ hay que suponer que $S_1$ y $S_2$ son disjuntos (o tomar la unión disjunta); si comparten letras, el grupo que resulta no es el producto libre.}
+  \errata{625}{10:25}{En la proposición se escriben las relaciones como $s_1\cdots s_m\in R$ con $s_i\in S$, pero las letras también pueden ser inversos de generadores (como en $aba^{-1}b^{-1}$): debe ser $s_i\in S\cup\bar S$, y si $s_i=s^{-1}$ con $s\in S$, entonces $f(s_i)$ se entiende como $f(s)^{-1}$.}
+\end{erratas}
+
+\end{document}
