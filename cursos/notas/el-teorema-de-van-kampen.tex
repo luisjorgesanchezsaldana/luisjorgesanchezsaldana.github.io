@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{GbrKtJxBENo}
+\input{preambulo}
+\unidad{2}{5} % unidad 2; primer enunciado: 2.5
+
+\title{El teorema de van Kampen}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=GbrKtJxBENo}{\guillemotleft{}El enunciado del teorema de van Kampen\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se plantea el problema de calcular el grupo fundamental de un espacio a partir de los de subespacios que lo cubren, se construye el homomorfismo del producto libre de sus grupos fundamentales al grupo fundamental del espacio y se enuncia el teorema de van Kampen, que dice que es suprayectivo y describe su núcleo.
+\normalsize
+
+\section*{Motivación}
+
+El teorema de van Kampen es uno de los resultados más importantes al estudiar el grupo fundamental. Supongamos que se quiere calcular el grupo fundamental de un espacio topológico $X$ con respecto a un punto base $x_0$, pero no se sabe cómo. Lo que sí se observa es que $X$ es la unión de subespacios cuyo grupo fundamental sí se sabe calcular; por ejemplo, $X=X_1\cup X_2\cup X_3\cup X_4$, donde todos los subespacios contienen al punto base (esto va a ser muy importante, y en realidad se necesitarán más hipótesis). La pregunta es: si ya se conocen los grupos fundamentales $\pi_1(X_i,x_0)$, $i=1,2,3,4$, ¿se pueden ensamblar de alguna manera para calcular $\pi_1(X,x_0)$? La respuesta es sí, y es el teorema de van Kampen: dice cómo calcular el grupo fundamental de un espacio grande si se descompone en espacios más pequeños cuyos grupos fundamentales ya se conocen.
+
+\section*{Los ingredientes}
+
+Los ingredientes, con los que se trabajará en este y en los próximos videos, son los siguientes:
+\begin{itemize}
+  \item un espacio topológico $X$ y un punto base $x_0\in X$;
+  \item $X=\bigcup_{\alpha\in I}A_\alpha$ es la unión de ciertos subespacios $A_\alpha$, y $x_0\in A_\alpha$ para todo $\alpha\in I$, es decir, $x_0$ está en la intersección de todos ellos;
+  \item cada $A_\alpha$ es arco-conexo.
+\end{itemize}
+
+Como $A_\alpha$ es un subespacio de $X$, la inclusión $A_\alpha\hookrightarrow X$ induce un homomorfismo entre grupos fundamentales,
+\[
+  j_\alpha\colon\pi_1(A_\alpha,x_0)\to\pi_1(X,x_0),\qquad\alpha\in I.
+\]
+Todos los grupos fundamentales se toman basados en $x_0$, y por eso es importante que $x_0$ esté en todos los $A_\alpha$: así estos homomorfismos están bien definidos. Como todos los $j_\alpha$ caen en el mismo grupo $\pi_1(X,x_0)$, por la propiedad universal del producto libre hay un homomorfismo
+\[
+  \Phi\colon \mathop{\scalebox{1.4}{$*$}}_{\alpha\in I}\pi_1(A_\alpha,x_0)\to\pi_1(X,x_0).
+\]
+El teorema de van Kampen da información precisamente sobre este homomorfismo. Resultará que es suprayectivo, pero no inyectivo, y el teorema dice exactamente quién es su núcleo; entonces, por el primer teorema de isomorfismo, el cociente del producto libre entre ese núcleo da la descripción buscada de $\pi_1(X,x_0)$.
+
+\section*{Qué hace el homomorfismo $\Phi$}
+
+En el dibujo, $X$ se cubre con cuatro subespacios $A_\alpha$, $A_\beta$, $A_\gamma$ y $A_\tau$ que contienen al punto base. Un lazo $f$ en $A_\alpha$ basado en $x_0$ representa un elemento $[f]\in\pi_1(A_\alpha,x_0)$, y su imagen bajo $j_\alpha$ es la misma clase, pero vista ahora como un lazo en $X$. Un elemento del producto libre es una palabra de clases de lazos, $[f_1][f_2]\cdots[f_m]$, donde cada $f_i$ es un lazo en alguno de los $A_\alpha$; por ejemplo, $f_1$ en $A_\alpha$, $f_2$ en $A_\beta$, $f_3$ de nuevo en $A_\alpha$, etc. El homomorfismo $\Phi$ toma esa palabra y la ve como el lazo concatenado $f_1\cdot f_2\cdots f_m$ en $X$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.021cm,y=-0.021cm,line cap=round]
+  \draw[thick] (20,20) rectangle (400,300);
+  \draw[gray] (30,30) rectangle (240,190);   % A_tau
+  \draw[gray] (180,30) rectangle (390,190);  % A_alpha
+  \draw[gray] (30,140) rectangle (240,290);  % A_gamma
+  \draw[gray] (180,140) rectangle (390,290); % A_beta
+  \draw[very thick] (210,165) .. controls (175,120) and (180,60) .. (210,60) .. controls (240,60) and (245,120) .. (210,165);
+  \fill[extremo] (210,165) circle (4);
+  \node[extremo] at (210,182) {\small $x_0$};
+  \node at (256,100) {\small $f$};
+  \node at (80,70) {$A_\tau$}; \node at (345,70) {$A_\alpha$};
+  \node at (80,255) {$A_\gamma$}; \node at (345,255) {$A_\beta$};
+  \node at (418,20) {$X$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: $X$ cubierto por $A_\alpha$, $A_\beta$, $A_\gamma$, $A_\tau$; el lazo $f$ basado en $x_0$ vive en $A_\alpha\cap A_\tau$.
+
+Que $\Phi$ sea suprayectivo, como se verá, dice que cualquier lazo en $X$ es homotópico a una concatenación de lazos, cada uno de los cuales vive en alguno de los $A_\alpha$. Por otro lado, hay palabras que no son el elemento trivial en el producto libre, pero que sí dan el lazo trivial en $\pi_1(X,x_0)$. Por ejemplo, si el lazo $f$ está en $A_\alpha\cap A_\tau$, como en el dibujo, su clase se puede ver en $\pi_1(A_\alpha,x_0)$ y también en $\pi_1(A_\tau,x_0)$, y lo mismo pasa con el lazo inverso $\bar f$. Si se piensa que $[f]$ vive en $\pi_1(A_\alpha,x_0)$ y $[\bar f]$ en $\pi_1(A_\tau,x_0)$, la palabra $[f][\bar f]$ es reducida en el producto libre, porque multiplica elementos de dos factores diferentes; por lo tanto es distinta de la identidad del producto libre. Sin embargo, al empujarla a $\pi_1(X,x_0)$ se concatena el lazo $f$ con su inverso, y eso sí es el elemento trivial. Así, $[f][\bar f]$ es un elemento no trivial del núcleo de $\Phi$, y $\Phi$ no tiene posibilidades de ser inyectivo. El teorema de van Kampen dice que elementos de este tipo son, fundamentalmente, los que generan normalmente el núcleo.
+
+\section*{Un poco más de notación}
+
+Si $\alpha,\beta\in I$, la inclusión $A_\alpha\cap A_\beta\hookrightarrow A_\alpha$ induce un homomorfismo
+\[
+  i_{\alpha\beta}\colon\pi_1(A_\alpha\cap A_\beta,x_0)\to\pi_1(A_\alpha,x_0).
+\]
+El orden de los índices es importante: el primer índice dice cuál es el codominio, y el segundo dice cuál es el dominio, la intersección de $A_\alpha$ con $A_\beta$.
+
+Con esta notación se formaliza el fenómeno anterior. Si $f$ es un lazo en $A_\alpha\cap A_\beta$, se empuja $[f]$ a $\pi_1(A_\alpha,x_0)$ y $[\bar f]$ a $\pi_1(A_\beta,x_0)$, y se obtiene el elemento
+\[
+  1\neq i_{\alpha\beta}[f]\,i_{\beta\alpha}[\bar f]\in \mathop{\scalebox{1.4}{$*$}}_{\alpha\in I} A_\alpha,
+\]
+que es no trivial en el producto libre; sin embargo, su imagen en $\pi_1(X,x_0)$ es $1$. Entonces este elemento está en el núcleo de $\Phi$. El teorema de van Kampen dice que elementos de este estilo generan normalmente el núcleo de $\Phi$.
+
+\section*{El enunciado}
+
+\begin{teo}[van Kampen]\label{teo:van-kampen}
+Sea $X=\bigcup_{\alpha\in I}A_\alpha$, con $A_\alpha$ arco-conexo y $x_0\in A_\alpha$ para todo $\alpha\in I$, y tal que $A_\alpha\cap A_\beta$ es arco-conexo para todos $\alpha,\beta\in I$. Entonces el homomorfismo
+\[
+  \Phi\colon \mathop{\scalebox{1.4}{$*$}}_{\alpha\in I}\pi_1(A_\alpha,x_0)\to\pi_1(X,x_0)
+\]
+es suprayectivo. Si además $A_\alpha\cap A_\beta\cap A_\gamma$ es arco-conexo para todos $\alpha,\beta,\gamma\in I$, entonces
+\[
+  \ker\Phi=\bigl\langle\!\bigl\langle\, i_{\alpha\beta}(\omega)\,i_{\beta\alpha}(\omega)^{-1} : \omega\in\pi_1(A_\alpha\cap A_\beta,x_0)\,\bigr\rangle\!\bigr\rangle.
+\]
+\end{teo}
+
+Es decir, se toman las clases $\omega$ de lazos en las intersecciones $A_\alpha\cap A_\beta$, con $\alpha$ y $\beta$ recorriendo todo $I$, y se forma la palabra $i_{\alpha\beta}(\omega)\,i_{\beta\alpha}(\omega)^{-1}$ en el producto libre: la primera letra es $\omega$ visto como un lazo en $A_\alpha$, y la segunda, su inverso visto como un lazo en $A_\beta$. Esa palabra no es trivial en el producto libre, pero sí es trivial en $\pi_1(X,x_0)$, así que está en el núcleo; el teorema dice que estos elementos generan normalmente todo el núcleo.
+
+En particular, por el primer teorema de isomorfismo,
+\[
+  \pi_1(X,x_0)\cong \mathop{\scalebox{1.4}{$*$}}_{\alpha\in I}\pi_1(A_\alpha,x_0)\big/\ker\Phi,
+\]
+y esto da una descripción del grupo fundamental de $X$ en términos de los grupos fundamentales de los $A_\alpha$.
+
+\begin{erratas}
+  \errata{434}{7:14}{Se dice que la palabra $[f][\bar f]$ (y, a las 10:06, $i_{\alpha\beta}[f]\,i_{\beta\alpha}[\bar f]$) es distinta de la identidad del producto libre. Esto solo vale si la clase de $f$ no es trivial en alguno de los dos grupos fundamentales: si, por ejemplo, $f$ es nulhomotópico tanto en $A_\alpha$ como en $A_\beta$, ambas letras son triviales y la palabra es la identidad.}
+  \errata{606}{10:06}{En el pizarrón se escribe $i_{\alpha\beta}[f]\,i_{\beta\alpha}[\bar f]\in\mathop{\scalebox{1.1}{$*$}}_{\alpha\in I}A_\alpha$, pero debe ser $\mathop{\scalebox{1.1}{$*$}}_{\alpha\in I}\pi_1(A_\alpha,x_0)$.}
+  \errata{651}{10:51}{En el enunciado del teorema falta la hipótesis de que cada $A_\alpha$ sea \emph{abierto} en $X$. En el video de la demostración se agrega al inicio, y el argumento de compacidad la usa fuertemente.}
+\end{erratas}
+
+\end{document}
