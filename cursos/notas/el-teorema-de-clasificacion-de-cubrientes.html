@@ -1,0 +1,61 @@
+<!-- Fragmento de las notas de el-teorema-de-clasificacion-de-cubrientes. Mismo contenido que el .tex. -->
+<h4>El teorema de clasificación, grosso modo</h4>
+<p>En los siguientes videos se demuestra el teorema de clasificación de cubrientes. Grosso modo, lo que dice es lo siguiente: si \(X\) es, como en los videos anteriores, arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo, entonces los cubrientes \(\tilde X\to X\) salvo isomorfismo (que se definirá más adelante) están en correspondencia biyectiva con los subgrupos del grupo fundamental \(\pi_1(X,x_0)\). El teorema es bastante más completo que eso, pero esto es lo que dice grosso modo.</p>
+<p>Como primer paso ya se demostró que un espacio con estas características siempre tiene un cubriente simplemente conexo (Teorema 3.18); es decir, ya se construyó el cubriente que corresponde al subgrupo trivial de \(\pi_1(X,x_0)\). Ahora se construye un cubriente para cada subgrupo del grupo fundamental.</p>
+<h4>Un cubriente para cada subgrupo</h4>
+<div class="thm"><b>Proposición 3.22.</b> <i>Sea \(X\) un espacio topológico arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo. Entonces para todo \(H\le\pi_1(X,x_0)\) existe un cubriente \(p\colon X_H\to X\) tal que \(p_*(\pi_1(X_H,\tilde x_0))=H\) para cierto \(\tilde x_0\in X_H\).</i></div>
+<p>La demostración recae fuertemente en la construcción del cubriente universal del video anterior. Sea \(p_1\colon\tilde X\to X\) el cubriente universal construido ahí: los puntos de \(\tilde X\) son las clases \([\gamma]\) de caminos en \(X\) que comienzan en \(x_0\), y \(p_1[\gamma]=\gamma(1)\) (Definición 3.17).</p>
+<p><i>Demostración. Una relación de equivalencia en \(\tilde X\).</i> Se define
+\[[\gamma]\sim[\gamma']\iff\gamma(1)=\gamma'(1)\ \text{ y }\ [\gamma\cdot\bar\gamma']\in H.\]
+Es decir, \(\gamma\) y \(\gamma'\) (que ya de por sí tienen el mismo punto inicial \(x_0\)) tienen el mismo punto final, y el producto de \(\gamma\) con el inverso de \(\gamma'\), que es un lazo en \(X\) basado en \(x_0\), vive en el subgrupo \(H\) de \(\pi_1(X,x_0)\).</p>
+<figure>
+<svg viewBox="0 0 140 135" style="max-width:170px" role="img" aria-label="Dos caminos γ y γ' de x₀ al mismo punto final">
+<path class="f0" fill="none" d="M30 110C20 60 60 20 110 15"/><text x="12" y="55">γ</text>
+<path class="f1" fill="none" d="M30 110C80 105 115 60 110 15"/><text class="c1" x="104" y="88">γ′</text>
+<circle class="endpt" cx="30" cy="110" r="3.5"/><text class="dim" x="18" y="130">x₀</text>
+<circle style="fill:var(--fg)" cx="110" cy="15" r="2.5"/>
+</svg>
+</figure>
+<p>Esta relación es de equivalencia.</p>
+<ul>
+<li><i>Reflexiva:</i> \([\gamma]\sim[\gamma]\) significa que \(\gamma(1)=\gamma(1)\), lo cual claramente es cierto, y que \([\gamma\cdot\bar\gamma]\in H\); pero esto es la clase del lazo constante, que representa la identidad en el grupo fundamental y, por lo tanto, en \(H\).</li>
+<li><i>Simétrica:</i> si \([\gamma]\sim[\gamma']\), entonces \(\gamma(1)=\gamma'(1)\) y \([\gamma\cdot\bar\gamma']\in H\). Entonces su inverso también está en \(H\); pero ese inverso es \([\gamma'\cdot\bar\gamma]\), y esto, junto con la igualdad de los puntos finales, dice que \([\gamma']\sim[\gamma]\).</li>
+<li><i>Transitiva:</i> si \([\gamma]\sim[\gamma']\) y \([\gamma']\sim[\gamma'']\), los puntos finales de los tres caminos son el mismo, y \([\gamma\cdot\bar\gamma'],[\gamma'\cdot\bar\gamma'']\in H\). Entonces el producto también está en \(H\), y como multiplicar \(\bar\gamma'\) con \(\gamma'\) da el lazo constante, ese producto es
+\[[\gamma\cdot\bar\gamma'][\gamma'\cdot\bar\gamma'']=[\gamma\cdot\bar\gamma'']\in H,\]
+así que \([\gamma]\sim[\gamma'']\).</li>
+</ul>
+<p><i>Definición de \(X_H\).</i> Se define
+\[X_H=\tilde X/\!\sim,\qquad p\colon X_H\to X,\quad [[\gamma]]\longmapsto\gamma(1),\]
+la función inducida por \(p_1\): un elemento de \(X_H\) es la clase de equivalencia de un \([\gamma]\), y se manda a \(\gamma(1)\) (esto está bien definido porque los elementos equivalentes tienen el mismo punto final). Hay que checar dos cosas: que \(p\) es un cubriente y que \(p_*(\pi_1(X_H))=H\).</p>
+<p><i>\(p\) es un cubriente.</i> Primero nótese que
+\[[\gamma]\sim[\gamma']\iff[\gamma\cdot\eta]\sim[\gamma'\cdot\eta],\]
+donde \(\eta\) es cualquier camino que comienza donde terminan \(\gamma\) y \(\gamma'\) (para que las expresiones tengan sentido). Esto es obvio: al multiplicar \(\gamma\cdot\eta\) por el inverso de \(\gamma'\cdot\eta\), las \(\eta\) se cancelan. Entonces, si un punto de \(U_{[\gamma]}\) y un punto de \(U_{[\gamma']}\) se relacionan (Definición 3.20), cada punto de \(U_{[\gamma]}\) se relaciona con algún punto de \(U_{[\gamma']}\), y bajo la relación de equivalencia \(U_{[\gamma]}\) y \(U_{[\gamma']}\) se identifican en \(X_H\).</p>
+<p>Esto esencialmente dice que la proyección es un cubriente. Si se tiene una vecindad regular \(U\) abajo en \(X\) (un elemento de \(\mathcal U\), Lema 3.19), su preimagen en \(\tilde X\) bajo \(p_1\) es una unión disjunta de copias \(U_{[\gamma]}\) de \(U\), que se proyectan homeomorfamente a \(U\). Al hacer la relación de equivalencia, algunas de estas tortillitas se identifican entre sí, y en \(X_H\) quedan solamente algunas de ellas; pero todas se siguen proyectando mediante \(p\) de manera homeomorfa a \(U\).</p>
+<figure>
+<svg viewBox="0 0 440 215" style="max-width:520px" role="img" aria-label="Las copias de U en X̃ se identifican de dos en dos en X_H; las que quedan se proyectan homeomorfamente a U">
+<defs><marker id="nbm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="30" y="74">X̃</text>
+<ellipse class="f1" fill="none" cx="120" cy="20" rx="40" ry="10"/><ellipse class="f1" fill="none" cx="120" cy="50" rx="40" ry="10"/>
+<ellipse class="f1" fill="none" cx="120" cy="80" rx="40" ry="10"/><ellipse class="f1" fill="none" cx="120" cy="110" rx="40" ry="10"/>
+<path class="arr" fill="none" d="M165 22C195 30 195 45 165 50" marker-end="url(#nbm1)"/><path class="arr" fill="none" d="M165 82C195 90 195 105 165 110" marker-end="url(#nbm1)"/>
+<text x="385" y="60">X<tspan dy="5" style="font-size:11px">H</tspan></text>
+<ellipse class="f1" fill="none" cx="330" cy="55" rx="40" ry="10"/><ellipse class="f1" fill="none" cx="330" cy="85" rx="40" ry="10"/>
+<path class="arr" d="M210 65L280 70" marker-end="url(#nbm1)"/>
+<path class="arr" d="M120 130V185" marker-end="url(#nbm1)"/><text x="96" y="162">p₁</text>
+<path class="arr" d="M320 100L175 190" marker-end="url(#nbm1)"/><text x="262" y="152">p</text>
+<ellipse class="end" fill="none" cx="120" cy="200" rx="40" ry="10"/><text class="dim" x="168" y="208">U</text>
+<text x="30" y="205">X</text>
+</svg>
+<figcaption>La preimagen de \(U\) en \(\tilde X\) son las copias \(U_{[\gamma]}\); al pasar al cociente, algunas se identifican entre sí, y las que quedan en \(X_H\) se siguen proyectando homeomorfamente a \(U\).</figcaption>
+</figure>
+<p><i>\(p_*(\pi_1(X_H,\tilde x_0))=H\).</i> Se toma como punto base
+\[\tilde x_0=[[c_{x_0}]]\in X_H,\]
+la clase de equivalencia de la clase del lazo constante. Recuérdese que los elementos de la imagen de una proyección cubriente son exactamente los lazos en \(X\) que se levantan a lazos en el cubriente (Proposición 3.8):
+\[p_*(\pi_1(X_H,\tilde x_0))=\{\,\gamma\colon I\to X:\ \gamma(0)=\gamma(1)=x_0\ \text{ y }\ \gamma\text{ se levanta a un lazo en }X_H\,\}.\]
+Del video pasado: si \(\gamma\) es un lazo en \(x_0\), un levantamiento de \(\gamma\) a \(\tilde X\) que comienza en \([c_{x_0}]\) es \(t\mapsto[\gamma_t]\), donde \(\gamma_t\) recorre \(\gamma\) hasta el tiempo \(t\) y luego se queda quieto. Este levantamiento no es necesariamente un lazo: es un camino de \([c_{x_0}]\) a \([\gamma]\). Por construcción se tiene la proyección al cociente \(\tilde X\to X_H\), y el diagrama formado por esta función, \(p_1\) y \(p\) conmuta (las tres son evaluar en \(1\)). Entonces la imagen en \(X_H\) de este camino es el levantamiento de \(\gamma\) a \(X_H\) que empieza en \(\tilde x_0\), y lo que interesa es saber exactamente cuándo baja a un lazo. Baja a un lazo si y sólo si sus extremos \([c_{x_0}]\) y \([\gamma]\) están relacionados:
+\[\gamma\text{ se levanta a un lazo en }X_H\iff[\gamma]\sim[c_{x_0}]\iff[\gamma]\in H.\]
+Esto es justamente lo que se quería demostrar. \(\square\)</p>
+<h4>Panorámica</h4>
+<p>Para un espacio arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo, y para cualquier subgrupo del grupo fundamental, existe un cubriente cuya imagen bajo el homomorfismo inducido por la proyección cubriente es exactamente ese subgrupo. Es decir, se están tomando subgrupos del grupo fundamental y se están realizando mediante cubrientes.</p>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/el-teorema-de-clasificacion-de-cubrientes.tex">el-teorema-de-clasificacion-de-cubrientes.tex</a>.</p>
