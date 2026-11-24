@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Introducción a la topología algebraica · libro</title>
+<meta name="description" content="Introducción a la topología algebraica: notas y videos del curso, sección por sección. Luis Jorge Sánchez Saldaña, Facultad de Ciencias, UNAM.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<style>
+/* Prototipo "libro": cada tema es una sección con las notas y el video lado a lado.
+   Los datos (C) y las notas se leen de topologia-algebraica.html y de notas/, sin duplicarlos. */
+:root{
+  --bg:#f4f1ea; --paper:#fffdf8; --fg:#1c1f24; --muted:#636a74; --line:#e2ddd2; --rule:#cfc8b9;
+  --accent:#2c4a9a; --accent-soft:#e8ecf6; --ok:#2f6b4f; --ok-soft:#e3f0e9;
+  --display:"Spectral", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --top:52px;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#12151a; --paper:#191d23; --fg:#e4e2dc; --muted:#9ca3ad; --line:#2b313a; --rule:#3a414c;
+  --accent:#93acf0; --accent-soft:#1f2940; --ok:#7cc4a0; --ok-soft:#173026; color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;color-scheme:light}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--body)}
+a{color:var(--accent);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit}
+
+/* Barra superior */
+.top{position:sticky;top:0;z-index:20;height:var(--top);display:flex;align-items:center;gap:14px;padding:0 max(16px,env(safe-area-inset-left,0px));background:var(--paper);border-bottom:1px solid var(--line)}
+.top .idx{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:none;cursor:pointer;font:500 13px var(--body)}
+.top .idx:hover{border-color:var(--accent);color:var(--accent)}
+.top .idx i{width:14px;height:10px;border-block:1.6px solid currentColor;position:relative}
+.top .idx i::after{content:"";position:absolute;left:0;right:0;top:50%;border-top:1.6px solid currentColor;transform:translateY(-50%)}
+.top .bt{font:600 16px var(--display);color:var(--fg);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.top .where{font:12px var(--mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.top .sp{flex:1}
+.top .prog{font:12px var(--mono);color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.top .back{font:13px var(--body);color:var(--muted);text-decoration:none;white-space:nowrap}
+.top .back:hover{color:var(--accent)}
+
+/* Índice (cajón lateral) */
+.drawer{position:fixed;z-index:30;top:0;bottom:0;left:0;width:min(360px,88vw);background:var(--paper);border-right:1px solid var(--line);transform:translateX(-102%);transition:transform .22s ease;display:flex;flex-direction:column}
+.drawer.open{transform:none;box-shadow:0 0 40px rgba(0,0,0,.18)}
+@media (prefers-reduced-motion:reduce){.drawer{transition:none}}
+.scrim{position:fixed;inset:0;z-index:25;background:rgba(10,12,16,.28)}
+.drawer header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.drawer header b{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.drawer header button{background:none;border:0;font-size:22px;line-height:1;cursor:pointer;color:var(--muted)}
+.contents{overflow:auto;padding:8px 10px 30px}
+.ch{margin-top:14px}
+.ch>h3{display:flex;gap:10px;align-items:baseline;font:600 17px/1.3 var(--display);margin:0 8px 6px}
+.ch>h3 span{font:500 12px var(--mono);color:var(--muted)}
+.ch ol{list-style:none;margin:0;padding:0}
+.ch a{display:grid;grid-template-columns:38px minmax(0,1fr) 14px;gap:6px;align-items:baseline;padding:6px 8px;border-radius:6px;color:var(--fg);text-decoration:none;font-size:14.5px;line-height:1.35}
+.ch a:hover{background:var(--accent-soft)}
+.ch a[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:500}
+.ch a .n{font:12px var(--mono);color:var(--muted)}
+.ch a .st{width:8px;height:8px;border-radius:50%;justify-self:end;align-self:center}
+.ch a .st.nb{border:1.5px solid var(--accent)}
+.ch a .st.seen{background:var(--ok);border-color:var(--ok)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:16px 8px 0;font:12px var(--body);color:var(--muted)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.legend i{width:8px;height:8px;border-radius:50%;display:inline-block}
+
+/* Página: notas | video */
+.page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;max-width:1560px;margin:0 auto;min-height:calc(100vh - var(--top))}
+.leaf{background:var(--paper);border-right:1px solid var(--line);padding:44px clamp(22px,4vw,64px) 60px}
+.leaf-in{max-width:68ch;margin:0 auto}
+.side{padding:24px clamp(16px,2.4vw,36px) 40px}
+.side-in{position:sticky;top:calc(var(--top) + 20px)}
+
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.sec-h{margin:0 0 26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.sec-h h1{font:600 clamp(28px,3vw,38px)/1.15 var(--display);margin:12px 0 0;text-wrap:balance;letter-spacing:-.01em}
+.sec-h h1 .no{color:var(--muted);font-weight:400;margin-right:.35em}
+.vtabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.vtabs button{padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:none;cursor:pointer;font:500 13px var(--body);color:var(--muted)}
+.vtabs button[aria-selected="true"]{background:var(--fg);border-color:var(--fg);color:var(--paper)}
+
+/* Texto de las notas: tipografía de libro */
+.notes{font:18px/1.7 var(--display)}
+.notes h4{font:600 22px/1.3 var(--display);margin:34px 0 8px}
+.notes h4:first-child{margin-top:0}
+.notes p{margin:10px 0}
+.notes .def,.notes .thm{margin:18px 0;padding:12px 16px;background:var(--bg);border-left:3px solid var(--accent);border-radius:0 6px 6px 0}
+.notes .def b,.notes .thm b{font-family:var(--body);font-size:15.5px;font-weight:600}
+.notes .katex{font-size:1.04em}
+.notes .katex-display{margin:.8em 0;overflow-x:auto;overflow-y:hidden}
+.notes figure{margin:24px 0}
+.notes figcaption{font:14px/1.5 var(--body);color:var(--muted);margin-top:8px}
+.notes svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.notes svg text{fill:var(--fg);font:italic 15px var(--display)}
+.notes svg text.dim{fill:var(--muted);font-size:13px}
+.notes svg text.c1{fill:var(--accent)}
+.notes svg .f0{stroke:var(--fg);stroke-width:2.5}
+.notes svg .f1{stroke:var(--accent);stroke-width:2.5}
+.notes svg .mid{stroke:var(--muted);stroke-width:1;opacity:.7}
+.notes svg .end{stroke:var(--ok);stroke-width:2.5}
+.notes svg .arr{stroke:var(--muted);stroke-width:1.25}
+.notes svg .mk{fill:var(--muted)}
+.notes svg .endpt{fill:var(--ok)}
+.notes .nbsrc{font:14px var(--body);color:var(--muted);margin-top:30px}
+.notes .erratas{margin:30px 0 10px;padding:12px 16px;border:1px solid var(--line);border-radius:6px;font:15px/1.6 var(--body)}
+.notes .erratas h4{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.notes .erratas ul{margin:0;padding-left:18px}
+.notes .erratas a{font:500 13px var(--mono)}
+.pending{font:16px/1.6 var(--body);color:var(--muted);padding:26px 24px;border:1px dashed var(--rule);border-radius:8px;text-align:center}
+.pending b{display:block;font:600 20px var(--display);color:var(--fg);margin-bottom:6px}
+
+/* Columna del video */
+.video{aspect-ratio:16/9;width:100%;border-radius:10px;overflow:hidden;background:#000;box-shadow:0 1px 0 var(--line),0 10px 30px rgba(0,0,0,.08)}
+.video iframe{display:block;width:100%;height:100%;border:0}
+.vcap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 0;font-size:14px;color:var(--muted)}
+.vcap .vt{font:600 15px var(--display);color:var(--fg);margin-right:auto}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--paper);color:var(--fg);text-decoration:none;font:500 13px var(--body);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.seen{background:var(--ok-soft);border-color:transparent;color:var(--ok)}
+.outline{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.outline h3{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.outline ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.outline a{display:block;padding:5px 10px;border-left:2px solid var(--line);color:var(--fg);text-decoration:none;font-size:14.5px}
+.outline a:hover{border-color:var(--accent);color:var(--accent)}
+.outline a.here{border-color:var(--accent);color:var(--accent);font-weight:500}
+
+/* Anterior / siguiente */
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px;padding-top:22px;border-top:1px solid var(--rule)}
+.pn a{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--fg);background:var(--paper)}
+.pn a:hover{border-color:var(--accent)}
+.pn a small{display:block;font:12px var(--mono);color:var(--muted);margin-bottom:4px}
+.pn a span{font:500 16px/1.35 var(--display)}
+.pn .nx{text-align:right;grid-column:2}
+
+/* Portada */
+.cover{max-width:980px;margin:0 auto;padding:56px max(20px,4vw) 70px}
+.cover .ttl{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end;padding-bottom:34px;border-bottom:2px solid var(--fg)}
+.cover h1{font:600 clamp(36px,5.4vw,60px)/1.05 var(--display);margin:14px 0 18px;letter-spacing:-.015em;text-wrap:balance}
+.cover .au{font:italic 20px var(--display)}
+.cover .af{color:var(--muted);font-size:14px}
+.cover .lead{color:var(--muted);font:18px/1.6 var(--display);margin:0}
+.cover .go{display:inline-flex;margin-top:18px;padding:10px 16px;border-radius:8px;background:var(--fg);color:var(--paper);text-decoration:none;font:500 15px var(--body)}
+.cover .go:hover{background:var(--accent)}
+.cover h2{font:600 12px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:38px 0 6px}
+.toc-full{columns:2 360px;column-gap:40px}
+.toc-full .ch{break-inside:avoid;margin:18px 0 0}
+.bib{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:8px}
+.bib i{font-family:var(--display);font-size:17px}
+.bib small{color:var(--muted)}
+
+@media (max-width:980px){
+  .page{grid-template-columns:minmax(0,1fr)}
+  .side{order:-1;position:sticky;top:var(--top);z-index:10;background:var(--bg);padding:10px 12px;border-bottom:1px solid var(--line)}
+  .side-in{position:static}
+  .outline{display:none}
+  .vcap{margin-top:8px}
+  .leaf{border-right:0;padding-top:28px}
+  .top .where{display:none}
+  .cover .ttl{grid-template-columns:1fr;gap:16px}
+}
+@media (max-width:560px){
+  .top .back,.top .prog{display:none}
+  .notes{font-size:17px}
+  .notes figure{overflow-x:auto}.notes figure>svg{min-width:440px}
+  .pn{grid-template-columns:1fr}.pn .nx{grid-column:1}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <button class="idx" id="open" type="button" aria-controls="drawer" aria-expanded="false"><i aria-hidden="true"></i>Índice</button>
+  <a class="bt" href="#">Topología algebraica</a>
+  <span class="where" id="where"></span>
+  <span class="sp"></span>
+  <span class="prog" id="prog"></span>
+  <a class="back" href="topologia-algebraica.html">Vista de lista</a>
+</div>
+
+<nav class="drawer" id="drawer" aria-label="Índice" aria-hidden="true">
+  <header><b>Índice</b><button type="button" id="close" aria-label="Cerrar índice">×</button></header>
+  <div class="contents" id="contents"></div>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+
+<main id="main"><p style="padding:40px;color:var(--muted)">Cargando…</p></main>
+
+<script>
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const vid=u=>(String(u).match(/[?&]v=([\w-]+)/)||[])[1];
+let C,FLAT=[],done={},KEY;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}};
+
+// KaTeX bajo demanda (igual que en la vista de lista)
+const KX="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/";let kxp;
+const katex=()=>kxp||(kxp=new Promise((ok,no)=>{const l=document.createElement("link");l.rel="stylesheet";l.href=KX+"katex.min.css";document.head.appendChild(l);
+  const a=document.createElement("script");a.src=KX+"katex.min.js";a.onload=()=>{const b=document.createElement("script");b.src=KX+"contrib/auto-render.min.js";b.onload=ok;b.onerror=no;document.head.appendChild(b)};a.onerror=no;document.head.appendChild(a)}));
+const cache={};
+async function loadNotes(src){
+  if(cache[src])return cache[src].cloneNode(true);
+  const r=await fetch(src);if(!r.ok)throw 0;const d=document.createElement("div");d.innerHTML=await r.text();
+  try{await katex();renderMathInElement(d,{delimiters:[{left:"\\[",right:"\\]",display:true},{left:"\\(",right:"\\)",display:false}],throwOnError:false})}catch(_){}
+  cache[src]=d;return d.cloneNode(true);
+}
+
+async function init(){
+  // Una sola fuente de datos: el objeto C de la vista de lista
+  const html=await (await fetch("topologia-algebraica.html")).text();
+  C=JSON.parse(html.match(/const C=(\{.*?\});\s*\n/s)[1]);
+  KEY="ljss-course-"+C.key;try{done=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+  C.units.forEach((u,ui)=>u.items.forEach((it,ii)=>FLAT.push({u,ui,ii,it,no:`${ui+1}.${ii+1}`,id:`c-${ui+1}-${ii+1}`})));
+  renderContents();route();
+}
+const nbFor=(it,v)=>[].concat(it.nb||[]).find(n=>(n.video||1)===v);
+const hasNb=it=>[].concat(it.nb||[]).length>0;
+
+function contentsHTML(cur){
+  return C.units.map((u,ui)=>`<section class="ch"><h3><span>Cap. ${ui+1}</span>${esc(u.name)}</h3><ol>${u.items.map((it,ii)=>{const no=`${ui+1}.${ii+1}`,id=`c-${ui+1}-${ii+1}`;
+    return `<li><a href="#${no}"${cur===no?' aria-current="page"':""}><span class="n">${no}</span><span>${esc(it.t)}</span><span class="st ${done[id]?"seen":hasNb(it)?"nb":""}" title="${done[id]?"Visto":hasNb(it)?"Con notas":""}"></span></a></li>`}).join("")}</ol></section>`).join("")
+   +`<div class="legend"><span><i style="border:1.5px solid var(--accent)"></i>con notas</span><span><i style="background:var(--ok)"></i>visto</span></div>`;
+}
+function renderContents(cur){document.getElementById("contents").innerHTML=contentsHTML(cur);
+  const all=FLAT.length,seen=FLAT.filter(f=>done[f.id]).length;document.getElementById("prog").textContent=`${seen} de ${all} vistos`}
+
+// Cajón del índice
+const dr=document.getElementById("drawer"),sc=document.getElementById("scrim"),ob=document.getElementById("open");
+function drawer(o){dr.classList.toggle("open",o);dr.setAttribute("aria-hidden",String(!o));sc.hidden=!o;ob.setAttribute("aria-expanded",String(o));if(o)(dr.querySelector('[aria-current]')||dr.querySelector("a"))?.focus({preventScroll:false})}
+ob.onclick=()=>drawer(true);document.getElementById("close").onclick=()=>drawer(false);sc.onclick=()=>drawer(false);
+dr.addEventListener("click",e=>{if(e.target.closest("a"))drawer(false)});
+addEventListener("keydown",e=>{if(e.key==="Escape")drawer(false);
+  if(e.target.closest("input,textarea,iframe")||e.metaKey||e.ctrlKey||e.altKey)return;
+  const a=document.querySelector(e.key==="ArrowLeft"?".pn .pv":e.key==="ArrowRight"?".pn .nx":null);if(a)location.hash=a.getAttribute("href")});
+
+addEventListener("hashchange",route);
+function route(){
+  const h=decodeURIComponent(location.hash.slice(1)),m=h.match(/^(\d+\.\d+)(?:\/(\d+))?$/);
+  const k=m?FLAT.findIndex(f=>f.no===m[1]):-1;
+  if(k<0){cover();return}
+  section(k,m[2]?+m[2]:1);
+}
+
+function cover(){
+  document.getElementById("where").textContent="";renderContents();
+  const first=FLAT[0];
+  document.getElementById("main").innerHTML=`<div class="cover">
+    <div class="ttl"><div><div class="kicker">Notas y videos del curso · Facultad de Ciencias, UNAM</div>
+      <h1>${esc(C.title)}</h1><div class="au">Luis Jorge Sánchez Saldaña</div><div class="af">Departamento de Matemáticas, Facultad de Ciencias, UNAM</div></div>
+      <div><p class="lead">${esc(C.intro)}</p><a class="go" href="#${first.no}">Empezar a leer →</a></div></div>
+    <h2>Contenido</h2><div class="toc-full">${contentsHTML()}</div>
+    <h2>Bibliografía</h2><ul class="bib">${C.biblio.map(b=>`<li><i>${b.url?`<a href="${b.url}">${esc(b.b)}</a>`:esc(b.b)}</i><br><small>${esc(b.a)}${b.note?" · "+esc(b.note):""}</small></li>`).join("")}</ul>
+  </div>`;
+  document.title=C.title;scrollTo(0,0);
+}
+
+let token=0;
+async function section(k,v){
+  const f=FLAT[k],it=f.it,nv=it.videos.length;v=Math.min(Math.max(v,1),nv);
+  const my=++token,nb=nbFor(it,v),prev=FLAT[k-1],next=FLAT[k+1],id=vid(it.videos[v-1]);
+  renderContents(f.no);
+  document.getElementById("where").textContent=`Cap. ${f.ui+1} · ${f.u.name}`;
+  document.title=`${f.no} ${it.t} · Topología algebraica`;
+  const tabs=nv>1?`<div class="vtabs" role="tablist">${it.videos.map((_,i)=>`<button type="button" role="tab" aria-selected="${i+1===v}" data-v="${i+1}">Video ${i+1}${nbFor(it,i+1)?"":" · sin notas"}</button>`).join("")}</div>`:"";
+  document.getElementById("main").innerHTML=`<div class="page">
+    <article class="leaf"><div class="leaf-in">
+      <header class="sec-h"><div class="kicker">Capítulo ${f.ui+1} · ${esc(f.u.name)}</div>
+        <h1><span class="no">${f.no}</span>${esc(it.t)}</h1>${tabs}</header>
+      <div class="notes" id="notes">${nb?'<p style="color:var(--muted)">Cargando notas…</p>':`<div class="pending"><b>Notas en preparación</b>Por ahora esta sección tiene solo el video${nv>1?` (Video ${v})`:""}. Las notas escritas se irán agregando.</div>`}</div>
+      <nav class="pn" aria-label="Secciones">${prev?`<a class="pv" href="#${prev.no}"><small>← ${prev.no}</small><span>${esc(prev.it.t)}</span></a>`:""}${next?`<a class="nx" href="#${next.no}"><small>${next.no} →</small><span>${esc(next.it.t)}</span></a>`:""}</nav>
+    </div></article>
+    <aside class="side"><div class="side-in">
+      <div class="video"><iframe id="player" src="https://www.youtube-nocookie.com/embed/${id}?rel=0" title="${esc(it.t)}${nv>1?" · Video "+v:""}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <div class="vcap"><span class="vt">${nv>1?`Video ${v} de ${nv}`:"Video"}</span>
+        ${nb&&nb.pdf?`<a class="btn" href="${esc(nb.pdf)}" download>↓ PDF</a>`:""}
+        <a class="btn" href="${esc(it.videos[v-1])}" target="_blank" rel="noopener">YouTube ↗</a>
+        <button type="button" class="btn${done[f.id]?" seen":""}" id="seen">${done[f.id]?"✓ Visto":"Marcar como visto"}</button></div>
+      <div class="outline" id="outline" hidden><h3>En esta sección</h3><ol></ol></div>
+    </div></aside></div>`;
+  scrollTo(0,0);
+  document.querySelectorAll(".vtabs button").forEach(b=>b.onclick=()=>{location.hash=`${f.no}/${b.dataset.v}`});
+  document.getElementById("seen").onclick=e=>{if(done[f.id])delete done[f.id];else done[f.id]=1;save();
+    e.target.classList.toggle("seen",!!done[f.id]);e.target.textContent=done[f.id]?"✓ Visto":"Marcar como visto";renderContents(f.no)};
+  if(!nb)return;
+  let d;try{d=await loadNotes(nb.src)}catch(_){if(my===token)document.getElementById("notes").innerHTML='<p>No se pudieron cargar las notas; descarga el PDF.</p>';return}
+  if(my!==token)return;
+  d.querySelector(".nbsrc")?.querySelectorAll("a").forEach(a=>a.setAttribute("download",""));
+  const notes=document.getElementById("notes");notes.replaceChildren(...d.childNodes);
+  // Los enlaces al minuto del video (p. ej. en erratas) mueven el video de al lado
+  notes.querySelectorAll('a[href*="youtube.com/watch"]').forEach(a=>{const u=new URL(a.href);if(u.searchParams.get("v")!==id)return;
+    a.addEventListener("click",e=>{e.preventDefault();const t=parseInt(u.searchParams.get("t")||"0",10);
+      document.getElementById("player").src=`https://www.youtube-nocookie.com/embed/${id}?rel=0&autoplay=1&start=${t}`})});
+  // Esquema de la sección a partir de sus títulos
+  const hs=[...notes.querySelectorAll("h4")].filter(h=>!h.closest(".erratas"));
+  if(hs.length>1){const ol=document.querySelector("#outline ol");
+    hs.forEach((h,i)=>{h.id="s"+(i+1);h.style.scrollMarginTop="calc(var(--top) + 16px)"});
+    ol.innerHTML=hs.map(h=>`<li><a href="#${f.no}" data-to="${h.id}">${esc(h.textContent)}</a></li>`).join("");
+    ol.onclick=e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();document.getElementById(a.dataset.to).scrollIntoView()};
+    document.getElementById("outline").hidden=false;
+    const links=[...ol.querySelectorAll("a")];
+    let raf=0;const mark=()=>{raf=0;if(my!==token)return;let cur=hs[0];for(const h of hs){if(h.getBoundingClientRect().top<innerHeight*.35)cur=h}
+      links.forEach(a=>a.classList.toggle("here",a.dataset.to===cur.id))};
+    onscroll=()=>{if(!raf)raf=requestAnimationFrame(mark)};mark();
+  }
+}
+init().catch(()=>{document.getElementById("main").innerHTML='<p style="padding:40px">No se pudo cargar el curso. <a href="topologia-algebraica.html">Ir a la vista de lista</a>.</p>'});
+</script>
+</body>
+</html>
