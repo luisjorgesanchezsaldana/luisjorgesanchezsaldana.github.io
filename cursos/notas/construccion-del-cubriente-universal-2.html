@@ -1,0 +1,40 @@
+<!-- Fragmento de las notas de construccion-del-cubriente-universal-2. Mismo contenido que el .tex. -->
+<h4>El objetivo</h4>
+<p>El objetivo de este video es dar la definición del cubriente universal para un espacio \(X\) que sea arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo (Definición 3.14). El cubriente universal se va a definir en términos de caminos, y en este video solamente se da la definición como conjunto; en videos posteriores se habla de la topología que se le da y de la proyección cubriente. Primero se motiva la definición.</p>
+<h4>Espacios simplemente conexos y clases de caminos</h4>
+<p>Antes de describir los elementos del cubriente universal se demuestra una proposición muy sencilla.</p>
+<div class="thm"><b>Proposición 3.16.</b> <i>Un espacio \(Y\) es simplemente conexo si y sólo si para todo \(x,y\in Y\) existe una única clase de homotopía relativa a \(\{0,1\}\) de caminos que unen a \(x\) con \(y\).</i></div>
+<p>Es decir, en un espacio simplemente conexo, siempre que se tienen dos puntos \(x,y\) y dos caminos que los unen, esos dos caminos son homotópicos relativos a \(\{0,1\}\).</p>
+<figure>
+<svg viewBox="0 0 200 145" style="max-width:240px" role="img" aria-label="Dos caminos γ y β que unen a x con y">
+<path class="f0" fill="none" d="M40 120C40 60 110 50 160 20"/><text x="58" y="62">γ</text>
+<path class="f1" fill="none" d="M40 120C110 120 150 80 160 20"/><text class="c1" x="140" y="104">β</text>
+<circle class="endpt" cx="40" cy="120" r="3.5"/><text class="dim" x="24" y="140">x</text>
+<circle class="endpt" cx="160" cy="20" r="3.5"/><text class="dim" x="170" y="18">y</text>
+</svg>
+</figure>
+<p><i>Demostración.</i> (\(\Rightarrow\)) Supóngase que \(Y\) es simplemente conexo y sean \(x,y\in Y\). Como \(Y\) es simplemente conexo, en particular es arco-conexo, y por lo tanto existe al menos un camino que une a \(x\) con \(y\). Eso da la existencia: hay al menos una clase de homotopía de caminos que unen a \(x\) con \(y\).</p>
+<p>Resta ver que si \(\gamma\) y \(\beta\) son dos caminos de \(x\) a \(y\), entonces \(\gamma\simeq\beta\) relativa a \(\{0,1\}\); para esto hay que usar que \(Y\) es simplemente conexo. Se considera el lazo que recorre \(\gamma\) y luego \(\beta\) en sentido contrario, \(\gamma\bar\beta\), que es un lazo basado en \(x\). Como \(Y\) es simplemente conexo,
+\[\gamma\bar\beta\simeq c_x\ \operatorname{rel}\{0,1\}.\]
+Ahora se aplica un pequeño truquito algebraico: \(\gamma\) es homotópico a sí mismo, y también se le puede pegar \(\bar\beta\beta\), que es homotópico al lazo constante; luego se usa la asociatividad:
+\[\gamma\simeq\gamma(\bar\beta\beta)\simeq(\gamma\bar\beta)\beta\simeq\beta\ \operatorname{rel}\{0,1\}.\]
+Así, \(\gamma\simeq\beta\) relativa a \(\{0,1\}\).</p>
+<p>(\(\Leftarrow\)) Ahora se supone que para cualesquiera \(x,y\) existe una única clase de homotopía relativa a \(\{0,1\}\) de caminos que unen a \(x\) con \(y\). Sea \(x_0\in Y\) arbitrario. Se tiene el lazo constante \(c_{x_0}\), que une a \(x_0\) consigo mismo. Si \(\gamma\) es cualquier lazo basado en \(x_0\), también une a \(x_0\) consigo mismo, y por la hipótesis de unicidad, \(\gamma\simeq c_{x_0}\). Es decir, cualquier elemento de \(\pi_1(Y,x_0)\) es trivial, y por lo tanto \(Y\) es simplemente conexo. \(\square\)</p>
+<p>Recapitulando: que \(Y\) sea simplemente conexo quiere decir que cualesquiera dos puntos están unidos por un único camino, salvo homotopía; cualesquiera dos caminos que unen a \(x\) con \(y\) se pueden deformar uno en el otro. Así que si \(Y\) es simplemente conexo y \(x_0\in Y\), hay una biyección entre los puntos de \(Y\) y las clases de homotopía relativa a \(\{0,1\}\) de caminos \(\gamma\) que comienzan en \(x_0\) (a cada punto \(y\) le corresponde la única clase de caminos de \(x_0\) a \(y\)). En otras palabras, da lo mismo hablar de puntos de \(Y\) que de estas clases de homotopía.</p>
+<h4>La motivación</h4>
+<p>Ahora se regresa a hablar de cubrientes. Supóngase que \(p\colon\tilde X\to X\) es un cubriente con \(\pi_1(\tilde X)=1\) (es decir, con \(\tilde X\) simplemente conexo), y sea \(\tilde x_0\in\tilde X\) un punto base. Por lo que se acaba de mencionar, se tiene la biyección
+\[\tilde X\longleftrightarrow\{\,[\gamma]:\gamma(0)=\tilde x_0\,\},\]
+donde los \(\gamma\) son caminos en \(\tilde X\). Sea \(x_0=p(\tilde x_0)\) y considérese el conjunto de clases de caminos \(\beta\) en \(X\) que comienzan en \(x_0\):
+\[\{\,[\gamma]:\gamma(0)=\tilde x_0\,\}\longleftrightarrow\{\,[\beta]:\beta(0)=x_0\,\}.\]
+Se tiene una función natural del primer conjunto en el segundo: un camino en \(\tilde X\) se puede proyectar con \(p\) a un camino en \(X\), y como \(\tilde x_0\) va a dar a \(x_0\), se obtiene una función bien definida. Usando la propiedad de levantamiento de homotopías se puede verificar que de hecho esta función es una biyección. Entonces hay una biyección entre los puntos de \(\tilde X\) y las clases de caminos en \(X\) que comienzan en \(x_0\):
+\[\tilde X\longleftrightarrow\{\,[\beta]:\beta(0)=x_0\,\}.\]
+Esto da una descripción de los elementos de \(\tilde X\) solamente en términos de caminos en \(X\), y una motivación súper buena de cómo definir \(\tilde X\) utilizando solamente información de \(X\).</p>
+<h4>La definición como conjunto</h4>
+<div class="def"><b>Definición 3.17 (el conjunto \(\tilde X\)).</b> Sean \(X\) un espacio arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo, y \(x_0\in X\) un punto base. Se define
+\[\tilde X:=\{\,[\gamma]:\gamma\text{ es un camino en }X\text{ con }\gamma(0)=x_0\,\},\]
+el conjunto de clases de homotopía relativa a \(\{0,1\}\) de caminos que comienzan en \(x_0\), y la función
+\[p\colon\tilde X\to X,\qquad [\gamma]\longmapsto\gamma(1).\]</div>
+<p>La función \(p\) está bien definida porque todos los elementos de una clase de homotopía relativa a \(\{0,1\}\) terminan en el mismo punto.</p>
+<p>Con esto ya se tiene el candidato a cubriente universal. Ahora hay que demostrar un montón de cosas: que \(\tilde X\) tiene alguna topología, que esta función \(p\) es continua, que es un cubriente y que \(\tilde X\) es simplemente conexo. Eso se va a hacer en los videos posteriores.</p>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/construccion-del-cubriente-universal-2.tex">construccion-del-cubriente-universal-2.tex</a>.</p>

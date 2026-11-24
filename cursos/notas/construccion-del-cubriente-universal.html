@@ -1,0 +1,42 @@
+<!-- Fragmento de las notas de construccion-del-cubriente-universal. Mismo contenido que el .tex. -->
+<h4>El programa</h4>
+<p>En este video se comienza a hablar del cubriente universal de un espacio. El objetivo final de estos videos es clasificar todos los cubrientes que tiene un espacio; pero no se va a trabajar con un espacio topológico cualquiera, sino que se va a descubrir que se necesitan algunas hipótesis sobre los espacios.</p>
+<p>Para comenzar el programa de clasificar cubrientes, una pregunta natural es la siguiente: dado un espacio \(X\), ¿existe algún cubriente \(p\colon\tilde X\to X\) de manera que \(\pi_1(\tilde X)\) sea trivial? Es decir, ¿tiene \(X\) un cubriente simplemente conexo? Para que esta pregunta tenga una respuesta afirmativa, primero se hace un análisis preliminar y se descubren condiciones necesarias sobre el espacio \(X\) para que tenga un cubriente de este estilo.</p>
+<div class="def"><b>Definición 3.13 (cubriente universal).</b> Un cubriente \(p\colon\tilde X\to X\) con \(\tilde X\) simplemente conexo se conoce como el <i>cubriente universal</i> de \(X\).</div>
+<p>El nombre se justifica por resultados que se van a obtener más adelante, en los que se verá que, esencialmente, este cubriente es universal en el sentido de que cubre a cualquier otro cubriente de \(X\).</p>
+<p><b>Hipótesis sobre \(X\).</b> Para comenzar se supone que \(X\) es arco-conexo. Como se comentó en el video en el que se introdujo la definición de cubriente, esencialmente siempre basta con restringirse a espacios conexos; aquí se supone algo más, que \(X\) es arco-conexo, porque solamente en este caso los cubrientes son interesantes, y a la hora de clasificar se van a querer clasificar cubrientes que también son arco-conexos. Por razones un poco más técnicas, que se verán después, también se supone que \(X\) es localmente arco-conexo (Definición 3.10): si se tiene un punto \(x\in X\) y una vecindad \(U\) de \(x\), siempre existe otra vecindad más pequeña \(V\), con \(x\in V\subseteq U\), que es arco-conexa.</p>
+<h4>Una condición necesaria</h4>
+<p>Supóngase que ya existe un cubriente \(p\colon\tilde X\to X\) con \(\tilde X\) simplemente conexo. Recuérdese que <i>simplemente conexo</i> significa arco-conexo y con grupo fundamental trivial.</p>
+<p>Considérese un punto cualquiera \(x_0\in X\) y una vecindad regular \(U\) de \(x_0\), es decir, una vecindad que cumple la definición de espacio cubriente: la preimagen de \(U\) es una unión disjunta de abiertos de \(\tilde X\) de manera que la restricción de \(p\) a cada uno de ellos es un homeomorfismo sobre \(U\) (Definiciones 3.1 y 3.2). Sea \(\gamma\) un lazo en \(x_0\) contenido en la vecindad regular \(U\). Este lazo se puede levantar a \(\tilde X\): si se levanta el punto inicial a un punto \(\tilde x_0\) en alguna de las hojas sobre \(U\), el lazo se levanta con la inversa del homeomorfismo (restringido a la vecindad de abajo). Así, \(\gamma\) se levanta a un lazo \(\tilde\gamma\) dentro de esa hoja, que se ve exactamente idéntico al de abajo, basado en \(\tilde x_0\).</p>
+<p>Como \(\tilde X\) es simplemente conexo, el lazo \(\tilde\gamma\) se contrae al lazo constante:
+\[\tilde\gamma\simeq c_{\tilde x_0}\ \operatorname{rel}\{0,1\}.\]
+Esta misma homotopía, que retrae \(\tilde\gamma\) al lazo constante, se puede proyectar con \(p\), y da una homotopía de \(\gamma\) al lazo constante:
+\[\gamma\simeq c_{x_0}\ \operatorname{rel}\{0,1\}.\]</p>
+<figure>
+<svg viewBox="0 0 450 260" role="img" aria-label="Un lazo γ dentro de una vecindad regular U de X se levanta a un lazo γ̃ dentro de una de las hojas sobre U en X̃">
+<defs><marker id="nbm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<path class="mid" fill="none" d="M90 10H400L360 110H50Z"/><text x="418" y="34">X̃</text>
+<ellipse class="end" fill="none" cx="140" cy="40" rx="32" ry="16"/><ellipse class="end" fill="none" cx="240" cy="35" rx="32" ry="16"/>
+<ellipse class="end" fill="none" cx="130" cy="85" rx="32" ry="16"/><ellipse class="end" fill="none" cx="250" cy="82" rx="32" ry="16"/>
+<path class="f1" fill="none" d="M118 87C125 72 150 72 148 85C146 96 125 96 118 87"/>
+<circle style="fill:var(--accent)" cx="118" cy="87" r="2.5"/><text class="c1" x="86" y="72">x̃₀</text><text class="c1" x="156" y="104">γ̃</text>
+<path class="arr" d="M220 120V160" marker-end="url(#nbm1)"/><text x="230" y="145">p</text>
+<path class="mid" fill="none" d="M90 170H400L360 250H50Z"/><text x="418" y="194">X</text>
+<ellipse class="end" fill="none" cx="200" cy="210" rx="32" ry="16"/><text class="dim" x="240" y="200">U</text>
+<path class="f1" fill="none" d="M188 212C195 197 220 197 218 210C216 221 195 221 188 212"/>
+<circle style="fill:var(--accent)" cx="188" cy="212" r="2.5"/><text class="c1" x="166" y="240">x₀</text><text class="c1" x="226" y="228">γ</text>
+</svg>
+<figcaption>Un lazo \(\gamma\) dentro de una vecindad regular \(U\) se levanta a un lazo \(\tilde\gamma\) dentro de una de las hojas (en verde). Como \(\tilde X\) es simplemente conexo, \(\tilde\gamma\simeq c_{\tilde x_0}\), y al proyectar la homotopía se obtiene \(\gamma\simeq c_{x_0}\) en \(X\).</figcaption>
+</figure>
+<p>Hay que tener cuidado: el dibujo es un poco engañoso, porque pareciera que la homotopía vive dentro de \(U\), pero eso no es necesariamente cierto. Para retraer \(\tilde\gamma\) al lazo constante podría ser que la homotopía se salga de la hoja, pues nada dice que la hoja sea simplemente conexa (lo que se sabe es que \(\tilde X\) lo es); y entonces, al proyectarla, la homotopía también podría salirse de \(U\). Lo que se obtiene es que \(\gamma\) se retrae al lazo constante en \(X\), no necesariamente en \(U\).</p>
+<p>En resumidas cuentas, se obtiene la siguiente propiedad de \(X\): para cada \(x\in X\) existe una vecindad \(U\subseteq X\) de \(x\) tal que todo lazo en \(U\) se retrae al lazo constante \(c_x\) en \(X\) (no necesariamente en \(U\), pero sí en \(X\)). De manera equivalente, para cada \(x\in X\) existe una vecindad \(U\subseteq X\) de \(x\) tal que el homomorfismo inducido por la inclusión
+\[\pi_1(U,x)\to\pi_1(X,x)\]
+es constante, es decir, todo lazo en \(U\) va a dar al elemento trivial. Uno puede convencerse fácilmente de que estas dos propiedades son equivalentes, y se van a usar ambas; sobre todo la de que la inclusión induce un homomorfismo constante.</p>
+<div class="def"><b>Definición 3.14 (semilocalmente simplemente conexo).</b> Un espacio \(X\) es <i>semilocalmente simplemente conexo</i> si para cada \(x\in X\) existe una vecindad \(U\subseteq X\) de \(x\) tal que el homomorfismo \(\pi_1(U,x)\to\pi_1(X,x)\) inducido por la inclusión es constante; equivalentemente, tal que todo lazo en \(U\) basado en \(x\) se retrae al lazo constante \(c_x\) en \(X\).</div>
+<p>Lo que se acaba de mostrar es lo siguiente.</p>
+<div class="thm"><b>Proposición 3.15.</b> <i>Si \(X\) tiene cubriente universal, entonces \(X\) es semilocalmente simplemente conexo.</i></div>
+<p>Así que ser semilocalmente simplemente conexo es una condición necesaria para que \(X\) tenga cubriente universal.</p>
+<h4>Lo que sigue</h4>
+<p>El objetivo de los videos posteriores es mostrar que el regreso también es cierto: si \(X\) es arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo, entonces \(X\) tiene cubriente universal. La demostración de este teorema es súper constructiva, aunque un poquito tediosa por la notación, porque hay que verificar muchas cosas: el cubriente universal se va a construir completamente a mano. En el siguiente video se habla de la motivación de cómo construirlo.</p>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/construccion-del-cubriente-universal.tex">construccion-del-cubriente-universal.tex</a>.</p>

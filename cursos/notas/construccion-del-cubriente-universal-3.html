@@ -1,0 +1,92 @@
+<!-- Fragmento de las notas de construccion-del-cubriente-universal-3. Mismo contenido que el .tex. -->
+<h4>El contexto</h4>
+<p>Se fija un espacio topológico \(X\) arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo. Recuérdese rapidísimo qué significa esto último: para todo punto \(x\in X\) existe una vecindad abierta \(U\) de \(x\) tal que el homomorfismo \(\pi_1(U,x)\to\pi_1(X,x)\) inducido por la inclusión es constante; dicho de otra forma, todo lazo en \(U\) se contrae dentro de \(X\) (Definición 3.14).</p>
+<p>Ya se vio que si un espacio tiene cubriente universal, es decir, un cubriente simplemente conexo, entonces es semilocalmente simplemente conexo (Proposición 3.15). Ahora se ve que el regreso es cierto.</p>
+<div class="thm"><b>Teorema 3.18.</b> <i>Si \(X\) es arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo, entonces \(X\) tiene cubriente universal.</i></div>
+<p>La vez pasada se definió como conjunto el candidato a cubriente universal (Definición 3.17): se fija un punto base \(x_0\in X\), los elementos de \(\tilde X\) son las clases de homotopía relativa a \(\{0,1\}\) de caminos en \(X\) que comienzan en \(x_0\), y \(p\colon\tilde X\to X\) manda la clase \([\gamma]\) al punto final \(\gamma(1)\); esto está bien definido porque las clases son de homotopías relativas a \(\{0,1\}\). Hay que verificar varias cosas:</p>
+<ol><li>que \(\tilde X\) tiene una topología;</li><li>que \(p\) es continua;</li><li>que \(p\) es un cubriente;</li><li>y la condición que más importa: que \(\tilde X\) es simplemente conexo.</li></ol>
+<p>Este video está dedicado a verificar todas estas condiciones.</p>
+<h4>Una base para la topología de \(X\)</h4>
+<p>Antes de definir la topología en \(\tilde X\) se hace una observación preliminar.</p>
+<div class="thm"><b>Lema 3.19.</b> <i>Sea \(\mathcal U\) la colección de abiertos arco-conexos \(V\subseteq X\) tales que \(\pi_1(V)\to\pi_1(X)\) es constante. Entonces \(\mathcal U\) es una base para la topología de \(X\).</i></div>
+<p>Estos abiertos existen alrededor de cada punto porque el espacio es semilocalmente simplemente conexo, y la base se va a usar para definir una base de una topología en \(\tilde X\).</p>
+<p><i>Demostración. \(\mathcal U\) cubre a \(X\), y de hecho hay elementos de \(\mathcal U\) dentro de cualquier vecindad.</i> Sea \(x\in X\). Como \(X\) es semilocalmente simplemente conexo, existe una vecindad \(V\) de \(x\) tal que \(\pi_1(V)\to\pi_1(X)\) es constante. Como \(X\) es localmente arco-conexo, existe otra vecindad \(W\subseteq V\) de \(x\) que es arco-conexa. Se tiene el diagrama \(\pi_1(W)\to\pi_1(V)\to\pi_1(X)\), cuya composición es el homomorfismo inducido por la inclusión de \(W\) en \(X\); como \(\pi_1(V)\to\pi_1(X)\) es constante, \(\pi_1(W)\to\pi_1(X)\) también lo es. Entonces \(W\in\mathcal U\), y por lo tanto \(\mathcal U\) cubre a todo \(X\).</p>
+<p><i>La condición de intersección.</i> Sean \(V_1,V_2\in\mathcal U\) y \(x\in V_1\cap V_2\). Hay que encontrar un elemento de \(\mathcal U\) que contenga a \(x\) y esté contenido en \(V_1\cap V_2\). Primero nótese que si \(V\in\mathcal U\), entonces \(\pi_1(V)\to\pi_1(X)\) es constante sin importar qué punto base se tome; esto es porque los elementos de \(\mathcal U\) son arco-conexos. Ahora se aplica un truco idéntico al de hace rato: existe \(W\subseteq V_1\cap V_2\) con \(x\in W\) y \(W\) arco-conexo, y se tiene el diagrama conmutativo
+\[\begin{array}{ccc}\pi_1(W) & \longrightarrow & \pi_1(V_1\cap V_2)\\ \big\downarrow & & \big\downarrow\\ \pi_1(X) & \longleftarrow & \pi_1(V_1)\end{array}\]
+El homomorfismo \(\pi_1(V_1)\to\pi_1(X)\) es constante porque \(V_1\in\mathcal U\); como el diagrama conmuta, \(\pi_1(W)\to\pi_1(X)\) también es constante. Por lo tanto \(W\in\mathcal U\). \(\square\)</p>
+<p>En esta demostración se usó fuertemente que \(X\) es localmente arco-conexo, que es la condición que hasta ahora no se había visto cómo utilizar.</p>
+<h4>La topología de \(\tilde X\)</h4>
+<div class="def"><b>Definición 3.20 (los conjuntos \(U_{[\gamma]}\)).</b> Dados \(U\in\mathcal U\) y un camino \(\gamma\) en \(X\) que comienza en \(x_0\) y termina en algún punto de \(U\), se define
+\[U_{[\gamma]}:=\{\,[\gamma\cdot\eta]\ :\ \eta\text{ es un camino en }U\text{ con }\eta(0)=\gamma(1)\,\}\subseteq\tilde X.\]</div>
+<p>Es decir, \(U_{[\gamma]}\) consiste de todos los caminos que resultan de tomar \(\gamma\), que está fijo, y luego recorrer un camino \(\eta\) que está completito adentro de \(U\).</p>
+<figure>
+<svg viewBox="0 0 370 160" style="max-width:460px" role="img" aria-label="Un camino γ de x₀ a un punto de U seguido de caminos η dentro de U">
+<rect class="mid" fill="none" x="10" y="10" width="320" height="140"/><text x="340" y="30">X</text>
+<rect class="end" fill="none" style="stroke-width:1.6" x="230" y="30" width="80" height="80"/><text class="dim" x="314" y="48">U</text>
+<path class="f0" fill="none" d="M40 125C90 60 180 60 250 55"/><text x="126" y="58">γ</text>
+<circle class="endpt" cx="40" cy="125" r="3.5"/><text class="dim" x="32" y="145">x₀</text>
+<circle style="fill:var(--fg)" cx="250" cy="55" r="2.5"/>
+<path class="f1" fill="none" d="M250 55C290 55 285 90 270 95"/><text class="c1" x="290" y="86">η</text>
+<path class="f1" fill="none" stroke-dasharray="5 4" d="M250 55C245 80 250 95 245 100"/>
+</svg>
+<figcaption>Los elementos de \(U_{[\gamma]}\) son las clases de \(\gamma\cdot\eta\), con \(\eta\) un camino dentro de \(U\) que empieza en \(\gamma(1)\).</figcaption>
+</figure>
+<div class="thm"><b>Lema 3.21.</b> <i>La colección \(\{\,U_{[\gamma]}\ :\ U\in\mathcal U,\ \gamma\colon I\to X,\ \gamma(0)=x_0,\ \gamma(1)\in U\,\}\) es una base para una topología en \(\tilde X\).</i></div>
+<p>Para verificarlo se hacen varias observaciones.</p>
+<p><b>1. \(U_{[\gamma]}\) solo depende de la clase de \(\gamma\):</b> \(U_{[\gamma]}=U_{[\beta]}\) si \([\gamma]=[\beta]\). Verificar esto es muy sencillo.</p>
+<p><b>2. \(p\colon U_{[\gamma]}\to U\) es biyectiva.</b> La restricción está bien definida, porque \(p\) evalúa un camino en \(1\), y los puntos finales de los caminos \(\gamma\cdot\eta\) siempre están dentro de \(U\). Es suprayectiva porque \(U\) es arco-conexo: dado un punto de \(U\), se conecta con el punto final de \(\gamma\) por un camino \(\eta\) en \(U\), y el camino \(\gamma\cdot\eta\) es un elemento que bajo \(p\) va a dar al punto con el que se comenzó. Es inyectiva porque \(\pi_1(U)\to\pi_1(X)\) es constante: si se tienen dos caminos \(\eta,\eta'\) en \(U\) que van del punto final de \(\gamma\) a un mismo punto, entonces son homotópicos en \(X\) relativos a \(\{0,1\}\); la demostración es exactamente idéntica a la de la proposición del video pasado, donde se demostró que un espacio es simplemente conexo si y sólo si solamente hay una clase de homotopía uniendo a dos puntos cualesquiera (Proposición 3.16). Entonces \([\gamma\cdot\eta]=[\gamma\cdot\eta']\).</p>
+<p>Lo que conviene tener en mente es que los \(U_{[\gamma]}\) son copias de \(U\), pero ahora en \(\tilde X\). Esto ya da una intuición de por qué \(p\) va a ser una proyección cubriente: los \(U_{[\gamma]}\), al ir variando \(\gamma\), van a ser las preimágenes de \(U\), y los \(U\) se van a convertir en vecindades regulares del cubriente.</p>
+<p><b>3. \(U_{[\gamma]}=U_{[\gamma']}\) si \([\gamma']\in U_{[\gamma]}\).</b> Digamos que \(\gamma'=\gamma\cdot\eta\), con \(\eta\) un camino en \(U\).</p>
+<ul>
+<li>(\(\supseteq\)) Cualquier elemento de \(U_{[\gamma']}\) se ve como \(\gamma\cdot\eta\) seguido de algún otro camino \(\mu\) en \(U\); pero esto es lo mismo que tomar \(\gamma\) y luego el camino \(\eta\cdot\mu\), que está en \(U\). Así que \([\gamma'\cdot\mu]\in U_{[\gamma]}\).</li>
+<li>(\(\subseteq\)) Si \([\gamma\cdot\mu]\in U_{[\gamma]}\), entonces, multiplicando por \(\eta\) y su inverso y sustituyendo \(\gamma'=\gamma\cdot\eta\),
+\[[\gamma\cdot\mu]=[\gamma\cdot\eta\cdot\bar\eta\cdot\mu]=[\gamma'\cdot\bar\eta\cdot\mu]\in U_{[\gamma']}.\]</li>
+</ul>
+<p><i>Demostración del Lema 3.21.</i> Claramente los \(U_{[\gamma]}\) cubren a \(\tilde X\); el argumento es muy parecido al que se usó para mostrar que los elementos de \(\mathcal U\) cubren a \(X\). Ahora considérense \(U_{[\gamma]}\), \(V_{[\gamma']}\) y un punto \([\gamma'']\in U_{[\gamma]}\cap V_{[\gamma']}\). Por la observación 3,
+\[U_{[\gamma]}=U_{[\gamma'']}\qquad\text{y}\qquad V_{[\gamma']}=V_{[\gamma'']}.\]
+Así que si \(W\in\mathcal U\) contiene a \(\gamma''(1)\) y \(W\subseteq U\cap V\) (un tal \(W\) siempre se puede conseguir porque los elementos de \(\mathcal U\) forman una base para la topología de \(X\)), entonces
+\[W_{[\gamma'']}\subseteq U_{[\gamma'']}\cap V_{[\gamma'']}\qquad\text{y}\qquad[\gamma'']\in W_{[\gamma'']}.\]
+Aquí es súper importante tener \(\gamma''\) en los tres: los elementos de \(W_{[\gamma'']}\) son concatenaciones de \(\gamma''\) con caminos que están dentro de \(W\), que a su vez está en \(U\) y en \(V\), así que esta inclusión sí es clara. \(\square\)</p>
+<p>Con esto, \(\tilde X\) es un espacio topológico con todas las de la ley.</p>
+<h4>\(p\) es continua</h4>
+<p>Recuérdese que \(p\colon U_{[\gamma]}\to U\) es una biyección; se ve que de hecho es un homeomorfismo. Si \(V_{[\gamma']}\subseteq U_{[\gamma]}\) es un abierto básico, entonces \(p(V_{[\gamma']})=V\). Además,
+\[p^{-1}(V)\cap U_{[\gamma]}=V_{[\gamma']}\]
+para cualquier \([\gamma']\in U_{[\gamma]}\) con \(\gamma'(1)\in V\). En efecto, \(V_{[\gamma']}\subseteq U_{[\gamma']}=U_{[\gamma]}\) (la inclusión es clara, porque los elementos de \(V_{[\gamma']}\) son concatenaciones de \(\gamma'\) con caminos en \(V\subseteq U\), y la igualdad es la observación 3), y \(V_{[\gamma']}\) se suprayecta a \(V\) bajo \(p\). Así que \(p\) da una biyección entre los abiertos de \(U_{[\gamma]}\) y los abiertos de \(U\); es decir, \(p\colon U_{[\gamma]}\to U\) es un homeomorfismo. En particular, \(p\) es continua en cada abierto \(U_{[\gamma]}\) y, por lo tanto, es continua en todo \(\tilde X\).</p>
+<h4>\(p\) es un cubriente</h4>
+<p>Sea \(U\in\mathcal U\). Como se dijo antes, los elementos de \(\mathcal U\) van a ser las vecindades regulares del cubriente. Se afirma que
+\[p^{-1}(U)=\bigsqcup_{[\gamma]}U_{[\gamma]},\]
+donde \(\gamma\) varía sobre los caminos que comienzan en \(x_0\) y terminan en \(U\). Claramente los elementos de la preimagen \(p^{-1}(U)\) son las clases de caminos que comienzan en \(x_0\) y terminan en algún punto de \(U\), y estos están en algunos de los \(U_{[\gamma]}\); y, al revés, por definición los elementos de los \(U_{[\gamma]}\) terminan en \(U\). Falta ver que la unión es disjunta: si \([\gamma'']\in U_{[\gamma]}\cap U_{[\gamma']}\), por la observación 3,
+\[U_{[\gamma]}=U_{[\gamma'']}=U_{[\gamma']};\]
+es decir, si dos de estos conjuntos tienen un elemento en común, son iguales. Como cada \(U_{[\gamma]}\) se proyecta homeomorfamente a \(U\) mediante \(p\), esto implica directamente que \(p\) es una proyección cubriente.</p>
+<h4>\(\tilde X\) es simplemente conexo</h4>
+<p>Hay que checar dos cosas: que \(\tilde X\) es arco-conexo y que su grupo fundamental es trivial.</p>
+<p><b>\(\tilde X\) es arco-conexo.</b> Considérense el punto de \(\tilde X\) representado por el lazo constante, \([c_{x_0}]\), y otro punto cualquiera \([\gamma]\). Se busca un camino en \(\tilde X\) que una a estos dos puntos. Para \(t\in I\), sea \(\gamma_t\) el camino en \(X\) que es igual a \(\gamma\) en \([0,t]\) y se queda constante en \([t,1]\): se recorre \(\gamma\) tal cual hasta el tiempo \(t\) y luego se queda quieto el resto del tiempo. Cada \(\gamma_t\) es un camino en \(X\) que comienza en \(x_0\), así que \(t\mapsto[\gamma_t]\) es una función de \(I\) en \(\tilde X\); esto da un camino de \([c_{x_0}]\) a \([\gamma]\), pues
+\[\gamma_0=c_{x_0},\qquad\gamma_1=\gamma.\]</p>
+<p><b>\(\pi_1(\tilde X)=1\).</b> Basta mostrar que \(p_*(\pi_1(\tilde X))=1\), porque \(p_*\) es inyectivo: ya se demostró que \(p\) es una proyección cubriente, y que el homomorfismo inducido por una proyección cubriente es inyectivo (Proposición 3.8).</p>
+<p>El argumento es un tanto geométrico. Sea \(\tilde\gamma\) un lazo en \(\tilde X\) basado en el punto \([c_{x_0}]\); al proyectarlo con \(p\) se obtiene un lazo \(p\tilde\gamma\) en \(X\) basado en \(x_0\). ¿Qué significa un lazo en \(\tilde X\)? Cada punto del lazo representa una clase de homotopía de un camino, digamos \([\gamma_t]\), y este \(\gamma_t\) es a su vez un camino en \(X\) que comienza en \(x_0\). Más aún, la imagen bajo \(p\) de \([\gamma_t]\) no es cualquier punto: es \(\gamma_t(1)\), porque la proyección agarra un punto representado por un camino y lo evalúa en \(1\). Entonces cada punto del lazo \(p\tilde\gamma\) está unido con \(x_0\) por un camino \(\gamma_t\), y estos caminos van variando de manera continua conforme se varía el punto sobre el lazo. Es como si se lograra rellenar todo lo que está adentro del lazo; de manera geométrica, se puede creer que el lazo se va retrayendo, jalándolo por estos caminos, hasta contraerlo. Así, \(p\tilde\gamma\) se retrae al lazo constante relativo a \(\{0,1\}\), la imagen \(p_*(\pi_1(\tilde X))\) es trivial y, por lo tanto, el grupo fundamental de \(\tilde X\) es trivial.</p>
+<figure>
+<svg viewBox="0 0 560 150" role="img" aria-label="Un lazo γ̃ en X̃ basado en [c_x₀] y su proyección pγ̃ en X, rellenada por los caminos γ_t que salen de x₀">
+<defs><marker id="nbm2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="10" y="24">X̃</text>
+<path class="f1" fill="none" d="M40 110C60 40 180 30 200 60C215 85 120 115 40 110"/>
+<circle class="endpt" cx="40" cy="110" r="3.5"/><text class="dim" x="24" y="134">[cₓ₀]</text>
+<circle style="fill:var(--fg)" cx="125" cy="45" r="2.5"/><text class="dim" x="110" y="32">[γₜ]</text>
+<text class="c1" x="14" y="80">γ̃</text>
+<path class="arr" d="M230 75H300" marker-end="url(#nbm2)"/><text x="262" y="66">p</text>
+<text x="322" y="24">X</text>
+<path class="mid" fill="none" d="M340 120L380 62M340 120L425 45M340 120L465 42M340 120L498 62M340 120L470 92M340 120L420 108"/>
+<path class="f1" fill="none" d="M340 120C360 40 480 30 500 60C515 85 420 125 340 120"/>
+<circle class="endpt" cx="340" cy="120" r="3.5"/><text class="dim" x="332" y="142">x₀</text>
+<circle style="fill:var(--fg)" cx="425" cy="45" r="2.5"/><text class="dim" x="408" y="30">γₜ(1)</text>
+<text class="c1" x="512" y="92">pγ̃</text>
+</svg>
+<figcaption>Cada punto \([\gamma_t]\) del lazo \(\tilde\gamma\) es la clase de un camino \(\gamma_t\) de \(x_0\) a \(\gamma_t(1)\) (en gris). Estos caminos varían continuamente y rellenan el lazo \(p\tilde\gamma\), que se contrae jalándolo por ellos.</figcaption>
+</figure>
+<p><b>Comentario.</b> El argumento anterior se puede precisar así. Si \(\beta\) es un camino en \(X\) que comienza en \(x_0\), el camino \(t\mapsto[\beta_t]\) de la demostración de que \(\tilde X\) es arco-conexo es un levantamiento de \(\beta\) que empieza en \([c_{x_0}]\), pues \(p[\beta_t]=\beta_t(1)=\beta(t)\). Por la unicidad de los levantamientos de caminos (Corolario 3.5), el lazo \(\tilde\gamma\), que es el levantamiento de \(p\tilde\gamma\) que empieza en \([c_{x_0}]\), es \(t\mapsto[(p\tilde\gamma)_t]\). Como \(\tilde\gamma\) es un lazo, en \(t=1\) se obtiene \([p\tilde\gamma]=[c_{x_0}]\), es decir, \(p\tilde\gamma\simeq c_{x_0}\) relativa a \(\{0,1\}\).</p>
+<h4>Conclusión</h4>
+<p>Ya se checaron todos los puntos de la lista: para un espacio con estas tres características (arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo) se construyó un cubriente \(p\colon\tilde X\to X\) con \(\tilde X\) simplemente conexo. A este cubriente se le da el nombre de <i>el cubriente universal</i> de \(X\). Esto demuestra el Teorema 3.18.</p>
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+  <li><a href="https://www.youtube.com/watch?v=-nXjkdiEcd4&amp;t=741" target="_blank" rel="noopener">12:21</a> En el pizarrón se escribe «\(V_{[\gamma]}=V_{[\gamma'']}\)»; como el abierto básico es \(V_{[\gamma']}\), debe decir \(V_{[\gamma']}=V_{[\gamma'']}\).</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/construccion-del-cubriente-universal-3.tex">construccion-del-cubriente-universal-3.tex</a>.</p>

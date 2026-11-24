@@ -1,0 +1,185 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{-nXjkdiEcd4}
+\input{preambulo}
+\unidad{3}{18} % unidad 3; primer enunciado: 3.18
+
+\title{Construcción del cubriente universal (topología y demostración)}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=-nXjkdiEcd4}{\guillemotleft{}El cubriente universal - parte 3\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se le da una topología al conjunto $\tilde X$ y se demuestra que $p\colon\tilde X\to X$ es continua, que es un cubriente y que $\tilde X$ es simplemente conexo.
+\normalsize
+
+\section*{El contexto}
+
+Se fija un espacio topológico $X$ arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo. Recuérdese rapidísimo qué significa esto último: para todo punto $x\in X$ existe una vecindad abierta $U$ de $x$ tal que el homomorfismo $\pi_1(U,x)\to\pi_1(X,x)$ inducido por la inclusión es constante; dicho de otra forma, todo lazo en $U$ se contrae dentro de $X$ (Definición~3.14).
+
+Ya se vio que si un espacio tiene cubriente universal, es decir, un cubriente simplemente conexo, entonces es semilocalmente simplemente conexo (Proposición~3.15). Ahora se ve que el regreso es cierto.
+
+\begin{teo}\label{teo:existencia}
+Si $X$ es arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo, entonces $X$ tiene cubriente universal.
+\end{teo}
+
+La vez pasada se definió como conjunto el candidato a cubriente universal (Definición~3.17): se fija un punto base $x_0\in X$, los elementos de $\tilde X$ son las clases de homotopía relativa a $\{0,1\}$ de caminos en $X$ que comienzan en $x_0$, y $p\colon\tilde X\to X$ manda la clase $[\gamma]$ al punto final $\gamma(1)$; esto está bien definido porque las clases son de homotopías relativas a $\{0,1\}$. Hay que verificar varias cosas:
+\begin{enumerate}
+  \item que $\tilde X$ tiene una topología;
+  \item que $p$ es continua;
+  \item que $p$ es un cubriente;
+  \item y la condición que más importa: que $\tilde X$ es simplemente conexo.
+\end{enumerate}
+Este video está dedicado a verificar todas estas condiciones.
+
+\section*{Una base para la topología de $X$}
+
+Antes de definir la topología en $\tilde X$ se hace una observación preliminar.
+
+\begin{lema}\label{lema:base-X}
+Sea $\mathcal U$ la colección de abiertos arco-conexos $V\subseteq X$ tales que $\pi_1(V)\to\pi_1(X)$ es constante. Entonces $\mathcal U$ es una base para la topología de $X$.
+\end{lema}
+
+Estos abiertos existen alrededor de cada punto porque el espacio es semilocalmente simplemente conexo, y la base se va a usar para definir una base de una topología en $\tilde X$.
+
+\begin{proof}
+\emph{$\mathcal U$ cubre a $X$, y de hecho hay elementos de $\mathcal U$ dentro de cualquier vecindad.} Sea $x\in X$. Como $X$ es semilocalmente simplemente conexo, existe una vecindad $V$ de $x$ tal que $\pi_1(V)\to\pi_1(X)$ es constante. Como $X$ es localmente arco-conexo, existe otra vecindad $W\subseteq V$ de $x$ que es arco-conexa. Se tiene el diagrama $\pi_1(W)\to\pi_1(V)\to\pi_1(X)$, cuya composición es el homomorfismo inducido por la inclusión de $W$ en $X$; como $\pi_1(V)\to\pi_1(X)$ es constante, $\pi_1(W)\to\pi_1(X)$ también lo es. Entonces $W\in\mathcal U$, y por lo tanto $\mathcal U$ cubre a todo $X$.
+
+\medskip\noindent\emph{La condición de intersección.} Sean $V_1,V_2\in\mathcal U$ y $x\in V_1\cap V_2$. Hay que encontrar un elemento de $\mathcal U$ que contenga a $x$ y esté contenido en $V_1\cap V_2$. Primero nótese que si $V\in\mathcal U$, entonces $\pi_1(V)\to\pi_1(X)$ es constante sin importar qué punto base se tome; esto es porque los elementos de $\mathcal U$ son arco-conexos. Ahora se aplica un truco idéntico al de hace rato: existe $W\subseteq V_1\cap V_2$ con $x\in W$ y $W$ arco-conexo, y se tiene el diagrama conmutativo
+\[
+  \begin{array}{ccc}
+    \pi_1(W) & \longrightarrow & \pi_1(V_1\cap V_2)\\
+    \big\downarrow & & \big\downarrow\\
+    \pi_1(X) & \longleftarrow & \pi_1(V_1)
+  \end{array}
+\]
+El homomorfismo $\pi_1(V_1)\to\pi_1(X)$ es constante porque $V_1\in\mathcal U$; como el diagrama conmuta, $\pi_1(W)\to\pi_1(X)$ también es constante. Por lo tanto $W\in\mathcal U$.
+\end{proof}
+
+En esta demostración se usó fuertemente que $X$ es localmente arco-conexo, que es la condición que hasta ahora no se había visto cómo utilizar.
+
+\section*{La topología de $\tilde X$}
+
+\begin{defn}[Los conjuntos $U_{[\gamma]}$]\label{def:Ugamma}
+Dados $U\in\mathcal U$ y un camino $\gamma$ en $X$ que comienza en $x_0$ y termina en algún punto de $U$, se define
+\[
+  U_{[\gamma]}:=\{\,[\gamma\cdot\eta]\ :\ \eta\text{ es un camino en }U\text{ con }\eta(0)=\gamma(1)\,\}\subseteq\tilde X .
+\]
+\end{defn}
+
+Es decir, $U_{[\gamma]}$ consiste de todos los caminos que resultan de tomar $\gamma$, que está fijo, y luego recorrer un camino $\eta$ que está completito adentro de $U$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (10,10) rectangle (330,150); \node at (350,25) {$X$};
+  \draw[thick,extremo] (230,30) rectangle (310,110); \node[extremo,font=\small] at (322,45) {$U$};
+  \draw[thick] (40,125) .. controls (90,60) and (180,60) .. (250,55); \node[font=\small] at (130,62) {$\gamma$};
+  \fill[extremo] (40,125) circle (3); \node[extremo,font=\small] at (40,142) {$x_0$};
+  \fill (250,55) circle (2.5);
+  \draw[thick,azul] (250,55) .. controls (290,55) and (285,90) .. (270,95); \node[azul,font=\small] at (296,82) {$\eta$};
+  \draw[thick,azul,dashed] (250,55) .. controls (245,80) and (250,95) .. (245,100);
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: los elementos de $U_{[\gamma]}$ son las clases de $\gamma\cdot\eta$, con $\eta$ un camino dentro de $U$ que empieza en $\gamma(1)$.
+
+\begin{lema}\label{lema:base-Xtilde}
+La colección $\{\,U_{[\gamma]}\ :\ U\in\mathcal U,\ \gamma\colon I\to X,\ \gamma(0)=x_0,\ \gamma(1)\in U\,\}$ es una base para una topología en $\tilde X$.
+\end{lema}
+
+Para verificarlo se hacen varias observaciones.
+
+\medskip\noindent\textbf{1. $U_{[\gamma]}$ solo depende de la clase de $\gamma$:} $U_{[\gamma]}=U_{[\beta]}$ si $[\gamma]=[\beta]$. Verificar esto es muy sencillo.
+
+\medskip\noindent\textbf{2. $p\colon U_{[\gamma]}\to U$ es biyectiva.} La restricción está bien definida, porque $p$ evalúa un camino en $1$, y los puntos finales de los caminos $\gamma\cdot\eta$ siempre están dentro de $U$. Es suprayectiva porque $U$ es arco-conexo: dado un punto de $U$, se conecta con el punto final de $\gamma$ por un camino $\eta$ en $U$, y el camino $\gamma\cdot\eta$ es un elemento que bajo $p$ va a dar al punto con el que se comenzó. Es inyectiva porque $\pi_1(U)\to\pi_1(X)$ es constante: si se tienen dos caminos $\eta,\eta'$ en $U$ que van del punto final de $\gamma$ a un mismo punto, entonces son homotópicos en $X$ relativos a $\{0,1\}$; la demostración es exactamente idéntica a la de la proposición del video pasado, donde se demostró que un espacio es simplemente conexo si y sólo si solamente hay una clase de homotopía uniendo a dos puntos cualesquiera (Proposición~3.16). Entonces $[\gamma\cdot\eta]=[\gamma\cdot\eta']$.
+
+Lo que conviene tener en mente es que los $U_{[\gamma]}$ son copias de $U$, pero ahora en $\tilde X$. Esto ya da una intuición de por qué $p$ va a ser una proyección cubriente: los $U_{[\gamma]}$, al ir variando $\gamma$, van a ser las preimágenes de $U$, y los $U$ se van a convertir en vecindades regulares del cubriente.
+
+\medskip\noindent\textbf{3. $U_{[\gamma]}=U_{[\gamma']}$ si $[\gamma']\in U_{[\gamma]}$.} Digamos que $\gamma'=\gamma\cdot\eta$, con $\eta$ un camino en $U$.
+\begin{itemize}
+  \item[($\supseteq$)] Cualquier elemento de $U_{[\gamma']}$ se ve como $\gamma\cdot\eta$ seguido de algún otro camino $\mu$ en $U$; pero esto es lo mismo que tomar $\gamma$ y luego el camino $\eta\cdot\mu$, que está en $U$. Así que $[\gamma'\cdot\mu]\in U_{[\gamma]}$.
+  \item[($\subseteq$)] Si $[\gamma\cdot\mu]\in U_{[\gamma]}$, entonces, multiplicando por $\eta$ y su inverso y sustituyendo $\gamma'=\gamma\cdot\eta$,
+  \[
+    [\gamma\cdot\mu]=[\gamma\cdot\eta\cdot\bar\eta\cdot\mu]=[\gamma'\cdot\bar\eta\cdot\mu]\in U_{[\gamma']} .
+  \]
+\end{itemize}
+
+\begin{proof}[Demostración del Lema~\ref{lema:base-Xtilde}]
+Claramente los $U_{[\gamma]}$ cubren a $\tilde X$; el argumento es muy parecido al que se usó para mostrar que los elementos de $\mathcal U$ cubren a $X$. Ahora considérense $U_{[\gamma]}$, $V_{[\gamma']}$ y un punto $[\gamma'']\in U_{[\gamma]}\cap V_{[\gamma']}$. Por la observación~3,
+\[
+  U_{[\gamma]}=U_{[\gamma'']}\qquad\text{y}\qquad V_{[\gamma']}=V_{[\gamma'']} .
+\]
+Así que si $W\in\mathcal U$ contiene a $\gamma''(1)$ y $W\subseteq U\cap V$ (un tal $W$ siempre se puede conseguir porque los elementos de $\mathcal U$ forman una base para la topología de $X$), entonces
+\[
+  W_{[\gamma'']}\subseteq U_{[\gamma'']}\cap V_{[\gamma'']}\qquad\text{y}\qquad[\gamma'']\in W_{[\gamma'']} .
+\]
+Aquí es súper importante tener $\gamma''$ en los tres: los elementos de $W_{[\gamma'']}$ son concatenaciones de $\gamma''$ con caminos que están dentro de $W$, que a su vez está en $U$ y en $V$, así que esta inclusión sí es clara.
+\end{proof}
+
+Con esto, $\tilde X$ es un espacio topológico con todas las de la ley.
+
+\section*{$p$ es continua}
+
+Recuérdese que $p\colon U_{[\gamma]}\to U$ es una biyección; se ve que de hecho es un homeomorfismo. Si $V_{[\gamma']}\subseteq U_{[\gamma]}$ es un abierto básico, entonces $p(V_{[\gamma']})=V$. Además,
+\[
+  p^{-1}(V)\cap U_{[\gamma]}=V_{[\gamma']}
+\]
+para cualquier $[\gamma']\in U_{[\gamma]}$ con $\gamma'(1)\in V$. En efecto, $V_{[\gamma']}\subseteq U_{[\gamma']}=U_{[\gamma]}$ (la inclusión es clara, porque los elementos de $V_{[\gamma']}$ son concatenaciones de $\gamma'$ con caminos en $V\subseteq U$, y la igualdad es la observación~3), y $V_{[\gamma']}$ se suprayecta a $V$ bajo $p$. Así que $p$ da una biyección entre los abiertos de $U_{[\gamma]}$ y los abiertos de $U$; es decir, $p\colon U_{[\gamma]}\to U$ es un homeomorfismo. En particular, $p$ es continua en cada abierto $U_{[\gamma]}$ y, por lo tanto, es continua en todo $\tilde X$.
+
+\section*{$p$ es un cubriente}
+
+Sea $U\in\mathcal U$. Como se dijo antes, los elementos de $\mathcal U$ van a ser las vecindades regulares del cubriente. Se afirma que
+\[
+  p^{-1}(U)=\bigsqcup_{[\gamma]}U_{[\gamma]},
+\]
+donde $\gamma$ varía sobre los caminos que comienzan en $x_0$ y terminan en $U$. Claramente los elementos de la preimagen $p^{-1}(U)$ son las clases de caminos que comienzan en $x_0$ y terminan en algún punto de $U$, y estos están en algunos de los $U_{[\gamma]}$; y, al revés, por definición los elementos de los $U_{[\gamma]}$ terminan en $U$. Falta ver que la unión es disjunta: si $[\gamma'']\in U_{[\gamma]}\cap U_{[\gamma']}$, por la observación~3,
+\[
+  U_{[\gamma]}=U_{[\gamma'']}=U_{[\gamma']} ;
+\]
+es decir, si dos de estos conjuntos tienen un elemento en común, son iguales. Como cada $U_{[\gamma]}$ se proyecta homeomorfamente a $U$ mediante $p$, esto implica directamente que $p$ es una proyección cubriente.
+
+\section*{$\tilde X$ es simplemente conexo}
+
+Hay que checar dos cosas: que $\tilde X$ es arco-conexo y que su grupo fundamental es trivial.
+
+\medskip\noindent\textbf{$\tilde X$ es arco-conexo.} Considérense el punto de $\tilde X$ representado por el lazo constante, $[c_{x_0}]$, y otro punto cualquiera $[\gamma]$. Se busca un camino en $\tilde X$ que una a estos dos puntos. Para $t\in I$, sea $\gamma_t$ el camino en $X$ que es igual a $\gamma$ en $[0,t]$ y se queda constante en $[t,1]$: se recorre $\gamma$ tal cual hasta el tiempo $t$ y luego se queda quieto el resto del tiempo. Cada $\gamma_t$ es un camino en $X$ que comienza en $x_0$, así que $t\mapsto[\gamma_t]$ es una función de $I$ en $\tilde X$; esto da un camino de $[c_{x_0}]$ a $[\gamma]$, pues
+\[
+  \gamma_0=c_{x_0},\qquad\gamma_1=\gamma .
+\]
+
+\medskip\noindent\textbf{$\pi_1(\tilde X)=1$.} Basta mostrar que $p_*(\pi_1(\tilde X))=1$, porque $p_*$ es inyectivo: ya se demostró que $p$ es una proyección cubriente, y que el homomorfismo inducido por una proyección cubriente es inyectivo (Proposición~3.8).
+
+El argumento es un tanto geométrico. Sea $\tilde\gamma$ un lazo en $\tilde X$ basado en el punto $[c_{x_0}]$; al proyectarlo con $p$ se obtiene un lazo $p\tilde\gamma$ en $X$ basado en $x_0$. ?`Qué significa un lazo en $\tilde X$? Cada punto del lazo representa una clase de homotopía de un camino, digamos $[\gamma_t]$, y este $\gamma_t$ es a su vez un camino en $X$ que comienza en $x_0$. Más aún, la imagen bajo $p$ de $[\gamma_t]$ no es cualquier punto: es $\gamma_t(1)$, porque la proyección agarra un punto representado por un camino y lo evalúa en $1$. Entonces cada punto del lazo $p\tilde\gamma$ está unido con $x_0$ por un camino $\gamma_t$, y estos caminos van variando de manera continua conforme se varía el punto sobre el lazo. Es como si se lograra rellenar todo lo que está adentro del lazo; de manera geométrica, se puede creer que el lazo se va retrayendo, jalándolo por estos caminos, hasta contraerlo. Así, $p\tilde\gamma$ se retrae al lazo constante relativo a $\{0,1\}$, la imagen $p_*(\pi_1(\tilde X))$ es trivial y, por lo tanto, el grupo fundamental de $\tilde X$ es trivial.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \node at (20,20) {$\tilde X$};
+  \draw[thick,azul] (40,110) .. controls (60,40) and (180,30) .. (200,60) .. controls (215,85) and (120,115) .. (40,110);
+  \fill[extremo] (40,110) circle (3); \node[extremo,font=\small] at (40,128) {$[c_{x_0}]$};
+  \fill (125,45) circle (2.5); \node[font=\small] at (125,30) {$[\gamma_t]$};
+  \node[azul,font=\small] at (22,75) {$\tilde\gamma$};
+  \draw[->,gray] (230,75) -- (300,75); \node[font=\small] at (265,63) {$p$};
+  \node at (330,20) {$X$};
+  \draw[thick,azul] (340,120) .. controls (360,40) and (480,30) .. (500,60) .. controls (515,85) and (420,125) .. (340,120);
+  \foreach \x/\y in {380/62,425/45,465/42,498/62,470/92,420/108} \draw[gray] (340,120) -- (\x,\y);
+  \fill[extremo] (340,120) circle (3); \node[extremo,font=\small] at (340,138) {$x_0$};
+  \fill (425,45) circle (2.5); \node[font=\small] at (425,28) {$\gamma_t(1)$};
+  \node[azul,font=\small] at (525,85) {$p\tilde\gamma$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: cada punto $[\gamma_t]$ del lazo $\tilde\gamma$ es la clase de un camino $\gamma_t$ de $x_0$ a $\gamma_t(1)$ (en gris). Estos caminos varían continuamente y rellenan el lazo $p\tilde\gamma$, que se contrae jalándolo por ellos.
+
+\medskip\noindent\textbf{Comentario.} El argumento anterior se puede precisar así. Si $\beta$ es un camino en $X$ que comienza en $x_0$, el camino $t\mapsto[\beta_t]$ de la demostración de que $\tilde X$ es arco-conexo es un levantamiento de $\beta$ que empieza en $[c_{x_0}]$, pues $p[\beta_t]=\beta_t(1)=\beta(t)$. Por la unicidad de los levantamientos de caminos (Corolario~3.5), el lazo $\tilde\gamma$, que es el levantamiento de $p\tilde\gamma$ que empieza en $[c_{x_0}]$, es $t\mapsto[(p\tilde\gamma)_t]$. Como $\tilde\gamma$ es un lazo, en $t=1$ se obtiene $[p\tilde\gamma]=[c_{x_0}]$, es decir, $p\tilde\gamma\simeq c_{x_0}$ relativa a $\{0,1\}$.
+
+\section*{Conclusión}
+
+Ya se checaron todos los puntos de la lista: para un espacio con estas tres características (arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo) se construyó un cubriente $p\colon\tilde X\to X$ con $\tilde X$ simplemente conexo. A este cubriente se le da el nombre de \emph{el cubriente universal} de $X$. Esto demuestra el Teorema~\ref{teo:existencia}.
+
+\begin{erratas}
+  \errata{741}{12:21}{En el pizarrón se escribe \guillemotleft{}$V_{[\gamma]}=V_{[\gamma'']}$\guillemotright{}; como el abierto básico es $V_{[\gamma']}$, debe decir $V_{[\gamma']}=V_{[\gamma'']}$.}
+\end{erratas}
+
+\end{document}
