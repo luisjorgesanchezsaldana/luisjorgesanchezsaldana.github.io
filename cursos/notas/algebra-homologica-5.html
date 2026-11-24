@@ -1,0 +1,111 @@
+<!-- Fragmento de las notas de algebra-homologica-5. Mismo contenido que el .tex. -->
+<h4>Sucesiones exactas de complejos</h4>
+<p>Se llama el teorema fundamental porque sin duda es uno de los resultados más importantes del álgebra homológica. Antes del enunciado, un poco de notación.</p>
+<div class="def"><b>Definición 4.11 (sucesión exacta de complejos).</b> Se dice que una sucesión de complejos de cadenas
+\[
+  \cdots\longrightarrow C_\bullet\xrightarrow{\ f\ }D_\bullet\xrightarrow{\ g\ }E_\bullet\longrightarrow\cdots
+\]
+es <i>exacta en \(D_\bullet\)</i> si
+\[
+  \cdots\longrightarrow C_p\xrightarrow{\ f_p\ }D_p\xrightarrow{\ g_p\ }E_p\longrightarrow\cdots
+\]
+es exacta en \(D_p\) para todo \(p\). La sucesión es <i>exacta</i> si es exacta en todo complejo de la sucesión.</div>
+<p>Es decir, \(f\) y \(g\) son homomorfismos de complejos de cadenas, y uno se concentra en la dimensión \(p\) de cada uno de los complejos y de los homomorfismos. Esencialmente, una sucesión de complejos de cadenas es exacta si y sólo si es exacta en cada dimensión.</p>
+<h4>El teorema</h4>
+<div class="thm"><b>Teorema 4.12 (teorema fundamental del álgebra homológica).</b> <i>Si
+\[
+  0\longrightarrow A_\bullet\xrightarrow{\ \phi\ }B_\bullet\xrightarrow{\ \psi\ }C_\bullet\longrightarrow0
+\]
+es una sucesión exacta de complejos de cadenas, entonces existen homomorfismos
+\[
+  \delta_{*p}\colon H_p(C_\bullet)\longrightarrow H_{p-1}(A_\bullet)
+\]
+tales que la sucesión
+\[
+  \cdots\longrightarrow H_p(A_\bullet)\xrightarrow{\ \bar\phi_p\ }H_p(B_\bullet)\xrightarrow{\ \bar\psi_p\ }H_p(C_\bullet)\xrightarrow{\ \delta_{*p}\ }H_{p-1}(A_\bullet)\xrightarrow{\ \bar\phi_{p-1}\ }H_{p-1}(B_\bullet)\longrightarrow\cdots
+\]
+es exacta.</i></div>
+<p>Los homomorfismos \(\bar\phi_p\) y \(\bar\psi_p\) son los inducidos por \(\phi\) y \(\psi\) en homología; la novedad es el homomorfismo \(\delta_{*p}\), que baja en uno la dimensión. Después de \(\delta_{*p}\) se puede volver a tomar el inducido, ahora por \(\phi_{p-1}\), y el asunto se vuelve periódico: se puede continuar así indefinidamente. La forma de pensar en el enunciado es: <i>las sucesiones exactas cortas de complejos de cadenas inducen sucesiones exactas largas en los grupos de homología</i>.</p>
+<h4>La demostración</h4>
+<p>Por hipótesis, la sucesión de complejos es exacta, así que
+\[
+  0\longrightarrow A_p\xrightarrow{\ \phi_p\ }B_p\xrightarrow{\ \psi_p\ }C_p\longrightarrow0
+\]
+es una sucesión exacta corta para todo \(p\). Desmenuzando la sucesión exacta corta de complejos se obtiene un diagrama como una reja, o una escalera grandota, que se extiende indefinidamente a la izquierda y a la derecha:
+\[
+  \begin{array}{ccccccc}
+    & & 0 & & 0 & & \\[2pt]
+    & & \big\downarrow & & \big\downarrow & & \\[2pt]
+    \cdots\longrightarrow & & A_p & \xrightarrow{\ \partial_p\ } & A_{p-1} & & \longrightarrow\cdots\\[2pt]
+    & & {\scriptstyle\phi_p}\big\downarrow & & \big\downarrow{\scriptstyle\phi_{p-1}} & & \\[2pt]
+    \cdots\longrightarrow & & B_p & \xrightarrow{\ \partial_p\ } & B_{p-1} & & \longrightarrow\cdots\\[2pt]
+    & & {\scriptstyle\psi_p}\big\downarrow & & \big\downarrow{\scriptstyle\psi_{p-1}} & & \\[2pt]
+    \cdots\longrightarrow & & C_p & \xrightarrow{\ \partial_p\ } & C_{p-1} & & \longrightarrow\cdots\\[2pt]
+    & & \big\downarrow & & \big\downarrow & & \\[2pt]
+    & & 0 & & 0 & &
+  \end{array}
+\]
+Todo el diagrama es conmutativo (todos los cuadraditos conmutan) y cada columna, que comienza y termina en cero, es exacta.</p>
+<p>Ahora se extrae de este diagrama otro diagrama. La columna de la dimensión \(p\) se pone horizontal y se divide cada término entre la imagen de la frontera que llega a él, es decir, entre las fronteras de dimensión \(p\): \(A_p/F_p(A)\), \(B_p/F_p(B)\) y \(C_p/F_p(C)\). Ya se había verificado que fronteras van a fronteras: las fronteras de dimensión \(p\) de \(A\) van a dar a las fronteras de dimensión \(p\) de \(B\), y lo mismo de \(B\) a \(C\). Por lo tanto \(\phi_p\) y \(\psi_p\) están bien definidas en los cocientes, y se tiene la fila de arriba del diagrama
+\[
+  \begin{array}{ccccccc}
+    & & A_p/F_p(A) & \xrightarrow{\ \phi_p\ } & B_p/F_p(B) & \xrightarrow{\ \psi_p\ } & C_p/F_p(C)\ \longrightarrow\ 0\\[2pt]
+    & & \big\downarrow{\scriptstyle\partial_p} & & \big\downarrow{\scriptstyle\partial_p} & & \big\downarrow{\scriptstyle\partial_p}\qquad\quad\\[2pt]
+    0\ \longrightarrow & & Z_{p-1}(A) & \xrightarrow{\ \phi_{p-1}\ } & Z_{p-1}(B) & \xrightarrow{\ \psi_{p-1}\ } & Z_{p-1}(C)\qquad\quad
+  \end{array}
+\]
+Abusando un poco de la notación, las flechas verticales se llaman otra vez \(\partial_p\), aunque son funciones diferentes; ponerle un nombre a cada una no será necesario en esta demostración. La flecha \(\partial_p\) que sale de \(A_p/F_p(A)\) está definida, en cada clase de equivalencia, aplicando \(\partial_p\) al representante, y cae en los ciclos de dimensión \(p-1\) de \(A\): como la fila de las \(A\) es un complejo, la imagen de \(\partial_p\) cae en el núcleo de la siguiente flecha, y los ciclos son justamente ese núcleo. Análogamente se tienen las otras dos flechas verticales, que caen en los ciclos respectivos de \(B\) y de \(C\). Abajo, \(\phi_{p-1}\) y \(\psi_{p-1}\) mandan ciclos en ciclos (por la conmutatividad del diagrama), y se está en todo el derecho de poner un \(0\) a la izquierda.</p>
+<p>El diagrama que se acaba de obtener se parece mucho al del lema de la serpiente (Lema 4.10). Recuérdese que las hipótesis de ese lema son que las dos filas sean exactas y que el diagrama conmute. Antes de verificarlas, se termina el argumento de por qué esto ya es suficiente.</p>
+<p><b>Cómo se concluye con el lema de la serpiente.</b> Supóngase que el diagrama satisface las hipótesis del lema de la serpiente. Arriba se ponen los núcleos de las fronteras, \(\ker\partial_p\), \(\ker\partial'_p\) y \(\ker\partial''_p\) (con primas, para que no parezca que son la misma cosa), y abajo los conúcleos; recuérdese que el <i>conúcleo</i> de una función es el codominio entre la imagen. El lema de la serpiente da el homomorfismo de conexión \(\delta_*\) y la exactitud de toda la sucesión. Ahora se identifican los núcleos y los conúcleos.</p>
+<ul><li>El núcleo de \(\partial_p\colon A_p/F_p(A)\to Z_{p-1}(A)\) consiste en las clases que van a dar a cero mediante \(\partial_p\); los representantes son exactamente el núcleo de \(\partial_p\) antes de hacer el cociente, que es \(Z_p(A)\). Entonces
+  \[
+    \ker\partial_p=Z_p(A)/F_p(A)=H_p(A),
+  \]
+  que, sorpresa, es por definición el \(p\)-ésimo grupo de homología de \(A\). Con el mismo argumento, los otros dos núcleos son \(H_p(B)\) y \(H_p(C)\).
+  </li><li>El conúcleo es \(Z_{p-1}(A)\) entre la imagen de \(\partial_p\). La imagen de \(\partial_p\) (definida en el cociente) es la misma que la imagen de \(\partial_p\) antes de tomar el cociente, es decir, \(F_{p-1}(A)\). Entonces el conúcleo es
+  \[
+    Z_{p-1}(A)/F_{p-1}(A)=H_{p-1}(A),
+  \]
+  y, análogamente, los otros dos son \(H_{p-1}(B)\) y \(H_{p-1}(C)\).
+</li></ul>
+<p>En resumidas cuentas, la sucesión exacta que da el lema de la serpiente es
+\[
+  H_p(A)\xrightarrow{\ \bar\phi_p\ }H_p(B)\xrightarrow{\ \bar\psi_p\ }H_p(C)\xrightarrow{\ \delta_*\ }H_{p-1}(A)\xrightarrow{\ \bar\phi_{p-1}\ }H_{p-1}(B)\xrightarrow{\ \bar\psi_{p-1}\ }H_{p-1}(C),
+\]
+una sucesión exacta de seis términos, donde las funciones son las inducidas. La sucesión exacta larga del teorema se obtiene simplemente pegando todas estas sucesiones exactas.</p>
+<p>Así que lo único que falta es verificar que el diagrama satisface las hipótesis del lema de la serpiente: que las dos filas son exactas y que el diagrama conmuta. La conmutatividad sale gratis, porque los homomorfismos con los que se está jugando son los \(\phi\), los \(\psi\) y los \(\partial\), que ya conmutaban en el diagrama de escalera grandote. Todas las funciones están bien definidas, como ya se dijo.</p>
+<p><b>La fila de arriba es exacta.</b> Es fácil verificar que \(\psi_p\) es suprayectiva: si se toma un elemento de \(C_p/F_p(C)\), como \(\psi_p\colon B_p\to C_p\) ya era suprayectiva, la clase está representada por alguna preimagen. También es fácil ver que \(\psi_p\circ\phi_p=0\), porque incluso antes de pasar al cociente la composición ya era cero; esto da la mitad de la exactitud en \(B_p/F_p(B)\).</p>
+<p>Ahora la otra mitad: \(\ker\psi_p\subseteq\operatorname{Im}\phi_p\). Si \(\psi_p(u+F_p(B))=0\), entonces, al evaluar el representante, se cae en el módulo entre el que se está haciendo el cociente:
+\[
+  \psi_p(u)\in F_p(C)=\operatorname{Im}\partial_{p+1},
+\]
+luego \(\psi_p(u)=\partial_{p+1}(v)\) para algún \(v\in C_{p+1}\). Como \(\psi_{p+1}\) es suprayectiva, \(v=\psi_{p+1}(w)\) para algún \(w\in B_{p+1}\). Así pues, por la conmutatividad,
+\[
+  \psi_p(u)=\partial_{p+1}(\psi_{p+1}(w))=\psi_p(\partial_{p+1}(w)),
+\]
+de donde \(u-\partial_{p+1}(w)\in\ker(\psi_p)\). Por la exactitud de la columna original (la de \(A_p\), \(B_p\), \(C_p\)), existe \(x\in A_p\) tal que
+\[
+  u-\partial_{p+1}(w)=\phi_p(x).
+\]
+Como \(\partial_{p+1}(w)\in F_p(B)\), esto implica
+\[
+  u+F_p(B)=\phi_p(x+F_p(A)),
+\]
+es decir, \(u+F_p(B)\in\operatorname{Im}\phi_p\). Esto da la otra inclusión, y la fila de arriba es exacta.</p>
+<p><b>La fila de abajo es exacta.</b> Es claro que \(\phi_{p-1}\) es inyectiva, porque ya era inyectiva antes de restringirla a los ciclos; esto da la exactitud en \(Z_{p-1}(A)\). Además \(\psi_{p-1}\phi_{p-1}=0\), pues incluso antes de restringir la composición ya era cero; así, \(\operatorname{Im}\phi_{p-1}\subseteq\ker\psi_{p-1}\).</p>
+<p>Para la otra inclusión, sea \(x\in\ker\psi_{p-1}\). Antes de restringir, \(\ker\psi_{p-1}=\operatorname{Im}\phi_{p-1}\) (hay que tener cuidado: parece que se usa lo que se quiere demostrar, pero no, porque aquí se habla de las funciones antes de restringirlas), así que \(x=\phi_{p-1}(y)\) para algún \(y\in A_{p-1}\). Basta mostrar que \(y\in Z_{p-1}(A)\). Se tiene
+\[
+  \partial_{p-1}(\phi_{p-1}(y))=\partial_{p-1}(x)=0,
+\]
+porque \(x\in Z_{p-1}(B)\) es un ciclo. Pero por la conmutatividad,
+\[
+  \partial_{p-1}(\phi_{p-1}(y))=\phi_{p-2}(\partial_{p-1}(y)),
+\]
+y como todas las \(\phi\) son inyectivas, en particular \(\phi_{p-2}\), se concluye que \(\partial_{p-1}(y)=0\); es decir, \(y\in Z_{p-1}(A)\), que es justamente lo que se quería demostrar.</p>
+<p>Con esto, el diagrama cumple las hipótesis del lema de la serpiente, y el lema da la sucesión exacta del teorema. Los homomorfismos \(\delta_{*p}\) se definen a través del lema de la serpiente, como en su demostración, y la sucesión exacta larga con todos los grupos de homología de \(A\), \(B\) y \(C\) es exacta. \(\square\)</p>
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+  <li><a href="https://www.youtube.com/watch?v=Mas14lot35A&amp;t=600" target="_blank" rel="noopener">10:00</a> Abajo del diagrama se escribe \(H_p(A)=Z_{p-1}(A)/F_{p-1}(A)\), pero el lado izquierdo debe ser \(H_{p-1}(A)\).</li>
+  <li><a href="https://www.youtube.com/watch?v=Mas14lot35A&amp;t=780" target="_blank" rel="noopener">13:00</a> Se escribe \(F_p(C)=\operatorname{Im}\partial_{p-1}\), pero las fronteras de dimensión \(p\) son la imagen de \(\partial_{p+1}\): debe decir \(F_p(C)=\operatorname{Im}\partial_{p+1}\). El error se arrastra al resto del argumento, donde debe ser \(v\in C_{p+1}\), \(w\in B_{p+1}\), \(\psi_{p+1}\) y \(\partial_{p+1}(w)\).</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/algebra-homologica-5.tex">algebra-homologica-5.tex</a>.</p>
