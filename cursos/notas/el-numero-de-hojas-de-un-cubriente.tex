@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{9VcsyAgSIjc}
+\input{preambulo}
+\unidad{3}{9} % unidad 3; primer enunciado: 3.9
+
+\title{El número de hojas de un cubriente y el grupo fundamental}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=9VcsyAgSIjc}{\guillemotleft{}El número de hojas de un cubriente y su grupo fundamental\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se demuestra que el número de hojas de un cubriente, con espacio base y espacio cubriente conexos por trayectorias, es el índice de la imagen del grupo fundamental del espacio cubriente en el grupo fundamental del espacio base.
+\normalsize
+
+\section*{El enunciado}
+
+En este video se enuncia y se demuestra un solo resultado. Recuérdese que el número de hojas de un cubriente $p\colon\tilde X\to X$ se puede pensar como el número de preimágenes de cualquier punto de $X$.
+
+\begin{prop}\label{prop:hojas-indice}
+Sea $p\colon\tilde X\to X$ un cubriente con $\tilde X$ y $X$ conexos por trayectorias. Entonces el número de hojas del cubriente es igual al índice de
+\[
+  p_*(\pi_1(\tilde X,\tilde x_0))\quad\text{en}\quad\pi_1(X,x_0).
+\]
+\end{prop}
+
+Aquí $p_*(\pi_1(\tilde X,\tilde x_0))$ es la imagen del homomorfismo inducido en grupos fundamentales, que es un subgrupo de $\pi_1(X,x_0)$.
+
+\section*{La demostración}
+
+Para simplificar la notación se escribe
+\[
+  G=\pi_1(X,x_0),\qquad H=p_*(\pi_1(\tilde X,\tilde x_0))\le G .
+\]
+El subgrupo $H$ no es necesariamente normal en $G$, pero se puede tomar el conjunto de clases laterales $G/H$, cuyos elementos se escriben $H[g]$. Lo que se quiere hacer es construir una biyección
+\[
+  \Phi\colon G/H\to p^{-1}(x_0)
+\]
+entre el conjunto de clases laterales y la preimagen (o fibra) de $x_0$.
+
+\medskip\noindent\textbf{Una observación.} Sea $g$ un lazo basado en $x_0$ y sea $\tilde g$ su levantamiento con $\tilde g(0)=\tilde x_0$ (recuérdese que siempre se puede levantar un camino, y de manera única una vez que se especifica el punto inicial del levantamiento; Corolario~3.5). Si $[h]\in H$, entonces $hg$ se levanta a $\tilde h\tilde g$, que tiene el mismo punto final que $\tilde g$.
+
+En efecto, el producto $hg$ recorre primero $h$ y luego $g$, así que para levantarlo se levanta primero $h$ y luego se va levantando $g$. Como $[h]$ está en $H$, que es la imagen del grupo fundamental del cubriente, por lo demostrado en el video anterior (Proposición~3.8) el lazo $h$ se levanta a un lazo $\tilde h$ en $\tilde X$ basado en $\tilde x_0$. En cambio, $g$ no tiene por qué levantarse a un lazo: se levanta a algún camino $\tilde g$ que empieza en $\tilde x_0$. Entonces el levantamiento de $hg$ es la concatenación $\tilde h\tilde g$, que termina donde termina $\tilde g$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (60,20) -- (340,20) -- (300,90) -- (20,90) -- cycle; \node at (365,45) {$\tilde X$};
+  \draw[thick] (150,55) .. controls (110,25) and (95,75) .. (150,55); \node[font=\small] at (95,55) {$\tilde h$};
+  \draw[thick,azul] (150,55) .. controls (190,35) and (220,75) .. (260,50);
+  \node[azul,font=\small] at (205,40) {$\tilde g$};
+  \fill[extremo] (150,55) circle (3.5); \node[extremo,font=\small] at (155,75) {$\tilde x_0$};
+  \fill[azul] (260,50) circle (3.5); \node[azul,font=\small] at (290,62) {$\tilde g(1)$};
+  \draw[->,gray] (180,100) -- (180,140); \node[font=\small] at (194,122) {$p$};
+  \draw[gray] (60,150) -- (340,150) -- (300,220) -- (20,220) -- cycle; \node at (365,175) {$X$};
+  \draw[thick] (150,190) .. controls (100,155) and (90,215) .. (150,190); \node[font=\small] at (90,192) {$h$};
+  \draw[thick,azul] (150,190) .. controls (190,150) and (260,170) .. (230,195) .. controls (210,212) and (180,205) .. (150,190);
+  \node[azul,font=\small] at (255,190) {$g$};
+  \fill[extremo] (150,190) circle (3.5); \node[extremo,font=\small] at (150,208) {$x_0$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: el lazo $h$ (con $[h]\in H$) se levanta a un lazo $\tilde h$ basado en $\tilde x_0$, mientras que $g$ se levanta a un camino $\tilde g$. El levantamiento $\tilde h\tilde g$ de $hg$ termina en $\tilde g(1)$.
+
+\medskip\noindent\textbf{Definición de $\Phi$.} Ahora ya se puede definir la función
+\[
+  \Phi\colon G/H\to p^{-1}(x_0),\qquad \Phi(H[g])=\tilde g(1),
+\]
+es decir, la clase lateral representada por $[g]$ se manda al punto final del levantamiento de $g$ que empieza en $\tilde x_0$. Lo que se acaba de demostrar es que esta función está bien definida: si se cambia de representante de la clase lateral, el nuevo representante es de la forma $[h][g]=[hg]$ con $[h]\in H$, y los puntos finales de los levantamientos coinciden. No importa qué representante se tome.
+
+Resta demostrar que $\Phi$ es una biyección.
+
+\medskip\noindent\textbf{$\Phi$ es sobre.} Considérese la fibra $p^{-1}(x_0)$; uno de sus puntos es $\tilde x_0$. Sea $y\in p^{-1}(x_0)$ cualquiera. Se toma un camino $f$ en $\tilde X$ que une a $\tilde x_0$ con $y$; dicho camino existe porque se está suponiendo que $\tilde X$ es conexo por trayectorias. Al proyectarlo se obtiene un lazo $pf$ en $X$ basado en $x_0$. Por la unicidad del levantamiento, el levantamiento de $pf$ que empieza en $\tilde x_0$ es justamente $f$. Entonces
+\[
+  \Phi(H[pf])=f(1)=y .
+\]
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (60,20) -- (340,20) -- (300,90) -- (20,90) -- cycle; \node at (365,45) {$\tilde X$};
+  \foreach \x/\y in {120/40,165/42,215/38,250/70} \fill (\x,\y) circle (2.5);
+  \fill[extremo] (85,70) circle (3.5); \node[extremo,font=\small] at (70,82) {$\tilde x_0$};
+  \draw[thick,azul] (85,70) .. controls (140,95) and (230,10) .. (285,45);
+  \fill[azul] (285,45) circle (3.5); \node[azul,font=\small] at (300,35) {$y$};
+  \node[azul,font=\small] at (180,72) {$f$};
+  \draw[->,gray] (180,100) -- (180,140); \node[font=\small] at (194,122) {$p$};
+  \draw[gray] (60,150) -- (340,150) -- (300,220) -- (20,220) -- cycle; \node at (365,175) {$X$};
+  \draw[thick,azul] (150,190) .. controls (190,145) and (280,165) .. (250,190) .. controls (230,207) and (190,210) .. (150,190);
+  \node[azul,font=\small] at (275,195) {$pf$};
+  \fill[extremo] (150,190) circle (3.5); \node[extremo,font=\small] at (140,205) {$x_0$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: los puntos de arriba forman la fibra $p^{-1}(x_0)$. Un camino $f$ de $\tilde x_0$ a $y$ se proyecta a un lazo $pf$ basado en $x_0$, y $f$ es el levantamiento de $pf$ que empieza en $\tilde x_0$.
+
+\medskip\noindent\textbf{$\Phi$ es inyectiva.} Supóngase que dos clases laterales van a dar al mismo elemento, $\Phi(H[g_1])=\Phi(H[g_2])$. Por definición, esto quiere decir que
+\[
+  \tilde g_1(1)=\tilde g_2(1),
+\]
+es decir, los levantamientos de $g_1$ y de $g_2$ que empiezan en $\tilde x_0$ tienen el mismo punto final. Entonces, si se recorre $\tilde g_1$ y luego $\tilde g_2$ al revés, se obtiene un lazo en $\tilde X$ basado en $\tilde x_0$. Este lazo es el levantamiento del lazo $g_1\bar g_2$ de $X$; es decir, $g_1\bar g_2$ se levanta a un lazo en $\tilde X$ basado en $\tilde x_0$. Como los elementos de $H$ son exactamente aquellos que se levantan a lazos basados en $\tilde x_0$ (Proposición~3.8), se tiene que
+\[
+  [g_1\bar g_2]\in H ,
+\]
+y esto implica que $H[g_1]=H[g_2]$. Por lo tanto $\Phi$ es inyectiva, y esto termina la demostración.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (60,20) -- (340,20) -- (300,100) -- (20,100) -- cycle; \node at (365,45) {$\tilde X$};
+  \draw[thick] (85,70) .. controls (140,95) and (220,95) .. (280,55);
+  \draw[thick,azul] (85,70) .. controls (130,25) and (220,25) .. (280,55);
+  \node[font=\small] at (180,95) {$\tilde g_1$}; \node[azul,font=\small] at (180,25) {$\tilde g_2$};
+  \fill[extremo] (85,70) circle (3.5); \node[extremo,font=\small] at (65,80) {$\tilde x_0$};
+  \fill[extremo] (280,55) circle (3.5);
+  \node[extremo,font=\small] at (275,80) {$\tilde g_1(1)=\tilde g_2(1)$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: si $\tilde g_1$ y $\tilde g_2$ tienen el mismo punto final, recorrer $\tilde g_1$ y luego $\tilde g_2$ al revés da un lazo basado en $\tilde x_0$, que levanta a $g_1\bar g_2$.
+
+\section*{Para terminar}
+
+Ahora ya se tiene este resultado: en un cubriente en el que tanto $X$ como $\tilde X$ son conexos por trayectorias, el número de hojas está en correspondencia con el índice de la imagen del grupo fundamental de $\tilde X$ en el grupo fundamental de $X$. Este resultado, e incluso su demostración, comienzan a sugerir que tal vez hay una acción del grupo fundamental en la fibra de cada punto. En efecto, eso es lo que va a suceder, y se demostrará en algún video posterior.
+
+\begin{erratas}
+  \errata{268}{4:28}{En el pizarrón se escribe \guillemotleft{}$f$ es un lazo que une a $\tilde x_0$ y $y$\guillemotright{}, pero $f$ es un camino de $\tilde x_0$ a $y$ (en general no es un lazo); el lazo es su proyección $pf$. De palabra sí se dice \guillemotleft{}camino\guillemotright{}.}
+\end{erratas}
+
+\end{document}

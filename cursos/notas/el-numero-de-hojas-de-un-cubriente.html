@@ -1,0 +1,75 @@
+<!-- Fragmento de las notas de el-numero-de-hojas-de-un-cubriente. Mismo contenido que el .tex. -->
+<h4>El enunciado</h4>
+<p>En este video se enuncia y se demuestra un solo resultado. Recuérdese que el número de hojas de un cubriente \(p\colon\tilde X\to X\) se puede pensar como el número de preimágenes de cualquier punto de \(X\).</p>
+<div class="thm"><b>Proposición 3.9.</b> <i>Sea \(p\colon\tilde X\to X\) un cubriente con \(\tilde X\) y \(X\) conexos por trayectorias. Entonces el número de hojas del cubriente es igual al índice de
+\[p_*(\pi_1(\tilde X,\tilde x_0))\quad\text{en}\quad\pi_1(X,x_0).\]</i></div>
+<p>Aquí \(p_*(\pi_1(\tilde X,\tilde x_0))\) es la imagen del homomorfismo inducido en grupos fundamentales, que es un subgrupo de \(\pi_1(X,x_0)\).</p>
+<h4>La demostración</h4>
+<p>Para simplificar la notación se escribe
+\[G=\pi_1(X,x_0),\qquad H=p_*(\pi_1(\tilde X,\tilde x_0))\le G.\]
+El subgrupo \(H\) no es necesariamente normal en \(G\), pero se puede tomar el conjunto de clases laterales \(G/H\), cuyos elementos se escriben \(H[g]\). Lo que se quiere hacer es construir una biyección
+\[\Phi\colon G/H\to p^{-1}(x_0)\]
+entre el conjunto de clases laterales y la preimagen (o fibra) de \(x_0\).</p>
+<p><b>Una observación.</b> Sea \(g\) un lazo basado en \(x_0\) y sea \(\tilde g\) su levantamiento con \(\tilde g(0)=\tilde x_0\) (recuérdese que siempre se puede levantar un camino, y de manera única una vez que se especifica el punto inicial del levantamiento; Corolario 3.5). Si \([h]\in H\), entonces \(hg\) se levanta a \(\tilde h\tilde g\), que tiene el mismo punto final que \(\tilde g\).</p>
+<p>En efecto, el producto \(hg\) recorre primero \(h\) y luego \(g\), así que para levantarlo se levanta primero \(h\) y luego se va levantando \(g\). Como \([h]\) está en \(H\), que es la imagen del grupo fundamental del cubriente, por lo demostrado en el video anterior (Proposición 3.8) el lazo \(h\) se levanta a un lazo \(\tilde h\) en \(\tilde X\) basado en \(\tilde x_0\). En cambio, \(g\) no tiene por qué levantarse a un lazo: se levanta a algún camino \(\tilde g\) que empieza en \(\tilde x_0\). Entonces el levantamiento de \(hg\) es la concatenación \(\tilde h\tilde g\), que termina donde termina \(\tilde g\).</p>
+<figure>
+<svg viewBox="0 0 400 240" role="img" aria-label="El lazo h se levanta a un lazo h̃ basado en x̃₀ y g se levanta a un camino g̃; el levantamiento de hg termina en g̃(1)">
+<defs><marker id="nbm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<path class="mid" fill="none" d="M60 20H340L300 90H20Z"/><text x="360" y="50">X̃</text>
+<path class="f0" fill="none" d="M150 55C110 25 95 75 150 55"/><text x="88" y="60">h̃</text>
+<path class="f1" fill="none" d="M150 55C190 35 220 75 260 50"/><text class="c1" x="200" y="38">g̃</text>
+<circle class="endpt" cx="150" cy="55" r="3.5"/><text class="dim" x="146" y="80">x̃₀</text>
+<circle class="f1" style="fill:var(--accent)" cx="260" cy="50" r="3"/><text class="c1" x="268" y="70">g̃(1)</text>
+<path class="arr" d="M180 100V140" marker-end="url(#nbm1)"/><text x="190" y="125">p</text>
+<path class="mid" fill="none" d="M60 150H340L300 220H20Z"/><text x="360" y="180">X</text>
+<path class="f0" fill="none" d="M150 190C100 155 90 215 150 190"/><text x="82" y="196">h</text>
+<path class="f1" fill="none" d="M150 190C190 150 260 170 230 195C210 212 180 205 150 190"/><text class="c1" x="250" y="195">g</text>
+<circle class="endpt" cx="150" cy="190" r="3.5"/><text class="dim" x="144" y="214">x₀</text>
+</svg>
+<figcaption>El lazo \(h\) (con \([h]\in H\)) se levanta a un lazo \(\tilde h\) basado en \(\tilde x_0\), mientras que \(g\) se levanta a un camino \(\tilde g\). El levantamiento \(\tilde h\tilde g\) de \(hg\) termina en \(\tilde g(1)\).</figcaption>
+</figure>
+<p><b>Definición de \(\Phi\).</b> Ahora ya se puede definir la función
+\[\Phi\colon G/H\to p^{-1}(x_0),\qquad \Phi(H[g])=\tilde g(1),\]
+es decir, la clase lateral representada por \([g]\) se manda al punto final del levantamiento de \(g\) que empieza en \(\tilde x_0\). Lo que se acaba de demostrar es que esta función está bien definida: si se cambia de representante de la clase lateral, el nuevo representante es de la forma \([h][g]=[hg]\) con \([h]\in H\), y los puntos finales de los levantamientos coinciden. No importa qué representante se tome.</p>
+<p>Resta demostrar que \(\Phi\) es una biyección.</p>
+<p><b>\(\Phi\) es sobre.</b> Considérese la fibra \(p^{-1}(x_0)\); uno de sus puntos es \(\tilde x_0\). Sea \(y\in p^{-1}(x_0)\) cualquiera. Se toma un camino \(f\) en \(\tilde X\) que une a \(\tilde x_0\) con \(y\); dicho camino existe porque se está suponiendo que \(\tilde X\) es conexo por trayectorias. Al proyectarlo se obtiene un lazo \(pf\) en \(X\) basado en \(x_0\). Por la unicidad del levantamiento, el levantamiento de \(pf\) que empieza en \(\tilde x_0\) es justamente \(f\). Entonces
+\[\Phi(H[pf])=f(1)=y.\]</p>
+<figure>
+<svg viewBox="0 0 400 240" role="img" aria-label="Un camino f en X̃ de x̃₀ a un punto y de la fibra se proyecta a un lazo pf basado en x₀">
+<defs><marker id="nbm2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<path class="mid" fill="none" d="M60 20H340L300 90H20Z"/><text x="360" y="50">X̃</text>
+<circle style="fill:var(--fg)" cx="120" cy="40" r="2.5"/><circle style="fill:var(--fg)" cx="165" cy="42" r="2.5"/><circle style="fill:var(--fg)" cx="215" cy="38" r="2.5"/><circle style="fill:var(--fg)" cx="250" cy="70" r="2.5"/>
+<circle class="endpt" cx="85" cy="70" r="3.5"/><text class="dim" x="60" y="86">x̃₀</text>
+<path class="f1" fill="none" d="M85 70C140 95 230 10 285 45"/>
+<circle class="f1" style="fill:var(--accent)" cx="285" cy="45" r="3.5"/><text class="c1" x="294" y="38">y</text>
+<text class="c1" x="176" y="78">f</text>
+<path class="arr" d="M180 100V140" marker-end="url(#nbm2)"/><text x="190" y="125">p</text>
+<path class="mid" fill="none" d="M60 150H340L300 220H20Z"/><text x="360" y="180">X</text>
+<path class="f1" fill="none" d="M150 190C190 145 280 165 250 190C230 207 190 210 150 190"/><text class="c1" x="268" y="198">pf</text>
+<circle class="endpt" cx="150" cy="190" r="3.5"/><text class="dim" x="132" y="210">x₀</text>
+</svg>
+<figcaption>Los puntos de arriba forman la fibra \(p^{-1}(x_0)\). Un camino \(f\) de \(\tilde x_0\) a \(y\) se proyecta a un lazo \(pf\) basado en \(x_0\), y \(f\) es el levantamiento de \(pf\) que empieza en \(\tilde x_0\).</figcaption>
+</figure>
+<p><b>\(\Phi\) es inyectiva.</b> Supóngase que dos clases laterales van a dar al mismo elemento, \(\Phi(H[g_1])=\Phi(H[g_2])\). Por definición, esto quiere decir que
+\[\tilde g_1(1)=\tilde g_2(1),\]
+es decir, los levantamientos de \(g_1\) y de \(g_2\) que empiezan en \(\tilde x_0\) tienen el mismo punto final. Entonces, si se recorre \(\tilde g_1\) y luego \(\tilde g_2\) al revés, se obtiene un lazo en \(\tilde X\) basado en \(\tilde x_0\). Este lazo es el levantamiento del lazo \(g_1\bar g_2\) de \(X\); es decir, \(g_1\bar g_2\) se levanta a un lazo en \(\tilde X\) basado en \(\tilde x_0\). Como los elementos de \(H\) son exactamente aquellos que se levantan a lazos basados en \(\tilde x_0\) (Proposición 3.8), se tiene que
+\[[g_1\bar g_2]\in H,\]
+y esto implica que \(H[g_1]=H[g_2]\). Por lo tanto \(\Phi\) es inyectiva, y esto termina la demostración. \(\square\)</p>
+<figure>
+<svg viewBox="0 0 400 115" role="img" aria-label="Dos levantamientos g̃₁ y g̃₂ que empiezan en x̃₀ y terminan en el mismo punto forman un lazo">
+<path class="mid" fill="none" d="M60 20H340L300 100H20Z"/><text x="360" y="50">X̃</text>
+<path class="f0" fill="none" d="M85 70C140 95 220 95 280 55"/>
+<path class="f1" fill="none" d="M85 70C130 25 220 25 280 55"/>
+<text x="172" y="100">g̃₁</text><text class="c1" x="172" y="30">g̃₂</text>
+<circle class="endpt" cx="85" cy="70" r="3.5"/><text class="dim" x="56" y="86">x̃₀</text>
+<circle class="endpt" cx="280" cy="55" r="3.5"/><text class="dim" x="215" y="78">g̃₁(1) = g̃₂(1)</text>
+</svg>
+<figcaption>Si \(\tilde g_1\) y \(\tilde g_2\) tienen el mismo punto final, recorrer \(\tilde g_1\) y luego \(\tilde g_2\) al revés da un lazo basado en \(\tilde x_0\), que levanta a \(g_1\bar g_2\).</figcaption>
+</figure>
+<h4>Para terminar</h4>
+<p>Ahora ya se tiene este resultado: en un cubriente en el que tanto \(X\) como \(\tilde X\) son conexos por trayectorias, el número de hojas está en correspondencia con el índice de la imagen del grupo fundamental de \(\tilde X\) en el grupo fundamental de \(X\). Este resultado, e incluso su demostración, comienzan a sugerir que tal vez hay una acción del grupo fundamental en la fibra de cada punto. En efecto, eso es lo que va a suceder, y se demostrará en algún video posterior.</p>
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+  <li><a href="https://www.youtube.com/watch?v=9VcsyAgSIjc&amp;t=268" target="_blank" rel="noopener">4:28</a> En el pizarrón se escribe «\(f\) es un lazo que une a \(\tilde x_0\) y \(y\)», pero \(f\) es un camino de \(\tilde x_0\) a \(y\) (en general no es un lazo); el lazo es su proyección \(pf\). De palabra sí se dice «camino».</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/el-numero-de-hojas-de-un-cubriente.tex">el-numero-de-hojas-de-un-cubriente.tex</a>.</p>
