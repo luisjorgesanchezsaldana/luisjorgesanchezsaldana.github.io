@@ -1,0 +1,132 @@
+<!-- Fragmento de las notas de algebra-homologica-4. Mismo contenido que el .tex. -->
+<h4>El enunciado</h4>
+<p>El lema de la serpiente servirá como auxiliar para demostrar, posteriormente, el teorema fundamental del álgebra homológica.</p>
+<div class="thm"><b>Lema 4.10 (lema de la serpiente).</b> <i>Considérese el diagrama conmutativo de \(R\)-módulos
+\[
+  \begin{array}{ccccccccc}
+    & & Z'_1 & \xrightarrow{\ \phi'\ } & Z'_2 & \xrightarrow{\ \psi'\ } & Z'_3 & \longrightarrow & 0\\[2pt]
+    & & {\scriptstyle\partial_1}\big\downarrow & & \big\downarrow{\scriptstyle\partial_2} & & \big\downarrow{\scriptstyle\partial_3} & & \\[2pt]
+    0 & \longrightarrow & Z_1 & \xrightarrow{\ \phi\ } & Z_2 & \xrightarrow{\ \psi\ } & Z_3 & &
+  \end{array}
+\]
+y supóngase que las filas son exactas. Entonces existe un homomorfismo
+\[
+  \delta_*\colon\ker(\partial_3)\longrightarrow Z_1/\operatorname{Im}(\partial_1)
+\]
+tal que la sucesión
+\[
+  \ker(\partial_1)\xrightarrow{\ \phi''\ }\ker(\partial_2)\xrightarrow{\ \psi''\ }\ker(\partial_3)\xrightarrow{\ \delta_*\ }Z_1/\operatorname{Im}(\partial_1)\xrightarrow{\ \bar\phi\ }Z_2/\operatorname{Im}(\partial_2)\xrightarrow{\ \bar\psi\ }Z_3/\operatorname{Im}(\partial_3)
+\]
+es exacta, donde \(\phi''\) y \(\psi''\) son las restricciones de \(\phi'\) y \(\psi'\), y \(\bar\phi\), \(\bar\psi\) son los homomorfismos inducidos por \(\phi\) y \(\psi\).</i></div>
+<p>Es decir, las funciones \(\phi''\), \(\psi''\), \(\bar\phi\) y \(\bar\psi\) son las naturales: las dos primeras son restricciones de \(\phi'\) y \(\psi'\), y las otras dos son las inducidas por \(\phi\) y \(\psi\) en los cocientes.</p>
+<p>La pregunta natural es: ¿dónde está la serpiente? Hay que poner el diagrama de manera adecuada. Arriba del diagrama se ponen los núcleos de \(\partial_1\), \(\partial_2\) y \(\partial_3\) con sus inclusiones, y abajo los cocientes de \(Z_1\), \(Z_2\) y \(Z_3\) entre las imágenes de \(\partial_1\), \(\partial_2\) y \(\partial_3\), con las proyecciones al cociente. Entre los núcleos están las restricciones \(\phi''\) y \(\psi''\), y entre los cocientes, las inducidas \(\bar\phi\) y \(\bar\psi\). Ahí aparece la serpiente: es el homomorfismo \(\delta_*\), que sale de \(\ker\partial_3\), atraviesa todo el diagrama y llega a \(Z_1/\operatorname{Im}\partial_1\). El enunciado dice que la sucesión que comienza en \(\ker\partial_1\), se conecta mediante la serpiente y continúa hasta \(Z_3/\operatorname{Im}\partial_3\) es exacta.</p>
+<figure>
+<svg viewBox="0 0 620 320" role="img" aria-label="Diagrama del lema de la serpiente: arriba los núcleos de las fronteras, en medio las dos filas exactas, abajo los cocientes, y la serpiente delta estrella que va de ker ∂3 a Z1/Im ∂1">
+<defs><marker id="nbm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker>
+<marker id="nbm1s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:#b04096"/></marker></defs>
+<text x="152" y="44">ker ∂<tspan dy="5" font-size="11">1</tspan></text>
+<text x="302" y="44">ker ∂<tspan dy="5" font-size="11">2</tspan></text>
+<text x="452" y="44">ker ∂<tspan dy="5" font-size="11">3</tspan></text>
+<text x="170" y="124">Z′<tspan dy="5" font-size="11">1</tspan></text>
+<text x="320" y="124">Z′<tspan dy="5" font-size="11">2</tspan></text>
+<text x="470" y="124">Z′<tspan dy="5" font-size="11">3</tspan></text>
+<text x="575" y="124">0</text>
+<text x="70" y="204">0</text>
+<text x="172" y="204">Z<tspan dy="5" font-size="11">1</tspan></text>
+<text x="322" y="204">Z<tspan dy="5" font-size="11">2</tspan></text>
+<text x="472" y="204">Z<tspan dy="5" font-size="11">3</tspan></text>
+<text x="136" y="284">Z<tspan dy="5" font-size="11">1</tspan><tspan dy="-5">/Im ∂</tspan><tspan dy="5" font-size="11">1</tspan></text>
+<text x="286" y="284">Z<tspan dy="5" font-size="11">2</tspan><tspan dy="-5">/Im ∂</tspan><tspan dy="5" font-size="11">2</tspan></text>
+<text x="436" y="284">Z<tspan dy="5" font-size="11">3</tspan><tspan dy="-5">/Im ∂</tspan><tspan dy="5" font-size="11">3</tspan></text>
+<path class="arr" d="M210 40H294" marker-end="url(#nbm1)"/><text x="243" y="30">φ″</text>
+<path class="arr" d="M360 40H444" marker-end="url(#nbm1)"/><text x="393" y="30">ψ″</text>
+<path class="arr" d="M195 120H312" marker-end="url(#nbm1)"/><text x="245" y="110">φ′</text>
+<path class="arr" d="M345 120H462" marker-end="url(#nbm1)"/><text x="395" y="110">ψ′</text>
+<path class="arr" d="M495 120H567" marker-end="url(#nbm1)"/>
+<path class="arr" d="M85 200H162" marker-end="url(#nbm1)"/>
+<path class="arr" d="M195 200H312" marker-end="url(#nbm1)"/><text x="248" y="222">φ</text>
+<path class="arr" d="M345 200H462" marker-end="url(#nbm1)"/><text x="398" y="222">ψ</text>
+<path class="arr" d="M222 280H280" marker-end="url(#nbm1)"/><text x="243" y="270">φ̄</text>
+<path class="arr" d="M372 280H430" marker-end="url(#nbm1)"/><text x="393" y="270">ψ̄</text>
+<path class="arr" d="M176 52V104" marker-end="url(#nbm1)"/><path class="arr" fill="none" d="M176 52a4 4 0 0 1 8 0"/>
+<path class="arr" d="M326 52V104" marker-end="url(#nbm1)"/><path class="arr" fill="none" d="M326 52a4 4 0 0 1 8 0"/>
+<path class="arr" d="M476 52V104" marker-end="url(#nbm1)"/><path class="arr" fill="none" d="M476 52a4 4 0 0 1 8 0"/>
+<path class="arr" d="M176 132V184" marker-end="url(#nbm1)"/><text x="150" y="164">∂<tspan dy="5" font-size="11">1</tspan></text>
+<path class="arr" d="M326 132V184" marker-end="url(#nbm1)"/><text x="300" y="164">∂<tspan dy="5" font-size="11">2</tspan></text>
+<path class="arr" d="M476 132V184" marker-end="url(#nbm1)"/><text x="450" y="164">∂<tspan dy="5" font-size="11">3</tspan></text>
+<path class="arr" d="M176 212V264" marker-end="url(#nbm1)"/>
+<path class="arr" d="M326 212V264" marker-end="url(#nbm1)"/>
+<path class="arr" d="M476 212V264" marker-end="url(#nbm1)"/>
+<path fill="none" style="stroke:#b04096;stroke-width:2" d="M510 37H548Q556 37 556 45V152Q556 160 548 160H48Q40 160 40 168V272Q40 280 48 280H126" marker-end="url(#nbm1s)"/>
+<text x="250" y="154" style="fill:#b04096">δ<tspan dy="5" font-size="11">*</tspan></text>
+</svg>
+<figcaption>La serpiente \(\delta_*\) sale de \(\ker\partial_3\), atraviesa el diagrama y llega a \(Z_1/\operatorname{Im}\partial_1\).</figcaption>
+</figure>
+<h4>La demostración</h4>
+<p>Hay que demostrar la exactitud en cuatro lugares: en \(\ker\partial_2\), en \(\ker\partial_3\), en \(Z_1/\operatorname{Im}\partial_1\) y en \(Z_2/\operatorname{Im}\partial_2\). Es decir, en cada uno de esos módulos, que la imagen del homomorfismo de la izquierda es igual al núcleo del homomorfismo de la derecha. Pero lo primero es demostrar que \(\phi''\), \(\psi''\), \(\bar\phi\) y \(\bar\psi\) están bien definidas.</p>
+<p><b>\(\phi''\) está bien definida.</b> Sea \(c\in\ker\partial_1\); se quiere ver que \(\phi''(c)\in\ker\partial_2\). Aplicando \(\partial_2\) y usando la conmutatividad del diagrama,
+\[
+  \partial_2(\phi'(c))=\phi(\partial_1(c))=\phi(0)=0 .
+\]
+Análogamente, \(\psi''\) está bien definida.</p>
+<p><b>\(\bar\phi\) está bien definida.</b> Basta ver que \(\phi(\operatorname{Im}\partial_1)\subseteq\operatorname{Im}\partial_2\), y entonces se tiene la función inducida en los cocientes correspondientes. Sea \(x\in\operatorname{Im}\partial_1\), es decir, \(x=\partial_1(y)\) con \(y\in Z'_1\). Por la conmutatividad,
+\[
+  \phi(x)=\phi(\partial_1(y))=\partial_2(\phi'(y))\in\operatorname{Im}(\partial_2).
+\]
+Con un argumento completamente análogo, \(\bar\psi\) está bien definida.</p>
+<p><b>Exactitud en \(\ker\partial_2\).</b> Claramente \(\psi''\circ\phi''=0\), porque son restricciones de \(\psi'\) y \(\phi'\), y la composición de estas ya es cero (la primera fila es exacta). Por lo tanto, \(\operatorname{Im}\phi''\subseteq\ker\psi''\).</p>
+<p>Para la otra inclusión, sea \(\phi''(a)\in\operatorname{Im}\phi''\subseteq\operatorname{Im}\phi'\). Como \(\operatorname{Im}\phi'=\ker\psi'\), se tiene \(\phi''(a)\in\ker\psi'\). Por otro lado, \(\phi''(a)\in\ker\partial_2\), porque \(\phi''\) está bien definida. Así, el elemento vive tanto en \(\ker\psi'\) como en \(\ker\partial_2\), es decir, en \(\ker\psi''\).</p>
+<p><b>Ejercicio.</b> Demostrar la exactitud en \(Z_2/\operatorname{Im}\partial_2\).</p>
+<p>Esta es la parte sencilla de la demostración. Ahora hay que definir el homomorfismo \(\delta_*\), pues el enunciado solo dice que existe.</p>
+<p><b>Definición de \(\delta_*\).</b> La idea es viajar por el diagrama; esto es lo que se conoce como <i>cacería de diagramas</i>. Sea \(c'_3\in\ker(\partial_3)\); en particular, \(c'_3\in Z'_3\), porque \(\ker\partial_3\) es un submódulo de \(Z'_3\). Como \(\psi'\) es suprayectivo (por el \(0\) al final de la primera fila), existe \(c'_2\in Z'_2\) tal que \(\psi'(c'_2)=c'_3\). Luego se baja este elemento con \(\partial_2\) y se obtiene \(\partial_2(c'_2)\in Z_2\). Se quiere ver que \(\partial_2(c'_2)\) está en el núcleo de \(\psi\), para poder jalarlo a \(Z_1\). Por la conmutatividad,
+\[
+  \psi(\partial_2(c'_2))=\partial_3(\psi'(c'_2))=\partial_3(c'_3)=0,
+\]
+pues \(c'_3\in\ker\partial_3\). Como \(\ker\psi=\operatorname{Im}\phi\) y \(\phi\) es inyectivo (por el \(0\) al principio de la segunda fila), existe un único \(c_1\in Z_1\) tal que
+\[
+  \phi(c_1)=\partial_2(c'_2).
+\]
+Recapitulando: se tomó el elemento \(c'_3\), se jaló con la suprayectividad de \(\psi'\), se empujó con \(\partial_2\), se volvió a jalar con la inyectividad de \(\phi\) (verificando que el elemento estaba en el núcleo de \(\psi\)), y ahora se empuja al cociente. Así que se define
+\[
+  \delta_*(c'_3)=c_1+\operatorname{Im}\partial_1 .
+\]</p>
+<p><b>\(\delta_*\) está bien definido.</b> Hay un pequeño problema: al construir \(\delta_*(c'_3)\) se tomó una preimagen \(c'_2\) de \(c'_3\), que existe por la suprayectividad de \(\psi'\) pero no es única; hay una elección. Empujar no causa problemas, y jalar con \(\phi\) tampoco, por la inyectividad; lo único que causa problemas es esa elección. Sea \(c''_2\in(\psi')^{-1}(c'_3)\) otra preimagen. Entonces
+\[
+  c'_2-c''_2\in\ker\psi'=\operatorname{Im}(\phi')\ \Longrightarrow\ \partial_2(c'_2)-\partial_2(c''_2)\in\partial_2(\operatorname{Im}\phi')=\phi\,\partial_1(Z'_1),
+\]
+donde la igualdad del final es por la conmutatividad. Por lo tanto, la preimagen de \(\partial_2(c'_2)-\partial_2(c''_2)\) en \(Z_1\) vive en \(\operatorname{Im}\partial_1\), lo cual implica que \(\delta_*(c'_3)\) no depende de la elección. Este es el chiste del álgebra homológica: hay que ver el diagrama y perseguir los elementos hasta conseguir lo que se quiere.</p>
+<p><b>Exactitud en \(\ker\partial_3\).</b> Primero se ve que \(\delta_*\circ\psi''=0\), es decir, que \(\operatorname{Im}\psi''\subseteq\ker\delta_*\). Sea \(x\in\ker\partial_2\). Para calcular \(\delta_*(\psi''(x))\), se ve \(\psi''(x)\) en \(Z'_3\) y se toma una preimagen bajo \(\psi'\); pero esa preimagen se puede tomar justamente como el elemento \(x\). Luego \(x\) se empuja con \(\partial_2\) y se jala a \(Z_1\):
+\[
+  \delta_*(\psi''(x))=\phi^{-1}(\partial_2(x))+\operatorname{Im}\partial_1=0,
+\]
+pues \(x\in\ker\partial_2\), así que \(\partial_2(x)=0\).</p>
+<p>Ahora la otra inclusión, \(\ker\delta_*\subseteq\operatorname{Im}\psi''\). Sea \(c'_3\in\ker(\delta_*)\), y sean \(c'_2\) y \(c_1\) los elementos que se obtienen al bajar por el diagrama como en la definición de \(\delta_*\). Que \(\delta_*(c'_3)=0\) quiere decir que \(c_1\) vive en la imagen de \(\partial_1\): \(c_1=\partial_1(c'_1)\) para algún \(c'_1\in Z'_1\). Así que
+\[
+  \partial_2(c'_2)=\phi(c_1)=\phi(\partial_1(c'_1))=\partial_2(\phi'(c'_1)),
+\]
+donde la última igualdad es por la conmutatividad. Esto implica que \(c'_2-\phi'(c'_1)\in\ker\partial_2\). Entonces, restando y sumando adentro y usando que \(\psi'\circ\phi'=0\) por la exactitud de la primera fila,
+\[
+  c'_3=\psi'(c'_2)=\psi'(c'_2-\phi'(c'_1))+\psi'(\phi'(c'_1))=\psi'(c'_2-\phi'(c'_1))=\psi''(c'_2-\phi'(c'_1)),
+\]
+pues el elemento dentro de los paréntesis vive en \(\ker\partial_2\), y entonces se le puede poner otra prima a la \(\psi\). Así que \(c'_3\in\operatorname{Im}\psi''\), y por lo tanto \(\ker\delta_*=\operatorname{Im}\psi''\).</p>
+<p><b>Exactitud en \(Z_1/\operatorname{Im}\partial_1\).</b> Primero se ve que \(\bar\phi\circ\delta_*=0\). Sea \(c'_3\in\ker\partial_3\), con \(c'_2\) y \(c_1\) como en la definición de \(\delta_*\). Entonces
+\[
+  \bar\phi(\delta_*(c'_3))=\phi(c_1)+\operatorname{Im}\partial_2=\partial_2(c'_2)+\operatorname{Im}\partial_2,
+\]
+el cual es cero en \(Z_2/\operatorname{Im}\partial_2\). Así, \(\operatorname{Im}\delta_*\subseteq\ker\bar\phi\).</p>
+<p>Para la otra inclusión, sea \(c_1+\operatorname{Im}\partial_1\in\ker(\bar\phi)\). Entonces \(\phi(c_1)\in\operatorname{Im}\partial_2\), es decir, existe \(c'_2\in Z'_2\) tal que \(\phi(c_1)=\partial_2(c'_2)\). Sea \(c'_3=\psi'(c'_2)\). Este elemento vive en \(\ker\partial_3\):
+\[
+  \partial_3(c'_3)=\partial_3(\psi'(c'_2))=\psi(\partial_2(c'_2))=\psi(\phi(c_1))=0,
+\]
+por la conmutatividad y la exactitud de la segunda fila. Además, por construcción, \(\delta_*(c'_3)=c_1+\operatorname{Im}\partial_1\): el elemento \(c'_3\) se construyó justamente para que, al bajarlo y regresarlo, se cayera en el \(c_1\) que se tomó desde el principio. Así que \(c_1+\operatorname{Im}\partial_1\in\operatorname{Im}(\delta_*)\).</p>
+<p>Con esto queda demostrado que todo está bien definido y que la sucesión, conectada por la serpiente, es exacta. \(\square\)</p>
+<p>Es una demostración larga, pero muy rica, porque hay que verificar muchas cosas. Ya con la demostración hecha, uno se puede quedar simplemente con el enunciado del lema de la serpiente, que se usará en el siguiente video para demostrar el teorema fundamental del álgebra homológica.</p>
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+  <li><a href="https://www.youtube.com/watch?v=Sot3oC0gpmI&amp;t=311" target="_blank" rel="noopener">5:11</a> Se dice «análogamente \(\bar\phi\) está bien definida», pero debe decir \(\bar\psi\).</li>
+  <li><a href="https://www.youtube.com/watch?v=Sot3oC0gpmI&amp;t=343" target="_blank" rel="noopener">5:43</a> Se escribe \(\psi''\phi''=0\Rightarrow\ker\psi''\subseteq\operatorname{Im}\phi''\), pero la inclusión que se obtiene es \(\operatorname{Im}\phi''\subseteq\ker\psi''\).</li>
+  <li><a href="https://www.youtube.com/watch?v=Sot3oC0gpmI&amp;t=352" target="_blank" rel="noopener">5:52</a> El argumento de «la otra inclusión» parte de un elemento \(\phi''(a)\in\operatorname{Im}\phi''\) y concluye que está en \(\ker\psi''\), es decir, vuelve a probar \(\operatorname{Im}\phi''\subseteq\ker\psi''\). La inclusión que falta, \(\ker\psi''\subseteq\operatorname{Im}\phi''\), se prueba así: si \(b\in\ker\partial_2\) y \(\psi'(b)=0\), por la exactitud de la primera fila \(b=\phi'(a)\) con \(a\in Z'_1\); como \(\phi(\partial_1 a)=\partial_2(\phi'(a))=\partial_2 b=0\) y \(\phi\) es inyectivo, \(a\in\ker\partial_1\), y entonces \(b=\phi''(a)\).</li>
+  <li><a href="https://www.youtube.com/watch?v=Sot3oC0gpmI&amp;t=579" target="_blank" rel="noopener">9:39</a> Se dice «como \(\phi\) es inyectiva, existe un único \(c_1\)», pero la existencia de \(c_1\) se sigue de que \(\ker\psi=\operatorname{Im}\phi\) (exactitud de la segunda fila); la inyectividad de \(\phi\) da la unicidad.</li>
+  <li><a href="https://www.youtube.com/watch?v=Sot3oC0gpmI&amp;t=614" target="_blank" rel="noopener">10:14</a> Se define \(\delta_*(c'_3)=c'_2+\operatorname{Im}\partial_2\) (a las 11:43 se corrige el índice a \(\partial_1\)), pero debe decir \(\delta_*(c'_3)=c_1+\operatorname{Im}\partial_1\).</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/algebra-homologica-4.tex">algebra-homologica-4.tex</a>.</p>
