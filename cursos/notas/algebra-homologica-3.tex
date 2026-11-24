@@ -1,0 +1,97 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{l_DwGxGVD1o}
+\input{preambulo}
+\unidad{4}{7} % unidad 4; primer enunciado: 4.7
+
+\title{Álgebra homológica: sucesiones exactas}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=l_DwGxGVD1o}{\guillemotleft{}Álgebra homológica - sucesiones exactas\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Tercer video de la serie de álgebra homológica: se definen las sucesiones exactas, cortas y largas, y se expresa el primer teorema de isomorfismo en este lenguaje.
+\normalsize
+
+\section*{Sucesiones exactas}
+
+El tema de sucesiones exactas es súper importante, pero quizá lo mejor de este tema es que introduce una notación altamente eficiente para expresar ciertas cosas. Por ejemplo, el primer teorema de isomorfismo en módulos, o incluso en grupos, se puede expresar de manera muy sencilla utilizando sucesiones exactas.
+
+\begin{defn}[Sucesión exacta]\label{def:exacta}
+Considérese una cadena de homomorfismos de $R$-módulos
+\[
+  \cdots\longrightarrow C_{p+1}\xrightarrow{\ f_{p+1}\ }C_p\xrightarrow{\ f_p\ }C_{p-1}\xrightarrow{\ f_{p-1}\ }\cdots.
+\]
+Se dice que es \emph{exacta en $C_p$} si
+\[
+  \operatorname{Im}(f_{p+1})=\ker(f_p).
+\]
+Se dice que la sucesión es \emph{exacta} si es exacta en $C_p$ para todo $p\in\mathbb Z$.
+\end{defn}
+
+La cadena se parece mucho, de hecho es igualita, a un complejo de cadenas, solo que todavía no se ha pedido ninguna condición sobre las composiciones de los homomorfismos. Recuérdese que para que fuera un complejo de cadenas se pedía que la imagen estuviera contenida en el núcleo; aquí se pide que sea exactamente igual.
+
+Si la sucesión es finita, es decir, si tiene un número finito de módulos, simplemente se cambia el último cuantificador por \guillemotleft{}para todo $p$\guillemotright{}. También se podrían tener sucesiones indizadas por algún subconjunto de los enteros, y entonces se dice \guillemotleft{}para todo $p$\guillemotright{} en ese subconjunto; esto ya se sobreentiende.
+
+\medskip\noindent\textbf{Ejemplos.}
+\begin{enumerate}
+  \item La sucesión
+  \[
+    0\longrightarrow P\xrightarrow{\ \alpha\ }Q
+  \]
+  es exacta si y sólo si $\alpha$ es inyectivo. El homomorfismo de $0$ en $P$ es el único que existe entre el módulo $0$ y $P$. El único lugar donde tiene sentido la condición de ser exacta es en $P$, y lo que dice es que la imagen del homomorfismo que sale de $0$ es igual al núcleo de $\alpha$. Pero la imagen del homomorfismo $0$ es $0$; así, la sucesión es exacta si y sólo si $\ker\alpha=0$, lo cual es equivalente a pedir que $\alpha$ sea inyectivo.
+  \item La sucesión
+  \[
+    Q\xrightarrow{\ \beta\ }R\longrightarrow0
+  \]
+  es exacta si y sólo si $\beta$ es suprayectivo. El último homomorfismo es el único que hay de $R$ en el módulo $0$. La sucesión es exacta si y sólo si la imagen de $\beta$ es igual al núcleo del homomorfismo $0$; pero el núcleo del homomorfismo $0$ es todo $R$, y que $\operatorname{Im}\beta=R$ quiere decir exactamente que $\beta$ es suprayectivo.
+\end{enumerate}
+
+\section*{Sucesiones exactas cortas y largas}
+
+\begin{defn}[Sucesiones exactas cortas y largas]\label{def:corta-larga}
+Una sucesión exacta de la forma
+\[
+  0\longrightarrow P\longrightarrow Q\longrightarrow R\longrightarrow0
+\]
+se llama \emph{sucesión exacta corta}. Las sucesiones exactas infinitas por ambos lados (con índices en los enteros, como en la Definición~\ref{def:exacta}) se llaman \emph{sucesiones exactas largas}.
+\end{defn}
+
+Las sucesiones exactas cortas son súper utilizadas; esta sí es notación muy estándar, y tienen un nombre especial porque son muy útiles. Las sucesiones exactas largas también se van a estar utilizando muchísimo.
+
+\medskip\noindent\textbf{Ejercicio.} La sucesión
+\[
+  0\longrightarrow P\xrightarrow{\ \alpha\ }Q\xrightarrow{\ \beta\ }R\longrightarrow0
+\]
+es exacta si y sólo si
+\begin{itemize}
+  \item $\alpha$ es inyectivo,
+  \item $\beta$ es suprayectivo, y
+  \item $R\cong Q/\operatorname{Im}(\alpha)$.
+\end{itemize}
+
+Como $\alpha$ es inyectivo, la imagen de $\alpha$ es esencialmente isomorfa a $P$; entonces se podría pensar, aunque no está súper bien dicho, que $R$ es el cociente de $Q$ entre $P$.
+
+\begin{teo}[Primer teorema de isomorfismo]\label{teo:primer-iso}
+Si $M'\le M$ es un submódulo, entonces
+\[
+  0\longrightarrow M'\hookrightarrow M\longrightarrow M/M'\longrightarrow0
+\]
+es una sucesión exacta.
+\end{teo}
+
+Esta es una forma súper económica de decir justamente que se tiene un submódulo y se tiene el cociente, junto con la inclusión y la proyección al cociente. La idea es que, como se verá en los siguientes videos, esta es una notación súper conveniente para expresar fenómenos como el primer teorema de isomorfismo.
+
+\medskip\noindent\textbf{Ejemplo.} Para todo $n$, la sucesión
+\[
+  0\longrightarrow\mathbb Z\xrightarrow{\ n\ }\mathbb Z\longrightarrow\mathbb Z/n\longrightarrow0
+\]
+es una sucesión exacta corta, donde la primera flecha es la multiplicación por $n$ y la segunda es el paso al cociente.
+
+\begin{erratas}
+  \errata{244}{4:04}{En el ejercicio, la tercera condición se escribe $R\cong Q/\operatorname{Im}(\alpha)$, pero con un isomorfismo cualquiera el \guillemotleft{}si y sólo si\guillemotright{} no se cumple: debe decir que $\beta$ induce un isomorfismo $Q/\operatorname{Im}(\alpha)\to R$, lo cual equivale a $\ker\beta=\operatorname{Im}\alpha$. Por ejemplo, con $P=0$, $Q=R=\bigoplus_{\mathbb N}\mathbb Z$ y $\beta$ el corrimiento que descarta la primera coordenada, $\beta$ es suprayectivo y $R\cong Q/0$, pero la sucesión no es exacta en $Q$.}
+\end{erratas}
+
+\end{document}
