@@ -1,0 +1,58 @@
+<!-- Fragmento de las notas de algebra-homologica-6. Mismo contenido que el .tex. -->
+<h4>El homomorfismo de conexión</h4>
+<p>Recuérdese el teorema fundamental del álgebra homológica (Teorema 4.12). La primera conclusión que arroja el teorema es la existencia del homomorfismo \(\delta_*\); a este homomorfismo se le llama el <i>homomorfismo de conexión</i>. En realidad no es uno solo, sino uno por cada \(p\): conecta la homología \(p\)-ésima con la \((p-1)\)-ésima. Lo que se muestra en este video es que tiene una propiedad de naturalidad, en el sentido de categorías.</p>
+<h4>El teorema</h4>
+<div class="thm"><b>Teorema 4.13 (naturalidad del homomorfismo de conexión).</b> <i>Considérese el diagrama conmutativo de complejos de cadenas
+\[
+  \begin{array}{ccccccccc}
+    0 & \longrightarrow & A_\bullet & \xrightarrow{\ i\ } & B_\bullet & \xrightarrow{\ j\ } & C_\bullet & \longrightarrow & 0\\[2pt]
+    & & {\scriptstyle f}\big\downarrow & & \big\downarrow{\scriptstyle g} & & \big\downarrow{\scriptstyle h} & & \\[2pt]
+    0 & \longrightarrow & A'_\bullet & \xrightarrow{\ i'\ } & B'_\bullet & \xrightarrow{\ j'\ } & C'_\bullet & \longrightarrow & 0
+  \end{array}
+\]
+donde las filas son exactas. Entonces el siguiente diagrama es conmutativo:
+\[
+  \small\begin{array}{ccccccccccccc}
+    \cdots\to & H_p(A) & \to & H_p(B) & \to & H_p(C) & \xrightarrow{\ \delta_*\ } & H_{p-1}(A) & \to & H_{p-1}(B) & \to & H_{p-1}(C) & \to\cdots\\[2pt]
+    & {\scriptstyle\bar f}\big\downarrow & & \big\downarrow{\scriptstyle\bar g} & & \big\downarrow{\scriptstyle\bar h} & & \big\downarrow{\scriptstyle\bar f} & & \big\downarrow{\scriptstyle\bar g} & & \big\downarrow{\scriptstyle\bar h} & \\[2pt]
+    \cdots\to & H_p(A') & \to & H_p(B') & \to & H_p(C') & \xrightarrow{\ \delta_*\ } & H_{p-1}(A') & \to & H_{p-1}(B') & \to & H_{p-1}(C') & \to\cdots
+  \end{array}
+\]</i></div>
+<p>Todos los elementos del primer diagrama son complejos de cadenas y las flechas son homomorfismos de complejos de cadenas. Siempre que se está en estas situaciones, los diagramas son conmutativos. Las filas del segundo diagrama son las sucesiones exactas largas que da el teorema fundamental para cada uno de los renglones del primero, y las flechas verticales son los homomorfismos inducidos en homología por \(f\), \(g\) y \(h\) (en dimensión \(p\) y en dimensión \(p-1\)).</p>
+<p>Adelantándose un poco a la demostración: la conmutatividad de los cuadrados que solo involucran homomorfismos inducidos se sigue de la conmutatividad de los cuadrados del primer diagrama. El único problema de conmutatividad viene en el cuadrado que involucra a \(\delta_*\), y el hecho de que ese cuadrado conmute es lo que, en el lenguaje de categorías, significa que \(\delta_*\) es un homomorfismo natural, o que goza de una propiedad de naturalidad.</p>
+<p><i>Demostración.</i> 
+Solo se probará la conmutatividad del cuadrado
+\[
+  \begin{array}{ccc}
+    H_p(C) & \xrightarrow{\ \delta_*\ } & H_{p-1}(A)\\[2pt]
+    {\scriptstyle\bar h}\big\downarrow & & \big\downarrow{\scriptstyle\bar f}\\[2pt]
+    H_p(C') & \xrightarrow{\ \delta_*\ } & H_{p-1}(A')
+  \end{array}
+\]
+Sea \([c]\in H_p(C)\). Se manda este elemento por los dos caminos posibles y se ve que se llega al mismo elemento de \(H_{p-1}(A')\).</p>
+<p>Recuérdese cómo se definió el homomorfismo de conexión: con una cacería de diagramas en el diagrama expandido de la sucesión exacta corta de complejos de cadenas (la escalera del video anterior). Para calcular \(\delta_*[c]\) se toma \(b\in B_p\) tal que \(j_p(b)=c\), que existe por la suprayectividad; se manda \(b\) con la frontera a \(\partial(b)\), y este elemento se levanta: se toma \(a\in Z_{p-1}(A)\) tal que
+\[
+  i(a)=\partial(b).
+\]
+Que esto se puede hacer ya se mostró al construir el homomorfismo en el lema de la serpiente. Así,
+\[
+  \delta_*[c]=[a],\qquad\text{y por lo tanto}\qquad\bar f(\delta_*[c])=[f(a)].
+\]
+Esto dice a dónde se llega por el primer camino.</p>
+<p>Por otro lado, se calcula \(\delta_*(\bar h[c])\). Hay que aclarar que este \(\delta_*\) no es el mismo de arriba: es el homomorfismo de conexión del renglón de abajo, así que para calcularlo hay que moverse al diagrama que es igualito al anterior, pero con primas por todos lados. Se necesita \(b'\in B'_p\) tal que \(j'(b')=h(c)\), y este elemento puede ser simplemente
+\[
+  b'=g(b),
+\]
+pues \(j'(g(b))=h(j(b))=h(c)\) por la conmutatividad. También se necesita \(a'\in Z_{p-1}(A')\) tal que
+\[
+  i'(a')=\partial g(b)=g\,\partial(b),
+\]
+donde la última igualdad es por la conmutatividad. Se escoge \(a'=f(a)\), que funciona porque \(i'(f(a))=g(i(a))=g(\partial(b))\). Así que
+\[
+  \delta_*(\bar h[c])=[f(a)],
+\]
+que es justamente lo que se obtuvo por el otro camino. Esto termina de demostrar la conmutatividad.
+ \(\square\)</p>
+<p>Todos estos teoremas tienen mucha notación: los diagramas tienen muchas letras y mucho de todo. Pero en realidad todos se demuestran por fuerza bruta: cacería de diagramas, conmutatividad, exactitud, etcétera. La recomendación es hacerlos uno mismo, con mucho cuidado y con los diagramas a la mano, hasta irse convenciendo.</p>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/algebra-homologica-6.tex">algebra-homologica-6.tex</a>.</p>
