@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{E86PPBlXeHI}
+\input{preambulo}
+\unidad{4}{5} % unidad 4; primer enunciado: 4.5
+
+\title{Álgebra homológica: homotopías entre homomorfismos de complejos}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=E86PPBlXeHI}{\guillemotleft{}Álgebra homológica - homotopías\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Segundo video de la serie de álgebra homológica: se define cuándo dos homomorfismos de complejos de cadenas son homotópicos y se demuestra que homomorfismos homotópicos inducen el mismo homomorfismo en homología.
+\normalsize
+
+\section*{Homotopías entre homomorfismos de complejos}
+
+Ya se sabe lo que significa tener un homomorfismo entre dos complejos de cadenas (Definición~4.2). Ahora se define cuándo dos de estos homomorfismos son homotópicos. Si se está familiarizado con la topología, entre espacios topológicos y funciones continuas también se puede definir lo que significa que dos funciones sean homotópicas. La definición que sigue podría no ser muy intuitiva desde el punto de vista algebraico, pero en algún momento se verá que esta definición de homotopía entre homomorfismos de complejos de cadenas es un reflejo de lo que sucede en topología.
+
+\begin{defn}[Homomorfismos homotópicos]\label{def:homotopia-complejos}
+Dos homomorfismos de complejos de cadenas $f,g\colon(C_\bullet,\partial)\to(C'_\bullet,\partial')$ son \emph{homotópicos} si existen homomorfismos de $R$-módulos
+\[
+  H_p\colon C_p\longrightarrow C'_{p+1},\qquad p\in\mathbb Z,
+\]
+tales que
+\[
+  f_p-g_p=\partial'_{p+1}\circ H_p+H_{p-1}\circ\partial_p\qquad\text{para todo }p\in\mathbb Z.
+\]
+\end{defn}
+
+Hay que notar que el índice varía: el dominio de $H_p$ es $C_p$ y el codominio es $C'_{p+1}$. La expresión de la definición puede ser algo confusa; como es usual, se entiende mejor con un diagrama. En las flechas verticales se pone la diferencia $f-g$ (en lugar de $f$ o de $g$), y los homomorfismos $H_p$ son las flechas diagonales:
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth]
+  \node (a0) at (0,2.4) {$\cdots$};
+  \node (a1) at (2.6,2.4) {$C_{p+1}$};
+  \node (a2) at (5.6,2.4) {$C_p$};
+  \node (a3) at (8.6,2.4) {$C_{p-1}$};
+  \node (a4) at (11.2,2.4) {$\cdots$};
+  \node (b0) at (0,0) {$\cdots$};
+  \node (b1) at (2.6,0) {$C'_{p+1}$};
+  \node (b2) at (5.6,0) {$C'_p$};
+  \node (b3) at (8.6,0) {$C'_{p-1}$};
+  \node (b4) at (11.2,0) {$\cdots$};
+  \draw[->] (a0) -- (a1);
+  \draw[->] (a1) -- node[above,font=\small] {$\partial_{p+1}$} (a2);
+  \draw[->] (a2) -- node[above,font=\small] {$\partial_p$} (a3);
+  \draw[->] (a3) -- (a4);
+  \draw[->] (b0) -- (b1);
+  \draw[->] (b1) -- node[below,font=\small] {$\partial'_{p+1}$} (b2);
+  \draw[->] (b2) -- node[below,font=\small] {$\partial'_p$} (b3);
+  \draw[->] (b3) -- (b4);
+  \draw[->] (a1) -- node[left,font=\small] {$f_{p+1}-g_{p+1}$} (b1);
+  \draw[->] (a2) -- node[right,font=\small,pos=.22] {$f_p-g_p$} (b2);
+  \draw[->] (a3) -- node[right,font=\small] {$f_{p-1}-g_{p-1}$} (b3);
+  \draw[->,azul] (a2) -- node[right,font=\small,pos=.45] {$H_p$} (b1);
+  \draw[->,azul] (a3) -- node[right,font=\small,pos=.45] {$H_{p-1}$} (b2);
+\end{tikzpicture}
+\end{center}
+
+Esto se quiere recalcar: no hay que irse con la finta, \emph{no} se está pidiendo que el diagrama conmute. Lo que se pide es que la composición $C_p\xrightarrow{H_p}C'_{p+1}\xrightarrow{\partial'_{p+1}}C'_p$ (el primer sumando) más la composición $C_p\xrightarrow{\partial_p}C_{p-1}\xrightarrow{H_{p-1}}C'_p$ (el segundo sumando) sea igual a la flecha vertical de en medio, $f_p-g_p$. Eso es lo que dice la definición de homotopía entre los homomorfismos $f$ y $g$.
+
+\section*{Homomorfismos homotópicos inducen el mismo homomorfismo en homología}
+
+El siguiente resultado es la propiedad principal de los homomorfismos homotópicos entre complejos de cadenas. Recuérdese que un homomorfismo de complejos induce homomorfismos en cada uno de los grupos de homología (ejercicio del video anterior).
+
+\begin{lema}\label{lema:homotopicos-homologia}
+Si $f,g\colon(C_\bullet,\partial)\to(C'_\bullet,\partial')$ son homomorfismos de complejos homotópicos, entonces
+\[
+  \bar f_p=\bar g_p\colon H_p(C_\bullet)\longrightarrow H_p(C'_\bullet)\qquad\text{para todo }p\in\mathbb Z.
+\]
+\end{lema}
+
+La forma en la que usualmente uno se refiere a este resultado es: \guillemotleft{}funciones homotópicas inducen funciones iguales en homología\guillemotright{}.
+
+\begin{proof}
+Sea $[c]\in H_p(C_\bullet)$; es decir, $c\in Z_p\le C_p$ es un ciclo de dimensión $p$ en el complejo $C_\bullet$. Evaluando en $c$ la definición de homotopía se tiene
+\[
+  f_p(c)-g_p(c)=\partial'_{p+1}\bigl(H_p(c)\bigr)+H_{p-1}\bigl(\partial_p(c)\bigr).
+\]
+Como $c\in Z_p=\ker\partial_p$, se tiene $\partial_p(c)=0$, así que todo el segundo sumando del lado derecho se muere. Despejando,
+\[
+  f_p(c)=g_p(c)+\partial'_{p+1}\bigl(H_p(c)\bigr),
+\]
+y el último sumando, $\partial'_{p+1}(H_p(c))$, es un elemento de las fronteras $F'_p=\operatorname{Im}\partial'_{p+1}$. Esto dice que los ciclos $f_p(c)$ y $g_p(c)$ son homólogos, es decir,
+\[
+  \bar f_p[c]=[f_p(c)]=[g_p(c)]=\bar g_p[c].\qedhere
+\]
+\end{proof}
+
+Por el momento, esto es todo lo que se dice acerca de homotopías entre homomorfismos de complejos de cadenas.
+
+\begin{erratas}
+  \errata{132}{2:12}{En el diagrama del pizarrón, la flecha de abajo $C'_p\to C'_{p-1}$ se etiqueta $\partial_p$, pero debe ser $\partial'_p$: es la frontera del complejo $C'_\bullet$.}
+  \errata{292}{4:52}{En la demostración, el sumando $\partial'_{p+1}(H_p(c))$ se marca como elemento de $F_p$, pero debe decir $F'_p=\operatorname{Im}\partial'_{p+1}$: son fronteras del complejo $C'_\bullet$.}
+\end{erratas}
+
+\end{document}

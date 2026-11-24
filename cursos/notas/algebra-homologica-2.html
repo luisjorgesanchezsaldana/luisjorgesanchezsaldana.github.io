@@ -1,0 +1,65 @@
+<!-- Fragmento de las notas de algebra-homologica-2. Mismo contenido que el .tex. -->
+<h4>Homotopías entre homomorfismos de complejos</h4>
+<p>Ya se sabe lo que significa tener un homomorfismo entre dos complejos de cadenas (Definición 4.2). Ahora se define cuándo dos de estos homomorfismos son homotópicos. Si se está familiarizado con la topología, entre espacios topológicos y funciones continuas también se puede definir lo que significa que dos funciones sean homotópicas. La definición que sigue podría no ser muy intuitiva desde el punto de vista algebraico, pero en algún momento se verá que esta definición de homotopía entre homomorfismos de complejos de cadenas es un reflejo de lo que sucede en topología.</p>
+<div class="def"><b>Definición 4.5 (homomorfismos homotópicos).</b> Dos homomorfismos de complejos de cadenas \(f,g\colon(C_\bullet,\partial)\to(C'_\bullet,\partial')\) son <i>homotópicos</i> si existen homomorfismos de \(R\)-módulos
+\[
+  H_p\colon C_p\longrightarrow C'_{p+1},\qquad p\in\mathbb Z,
+\]
+tales que
+\[
+  f_p-g_p=\partial'_{p+1}\circ H_p+H_{p-1}\circ\partial_p\qquad\text{para todo }p\in\mathbb Z.
+\]</div>
+<p>Hay que notar que el índice varía: el dominio de \(H_p\) es \(C_p\) y el codominio es \(C'_{p+1}\). La expresión de la definición puede ser algo confusa; como es usual, se entiende mejor con un diagrama. En las flechas verticales se pone la diferencia \(f-g\) (en lugar de \(f\) o de \(g\)), y los homomorfismos \(H_p\) son las flechas diagonales:</p>
+<figure>
+<svg viewBox="0 0 560 230" role="img" aria-label="Diagrama de los complejos C y C' con flechas verticales f menos g y flechas diagonales H_p de C_p a C'_{p+1} y H_{p-1} de C_{p-1} a C'_p">
+<defs><marker id="nbm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker>
+<marker id="nbm1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker></defs>
+<text x="20" y="48">⋯</text><text x="520" y="48">⋯</text><text x="20" y="198">⋯</text><text x="520" y="198">⋯</text>
+<text x="128" y="48">C<tspan dy="5" font-size="11">p+1</tspan></text>
+<text x="280" y="48">C<tspan dy="5" font-size="11">p</tspan></text>
+<text x="412" y="48">C<tspan dy="5" font-size="11">p−1</tspan></text>
+<text x="128" y="198">C′<tspan dy="5" font-size="11">p+1</tspan></text>
+<text x="280" y="198">C′<tspan dy="5" font-size="11">p</tspan></text>
+<text x="412" y="198">C′<tspan dy="5" font-size="11">p−1</tspan></text>
+<path class="arr" d="M45 44H118" marker-end="url(#nbm1)"/>
+<path class="arr" d="M168 44H270" marker-end="url(#nbm1)"/><text x="205" y="34">∂<tspan dy="5" font-size="11">p+1</tspan></text>
+<path class="arr" d="M300 44H402" marker-end="url(#nbm1)"/><text x="342" y="34">∂<tspan dy="5" font-size="11">p</tspan></text>
+<path class="arr" d="M452 44H512" marker-end="url(#nbm1)"/>
+<path class="arr" d="M45 194H118" marker-end="url(#nbm1)"/>
+<path class="arr" d="M168 194H270" marker-end="url(#nbm1)"/><text x="203" y="218">∂′<tspan dy="5" font-size="11">p+1</tspan></text>
+<path class="arr" d="M305 194H402" marker-end="url(#nbm1)"/><text x="342" y="218">∂′<tspan dy="5" font-size="11">p</tspan></text>
+<path class="arr" d="M452 194H512" marker-end="url(#nbm1)"/>
+<path class="arr" d="M140 58V176" marker-end="url(#nbm1)"/><text x="58" y="122">f<tspan dy="5" font-size="11">p+1</tspan><tspan dy="-5">−g</tspan><tspan dy="5" font-size="11">p+1</tspan></text>
+<path class="arr" d="M287 58V176" marker-end="url(#nbm1)"/><text x="294" y="100">f<tspan dy="5" font-size="11">p</tspan><tspan dy="-5">−g</tspan><tspan dy="5" font-size="11">p</tspan></text>
+<path class="arr" d="M425 58V176" marker-end="url(#nbm1)"/><text x="432" y="122">f<tspan dy="5" font-size="11">p−1</tspan><tspan dy="-5">−g</tspan><tspan dy="5" font-size="11">p−1</tspan></text>
+<path class="f1" style="stroke-width:1.5" d="M278 56L160 178" marker-end="url(#nbm1a)"/><text class="c1" x="186" y="98">H<tspan dy="5" font-size="11">p</tspan></text>
+<path class="f1" style="stroke-width:1.5" d="M415 56L300 178" marker-end="url(#nbm1a)"/><text class="c1" x="392" y="108">H<tspan dy="5" font-size="11">p−1</tspan></text>
+</svg>
+</figure>
+<p>Esto se quiere recalcar: no hay que irse con la finta, <i>no</i> se está pidiendo que el diagrama conmute. Lo que se pide es que la composición \(C_p\overset{H_p}{\longrightarrow}C'_{p+1}\overset{\partial'_{p+1}}{\longrightarrow}C'_p\) (el primer sumando) más la composición \(C_p\overset{\partial_p}{\longrightarrow}C_{p-1}\overset{H_{p-1}}{\longrightarrow}C'_p\) (el segundo sumando) sea igual a la flecha vertical de en medio, \(f_p-g_p\). Eso es lo que dice la definición de homotopía entre los homomorfismos \(f\) y \(g\).</p>
+<h4>Homomorfismos homotópicos inducen el mismo homomorfismo en homología</h4>
+<p>El siguiente resultado es la propiedad principal de los homomorfismos homotópicos entre complejos de cadenas. Recuérdese que un homomorfismo de complejos induce homomorfismos en cada uno de los grupos de homología (ejercicio del video anterior).</p>
+<div class="thm"><b>Lema 4.6.</b> <i>Si \(f,g\colon(C_\bullet,\partial)\to(C'_\bullet,\partial')\) son homomorfismos de complejos homotópicos, entonces
+\[
+  \bar f_p=\bar g_p\colon H_p(C_\bullet)\longrightarrow H_p(C'_\bullet)\qquad\text{para todo }p\in\mathbb Z.
+\]</i></div>
+<p>La forma en la que usualmente uno se refiere a este resultado es: «funciones homotópicas inducen funciones iguales en homología».</p>
+<p><i>Demostración.</i> Sea \([c]\in H_p(C_\bullet)\); es decir, \(c\in Z_p\le C_p\) es un ciclo de dimensión \(p\) en el complejo \(C_\bullet\). Evaluando en \(c\) la definición de homotopía se tiene
+\[
+  f_p(c)-g_p(c)=\partial'_{p+1}\bigl(H_p(c)\bigr)+H_{p-1}\bigl(\partial_p(c)\bigr).
+\]
+Como \(c\in Z_p=\ker\partial_p\), se tiene \(\partial_p(c)=0\), así que todo el segundo sumando del lado derecho se muere. Despejando,
+\[
+  f_p(c)=g_p(c)+\partial'_{p+1}\bigl(H_p(c)\bigr),
+\]
+y el último sumando, \(\partial'_{p+1}(H_p(c))\), es un elemento de las fronteras \(F'_p=\operatorname{Im}\partial'_{p+1}\). Esto dice que los ciclos \(f_p(c)\) y \(g_p(c)\) son homólogos, es decir,
+\[
+  \bar f_p[c]=[f_p(c)]=[g_p(c)]=\bar g_p[c]. \qquad\square
+\]</p>
+<p>Por el momento, esto es todo lo que se dice acerca de homotopías entre homomorfismos de complejos de cadenas.</p>
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+  <li><a href="https://www.youtube.com/watch?v=E86PPBlXeHI&amp;t=132" target="_blank" rel="noopener">2:12</a> En el diagrama del pizarrón, la flecha de abajo \(C'_p\to C'_{p-1}\) se etiqueta \(\partial_p\), pero debe ser \(\partial'_p\): es la frontera del complejo \(C'_\bullet\).</li>
+  <li><a href="https://www.youtube.com/watch?v=E86PPBlXeHI&amp;t=292" target="_blank" rel="noopener">4:52</a> En la demostración, el sumando \(\partial'_{p+1}(H_p(c))\) se marca como elemento de \(F_p\), pero debe decir \(F'_p=\operatorname{Im}\partial'_{p+1}\): son fronteras del complejo \(C'_\bullet\).</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/algebra-homologica-2.tex">algebra-homologica-2.tex</a>.</p>
