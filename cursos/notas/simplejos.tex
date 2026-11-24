@@ -1,0 +1,215 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{5wVdLJQrJBI}
+\input{preambulo}
+\unidad{4}{15} % unidad 4; primer enunciado: 4.15
+
+\title{Homología singular: simplejos}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=5wVdLJQrJBI}{\guillemotleft{}Homología singular - simplejos\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Primer paso hacia la homología singular: se definen los simplejos, el simplejo estándar, las coordenadas baricéntricas, las caras y la orientación de las aristas.
+\normalsize
+
+\section*{Simplejos}
+
+El objetivo de este video es comenzar a preparar el camino para definir la homología singular. Para eso primero se necesitan unos objetos cuya naturaleza combinatoria es muy rica, y que se van a utilizar justamente para definir la homología singular: los simplejos. Fíjese un entero $n\ge 0$.
+
+\begin{defn}[Simplejo]\label{defn:simplejo}
+Un \emph{$n$-simplejo} es el convexo más pequeño en $\mathbb R^m$ ($m\ge n$) que contiene $n+1$ puntos $v_0,\dots,v_n$ que no viven en un hiperplano de dimensión menor que $n$. A los puntos $v_0,\dots,v_n$ se les llama los \emph{vértices} del simplejo, y el simplejo se denota $[v_0,\dots,v_n]$.
+\end{defn}
+
+Esto suena complicado, pero en dimensiones bajas es muy sencillo (pensando en un espacio $\mathbb R^m$ suficientemente grande):
+\begin{itemize}
+  \item Un \emph{$0$-simplejo} es el convexo más pequeño que contiene un punto $v_0$; pero un punto ya es convexo, así que un $0$-simplejo es esencialmente un punto.
+  \item Para un \emph{$1$-simplejo} se toman dos puntos $v_0$ y $v_1$; que no vivan en un hiperplano de dimensión menor que $1$ quiere decir que son diferentes. El convexo más pequeño que los contiene es el segmento que los une.
+  \item Para un \emph{$2$-simplejo} se toman $v_0$, $v_1$ y $v_2$, y la condición quiere decir que los tres puntos no son colineales. El convexo más pequeño que los contiene es el triangulito que generan: los tres segmentos que unen $v_0$ con $v_1$, $v_1$ con $v_2$ y $v_0$ con $v_2$, junto con todo el relleno del triángulo.
+  \item Para un \emph{$3$-simplejo} se requieren cuatro puntos $v_0,v_1,v_2,v_3$, y la condición quiere decir que no son coplanares. La envolvente convexa es el tetraedro: las aristas, junto con el relleno de las caras y también todo el relleno del tetraedro.
+\end{itemize}
+Por problemas de percepción, el $3$-simplejo es el de dimensión más alta que se puede dibujar.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round,line join=round]
+\node[font=\small,gray] at (60,22) {$0$-simplejo};
+\node[font=\small,gray] at (188,22) {$1$-simplejo};
+\node[font=\small,gray] at (342,22) {$2$-simplejo};
+\node[font=\small,gray] at (522,22) {$3$-simplejo};
+\fill[extremo] (60,105) circle (3.5);
+\node[font=\small] at (60,125) {$v_{0}$};
+\draw[azul,thick] (150,128) -- (225,72);
+\fill[extremo] (150,128) circle (3.5);
+\fill[extremo] (225,72) circle (3.5);
+\node[font=\small] at (142,148) {$v_{0}$};
+\node[font=\small] at (238,64) {$v_{1}$};
+\fill[azul,opacity=.18] (295,128) -- (340,55) -- (390,128) -- cycle;
+\draw[azul,thick] (295,128) -- (340,55);
+\draw[azul,thick] (340,55) -- (390,128);
+\draw[azul,thick] (295,128) -- (390,128);
+\fill[extremo] (295,128) circle (3.5);
+\fill[extremo] (340,55) circle (3.5);
+\fill[extremo] (390,128) circle (3.5);
+\node[font=\small] at (285,148) {$v_{0}$};
+\node[font=\small] at (340,40) {$v_{1}$};
+\node[font=\small] at (402,148) {$v_{2}$};
+\fill[azul,opacity=.18] (455,138) -- (478,50) -- (570,72) -- (590,142) -- cycle;
+\draw[azul,thick] (455,138) -- (478,50);
+\draw[azul,thick] (478,50) -- (570,72);
+\draw[azul,thick] (570,72) -- (590,142);
+\draw[azul,thick] (455,138) -- (590,142);
+\draw[azul,thick] (455,138) -- (570,72);
+\draw[azul,thick] (478,50) -- (590,142);
+\fill[extremo] (455,138) circle (3.5);
+\fill[extremo] (478,50) circle (3.5);
+\fill[extremo] (570,72) circle (3.5);
+\fill[extremo] (590,142) circle (3.5);
+\node[font=\small] at (445,158) {$v_{0}$};
+\node[font=\small] at (472,35) {$v_{1}$};
+\node[font=\small] at (586,64) {$v_{2}$};
+\node[font=\small] at (604,160) {$v_{3}$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: Simplejos de dimensión $0$, $1$, $2$ y $3$, con sus vértices (en verde).
+
+Sería un muy buen ejercicio convencerse de la siguiente observación. Como los simplejos viven en $\mathbb R^m$, las combinaciones lineales de los vértices tienen sentido, y el simplejo $[v_0,\dots,v_n]$, como conjunto, se describe así:
+\[
+  [v_0,\dots,v_n]=\Bigl\{\,t_0v_0+\dots+t_nv_n \;\Bigm|\; t_i\ge 0\ \forall i,\ \ t_0+\dots+t_n=1\,\Bigr\}.
+\]
+Es decir, son las combinaciones lineales de los vértices cuyos coeficientes son todos mayores o iguales que $0$ y suman exactamente $1$. Dados estos $n+1$ puntos en posición general, este conjunto es exactamente el convexo más pequeño que los contiene; mucha gente le llama la \emph{envolvente convexa} de $v_0,\dots,v_n$.
+
+\section*{El simplejo estándar}
+
+A continuación se define un simplejo muy particular. La razón para definirlo es que se va a utilizar mucho; concretamente, para definir la homología singular.
+
+\begin{defn}[Simplejo estándar]\label{defn:simplejo-estandar}
+El \emph{$n$-simplejo estándar} es
+\[
+  \Delta^n=[e_1,\dots,e_{n+1}],
+\]
+donde $e_1,\dots,e_{n+1}$ es la base canónica de $\mathbb R^{n+1}$.
+\end{defn}
+
+El $0$-simplejo estándar $\Delta^0$ vive en $\mathbb R^1$: la base canónica es el $1$, así que $\Delta^0$ es nada más ese punto. El $1$-simplejo estándar $\Delta^1$ vive en $\mathbb R^2$: es la envolvente convexa de los dos vectores de la base canónica, es decir, el segmento que los une. El $2$-simplejo estándar $\Delta^2$ vive en $\mathbb R^3$: es el triangulito generado por la base canónica, inclinado entre los tres ejes.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round,line join=round]
+\node[font=\small,gray] at (85,22) {$0$-simplejo estándar};
+\node[font=\small,gray] at (300,22) {$1$-simplejo estándar};
+\node[font=\small,gray] at (520,22) {$2$-simplejo estándar};
+\draw[gray] (15,105) -- (165,105);
+\node[font=\small] at (160,88) {$\mathbb R^1$};
+\draw[gray] (55,99) -- (55,111);
+\node[font=\small,gray] at (55,126) {$0$};
+\fill[azul] (105,105) circle (3.5);
+\node[font=\small,gray] at (105,126) {$1$};
+\node[font=\small] at (105,150) {$\Delta^0$};
+\draw[gray,-{Stealth}] (235,135) -- (385,135);
+\draw[gray,-{Stealth}] (265,160) -- (265,40);
+\node[font=\small] at (380,60) {$\mathbb R^2$};
+\draw[azul,thick] (335,135) -- (265,65);
+\fill[azul] (335,135) circle (3.5);
+\fill[azul] (265,65) circle (3.5);
+\node[font=\small,gray] at (345,155) {$e_1$};
+\node[font=\small,gray] at (245,65) {$e_2$};
+\node[font=\small] at (312,92) {$\Delta^1$};
+\draw[gray,-{Stealth}] (505,115) -- (445,165);
+\draw[gray,-{Stealth}] (505,115) -- (610,115);
+\draw[gray,-{Stealth}] (505,115) -- (505,30);
+\node[font=\small] at (600,55) {$\mathbb R^3$};
+\fill[azul,opacity=.18] (468,145) -- (575,115) -- (505,48) -- cycle;
+\draw[azul,thick] (468,145) -- (575,115);
+\draw[azul,thick] (575,115) -- (505,48);
+\draw[azul,thick] (468,145) -- (505,48);
+\fill[azul] (468,145) circle (3.5);
+\fill[azul] (575,115) circle (3.5);
+\fill[azul] (505,48) circle (3.5);
+\node[font=\small,gray] at (462,128) {$e_1$};
+\node[font=\small,gray] at (580,135) {$e_2$};
+\node[font=\small,gray] at (488,45) {$e_3$};
+\node[font=\small] at (545,160) {$\Delta^2$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: Los simplejos estándar $\Delta^0\subseteq\mathbb R^1$, $\Delta^1\subseteq\mathbb R^2$ y $\Delta^2\subseteq\mathbb R^3$ (en azul).
+
+Es súper importante la notación: siempre que se utilice la $\Delta$ con el superíndice $n$, se refiere al $n$-simplejo estándar. Análogamente a la observación anterior, $\Delta^n$ es justamente el conjunto de los puntos de $\mathbb R^{n+1}$, escritos como $(n+1)$-adas de coordenadas, cuyas coordenadas suman $1$ y son todas mayores o iguales que $0$:
+\[
+  \Delta^n=\bigl\{(t_0,\dots,t_n)\in\mathbb R^{n+1} \bigm| t_0+\dots+t_n=1\ \text{ y }\ t_i\ge 0\ \forall i\bigr\}.
+\]
+
+\section*{El orden de los vértices y las coordenadas baricéntricas}
+
+Algo muy importante, que hay que mantener en mente de aquí en adelante: para nosotros el orden de los vértices en $[v_0,\dots,v_n]$ es importante y siempre hay que tenerlo en mente. Es decir, un $n$-simplejo no es solamente un conjunto de vértices, sino que los vértices vienen enumerados: el $v_0$, el $v_1$, el $v_2$, y así hasta el último vértice. Quizá ahorita no se ve tan claro por qué, pero eventualmente va a quedar muy claro.
+
+\begin{defn}[Coordenadas baricéntricas]\label{defn:baricentricas}
+Dado el $n$-simplejo $[v_0,\dots,v_n]$, siempre se tiene la función
+\[
+  (v_0,\dots,v_n)\colon\Delta^n\longrightarrow[v_0,\dots,v_n],\qquad (t_0,\dots,t_n)\longmapsto t_0v_0+\dots+t_nv_n .
+\]
+A los escalares $t_0,\dots,t_n$ se les llama las \emph{coordenadas baricéntricas} del punto $t_0v_0+\dots+t_nv_n$ de $[v_0,\dots,v_n]$.
+\end{defn}
+
+Desde ahora, con corchetes cuadrados $[v_0,\dots,v_n]$ se denota el simplejo (el conjunto), y con paréntesis redondos $(v_0,\dots,v_n)$, la función. La función está bien definida por la descripción del simplejo como conjunto de combinaciones lineales, y esencialmente es lineal, en el sentido de que manda combinaciones lineales en combinaciones lineales. A un punto abstracto del simplejo siempre se le pueden asociar estos escalares, que son sus coordenadas baricéntricas. Por ejemplo, $t_0=1$, $t_1=0,\dots,t_n=0$ son las coordenadas baricéntricas de $v_0\in[v_0,\dots,v_n]$.
+
+Nótese que la función $(v_0,\dots,v_n)$ sí depende del orden de los vértices $v_0,\dots,v_n$: si se cambia el orden de los vértices, se obtiene otra función.
+
+\section*{Caras y orientación de las aristas}
+
+\begin{defn}[Cara]\label{defn:cara}
+Una \emph{cara} de $[v_0,\dots,v_n]$ es el subsimplejo generado por cualquier subconjunto no vacío de $\{v_0,\dots,v_n\}$.
+\end{defn}
+
+Por ejemplo, un $2$-simplejo tiene caras de dimensión $0$, que son sus vértices; caras de dimensión $1$, que son sus tres lados; y una cara de dimensión $2$: el simplejo completito también es una cara de sí mismo.
+
+Se hace además la siguiente convención. Cualquier cara de dimensión $1$ se escribe $[v_i,v_j]$ respetando el orden que viene del simplejo original, es decir, con $i<j$, y se considera \emph{orientada} de $v_i$ a $v_j$. Así, en $[v_0,v_1]$ la arista va de $v_0$ a $v_1$. En $[v_0,v_1,v_2]$ las aristas $[v_0,v_1]$, $[v_1,v_2]$ y $[v_0,v_2]$ se orientan siempre de subíndice menor a mayor. En el $3$-simplejo $[v_0,v_1,v_2,v_3]$ quedan orientadas las seis aristas $[v_0,v_1]$, $[v_0,v_2]$, $[v_1,v_2]$, $[v_1,v_3]$, $[v_2,v_3]$ y $[v_0,v_3]$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round,line join=round]
+\node[font=\small,gray] at (90,22) {$[v_0,v_1]$};
+\node[font=\small,gray] at (265,22) {$[v_0,v_1,v_2]$};
+\node[font=\small,gray] at (490,22) {$[v_0,v_1,v_2,v_3]$};
+\draw[thick] (40,120) -- (140,120); \draw[thick,-{Stealth[length=7pt]}] (40,120) -- (98,120);
+\fill[extremo] (40,120) circle (3.5);
+\fill[extremo] (140,120) circle (3.5);
+\node[font=\small] at (40,142) {$v_{0}$};
+\node[font=\small] at (140,142) {$v_{1}$};
+\draw[thick] (215,140) -- (265,52); \draw[thick,-{Stealth[length=7pt]}] (215,140) -- (244,88.96);
+\draw[thick] (265,52) -- (315,140); \draw[thick,-{Stealth[length=7pt]}] (265,52) -- (294,103.04);
+\draw[thick] (215,140) -- (315,140); \draw[thick,-{Stealth[length=7pt]}] (215,140) -- (273,140);
+\fill[extremo] (215,140) circle (3.5);
+\fill[extremo] (265,52) circle (3.5);
+\fill[extremo] (315,140) circle (3.5);
+\node[font=\small] at (203,160) {$v_{0}$};
+\node[font=\small] at (265,38) {$v_{1}$};
+\node[font=\small] at (328,160) {$v_{2}$};
+\draw[thick] (410,150) -- (570,150); \draw[thick,-{Stealth[length=7pt]}] (410,150) -- (502.8,150);
+\draw[thick] (410,150) -- (492,112); \draw[thick,-{Stealth[length=7pt]}] (410,150) -- (457.56,127.96);
+\draw[thick] (410,150) -- (488,38); \draw[thick,-{Stealth[length=7pt]}] (410,150) -- (455.24,85.04);
+\draw[thick] (570,150) -- (492,112); \draw[thick,-{Stealth[length=7pt]}] (570,150) -- (524.76,127.96);
+\draw[thick] (570,150) -- (488,38); \draw[thick,-{Stealth[length=7pt]}] (570,150) -- (522.44,85.04);
+\draw[thick] (492,112) -- (488,38); \draw[thick,-{Stealth[length=7pt]}] (492,112) -- (489.68,69.08);
+\fill[extremo] (410,150) circle (3.5);
+\fill[extremo] (570,150) circle (3.5);
+\fill[extremo] (492,112) circle (3.5);
+\fill[extremo] (488,38) circle (3.5);
+\node[font=\small] at (398,170) {$v_{0}$};
+\node[font=\small] at (584,170) {$v_{1}$};
+\node[font=\small] at (507,128) {$v_{2}$};
+\node[font=\small] at (508,40) {$v_{3}$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: Orientación de las $1$-caras: cada arista $[v_i,v_j]$, con $i<j$, va de $v_i$ a $v_j$.
+
+Con esto terminan las definiciones de este video: son todas las que van a ser útiles acerca de los simplejos. Nótese que los simplejos, como se definieron aquí, son objetos con una combinatoria muy rica, y justamente de esa combinatoria se va a ayudar uno para definir la homología singular de un espacio en los videos que siguen.
+
+\begin{erratas}
+  \errata{33}{0:33}{En la pizarra se escribe $\mathbb R^m$ con $m>n$, pero basta $m\ge n$ (en el audio se aclara que no forzosamente $m$ tiene que ser mayor que $n$; por ejemplo, un $2$-simplejo vive en $\mathbb R^2$). En estas notas se escribe $m\ge n$.}
+  \errata{426}{7:06}{En la pizarra se escribe $\Delta^n=\{(t_0,\dots,t_{n+1})\in\mathbb R^{n+1}\mid t_0+\dots+t_{n+1}=1,\ t_i\ge 0\}$, pero debe decir $(t_0,\dots,t_n)$ y $t_0+\dots+t_n=1$: los puntos de $\mathbb R^{n+1}$ tienen $n+1$ coordenadas, como en la función de las coordenadas baricéntricas.}
+\end{erratas}
+
+\end{document}
