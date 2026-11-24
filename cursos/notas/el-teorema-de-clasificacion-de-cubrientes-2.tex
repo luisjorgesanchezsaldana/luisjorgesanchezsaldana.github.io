@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{EZlgC_DT7D0}
+\input{preambulo}
+\unidad{3}{23} % unidad 3; primer enunciado: 3.23
+
+\title{El teorema de clasificación de cubrientes (unicidad)}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=EZlgC_DT7D0}{\guillemotleft{}El teorema de clasificación de cubrientes - parte 2\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se define isomorfismo de cubrientes y se demuestra que dos cubrientes son isomorfos (respetando puntos base) si y sólo si tienen la misma imagen en el grupo fundamental.
+\normalsize
+
+\section*{Isomorfismos de cubrientes}
+
+En el video anterior se demostró que, dado un subgrupo del grupo fundamental de $X$ (con todas las hipótesis usuales), siempre existe un cubriente que realiza ese subgrupo (Proposición~3.22). Ese es un problema de existencia, y la pregunta natural ahora es si hay algún tipo de unicidad. El objetivo de este video es responder afirmativamente esta pregunta; pero para hablar de unicidad primero se necesita una noción de isomorfismo entre cubrientes.
+
+\begin{defn}[Isomorfismo de cubrientes]\label{def:iso-cubrientes}
+Dos cubrientes $p_1\colon\tilde X_1\to X$ y $p_2\colon\tilde X_2\to X$ son \emph{isomorfos} si existe un homeomorfismo $f\colon\tilde X_1\to\tilde X_2$ tal que el diagrama
+\[
+  \begin{array}{ccc}
+    \tilde X_1 & \xrightarrow{\ f\ } & \tilde X_2\\[2pt]
+    & {\scriptstyle p_1}\searrow\quad\swarrow{\scriptstyle p_2} & \\[2pt]
+    & X &
+  \end{array}
+\]
+conmuta, es decir, $p_2\circ f=p_1$.
+\end{defn}
+
+Claramente la relación de isomorfismo entre cubrientes de un espacio base fijo es una relación de equivalencia. Que el diagrama conmute dice varias cosas. Por ejemplo, para cualquier punto $x\in X$, la función $f$ se restringe a una biyección
+\[
+  p_1^{-1}(x)\to p_2^{-1}(x).
+\]
+De hecho, si se tiene una vecindad regular $U$ en $X$, se puede levantar a $\tilde X_1$ y a $\tilde X_2$, y pasa lo obvio: las hojas sobre $U$ de un lado y del otro van a estar en biyección, y van a ser homeomorfas vía $f$. Así que un isomorfismo entre cubrientes dice que los cubrientes tienen esencialmente la misma estructura como cubrientes.
+
+\section*{La unicidad}
+
+\begin{prop}\label{prop:unicidad-cubrientes}
+Si $X$ es arco-conexo y localmente arco-conexo, entonces $p_1\colon\tilde X_1\to X$ y $p_2\colon\tilde X_2\to X$ son isomorfos vía un homeomorfismo $f\colon\tilde X_1\to\tilde X_2$ con $f(\tilde x_1)=\tilde x_2$, donde $p_1(\tilde x_1)=p_2(\tilde x_2)=x_0$, si y sólo si
+\[
+  p_{1*}\pi_1(\tilde X_1,\tilde x_1)=p_{2*}\pi_1(\tilde X_2,\tilde x_2).
+\]
+\end{prop}
+
+Recuérdese que ambas imágenes viven en $\pi_1(X,x_0)$. Esto da una forma de caracterizar el hecho de que dos cubrientes sean isomorfos, y es justamente un enunciado del tipo unicidad: dado un subgrupo $H$ del grupo fundamental, existe a lo más un cubriente, salvo isomorfismo, que lo realiza en el sentido de la Proposición~3.22.
+
+\begin{proof}
+\emph{($\Rightarrow$)} Del hecho de que se tenga el diagrama
+\[
+  \begin{array}{ccc}
+    \tilde X_1 & \xrightarrow{\ f\ } & \tilde X_2\\[2pt]
+    & {\scriptstyle p_1}\searrow\quad\swarrow{\scriptstyle p_2} & \\[2pt]
+    & X &
+  \end{array}
+\]
+y de que conmute, y de que $f$ induce un isomorfismo en grupos fundamentales, es bastante claro que las imágenes de los grupos fundamentales bajo $p_1$ y $p_2$ son iguales; no hay mucho que demostrar.
+
+\medskip\noindent\emph{($\Leftarrow$)} Ahora se supone la igualdad de las imágenes y se piensa en términos del mismo diagrama. Ni siquiera hace falta que sean iguales: que la imagen bajo $p_{1*}$ de $\pi_1(\tilde X_1)$ esté contenida en la imagen bajo $p_{2*}$ de $\pi_1(\tilde X_2)$ dice, por el criterio de levantamiento (Proposición~3.11), que existe un levantamiento
+\[
+  \tilde p_1\colon(\tilde X_1,\tilde x_1)\to(\tilde X_2,\tilde x_2)
+\]
+de $p_1$ al cubriente $p_2$. De manera análoga, pensando ahora en el diagrama transpuesto y usando la otra inclusión, se obtiene un levantamiento
+\[
+  \tilde p_2\colon(\tilde X_2,\tilde x_2)\to(\tilde X_1,\tilde x_1)
+\]
+de $p_2$ al cubriente $p_1$. Así se obtiene el diagrama
+\[
+  \begin{array}{ccccc}
+    & & \tilde X_1 & & \\[2pt]
+    & {\scriptstyle\tilde p_2}\nearrow & \big\downarrow{\scriptstyle p_1} & \searrow{\scriptstyle\tilde p_1} & \\[2pt]
+    \tilde X_2 & \xrightarrow{\ p_2\ } & X & \xleftarrow{\ p_2\ } & \tilde X_2
+  \end{array}
+\]
+La composición $\tilde p_1\circ\tilde p_2\colon\tilde X_2\to\tilde X_2$ es un levantamiento de $p_2$ al cubriente $p_2$ que manda $\tilde x_2$ en $\tilde x_2$; pero la identidad también lo es. Como también se demostró que dicho levantamiento es único (Proposición~3.12), a este levantamiento no le queda otra que ser la identidad:
+\[
+  \tilde p_1\circ\tilde p_2=\mathrm{Id}_{\tilde X_2}.
+\]
+Análogamente, $\tilde p_2\circ\tilde p_1=\mathrm{Id}_{\tilde X_1}$. Por lo tanto $\tilde p_1$ es un homeomorfismo con $p_2\circ\tilde p_1=p_1$ y $\tilde p_1(\tilde x_1)=\tilde x_2$, y los dos cubrientes son isomorfos.
+\end{proof}
+
+Esta demostración fue bastante más sencilla que las anteriores, pero aun así el resultado no deja de ser poderoso: la realización en cubrientes de cualquier subgrupo del grupo fundamental de $X$ es única.
+
+\begin{erratas}
+  \errata{328}{5:28}{En el pizarrón se escribe dos veces $\tilde p_2\circ\tilde p_1$: primero $\tilde p_2\circ\tilde p_1=\mathrm{Id}_{\tilde X_2}$ y luego $\tilde p_2\circ\tilde p_1=\mathrm{Id}_{\tilde X_1}$ (y de palabra se dice lo mismo). Como $\tilde p_2\circ\tilde p_1$ va de $\tilde X_1$ a $\tilde X_1$, la primera debe decir $\tilde p_1\circ\tilde p_2=\mathrm{Id}_{\tilde X_2}$.}
+\end{erratas}
+
+\end{document}
