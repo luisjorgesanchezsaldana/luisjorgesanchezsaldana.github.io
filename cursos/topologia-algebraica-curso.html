@@ -303,7 +303,8 @@ async function section(k,v){
   const hs=[...notes.querySelectorAll("h4")].filter(h=>!h.closest(".erratas"));
   if(hs.length>1){const ol=document.querySelector("#outline ol");
     hs.forEach((h,i)=>{h.id="s"+(i+1);h.style.scrollMarginTop="calc(var(--top) + 16px)"});
-    ol.innerHTML=hs.map(h=>`<li><a href="#${f.no}" data-to="${h.id}">${esc(h.textContent)}</a></li>`).join("");
+    const label=h=>{const c=h.cloneNode(true);c.querySelectorAll(".katex-mathml").forEach(m=>m.remove());return c.innerHTML};
+    ol.innerHTML=hs.map(h=>`<li><a href="#${f.no}" data-to="${h.id}">${label(h)}</a></li>`).join("");
     ol.onclick=e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();document.getElementById(a.dataset.to).scrollIntoView()};
     document.getElementById("outline").hidden=false;
     const links=[...ol.querySelectorAll("a")];
