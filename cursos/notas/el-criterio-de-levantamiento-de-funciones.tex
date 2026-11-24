@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{LxlUZgf1J6s}
+\input{preambulo}
+\unidad{3}{10} % unidad 3; primer enunciado: 3.10
+
+\title{El criterio de levantamiento de funciones}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=LxlUZgf1J6s}{\guillemotleft{}Un criterio de levantamiento de funciones\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se da una caracterización, en términos de grupos fundamentales, de cuándo una función de un espacio arco-conexo y localmente arco-conexo a la base de un cubriente se levanta al espacio cubriente.
+\normalsize
+
+\section*{La pregunta}
+
+Como de costumbre, se tiene un cubriente $p\colon\tilde X\to X$, y ahora, en lugar de una homotopía, una función cualquiera $f\colon Y\to X$ de un espacio cualquiera $Y$ a $X$. La pregunta es bajo qué condiciones se puede encontrar un \emph{levantamiento} de $f$, es decir, una función $\tilde f\colon Y\to\tilde X$ de manera que el diagrama conmute: $p\circ\tilde f=f$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm]
+  \node (Xt) at (200,20) {$\tilde X$};
+  \node (Y) at (60,110) {$Y$};
+  \node (X) at (200,110) {$X$};
+  \draw[->] (Y) -- node[below,font=\small] {$f$} (X);
+  \draw[->] (Xt) -- node[right,font=\small] {$p$} (X);
+  \draw[->,dashed,azul] (Y) -- node[above left,font=\small] {$\tilde f$} (Xt);
+\end{tikzpicture}
+\end{center}
+
+En el caso de homotopías ya se sabe que, si se puede levantar la primera etapa de la homotopía, se encuentra un levantamiento (Teorema~3.4). Pero en general los levantamientos no siempre van a existir. En este video se demuestra un teorema que caracteriza cuándo sí se puede hacer un levantamiento como el que se acaba de explicar.
+
+\section*{Espacios localmente arco-conexos}
+
+Antes de enunciar el resultado principal se da una pequeña definición.
+
+\begin{defn}[Localmente arco-conexo]\label{def:loc-arco-conexo}
+Se dice que un espacio topológico $Y$ es \emph{localmente arco-conexo} si para todo $y\in Y$ y cada vecindad $U$ de $y$ existe una vecindad $V$ de $y$, con $y\in V\subseteq U$, que es arco-conexa.
+\end{defn}
+
+Es decir, para todo punto y para toda vecindad de ese punto siempre existe una vecindad más pequeña $V$ que es arco-conexa: cualesquiera dos puntos de $V$ se pueden conectar por un camino.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (60,10) -- (330,10) -- (290,100) -- (20,100) -- cycle; \node at (350,30) {$Y$};
+  \draw[thick] (175,55) ellipse (70 and 30); \node[font=\small] at (262,40) {$U$};
+  \draw[thick,azul] (170,57) ellipse (28 and 14); \node[azul,font=\small] at (213,64) {$V$};
+  \fill[extremo] (165,57) circle (3); \node[extremo,font=\small] at (176,50) {$y$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: $y\in V\subseteq U$ con $V$ arco-conexa.
+
+\section*{El criterio de levantamiento}
+
+Se usa la notación de parejas, $p\colon(\tilde X,\tilde x_0)\to(X,x_0)$, solamente para especificar que la proyección cubriente $p$ manda $\tilde x_0$ a $x_0$.
+
+\begin{prop}\label{prop:criterio}
+Sean $p\colon(\tilde X,\tilde x_0)\to(X,x_0)$ un cubriente y $f\colon(Y,y_0)\to(X,x_0)$ una función, con $Y$ un espacio arco-conexo y localmente arco-conexo. Entonces existe un levantamiento $\tilde f\colon(Y,y_0)\to(\tilde X,\tilde x_0)$ de $f$ si y sólo si
+\[
+  f_*(\pi_1(Y,y_0))\subseteq p_*(\pi_1(\tilde X,\tilde x_0)).
+\]
+\end{prop}
+
+Para que quede un poco más claro, inicialmente se tiene el diagrama de la izquierda, que después de aplicar grupos fundamentales queda como el de la derecha. La imagen bajo $f_*$ y la imagen bajo $p_*$ viven ambas en $\pi_1(X,x_0)$: son dos subgrupos de $\pi_1(X,x_0)$. Lo que dice la proposición es que la imagen de $f_*$ está contenida en la imagen de $p_*$ exactamente cuando se tiene un levantamiento.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm]
+  \node (Xt) at (150,20) {$(\tilde X,\tilde x_0)$};
+  \node (Y) at (20,100) {$(Y,y_0)$};
+  \node (X) at (150,100) {$(X,x_0)$};
+  \draw[->] (Y) -- node[below,font=\small] {$f$} (X);
+  \draw[->] (Xt) -- node[right,font=\small] {$p$} (X);
+  \draw[->,dashed,azul] (Y) -- node[above left,font=\small] {$\tilde f$} (Xt);
+  \node at (280,60) {$\leadsto$};
+  \node (pXt) at (500,20) {$\pi_1(\tilde X,\tilde x_0)$};
+  \node (pY) at (360,100) {$\pi_1(Y,y_0)$};
+  \node (pX) at (500,100) {$\pi_1(X,x_0)$};
+  \draw[->] (pY) -- node[below,font=\small] {$f_*$} (pX);
+  \draw[->] (pXt) -- node[right,font=\small] {$p_*$} (pX);
+\end{tikzpicture}
+\end{center}
+
+\begin{proof}
+\emph{($\Rightarrow$)} Esta dirección es obvia: si existe tal levantamiento $\tilde f$, entonces por la conmutatividad del diagrama, $f_*=p_*\circ\tilde f_*$, y claramente se cumple la condición $f_*(\pi_1(Y,y_0))\subseteq p_*(\pi_1(\tilde X,\tilde x_0))$. En esta dirección no hay absolutamente nada que demostrar.
+
+\medskip\noindent\emph{($\Leftarrow$)} Esta dirección tiene bastante más chiste. El objetivo es definir el levantamiento $\tilde f\colon Y\to\tilde X$.
+
+\medskip\noindent\textbf{Definición de $\tilde f$.} Sean $y\in Y$ y un camino $\gamma$ en $Y$ que va de $y_0$ a $y$; este camino existe porque se está suponiendo que $Y$ es arco-conexo. El camino $\gamma$ se empuja a un camino $f\gamma$ en $X$, que tiene como punto inicial $x_0$, porque $f$ manda $y_0$ en $x_0$. Como ya se demostró anteriormente (Corolario~3.5), el camino $f\gamma$, que comienza en $x_0$, se puede levantar a un único camino $\widetilde{f\gamma}$ que comienza en $\tilde x_0$. Se define
+\[
+  \tilde f\colon Y\to\tilde X,\qquad y\longmapsto\widetilde{f\gamma}(1);
+\]
+es decir, se toma el camino $f\gamma$, se levanta y se toma el punto final de ese levantamiento.
+
+\medskip\noindent\textbf{$\tilde f$ está bien definida.} Para definir $\tilde f$ se usó un camino $\gamma$ que se escogió de manera arbitraria, y podría haber muchos caminos que unan $y_0$ con $y$. Hay que ver que la definición no depende de $\gamma$. Sea $\gamma'$ otro camino de $y_0$ a $y$. Entonces
+\[
+  h_0=(f\gamma')(f\bar\gamma)
+\]
+es un lazo en $x_0$: se recorre $f\gamma'$ y luego $f\gamma$ en dirección contraria. Además, $h_0$ es la imagen bajo $f$ del lazo $\gamma'\bar\gamma$ en $Y$, que resulta de recorrer $\gamma'$ y luego regresar con $\gamma$. Así que
+\[
+  [h_0]\in f_*(\pi_1(Y,y_0))\subseteq p_*(\pi_1(\tilde X,\tilde x_0)),
+\]
+donde la contención es la hipótesis. Recuérdese que los elementos de la imagen de $p_*$ son las clases que se representan por lazos que se levantan a lazos en $\tilde X$ basados en $\tilde x_0$ (Proposición~3.8). Así que $h_0$ es homotópico, vía una homotopía $h_t$, a un lazo $h_1$ en $x_0$ que se levanta a un lazo $\tilde h_1$ en $\tilde x_0$. Por el teorema de levantamiento de homotopías (Teorema~3.4) se puede levantar $h_t$ a una homotopía $\tilde h_t$ de $\tilde h_0$ a $\tilde h_1$, donde $\tilde h_0$ es el levantamiento de $h_0$ que empieza en $\tilde x_0$; y como $\tilde h_1$ es un lazo, $\tilde h_0$ también es un lazo (Lema~3.7).
+
+Ahora recuérdese cómo está definido $h_0$: es el producto de los caminos $f\gamma'$ y $f\bar\gamma$. Para levantar $h_0$ se puede primero levantar $f\gamma'$ y, por la unicidad, se obtiene el levantamiento $\widetilde{f\gamma'}$; luego se levanta $f\bar\gamma$. Como $\tilde h_0$ es un lazo basado en $\tilde x_0$, el punto que está a la mitad es a la vez $\widetilde{f\gamma'}(1)$ y $\widetilde{f\gamma}(1)$ (el levantamiento de $f\bar\gamma$, recorrido al revés, es el levantamiento de $f\gamma$ que empieza en $\tilde x_0$). Es decir, los dos levantamientos tienen el mismo punto final, y por lo tanto $\tilde f$ está bien definida. Para demostrar esto se usó fuertemente la hipótesis.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (10,10) rectangle (230,120); \node at (245,25) {$Y$};
+  \draw[thick] (45,85) .. controls (90,120) and (160,115) .. (195,80); \node[font=\small] at (120,122) {$\gamma$};
+  \draw[thick,azul] (45,85) .. controls (80,30) and (160,30) .. (195,80); \node[azul,font=\small] at (120,30) {$\gamma'$};
+  \fill[extremo] (45,85) circle (3.5); \node[extremo,font=\small] at (35,100) {$y_0$};
+  \fill[extremo] (195,80) circle (3.5); \node[extremo,font=\small] at (210,95) {$y$};
+  \draw[gray] (320,10) rectangle (700,120); \node at (720,25) {$\tilde X$};
+  \draw[thick] (355,90) .. controls (400,120) and (470,110) .. (520,60); \node[font=\small] at (450,122) {$\widetilde{f\gamma}$};
+  \draw[thick,azul] (355,90) .. controls (380,40) and (470,20) .. (520,60); \node[azul,font=\small] at (430,28) {$\widetilde{f\gamma'}$};
+  \fill[extremo] (355,90) circle (3.5); \node[extremo,font=\small] at (345,105) {$\tilde x_0$};
+  \fill[extremo] (520,60) circle (3.5);
+  \node[extremo,font=\small,anchor=west] at (528,62) {$\widetilde{f\gamma}(1)=\widetilde{f\gamma'}(1)$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: dos caminos $\gamma$ y $\gamma'$ de $y_0$ a $y$. El lazo $h_0=(f\gamma')(f\bar\gamma)$ se levanta a un lazo basado en $\tilde x_0$, así que los levantamientos de $f\gamma$ y de $f\gamma'$ tienen el mismo punto final.
+
+\medskip\noindent\textbf{$\tilde f$ es continua.} La demostración no termina aquí, porque falta demostrar que $\tilde f$ es continua. Sea $y\in Y$; se demuestra que $\tilde f$ es continua en $y$, y como $y$ es arbitrario, esto demuestra que $\tilde f$ es continua en todo $Y$.
+
+Sea $U\subseteq X$ una vecindad abierta (regular) de $f(y)$, y sea $\tilde U$ un abierto de $\tilde X$ con $\tilde f(y)\in\tilde U$ y tal que $p\colon\tilde U\to U$ es un homeomorfismo; es decir, $\tilde U$ es una de las hojas de la preimagen de $U$. Escójase una vecindad abierta y arco-conexa $V\subseteq Y$ de $y$, contenida en $f^{-1}(U)$. Esta vecindad existe porque se está suponiendo que $Y$ es localmente arco-conexo; esa es la última hipótesis que faltaba por utilizar, y se usa justamente para demostrar que $\tilde f$ es continua.
+
+Para terminar la demostración basta demostrar que $\tilde f(V)\subseteq\tilde U$. Para definir $\tilde f$ en un punto de $V$ hay que tomar un camino desde $y_0$, empujarlo con $f$ y levantarlo; no importa qué camino, porque ya se demostró que $\tilde f$ está bien definida. Así que se toman caminos muy particulares. Se fija desde ahora un camino $\gamma$ de $y_0$ a $y$. Si $y'\in V$ es cualquier otro punto, como $V$ es arco-conexa hay un camino chiquito $\eta$ en $V$ de $y$ a $y'$, y el camino que se usa para $y'$ es $\gamma\eta$: primero $\gamma$ y luego $\eta$.
+
+Al empujar $\gamma\eta$ con $f$ se obtiene el camino $(f\gamma)(f\eta)$. Primero se levanta $f\gamma$, y se obtiene $\widetilde{f\gamma}$, que termina en $\tilde f(y)\in\tilde U$. Para levantar $f\eta$, nótese que $f\eta$ está contenido en $U$ y que se escogieron las vecindades de manera que se tiene el homeomorfismo inverso $p^{-1}\colon U\to\tilde U$; usándolo se levanta $f\eta$ y se obtiene $\widetilde{f\eta}$. La ventaja de haberlo levantado así es que $\widetilde{f\eta}$ cae completamente dentro de $\tilde U$. Siguiendo la construcción, $\tilde f(y')$ es el punto final de $\widetilde{f\eta}$. En resumidas cuentas,
+\[
+  \tilde f(y')\in\tilde U\quad\Longrightarrow\quad\tilde f(V)\subseteq\tilde U,
+\]
+y esto termina la demostración.
+\end{proof}
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (20,110) rectangle (260,240); \node at (245,95) {$Y$};
+  \draw[thick,azul] (75,180) circle (32); \node[azul,font=\small] at (60,138) {$V$};
+  \fill[extremo] (75,190) circle (3); \node[extremo,font=\small] at (72,207) {$y$};
+  \fill[extremo] (88,165) circle (3); \node[extremo,font=\small] at (102,160) {$y'$};
+  \draw[thick,azul] (75,190) .. controls (65,175) and (80,170) .. (88,165); \node[azul,font=\small] at (100,182) {$\eta$};
+  \draw[thick] (75,190) .. controls (130,200) and (180,150) .. (220,140); \node[font=\small] at (160,188) {$\gamma$};
+  \fill[extremo] (220,140) circle (3); \node[extremo,font=\small] at (235,150) {$y_0$};
+  \draw[gray] (420,10) rectangle (620,100); \node at (640,25) {$\tilde X$};
+  \draw[thick,azul] (520,45) circle (30); \node[azul,font=\small] at (565,25) {$\tilde U$};
+  \draw[thick] (440,85) .. controls (480,90) and (500,70) .. (515,55);
+  \fill[extremo] (440,85) circle (3); \node[extremo,font=\small] at (440,72) {$\tilde x_0$};
+  \draw[thick,azul] (515,55) .. controls (510,45) and (520,40) .. (528,35);
+  \fill[extremo] (515,55) circle (3); \fill[extremo] (528,35) circle (3);
+  \node[font=\small] at (470,105) {$\widetilde{f\gamma}$}; \node[azul,font=\small] at (555,60) {$\widetilde{f\eta}$};
+  \draw[gray] (420,170) rectangle (620,260); \node at (640,185) {$X$};
+  \draw[thick,azul] (520,205) circle (30); \node[azul,font=\small] at (565,185) {$U$};
+  \draw[thick] (440,245) .. controls (480,250) and (500,230) .. (515,215);
+  \fill[extremo] (440,245) circle (3); \node[extremo,font=\small] at (440,232) {$x_0$};
+  \draw[thick,azul] (515,215) .. controls (510,205) and (520,200) .. (528,195);
+  \fill[extremo] (515,215) circle (3); \fill[extremo] (528,195) circle (3);
+  \node[font=\small] at (470,265) {$f\gamma$}; \node[azul,font=\small] at (555,220) {$f\eta$};
+  \draw[->,gray] (520,110) -- (520,160); \node[font=\small] at (533,135) {$p$};
+  \draw[->,gray] (275,185) -- (405,210); \node[font=\small] at (340,212) {$f$};
+  \draw[->,gray] (275,150) -- (405,60); \node[font=\small] at (330,92) {$\tilde f$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: para $y'\in V$ se usa el camino $\gamma\eta$. El levantamiento de $f\eta$ se obtiene con el homeomorfismo inverso $p^{-1}\colon U\to\tilde U$, así que cae dentro de $\tilde U$, y $\tilde f(y')\in\tilde U$.
+
+\section*{Para terminar}
+
+La demostración se hizo esencialmente con puros dibujos; es un buen ejercicio terminar de escribirla formalmente, pero ahí está la idea completa. El resultado dice exactamente cuándo existen levantamientos de funciones: si se tiene una función de un espacio $Y$ (arco-conexo y localmente arco-conexo) a $X$, se va a levantar al cubriente que se tomó desde el principio exactamente cuando se cumple la condición $f_*(\pi_1(Y,y_0))\subseteq p_*(\pi_1(\tilde X,\tilde x_0))$. Este resultado es bastante importante.
+
+\end{document}

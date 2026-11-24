@@ -1,0 +1,110 @@
+<!-- Fragmento de las notas de el-criterio-de-levantamiento-de-funciones. Mismo contenido que el .tex. -->
+<h4>La pregunta</h4>
+<p>Como de costumbre, se tiene un cubriente \(p\colon\tilde X\to X\), y ahora, en lugar de una homotopía, una función cualquiera \(f\colon Y\to X\) de un espacio cualquiera \(Y\) a \(X\). La pregunta es bajo qué condiciones se puede encontrar un <i>levantamiento</i> de \(f\), es decir, una función \(\tilde f\colon Y\to\tilde X\) de manera que el diagrama conmute: \(p\circ\tilde f=f\).</p>
+<figure>
+<svg viewBox="0 0 240 140" style="max-width:260px" role="img" aria-label="Diagrama: f de Y a X, p de X̃ a X y el levantamiento f̃ de Y a X̃, punteado">
+<defs><marker id="nbm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="192" y="26">X̃</text><text x="45" y="120">Y</text><text x="192" y="120">X</text>
+<path class="arr" d="M62 115H184" marker-end="url(#nbm1)"/><text x="120" y="134">f</text>
+<path class="arr" d="M198 34V100" marker-end="url(#nbm1)"/><text x="206" y="72">p</text>
+<path class="f1" fill="none" stroke-dasharray="6 4" style="stroke-width:1.5" d="M60 104L184 30" marker-end="url(#nbm1)"/><text class="c1" x="105" y="60">f̃</text>
+</svg>
+</figure>
+<p>En el caso de homotopías ya se sabe que, si se puede levantar la primera etapa de la homotopía, se encuentra un levantamiento (Teorema 3.4). Pero en general los levantamientos no siempre van a existir. En este video se demuestra un teorema que caracteriza cuándo sí se puede hacer un levantamiento como el que se acaba de explicar.</p>
+<h4>Espacios localmente arco-conexos</h4>
+<p>Antes de enunciar el resultado principal se da una pequeña definición.</p>
+<div class="def"><b>Definición 3.10 (localmente arco-conexo).</b> Se dice que un espacio topológico \(Y\) es <i>localmente arco-conexo</i> si para todo \(y\in Y\) y cada vecindad \(U\) de \(y\) existe una vecindad \(V\) de \(y\), con \(y\in V\subseteq U\), que es arco-conexa.</div>
+<p>Es decir, para todo punto y para toda vecindad de ese punto siempre existe una vecindad más pequeña \(V\) que es arco-conexa: cualesquiera dos puntos de \(V\) se pueden conectar por un camino.</p>
+<figure>
+<svg viewBox="0 0 380 110" style="max-width:420px" role="img" aria-label="Un punto y dentro de una vecindad arco-conexa V contenida en una vecindad U del espacio Y">
+<path class="mid" fill="none" d="M60 10H330L290 100H20Z"/><text x="345" y="35">Y</text>
+<ellipse class="f0" fill="none" cx="175" cy="55" rx="70" ry="30"/><text x="255" y="42">U</text>
+<ellipse class="f1" fill="none" cx="170" cy="57" rx="28" ry="14"/><text class="c1" x="206" y="72">V</text>
+<circle class="endpt" cx="165" cy="57" r="3"/><text class="dim" x="172" y="54">y</text>
+</svg>
+<figcaption>\(y\in V\subseteq U\) con \(V\) arco-conexa.</figcaption>
+</figure>
+<h4>El criterio de levantamiento</h4>
+<p>Se usa la notación de parejas, \(p\colon(\tilde X,\tilde x_0)\to(X,x_0)\), solamente para especificar que la proyección cubriente \(p\) manda \(\tilde x_0\) a \(x_0\).</p>
+<div class="thm"><b>Proposición 3.11.</b> <i>Sean \(p\colon(\tilde X,\tilde x_0)\to(X,x_0)\) un cubriente y \(f\colon(Y,y_0)\to(X,x_0)\) una función, con \(Y\) un espacio arco-conexo y localmente arco-conexo. Entonces existe un levantamiento \(\tilde f\colon(Y,y_0)\to(\tilde X,\tilde x_0)\) de \(f\) si y sólo si
+\[f_*(\pi_1(Y,y_0))\subseteq p_*(\pi_1(\tilde X,\tilde x_0)).\]</i></div>
+<p>Para que quede un poco más claro, inicialmente se tiene el diagrama de la izquierda, que después de aplicar grupos fundamentales queda como el de la derecha. La imagen bajo \(f_*\) y la imagen bajo \(p_*\) viven ambas en \(\pi_1(X,x_0)\): son dos subgrupos de \(\pi_1(X,x_0)\). Lo que dice la proposición es que la imagen de \(f_*\) está contenida en la imagen de \(p_*\) exactamente cuando se tiene un levantamiento.</p>
+<figure>
+<svg viewBox="0 0 580 140" role="img" aria-label="El diagrama del levantamiento y, después de aplicar grupos fundamentales, los homomorfismos f_* y p_* hacia π₁(X,x₀)">
+<defs><marker id="nbm2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<text x="135" y="26">(X̃, x̃₀)</text><text x="0" y="120">(Y, y₀)</text><text x="135" y="120">(X, x₀)</text>
+<path class="arr" d="M58 115H128" marker-end="url(#nbm2)"/><text x="90" y="134">f</text>
+<path class="arr" d="M160 34V100" marker-end="url(#nbm2)"/><text x="168" y="72">p</text>
+<path class="f1" fill="none" stroke-dasharray="6 4" style="stroke-width:1.5" d="M40 102L130 30" marker-end="url(#nbm2)"/><text class="c1" x="70" y="60">f̃</text>
+<text x="255" y="76" style="font-size:20px">⇝</text>
+<text x="455" y="26">π₁(X̃, x̃₀)</text><text x="300" y="120">π₁(Y, y₀)</text><text x="455" y="120">π₁(X, x₀)</text>
+<path class="arr" d="M378 115H448" marker-end="url(#nbm2)"/><text x="406" y="134">f∗</text>
+<path class="arr" d="M490 34V100" marker-end="url(#nbm2)"/><text x="498" y="72">p∗</text>
+</svg>
+</figure>
+<p><i>Demostración.</i> (\(\Rightarrow\)) Esta dirección es obvia: si existe tal levantamiento \(\tilde f\), entonces por la conmutatividad del diagrama, \(f_*=p_*\circ\tilde f_*\), y claramente se cumple la condición \(f_*(\pi_1(Y,y_0))\subseteq p_*(\pi_1(\tilde X,\tilde x_0))\). En esta dirección no hay absolutamente nada que demostrar.</p>
+<p>(\(\Leftarrow\)) Esta dirección tiene bastante más chiste. El objetivo es definir el levantamiento \(\tilde f\colon Y\to\tilde X\).</p>
+<p><b>Definición de \(\tilde f\).</b> Sean \(y\in Y\) y un camino \(\gamma\) en \(Y\) que va de \(y_0\) a \(y\); este camino existe porque se está suponiendo que \(Y\) es arco-conexo. El camino \(\gamma\) se empuja a un camino \(f\gamma\) en \(X\), que tiene como punto inicial \(x_0\), porque \(f\) manda \(y_0\) en \(x_0\). Como ya se demostró anteriormente (Corolario 3.5), el camino \(f\gamma\), que comienza en \(x_0\), se puede levantar a un único camino \(\widetilde{f\gamma}\) que comienza en \(\tilde x_0\). Se define
+\[\tilde f\colon Y\to\tilde X,\qquad y\longmapsto\widetilde{f\gamma}(1);\]
+es decir, se toma el camino \(f\gamma\), se levanta y se toma el punto final de ese levantamiento.</p>
+<p><b>\(\tilde f\) está bien definida.</b> Para definir \(\tilde f\) se usó un camino \(\gamma\) que se escogió de manera arbitraria, y podría haber muchos caminos que unan \(y_0\) con \(y\). Hay que ver que la definición no depende de \(\gamma\). Sea \(\gamma'\) otro camino de \(y_0\) a \(y\). Entonces
+\[h_0=(f\gamma')(f\bar\gamma)\]
+es un lazo en \(x_0\): se recorre \(f\gamma'\) y luego \(f\gamma\) en dirección contraria. Además, \(h_0\) es la imagen bajo \(f\) del lazo \(\gamma'\bar\gamma\) en \(Y\), que resulta de recorrer \(\gamma'\) y luego regresar con \(\gamma\). Así que
+\[[h_0]\in f_*(\pi_1(Y,y_0))\subseteq p_*(\pi_1(\tilde X,\tilde x_0)),\]
+donde la contención es la hipótesis. Recuérdese que los elementos de la imagen de \(p_*\) son las clases que se representan por lazos que se levantan a lazos en \(\tilde X\) basados en \(\tilde x_0\) (Proposición 3.8). Así que \(h_0\) es homotópico, vía una homotopía \(h_t\), a un lazo \(h_1\) en \(x_0\) que se levanta a un lazo \(\tilde h_1\) en \(\tilde x_0\). Por el teorema de levantamiento de homotopías (Teorema 3.4) se puede levantar \(h_t\) a una homotopía \(\tilde h_t\) de \(\tilde h_0\) a \(\tilde h_1\), donde \(\tilde h_0\) es el levantamiento de \(h_0\) que empieza en \(\tilde x_0\); y como \(\tilde h_1\) es un lazo, \(\tilde h_0\) también es un lazo (Lema 3.7).</p>
+<p>Ahora recuérdese cómo está definido \(h_0\): es el producto de los caminos \(f\gamma'\) y \(f\bar\gamma\). Para levantar \(h_0\) se puede primero levantar \(f\gamma'\) y, por la unicidad, se obtiene el levantamiento \(\widetilde{f\gamma'}\); luego se levanta \(f\bar\gamma\). Como \(\tilde h_0\) es un lazo basado en \(\tilde x_0\), el punto que está a la mitad es a la vez \(\widetilde{f\gamma'}(1)\) y \(\widetilde{f\gamma}(1)\) (el levantamiento de \(f\bar\gamma\), recorrido al revés, es el levantamiento de \(f\gamma\) que empieza en \(\tilde x_0\)). Es decir, los dos levantamientos tienen el mismo punto final, y por lo tanto \(\tilde f\) está bien definida. Para demostrar esto se usó fuertemente la hipótesis.</p>
+<figure>
+<svg viewBox="0 0 740 140" role="img" aria-label="Dos caminos γ y γ' de y₀ a y en Y; en X̃ los levantamientos de fγ y fγ' desde x̃₀ terminan en el mismo punto">
+<rect class="mid" fill="none" x="10" y="10" width="220" height="110"/><text x="240" y="30">Y</text>
+<path class="f0" fill="none" d="M45 85C90 120 160 115 195 80"/><text x="115" y="134">γ</text>
+<path class="f1" fill="none" d="M45 85C80 30 160 30 195 80"/><text class="c1" x="115" y="34">γ′</text>
+<circle class="endpt" cx="45" cy="85" r="3.5"/><text class="dim" x="25" y="104">y₀</text>
+<circle class="endpt" cx="195" cy="80" r="3.5"/><text class="dim" x="205" y="100">y</text>
+<rect class="mid" fill="none" x="320" y="10" width="380" height="110"/><text x="712" y="30">X̃</text>
+<path class="f0" fill="none" d="M355 90C400 120 470 110 520 60"/><text x="440" y="134">fγ</text><text x="447.0" y="122" text-anchor="middle" style="font-size:12px">∼</text>
+<path class="f1" fill="none" d="M355 90C380 40 470 20 520 60"/><text class="c1" x="420" y="32">fγ′</text><text class="c1" x="429.0" y="20" text-anchor="middle" style="font-size:12px">∼</text>
+<circle class="endpt" cx="355" cy="90" r="3.5"/><text class="dim" x="335" y="110">x̃₀</text>
+<circle class="endpt" cx="520" cy="60" r="3.5"/><text class="dim" x="530" y="68">fγ</text><text class="dim" x="536.0" y="56" text-anchor="middle" style="font-size:12px">∼</text><text class="dim" x="541" y="68">(1) =</text><text class="dim" x="572" y="68">fγ′</text><text class="dim" x="578" y="56" text-anchor="middle" style="font-size:12px">∼</text><text class="dim" x="586" y="68">(1)</text>
+</svg>
+<figcaption>Dos caminos \(\gamma\) y \(\gamma'\) de \(y_0\) a \(y\). El lazo \(h_0=(f\gamma')(f\bar\gamma)\) se levanta a un lazo basado en \(\tilde x_0\), así que los levantamientos de \(f\gamma\) y de \(f\gamma'\) tienen el mismo punto final.</figcaption>
+</figure>
+<p><b>\(\tilde f\) es continua.</b> La demostración no termina aquí, porque falta demostrar que \(\tilde f\) es continua. Sea \(y\in Y\); se demuestra que \(\tilde f\) es continua en \(y\), y como \(y\) es arbitrario, esto demuestra que \(\tilde f\) es continua en todo \(Y\).</p>
+<p>Sea \(U\subseteq X\) una vecindad abierta (regular) de \(f(y)\), y sea \(\tilde U\) un abierto de \(\tilde X\) con \(\tilde f(y)\in\tilde U\) y tal que \(p\colon\tilde U\to U\) es un homeomorfismo; es decir, \(\tilde U\) es una de las hojas de la preimagen de \(U\). Escójase una vecindad abierta y arco-conexa \(V\subseteq Y\) de \(y\), contenida en \(f^{-1}(U)\). Esta vecindad existe porque se está suponiendo que \(Y\) es localmente arco-conexo; esa es la última hipótesis que faltaba por utilizar, y se usa justamente para demostrar que \(\tilde f\) es continua.</p>
+<p>Para terminar la demostración basta demostrar que \(\tilde f(V)\subseteq\tilde U\). Para definir \(\tilde f\) en un punto de \(V\) hay que tomar un camino desde \(y_0\), empujarlo con \(f\) y levantarlo; no importa qué camino, porque ya se demostró que \(\tilde f\) está bien definida. Así que se toman caminos muy particulares. Se fija desde ahora un camino \(\gamma\) de \(y_0\) a \(y\). Si \(y'\in V\) es cualquier otro punto, como \(V\) es arco-conexa hay un camino chiquito \(\eta\) en \(V\) de \(y\) a \(y'\), y el camino que se usa para \(y'\) es \(\gamma\eta\): primero \(\gamma\) y luego \(\eta\).</p>
+<p>Al empujar \(\gamma\eta\) con \(f\) se obtiene el camino \((f\gamma)(f\eta)\). Primero se levanta \(f\gamma\), y se obtiene \(\widetilde{f\gamma}\), que termina en \(\tilde f(y)\in\tilde U\). Para levantar \(f\eta\), nótese que \(f\eta\) está contenido en \(U\) y que se escogieron las vecindades de manera que se tiene el homeomorfismo inverso \(p^{-1}\colon U\to\tilde U\); usándolo se levanta \(f\eta\) y se obtiene \(\widetilde{f\eta}\). La ventaja de haberlo levantado así es que \(\widetilde{f\eta}\) cae completamente dentro de \(\tilde U\). Siguiendo la construcción, \(\tilde f(y')\) es el punto final de \(\widetilde{f\eta}\). En resumidas cuentas,
+\[\tilde f(y')\in\tilde U\quad\Longrightarrow\quad\tilde f(V)\subseteq\tilde U,\]
+y esto termina la demostración. \(\square\)</p>
+<figure>
+<svg viewBox="0 0 670 280" role="img" aria-label="La vecindad V de y en Y, el camino γη, y sus imágenes: fγ y fη en X, con fη dentro de U, y sus levantamientos en X̃, con el de fη dentro de Ũ">
+<defs><marker id="nbm3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<rect class="mid" fill="none" x="20" y="110" width="240" height="130"/><text x="240" y="100">Y</text>
+<circle class="f1" fill="none" cx="75" cy="180" r="32"/><text class="c1" x="52" y="140">V</text>
+<path class="f1" fill="none" d="M75 190C65 175 80 170 88 165"/><text class="c1" x="96" y="188">η</text>
+<path class="f0" fill="none" d="M75 190C130 200 180 150 220 140"/><text x="158" y="194">γ</text>
+<circle class="endpt" cx="75" cy="190" r="3"/><text class="dim" x="66" y="212">y</text>
+<circle class="endpt" cx="88" cy="165" r="3"/><text class="dim" x="96" y="162">y′</text>
+<circle class="endpt" cx="220" cy="140" r="3"/><text class="dim" x="228" y="154">y₀</text>
+<rect class="mid" fill="none" x="420" y="10" width="200" height="90"/><text x="634" y="30">X̃</text>
+<circle class="f1" fill="none" cx="520" cy="45" r="30"/><text class="c1" x="558" y="24">Ũ</text>
+<path class="f0" fill="none" d="M440 85C480 90 500 70 515 55"/>
+<path class="f1" fill="none" d="M515 55C510 45 520 40 528 35"/>
+<circle class="endpt" cx="440" cy="85" r="3"/><text class="dim" x="430" y="72">x̃₀</text>
+<circle class="endpt" cx="515" cy="55" r="3"/><circle class="endpt" cx="528" cy="35" r="3"/>
+<text x="458" y="118">fγ</text><text x="465.0" y="106" text-anchor="middle" style="font-size:12px">∼</text><text class="c1" x="552" y="68">fη</text><text class="c1" x="558.5" y="56" text-anchor="middle" style="font-size:12px">∼</text>
+<rect class="mid" fill="none" x="420" y="170" width="200" height="90"/><text x="634" y="190">X</text>
+<circle class="f1" fill="none" cx="520" cy="205" r="30"/><text class="c1" x="558" y="184">U</text>
+<path class="f0" fill="none" d="M440 245C480 250 500 230 515 215"/>
+<path class="f1" fill="none" d="M515 215C510 205 520 200 528 195"/>
+<circle class="endpt" cx="440" cy="245" r="3"/><text class="dim" x="430" y="232">x₀</text>
+<circle class="endpt" cx="515" cy="215" r="3"/><circle class="endpt" cx="528" cy="195" r="3"/>
+<text x="458" y="275">fγ</text><text class="c1" x="552" y="226">fη</text>
+<path class="arr" d="M520 110V160" marker-end="url(#nbm3)"/><text x="530" y="140">p</text>
+<path class="arr" d="M275 185L405 210" marker-end="url(#nbm3)"/><text x="335" y="214">f</text>
+<path class="arr" d="M275 150L405 60" marker-end="url(#nbm3)"/><text x="322" y="95">f̃</text>
+</svg>
+<figcaption>Para \(y'\in V\) se usa el camino \(\gamma\eta\). El levantamiento de \(f\eta\) se obtiene con el homeomorfismo inverso \(p^{-1}\colon U\to\tilde U\), así que cae dentro de \(\tilde U\), y \(\tilde f(y')\in\tilde U\).</figcaption>
+</figure>
+<h4>Para terminar</h4>
+<p>La demostración se hizo esencialmente con puros dibujos; es un buen ejercicio terminar de escribirla formalmente, pero ahí está la idea completa. El resultado dice exactamente cuándo existen levantamientos de funciones: si se tiene una función de un espacio \(Y\) (arco-conexo y localmente arco-conexo) a \(X\), se va a levantar al cubriente que se tomó desde el principio exactamente cuando se cumple la condición \(f_*(\pi_1(Y,y_0))\subseteq p_*(\pi_1(\tilde X,\tilde x_0))\). Este resultado es bastante importante.</p>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/el-criterio-de-levantamiento-de-funciones.tex">el-criterio-de-levantamiento-de-funciones.tex</a>.</p>
