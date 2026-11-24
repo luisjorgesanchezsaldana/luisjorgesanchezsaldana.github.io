@@ -1,0 +1,45 @@
+<!-- Fragmento de las notas de algebra-homologica-7. Mismo contenido que el .tex. -->
+<h4>El enunciado</h4>
+<p>Hay quien conoce este resultado como el lema del quinto, o el lema del cinco. El enunciado es muy sencillito, y la demostración también; hasta podría ser un ejercicio.</p>
+<div class="thm"><b>Lema 4.14 (lema de los cinco).</b> <i>Considérese el diagrama conmutativo de módulos, con filas exactas,
+\[
+  \begin{array}{ccccccccc}
+    M_5 & \xrightarrow{\ f_5\ } & M_4 & \xrightarrow{\ f_4\ } & M_3 & \xrightarrow{\ f_3\ } & M_2 & \xrightarrow{\ f_2\ } & M_1\\[2pt]
+    {\scriptstyle h_5}\big\downarrow & & \big\downarrow{\scriptstyle h_4} & & \big\downarrow{\scriptstyle h_3} & & \big\downarrow{\scriptstyle h_2} & & \big\downarrow{\scriptstyle h_1}\\[2pt]
+    N_5 & \xrightarrow{\ g_5\ } & N_4 & \xrightarrow{\ g_4\ } & N_3 & \xrightarrow{\ g_3\ } & N_2 & \xrightarrow{\ g_2\ } & N_1
+  \end{array}
+\]
+Si \(h_5\), \(h_4\), \(h_2\) y \(h_1\) son isomorfismos, entonces \(h_3\) es un isomorfismo.</i></div>
+<p>Es decir, si los cuatro homomorfismos de los extremos son isomorfismos, el de en medio también lo es. Como todo en álgebra homológica, se pide que el diagrama sea conmutativo, y además que las dos filas sean exactas.</p>
+<h4>La demostración</h4>
+<p>La demostración es bastante rutinaria.</p>
+<p><b>\(h_3\) es inyectiva.</b> Supóngase que \(h_3(m_3)=0\); se quiere demostrar que \(m_3=0\), lo cual dice que el núcleo de \(h_3\) es cero y, por lo tanto, que \(h_3\) es inyectiva. Se manda \(m_3\) a pasear por el diagrama: por la conmutatividad,
+\[
+  h_2(f_3(m_3))=g_3(h_3(m_3))=0,
+\]
+pues el argumento de adentro es cero. Como \(h_2\) es un isomorfismo, en particular es inyectivo, así que \(f_3(m_3)=0\). Es decir, \(m_3\) está en el núcleo de \(f_3\); por la exactitud, también está en la imagen de \(f_4\), y por lo tanto existe \(m_4\in M_4\) tal que
+\[
+  f_4(m_4)=m_3 .
+\]
+Ahora se manda a pasear \(m_4\):
+\[
+  g_4(h_4(m_4))=h_3(f_4(m_4))=h_3(m_3)=0,
+\]
+por cómo se construyó \(m_4\) y por lo que se supuso desde el principio. Esto dice que \(h_4(m_4)\) está en el núcleo de \(g_4\), y por la exactitud de la fila de abajo está en la imagen de \(g_5\): existe \(n_5\in N_5\) tal que
+\[
+  g_5(n_5)=h_4(m_4).
+\]
+Como \(h_5\) es un isomorfismo, se puede levantar \(n_5\): sea \(m_5\in M_5\) tal que \(h_5(m_5)=n_5\). Por construcción, \(m_5\) desciende a \(n_5\), que a su vez desciende a \(h_4(m_4)\); así que, por la conmutatividad,
+\[
+  h_4(f_5(m_5))=g_5(h_5(m_5))=g_5(n_5)=h_4(m_4).
+\]
+Como \(h_4\) es un isomorfismo, los argumentos son iguales: \(f_5(m_5)=m_4\). Esto implica que
+\[
+  m_3=f_4(m_4)=f_4(f_5(m_5))=0,
+\]
+porque la fila de arriba es exacta y la composición de \(f_4\) con \(f_5\), que son consecutivas, es cero. Esto es justamente lo que se quería demostrar: se supuso que \(h_3(m_3)=0\) y se concluyó que \(m_3=0\). Por lo tanto \(h_3\) es inyectiva.</p>
+<p>Se trata simplemente de andar persiguiendo elementos en el diagrama.</p>
+<p><b>Ejercicio.</b> Demostrar que \(h_3\) es suprayectiva. La demostración es muy rutinaria, muy parecida a la anterior: persiguiendo elementos por todos lados.</p>
+<p>El lema de los cinco se va a utilizar un montón cuando se vea la homología singular, que es la intención inicial de toda esta serie de videos de introducción al álgebra homológica. Con esto termina la serie de videos puramente algebraicos; a continuación se comienza a estudiar más topología.</p>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/algebra-homologica-7.tex">algebra-homologica-7.tex</a>.</p>
