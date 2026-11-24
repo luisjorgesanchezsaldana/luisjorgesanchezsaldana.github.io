@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{1WN_9xHtM9I}
+\input{preambulo}
+\unidad{3}{12} % unidad 3; primer enunciado: 3.12
+
+\title{Unicidad del levantamiento de funciones}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=1WN_9xHtM9I}{\guillemotleft{}Unicidad del levantamiento de funciones\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se demuestra que dos levantamientos de una misma función con dominio conexo que coinciden en un solo punto son iguales.
+\normalsize
+
+\section*{El enunciado}
+
+En el video anterior se resolvió la pregunta de cuándo existen levantamientos de funciones a un cubriente cualquiera (Proposición~3.11). Ahora la pregunta es bajo qué condiciones el levantamiento de una función es único. Lo que resulta es bastante sorprendente: si se tienen dos levantamientos que coinciden en un solo punto, entonces los levantamientos son iguales, siempre que el dominio de la función que se levanta sea conexo.
+
+\begin{prop}\label{prop:unicidad}
+Sean $p\colon\tilde X\to X$ un cubriente y $f\colon Y\to X$ una función. Si $\tilde f_1,\tilde f_2\colon Y\to\tilde X$ son levantamientos de $f$ que coinciden en un punto y $Y$ es conexo, entonces $\tilde f_1=\tilde f_2$.
+\end{prop}
+
+Por supuesto, una misma función puede tener levantamientos distintos. Por ejemplo, si $Y$ es simplemente un punto, la función $f\colon Y\to X$ es constante, y se puede levantar a cualquier punto de la preimagen del punto $f(Y)$: se tienen tantos levantamientos como preimágenes. En este caso el resultado anterior es bastante bobo, pero el ejemplo ilustra que una función no tiene por qué tener un único levantamiento. Lo que dice la proposición es que si dos levantamientos coinciden en un solo punto, van a coincidir en todos los puntos del dominio.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (150,10) -- (330,10) -- (310,60) -- (130,60) -- cycle; \node at (350,25) {$\tilde X$};
+  \foreach \x/\y in {175/28,215/40,250/25,285/42} \fill[azul] (\x,\y) circle (2.5);
+  \draw[gray] (150,110) -- (330,110) -- (310,160) -- (130,160) -- cycle; \node at (350,125) {$X$};
+  \fill[extremo] (230,135) circle (3);
+  \draw[->,gray] (230,68) -- (230,102); \node[font=\small] at (243,85) {$p$};
+  \fill[extremo] (30,135) circle (3); \node at (30,155) {$Y$};
+  \draw[->,gray] (45,135) -- (120,135); \node[font=\small] at (82,150) {$f$};
+  \draw[->,gray,dashed] (45,125) -- (165,40);
+  \draw[->,gray,dashed] (45,125) -- (205,45);
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: si $Y$ es un punto, $f$ se puede levantar a cualquiera de los puntos de la fibra (en azul).
+
+\section*{La demostración}
+
+La forma de demostrarlo usa un truco muy recurrente en topología. Sea
+\[
+  A=\{\,y\in Y:\ \tilde f_1(y)=\tilde f_2(y)\,\}
+\]
+el conjunto de puntos donde coinciden $\tilde f_1$ y $\tilde f_2$. Se demuestra que $A$ es abierto y que su complemento $A^c$, el conjunto de puntos donde difieren, también es abierto. Entonces $A$ y $A^c$ son ambos abiertos y cerrados y, como $Y$ es conexo, uno de ellos tiene que ser todo $Y$. La hipótesis de que $\tilde f_1$ y $\tilde f_2$ coinciden en un punto dice que $A$ es no vacío, y por lo tanto $A=Y$, que es la conclusión.
+
+\medskip\noindent\textbf{$A$ es abierto.} Sea $y\in A$, es decir, $\tilde f_1(y)=\tilde f_2(y)$. Abajo se tiene el punto $f(y)$. Se toma una vecindad $\tilde U$ de $\tilde f_1(y)=\tilde f_2(y)$ que se proyecte homeomorfamente a una vecindad $U$ de $f(y)$. Luego se toma una vecindad $V$ de $y$ de manera que
+\[
+  \tilde f_1(V),\ \tilde f_2(V)\subseteq\tilde U;
+\]
+esta vecindad existe por la continuidad de $\tilde f_1$ y $\tilde f_2$. En el video se dice además que siempre se puede suponer que $V$ es conexa.
+
+Si se toma cualquier otro punto $y'\in V$, un levantamiento de ese punto tiene que caer en alguna preimagen de $f(y')$, pero solamente una de esas preimágenes está en $\tilde U$. Entonces el único punto al que se puede levantar $y'$, tanto con $\tilde f_1$ como con $\tilde f_2$, es ese punto de $\tilde U$, y así $\tilde f_1(y')=\tilde f_2(y')$. Es decir, $\tilde f_1$ y $\tilde f_2$ coinciden en todo $V$, y esto demuestra que el conjunto $A$ es abierto en $Y$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (0,160) rectangle (200,250); \node at (218,240) {$Y$};
+  \draw[thick,extremo] (70,185) rectangle (122,228); \node[extremo,font=\small] at (136,192) {$V$};
+  \fill (85,215) circle (2.5); \node[font=\small] at (78,240) {$y$};
+  \fill (106,197) circle (2.5); \node[font=\small] at (100,176) {$y'$};
+  \draw[->,gray] (212,208) -- (322,208); \node[font=\small] at (268,196) {$f$};
+
+  \draw[gray] (330,10) rectangle (600,120); \node at (622,25) {$\tilde X$};
+  \draw[thick,extremo] (380,30) rectangle (460,80); \node[extremo,font=\small] at (476,40) {$\tilde U$};
+  \fill[azul] (400,65) circle (2.5); \fill (440,45) circle (2.5); \fill[gray] (540,95) circle (2);
+  \node[azul,font=\small,anchor=west] at (340,142) {$\tilde f_1(y)=\tilde f_2(y)$};
+  \draw[->,gray] (400,130) -- (400,72);
+  \draw[gray] (330,165) rectangle (600,250); \node at (622,180) {$X$};
+  \draw[thick,extremo] (380,180) rectangle (460,230); \node[extremo,font=\small] at (476,190) {$U$};
+  \fill (400,215) circle (2.5); \fill (440,195) circle (2.5); \node[font=\small] at (400,242) {$f(y)$};
+  \draw[->,gray] (540,126) -- (540,159); \node[font=\small] at (553,143) {$p$};
+  \draw[->,gray] (150,155) -- (325,95); \node[font=\small] at (262,140) {$\tilde f_1$};
+  \draw[->,gray] (130,155) -- (325,50); \node[font=\small] at (170,105) {$\tilde f_2$};
+\end{tikzpicture}
+\end{center}
+\noindent Figura: $\tilde f_1(V)$ y $\tilde f_2(V)$ están contenidos en $\tilde U$, que contiene un solo punto de cada fibra sobre $U$; por eso $\tilde f_1$ y $\tilde f_2$ coinciden en $V$.
+
+\medskip\noindent\textbf{$A^c$ es abierto.} Ahora $A^c$ es el conjunto de puntos donde las funciones no coinciden. El argumento es muy parecido. Sea $y\in A^c$, de modo que $\tilde f_1(y)\neq\tilde f_2(y)$; ambos puntos están en la preimagen de $f(y)$. Se toman dos vecindades $\tilde U_1$ y $\tilde U_2$ de $\tilde f_1(y)$ y de $\tilde f_2(y)$, respectivamente, que se proyectan homeomorfamente a una vecindad $U$ de $f(y)$ en $X$ (son dos hojas distintas sobre $U$, así que son disjuntas). Como antes, se construye una vecindad $V$ de $y$ de manera que
+\[
+  \tilde f_1(V)\subseteq\tilde U_1,\qquad \tilde f_2(V)\subseteq\tilde U_2 .
+\]
+Si $y'\in V$ es otro punto, para levantar $f(y')$ hay que mandar $y'$ a algún punto de la preimagen $p^{-1}(f(y'))$: hay uno en $\tilde U_1$, hay uno en $\tilde U_2$, y también puede haber en otros lados. Pero $\tilde f_1(y')$ está en $\tilde U_1$ y $\tilde f_2(y')$ está en $\tilde U_2$, y como estos dos abiertos son disjuntos, $\tilde f_1$ y $\tilde f_2$ no pueden coincidir en ninguno de los puntos de $V$. Es decir, $V\subseteq A^c$, y por lo tanto $A^c$ es abierto.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[gray] (0,160) rectangle (200,250); \node at (218,240) {$Y$};
+  \draw[thick,extremo] (70,185) rectangle (122,228); \node[extremo,font=\small] at (136,192) {$V$};
+  \fill (85,215) circle (2.5); \node[font=\small] at (78,240) {$y$};
+  \fill (106,197) circle (2.5); \node[font=\small] at (100,176) {$y'$};
+  \draw[->,gray] (212,208) -- (322,208); \node[font=\small] at (268,196) {$f$};
+
+  \draw[gray] (330,5) rectangle (600,125); \node at (622,25) {$\tilde X$};
+  \draw[thick,extremo] (380,18) rectangle (460,56); \node[extremo,font=\small,anchor=west] at (470,25) {$\tilde U_2$};
+  \fill[azul] (400,45) circle (2.5); \fill (440,30) circle (2.5); \node[azul,font=\small,anchor=west] at (470,48) {$\tilde f_2(y)$};
+  \draw[thick,extremo] (380,74) rectangle (460,112); \node[extremo,font=\small,anchor=west] at (470,81) {$\tilde U_1$};
+  \fill[azul] (400,101) circle (2.5); \fill (440,86) circle (2.5); \node[azul,font=\small,anchor=west] at (470,104) {$\tilde f_1(y)$};
+  \draw[gray] (330,165) rectangle (600,250); \node at (622,180) {$X$};
+  \draw[thick,extremo] (380,180) rectangle (460,230); \node[extremo,font=\small] at (476,190) {$U$};
+  \fill (400,215) circle (2.5); \node[font=\small] at (400,242) {$f(y)$};
+  \fill (440,195) circle (2.5); \node[font=\small,anchor=west] at (470,212) {$f(y')$};
+  \draw[->,gray] (540,131) -- (540,159); \node[font=\small] at (553,145) {$p$};
+  \draw[->,gray] (150,155) -- (325,100); \node[font=\small] at (262,145) {$\tilde f_1$};
+  \draw[->,gray] (130,155) -- (325,40); \node[font=\small] at (170,105) {$\tilde f_2$};
+\end{tikzpicture}
+\end{center}
+\noindent Figura: si $\tilde f_1(y)\neq\tilde f_2(y)$, las hojas $\tilde U_1$ y $\tilde U_2$ son disjuntas, $\tilde f_1(V)\subseteq\tilde U_1$ y $\tilde f_2(V)\subseteq\tilde U_2$, así que $\tilde f_1$ y $\tilde f_2$ no coinciden en ningún punto de $V$.
+
+\medskip\noindent\textbf{Conclusión.} Tanto $A$ como $A^c$ son abiertos y, por lo tanto, ambos son abiertos y cerrados. Como $Y$ es conexo y $A$ es no vacío (por hipótesis hay al menos un punto donde $\tilde f_1$ y $\tilde f_2$ coinciden), se tiene $A=Y$. Esto dice que $\tilde f_1$ y $\tilde f_2$ coinciden, que era lo que se quería demostrar.
+
+\section*{Para terminar}
+
+La demostración quedó muy en dibujitos, pero ahí está la idea: si dos levantamientos coinciden en un punto, entonces tienen que coincidir en todo el dominio.
+
+\begin{erratas}
+  \errata{208}{3:28}{Se dice que siempre se puede suponer que $V$ es conexa. No hace falta que $V$ sea conexa: basta que $\tilde U$ contenga un solo punto de cada fibra sobre $U$. Además, como $Y$ no se supone localmente conexo, no siempre se puede elegir $V$ conexa.}
+  \errata{249}{4:09}{En el pizarrón se escribe $A=\{y\in Y: f_1(y)=f_2(y)\}$, sin tildes; debe decir $A=\{y\in Y:\tilde f_1(y)=\tilde f_2(y)\}$.}
+\end{erratas}
+
+\end{document}
