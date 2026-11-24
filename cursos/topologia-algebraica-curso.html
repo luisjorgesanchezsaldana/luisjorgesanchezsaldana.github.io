@@ -81,7 +81,8 @@ button{font:inherit;color:inherit}
 .leaf{background:var(--paper);border-right:1px solid var(--line);padding:44px clamp(22px,4vw,64px) 60px}
 .leaf-in{max-width:68ch;margin:0 auto}
 .side{padding:24px clamp(16px,2.4vw,36px) 40px}
-.side-in{position:sticky;top:calc(var(--top) + 20px)}
+.side-in{position:sticky;top:calc(var(--top) + 20px);max-height:calc(100vh - var(--top) - 40px);display:flex;flex-direction:column}
+.side-in .outline{min-height:0;overflow:auto}
 
 .kicker{font:500 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 .sec-h{margin:0 0 26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
@@ -118,6 +119,12 @@ button{font:inherit;color:inherit}
 .notes .erratas h4{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
 .notes .erratas ul{margin:0;padding-left:18px}
 .notes .erratas a{font:500 13px var(--mono)}
+.part+.part{margin-top:46px}
+.part-h{display:flex;align-items:center;gap:12px;margin:0 0 22px;font:500 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--accent);scroll-margin-top:calc(var(--top) + 16px)}
+.part-h::before,.part-h::after{content:"";flex:1;border-top:1px solid var(--rule)}
+.part{scroll-margin-top:calc(var(--top) + 16px)}
+.outline .og{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 2px 2px}
+.outline .og:first-child{margin-top:0}
 .pending{font:16px/1.6 var(--body);color:var(--muted);padding:26px 24px;border:1px dashed var(--rule);border-radius:8px;text-align:center}
 .pending b{display:block;font:600 20px var(--display);color:var(--fg);margin-bottom:6px}
 
@@ -163,7 +170,7 @@ button{font:inherit;color:inherit}
 @media (max-width:980px){
   .page{grid-template-columns:minmax(0,1fr)}
   .side{order:-1;position:sticky;top:var(--top);z-index:10;background:var(--bg);padding:10px 12px;border-bottom:1px solid var(--line)}
-  .side-in{position:static}
+  .side-in{position:static;max-height:none}
   .outline{display:none}
   .vcap{margin-top:8px}
   .leaf{border-right:0;padding-top:28px}
@@ -204,8 +211,8 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}};
 
 // KaTeX bajo demanda (igual que en la vista de lista)
 const KX="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/";let kxp;
-const katex=()=>kxp||(kxp=new Promise((ok,no)=>{const l=document.createElement("link");l.rel="stylesheet";l.href=KX+"katex.min.css";document.head.appendChild(l);
-  const a=document.createElement("script");a.src=KX+"katex.min.js";a.onload=()=>{const b=document.createElement("script");b.src=KX+"contrib/auto-render.min.js";b.onload=ok;b.onerror=no;document.head.appendChild(b)};a.onerror=no;document.head.appendChild(a)}));
+const katex=()=>kxp||(kxp=new Promise((ok,no)=>{const l=document.createElement("link");l.rel="stylesheet";l.href=KX+"katex.min.css";const css=new Promise(r=>{l.onload=l.onerror=r});document.head.appendChild(l);
+  const a=document.createElement("script");a.src=KX+"katex.min.js";a.onload=()=>{const b=document.createElement("script");b.src=KX+"contrib/auto-render.min.js";b.onload=()=>css.then(ok);b.onerror=no;document.head.appendChild(b)};a.onerror=no;document.head.appendChild(a)}));
 const cache={};
 async function loadNotes(src){
   if(cache[src])return cache[src].cloneNode(true);
@@ -260,58 +267,87 @@ function cover(){
     <h2>Contenido</h2><div class="toc-full">${contentsHTML()}</div>
     <h2>Bibliografía</h2><ul class="bib">${C.biblio.map(b=>`<li><i>${b.url?`<a href="${b.url}">${esc(b.b)}</a>`:esc(b.b)}</i><br><small>${esc(b.a)}${b.note?" · "+esc(b.note):""}</small></li>`).join("")}</ul>
   </div>`;
-  document.title=C.title;scrollTo(0,0);
+  document.title=C.title;scrollTo({top:0,behavior:"instant"});
 }
 
 let token=0;
 async function section(k,v){
-  const f=FLAT[k],it=f.it,nv=it.videos.length;v=Math.min(Math.max(v,1),nv);
-  const my=++token,nb=nbFor(it,v),prev=FLAT[k-1],next=FLAT[k+1],id=vid(it.videos[v-1]);
+  const f=FLAT[k],it=f.it,nv=it.videos.length;v=Math.min(Math.max(v||1,1),nv);
+  const my=++token,prev=FLAT[k-1],next=FLAT[k+1];
+  // Un tema = un solo texto: las notas de todos sus videos, seguidas; el video de la derecha
+  // cambia cuando la lectura llega a la parte de otro video.
+  const parts=it.videos.map((u,i)=>({v:i+1,id:vid(u),url:u,nb:nbFor(it,i+1)}));
   renderContents(f.no);
   document.getElementById("where").textContent=`Cap. ${f.ui+1} · ${f.u.name}`;
   document.title=`${f.no} ${it.t} · Topología algebraica`;
-  const tabs=nv>1?`<div class="vtabs" role="tablist">${it.videos.map((_,i)=>`<button type="button" role="tab" aria-selected="${i+1===v}" data-v="${i+1}">Video ${i+1}${nbFor(it,i+1)?"":" · sin notas"}</button>`).join("")}</div>`:"";
+  const tabs=nv>1?`<div class="vtabs" role="tablist" aria-label="Videos del tema">${parts.map(P=>`<button type="button" role="tab" aria-selected="false" data-v="${P.v}">Video ${P.v}${P.nb?"":" · sin notas"}</button>`).join("")}</div>`:"";
+  const pend=P=>`<div class="pending"><b>Notas en preparación</b>Por ahora ${nv>1?`el Video ${P.v} tiene`:"esta sección tiene"} solo el video. Las notas escritas se irán agregando.</div>`;
   document.getElementById("main").innerHTML=`<div class="page">
     <article class="leaf"><div class="leaf-in">
       <header class="sec-h"><div class="kicker">Capítulo ${f.ui+1} · ${esc(f.u.name)}</div>
         <h1><span class="no">${f.no}</span>${esc(it.t)}</h1>${tabs}</header>
-      <div class="notes" id="notes">${nb?'<p style="color:var(--muted)">Cargando notas…</p>':`<div class="pending"><b>Notas en preparación</b>Por ahora esta sección tiene solo el video${nv>1?` (Video ${v})`:""}. Las notas escritas se irán agregando.</div>`}</div>
+      <div class="notes" id="notes">${parts.map(P=>`<section class="part" id="video-${P.v}" data-v="${P.v}">${nv>1?`<div class="part-h"><span>Video ${P.v} de ${nv}</span></div>`:""}<div class="part-body">${P.nb?'<p style="color:var(--muted)">Cargando notas…</p>':pend(P)}</div></section>`).join("")}</div>
       <nav class="pn" aria-label="Secciones">${prev?`<a class="pv" href="#${prev.no}"><small>← ${prev.no}</small><span>${esc(prev.it.t)}</span></a>`:""}${next?`<a class="nx" href="#${next.no}"><small>${next.no} →</small><span>${esc(next.it.t)}</span></a>`:""}</nav>
     </div></article>
     <aside class="side"><div class="side-in">
-      <div class="video"><iframe id="player" src="https://www.youtube-nocookie.com/embed/${id}?rel=0" title="${esc(it.t)}${nv>1?" · Video "+v:""}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-      <div class="vcap"><span class="vt">${nv>1?`Video ${v} de ${nv}`:"Video"}</span>
-        ${nb&&nb.pdf?`<a class="btn" href="${esc(nb.pdf)}" download>↓ PDF</a>`:""}
-        <a class="btn" href="${esc(it.videos[v-1])}" target="_blank" rel="noopener">YouTube ↗</a>
+      <div class="video"><iframe id="player" title="${esc(it.t)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <div class="vcap"><span class="vt" id="vt"></span>
+        <a class="btn" id="vpdf" download hidden>↓ PDF</a>
+        <a class="btn" id="vyt" target="_blank" rel="noopener">YouTube ↗</a>
         <button type="button" class="btn${done[f.id]?" seen":""}" id="seen">${done[f.id]?"✓ Visto":"Marcar como visto"}</button></div>
       <div class="outline" id="outline" hidden><h3>En esta sección</h3><ol></ol></div>
     </div></aside></div>`;
-  scrollTo(0,0);
-  document.querySelectorAll(".vtabs button").forEach(b=>b.onclick=()=>{location.hash=`${f.no}/${b.dataset.v}`});
+  scrollTo({top:0,behavior:"instant"});
+  const player=document.getElementById("player");let cur=0;
+  function setPart(n,o={}){const P=parts[n-1];
+    if(n!==cur||o.t!=null){player.src=`https://www.youtube-nocookie.com/embed/${P.id}?rel=0${o.t!=null?`&autoplay=1&start=${o.t}`:""}`;
+      player.title=`${it.t}${nv>1?" · Video "+n:""}`}
+    if(n===cur)return;cur=n;
+    document.getElementById("vt").textContent=nv>1?`Video ${n} de ${nv}`:"Video";
+    const pdf=document.getElementById("vpdf");pdf.hidden=!(P.nb&&P.nb.pdf);if(!pdf.hidden)pdf.href=P.nb.pdf;
+    document.getElementById("vyt").href=P.url;
+    document.querySelectorAll(".vtabs button").forEach(b=>b.setAttribute("aria-selected",String(+b.dataset.v===n)));
+    history.replaceState(null,"",`#${f.no}${n>1?"/"+n:""}`);
+  }
+  setPart(v);
+  const partEl=n=>document.getElementById("video-"+n);
+  document.querySelectorAll(".vtabs button").forEach(b=>b.onclick=()=>{const n=+b.dataset.v;setPart(n);partEl(n).scrollIntoView()});
   document.getElementById("seen").onclick=e=>{if(done[f.id])delete done[f.id];else done[f.id]=1;save();
     e.target.classList.toggle("seen",!!done[f.id]);e.target.textContent=done[f.id]?"✓ Visto":"Marcar como visto";renderContents(f.no)};
-  if(!nb)return;
-  let d;try{d=await loadNotes(nb.src)}catch(_){if(my===token)document.getElementById("notes").innerHTML='<p>No se pudieron cargar las notas; descarga el PDF.</p>';return}
+  // Cargar las notas de cada parte
+  await Promise.all(parts.map(async P=>{if(!P.nb)return;const body=partEl(P.v).querySelector(".part-body");
+    let d;try{d=await loadNotes(P.nb.src)}catch(_){if(my===token)body.innerHTML='<p>No se pudieron cargar las notas; descarga el PDF.</p>';return}
+    if(my!==token)return;
+    d.querySelectorAll(".nbsrc a").forEach(a=>a.setAttribute("download",""));
+    body.replaceChildren(...d.childNodes);
+    // Los enlaces al minuto del video (p. ej. en erratas) mueven el video de al lado
+    body.querySelectorAll('a[href*="youtube.com/watch"]').forEach(a=>{const u=new URL(a.href);if(u.searchParams.get("v")!==P.id)return;
+      a.addEventListener("click",e=>{e.preventDefault();setPart(P.v,{t:parseInt(u.searchParams.get("t")||"0",10)})})});
+  }));
   if(my!==token)return;
-  d.querySelector(".nbsrc")?.querySelectorAll("a").forEach(a=>a.setAttribute("download",""));
-  const notes=document.getElementById("notes");notes.replaceChildren(...d.childNodes);
-  // Los enlaces al minuto del video (p. ej. en erratas) mueven el video de al lado
-  notes.querySelectorAll('a[href*="youtube.com/watch"]').forEach(a=>{const u=new URL(a.href);if(u.searchParams.get("v")!==id)return;
-    a.addEventListener("click",e=>{e.preventDefault();const t=parseInt(u.searchParams.get("t")||"0",10);
-      document.getElementById("player").src=`https://www.youtube-nocookie.com/embed/${id}?rel=0&autoplay=1&start=${t}`})});
-  // Esquema de la sección a partir de sus títulos
-  const hs=[...notes.querySelectorAll("h4")].filter(h=>!h.closest(".erratas"));
-  if(hs.length>1){const ol=document.querySelector("#outline ol");
-    hs.forEach((h,i)=>{h.id="s"+(i+1);h.style.scrollMarginTop="calc(var(--top) + 16px)"});
-    const label=h=>{const c=h.cloneNode(true);c.querySelectorAll(".katex-mathml").forEach(m=>m.remove());return c.innerHTML};
-    ol.innerHTML=hs.map(h=>`<li><a href="#${f.no}" data-to="${h.id}">${label(h)}</a></li>`).join("");
-    ol.onclick=e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();document.getElementById(a.dataset.to).scrollIntoView()};
-    document.getElementById("outline").hidden=false;
-    const links=[...ol.querySelectorAll("a")];
-    let raf=0;const mark=()=>{raf=0;if(my!==token)return;let cur=hs[0];for(const h of hs){if(h.getBoundingClientRect().top<innerHeight*.35)cur=h}
-      links.forEach(a=>a.classList.toggle("here",a.dataset.to===cur.id))};
-    onscroll=()=>{if(!raf)raf=requestAnimationFrame(mark)};mark();
-  }
+  // Ir a la parte pedida cuando ya cargaron los estilos de KaTeX y las fuentes (antes, la altura del texto cambia)
+  if(v>1){try{await document.fonts.ready}catch(_){}await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+    if(my!==token)return;partEl(v).scrollIntoView({behavior:"instant"})}
+  // Esquema de la sección a partir de sus títulos, agrupado por video
+  const hs=[...document.querySelectorAll("#notes .part-body h4")].filter(h=>!h.closest(".erratas"));
+  const label=h=>{const c=h.cloneNode(true);c.querySelectorAll(".katex-mathml").forEach(m=>m.remove());return c.innerHTML};
+  hs.forEach((h,i)=>{h.id="s"+(i+1);h.style.scrollMarginTop="calc(var(--top) + 16px)"});
+  const ol=document.querySelector("#outline ol");let html="",last=0;
+  hs.forEach(h=>{const n=+h.closest(".part").dataset.v;if(nv>1&&n!==last){html+=`<li class="og">Video ${n}</li>`;last=n}
+    html+=`<li><a href="#${f.no}" data-to="${h.id}">${label(h)}</a></li>`});
+  ol.innerHTML=html;
+  ol.onclick=e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();document.getElementById(a.dataset.to).scrollIntoView()};
+  document.getElementById("outline").hidden=hs.length<2;
+  const links=[...ol.querySelectorAll("a")],secs=parts.map(P=>partEl(P.v));
+  let raf=0,tm=0;const side=document.querySelector(".side");const mark=()=>{raf=0;if(my!==token)return;
+    const sb=side.getBoundingClientRect().bottom,y=Math.max(innerHeight*.35,sb<innerHeight*.6?sb+60:0);
+    let c=hs[0];for(const h of hs){if(h.getBoundingClientRect().top<y)c=h}
+    if(c)links.forEach(a=>a.classList.toggle("here",a.dataset.to===c.id));
+    let n=1;for(const s of secs){if(s.getBoundingClientRect().top<y)n=+s.dataset.v}
+    // Al final de la página, la última parte visible manda (las partes cortas no llegan a la línea de lectura)
+    if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)for(const s of secs){if(s.getBoundingClientRect().top<innerHeight*.85)n=+s.dataset.v}
+    if(n!==cur){clearTimeout(tm);tm=setTimeout(()=>{if(my===token)setPart(n)},350)}};
+  onscroll=()=>{if(!raf)raf=requestAnimationFrame(mark)};mark();
 }
 init().catch(()=>{document.getElementById("main").innerHTML='<p style="padding:40px">No se pudo cargar el curso. <a href="topologia-algebraica.html">Ir a la vista de lista</a>.</p>'});
 </script>
