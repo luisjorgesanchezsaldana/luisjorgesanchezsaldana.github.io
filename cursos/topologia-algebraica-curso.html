@@ -328,6 +328,8 @@ async function section(k,v){
   // Ir a la parte pedida cuando ya cargaron los estilos de KaTeX y las fuentes (antes, la altura del texto cambia)
   if(v>1){try{await document.fonts.ready}catch(_){}await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
     if(my!==token)return;partEl(v).scrollIntoView({behavior:"instant"})}
+  // Si se entró a una parte concreta, el video no cambia hasta que la persona se desplace
+  let auto=v===1;if(!auto){const go=()=>{auto=true;["wheel","touchmove","keydown"].forEach(t=>removeEventListener(t,go))};["wheel","touchmove","keydown"].forEach(t=>addEventListener(t,go,{passive:true}))}
   // Esquema de la sección a partir de sus títulos, agrupado por video
   const hs=[...document.querySelectorAll("#notes .part-body h4")].filter(h=>!h.closest(".erratas"));
   const label=h=>{const c=h.cloneNode(true);c.querySelectorAll(".katex-mathml").forEach(m=>m.remove());return c.innerHTML};
@@ -346,7 +348,7 @@ async function section(k,v){
     let n=1;for(const s of secs){if(s.getBoundingClientRect().top<y)n=+s.dataset.v}
     // Al final de la página, la última parte visible manda (las partes cortas no llegan a la línea de lectura)
     if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)for(const s of secs){if(s.getBoundingClientRect().top<innerHeight*.85)n=+s.dataset.v}
-    if(n!==cur){clearTimeout(tm);tm=setTimeout(()=>{if(my===token)setPart(n)},350)}};
+    if(auto&&n!==cur){clearTimeout(tm);tm=setTimeout(()=>{if(my===token)setPart(n)},350)}};
   onscroll=()=>{if(!raf)raf=requestAnimationFrame(mark)};mark();
 }
 init().catch(()=>{document.getElementById("main").innerHTML='<p style="padding:40px">No se pudo cargar el curso. <a href="topologia-algebraica.html">Ir a la vista de lista</a>.</p>'});
