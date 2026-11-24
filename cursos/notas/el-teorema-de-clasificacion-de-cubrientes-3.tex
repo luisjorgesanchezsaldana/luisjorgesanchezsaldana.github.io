@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{TB2vyYDi8JQ}
+\input{preambulo}
+\unidad{3}{25} % unidad 3; primer enunciado: 3.25
+
+\title{El teorema de clasificación de cubrientes (enunciados)}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=TB2vyYDi8JQ}{\guillemotleft{}El teorema de clasificación de cubrientes - parte 3\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se enuncia el teorema de clasificación de cubrientes en dos versiones: con puntos base, en biyección con los subgrupos del grupo fundamental, y sin puntos base, en biyección con las clases de conjugación de subgrupos.
+\normalsize
+
+\section*{La versión con puntos base}
+
+En este video por fin se enuncia el teorema de clasificación de cubrientes. Se comienza con un espacio $X$ arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo; esencialmente, estas hipótesis son para garantizar que $X$ tiene cubriente universal. Se fija desde ahora un punto base $x_0\in X$.
+
+\begin{teo}\label{teo:clasificacion-base}
+Sea $X$ arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo, y sea $x_0\in X$. Entonces hay una biyección
+\[
+  \begin{gathered}\{\,p\colon(\tilde X,\tilde x_0)\to(X,x_0)\ :\ p\text{ es cubriente}\,\}/\text{isomorfismo}\\[2pt] \big\updownarrow\\[2pt] \{\,H\le\pi_1(X,x_0)\,\}\end{gathered}
+\]
+dada por $p\longmapsto p_*\pi_1(\tilde X,\tilde x_0)$.
+\end{teo}
+
+A un cubriente se le asigna la imagen del grupo fundamental de $\tilde X$ bajo la proyección cubriente $p$. Este teorema de hecho ya está demostrado, utilizando los resultados principales de los dos videos anteriores: la función es suprayectiva porque, como se demostró en la parte~1, dado cualquier subgrupo existe un cubriente que lo realiza (Proposición~3.22); y es inyectiva por el video anterior, porque si dos cubrientes tienen la misma imagen bajo sus proyecciones, entonces son isomorfos (Proposición~3.24).
+
+Lo que hay que resaltar es que aquí se están tomando cubrientes con un punto base fijo y, una vez que se tienen cubrientes con punto base fijo, se toma la relación de isomorfismo; en este contexto es que funciona la biyección. Esto es porque el grupo fundamental depende fuertemente del punto base, aunque a veces se olvide, se ignore o se pase por alto a propósito: incluso con el mismo cubriente $\tilde X$, si se cambia de punto base se podría estar cambiando la imagen que se toma.
+
+\section*{La versión sin puntos base}
+
+\begin{teo}\label{teo:clasificacion-conjugacion}
+Sea $X$ arco-conexo, localmente arco-conexo y semilocalmente simplemente conexo, y sea $x_0\in X$. Entonces hay una biyección
+\[
+  \begin{gathered}\{\,p\colon\tilde X\to X\ :\ p\text{ es cubriente}\,\}/\text{isomorfismo}\\[2pt] \big\updownarrow\\[2pt] \{\,H\le\pi_1(X,x_0)\,\}/\text{conjugación}\end{gathered}
+\]
+dada como sigue: a un cubriente $p\colon\tilde X\to X$ se le asigna la clase de conjugación de $p_*\pi_1(\tilde X,\tilde x_0)$, donde se escoge un punto $\tilde x_0\in p^{-1}(x_0)$.
+\end{teo}
+
+Ahora no se toman cubrientes con puntos base fijos desde el principio, así que la biyección se da pero hay que hacer cociente por la relación de conjugación en el conjunto de subgrupos de $\pi_1(X,x_0)$. La función es esencialmente la misma: dado un cubriente, como no se escogió ningún punto base desde el principio, aquí es donde se escoge uno en la fibra de $x_0$. Lo que hay que demostrar es que si se cambia el punto base, los grupos que se obtienen son conjugados, y que dos cubrientes que dan grupos conjugados son isomorfos.
+
+\begin{proof}
+\emph{La función está bien definida.} Sean $\tilde x_0,\tilde x_1\in p^{-1}(x_0)$ y sea $\tilde\gamma$ un camino que une a $\tilde x_0$ con $\tilde x_1$. Entonces $p\tilde\gamma$ es un lazo en $X$ basado en $x_0$, porque los dos puntos están en la preimagen de $x_0$, y representa un elemento
+\[
+  g=[p\tilde\gamma]\in\pi_1(X,x_0).
+\]
+Sean $H_i=p_*\pi_1(\tilde X,\tilde x_i)$, para $i=0,1$. Se afirma que
+\[
+  g^{-1}H_0\,g\subseteq H_1 .
+\]
+Si $\tilde f$ es un lazo basado en $\tilde x_0$, entonces $\bar{\tilde\gamma}\,\tilde f\,\tilde\gamma$ (se recorre $\tilde\gamma$ al revés, luego $\tilde f$ y luego $\tilde\gamma$) es un lazo basado en $\tilde x_1$; aplicando $p$ se obtiene $g^{-1}[p\tilde f]g\in H_1$, que es lo que se quería.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[thick] (90,90) .. controls (40,60) and (40,120) .. (90,90); \node[font=\small] at (35,85) {$\tilde f$};
+  \draw[thick,azul] (90,90) .. controls (140,80) and (170,40) .. (220,25); \node[azul,font=\small] at (165,72) {$\tilde\gamma$};
+  \fill[extremo] (90,90) circle (3); \node[extremo,font=\small] at (100,108) {$\tilde x_0$};
+  \fill[extremo] (220,25) circle (3); \node[extremo,font=\small] at (240,20) {$\tilde x_1$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: si $\tilde f$ es un lazo basado en $\tilde x_0$ y $\tilde\gamma$ va de $\tilde x_0$ a $\tilde x_1$, entonces $\bar{\tilde\gamma}\,\tilde f\,\tilde\gamma$ es un lazo basado en $\tilde x_1$.
+
+Similarmente, $g\,H_1\,g^{-1}\subseteq H_0$, y despejando, $H_1\subseteq g^{-1}H_0\,g$. Juntando esta inclusión con la anterior,
+\[
+  g^{-1}H_0\,g=H_1 ,
+\]
+es decir, $H_0$ y $H_1$ son conjugados mediante $g$. Así que si se cambia el punto base, los grupos que se obtienen son conjugados; como se toma el cociente por conjugación, la función del enunciado está bien definida.
+
+\medskip\noindent\emph{Suprayectividad.} Por el teorema de realización de subgrupos (Proposición~3.22), la función es suprayectiva.
+
+\medskip\noindent\emph{Inyectividad.} Considérense dos cubrientes $p_1\colon\tilde X_1\to X$ y $p_2\colon\tilde X_2\to X$ cuyas imágenes bajo la función del enunciado son la misma, es decir, tales que las imágenes de sus grupos fundamentales son conjugadas para cierta elección de puntos base:
+\[
+  H_1=p_{1*}\pi_1(\tilde X_1,\tilde x_1)=g^{-1}\,p_{2*}\pi_1(\tilde X_2,\tilde x_2)\,g=g^{-1}H_2\,g .
+\]
+Se representa $g=[\gamma]\in\pi_1(X,x_0)$ por un lazo $\gamma$ y se levanta a un camino $\tilde\gamma\colon I\to\tilde X_2$ con $\tilde\gamma(0)=\tilde x_2$. Ahora se cambia el punto base del grupo fundamental de $\tilde X_2$: en lugar del punto inicial de $\tilde\gamma$ se toma su punto final. Por lo que se hizo anteriormente, este cambio de punto base equivale a conjugar con $g$:
+\[
+  g^{-1}H_2\,g=p_{2*}\pi_1(\tilde X_2,\tilde\gamma(1)).
+\]
+Por lo tanto, con este nuevo punto base, las imágenes de los grupos fundamentales de $\tilde X_1$ y $\tilde X_2$ son iguales en $\pi_1(X,x_0)$, y por la versión con puntos base (Proposición~3.24) existe un isomorfismo de cubrientes $f\colon\tilde X_1\to\tilde X_2$. Esto demuestra que la función es inyectiva y, por lo tanto, biyectiva.
+\end{proof}
+
+Esta es otra variante del teorema de clasificación de cubrientes, en la que se permite ser más flexible con la elección del punto base.
+
+\end{document}
