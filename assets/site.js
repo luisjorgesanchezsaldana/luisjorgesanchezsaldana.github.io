@@ -23,9 +23,8 @@ const ES={
  coLede:"Personas con las que he escrito artículos. Selecciona el número de artículos para ver nuestro trabajo conjunto.",
  stLede:"Tesis que he dirigido.",
  cuLede:"Cursos en video con notas y ejercicios.",
- cu1:"Grupo fundamental, espacios cubrientes, homología · 88 videos",
+ cu1:"Grupo fundamental, espacios cubrientes, homología · 88 videos con sus notas al lado",
  cu2:"De las permutaciones a los teoremas de Sylow · notas, cuestionarios y videos",
- cu3:"Nuevo: lee las notas junto a cada video (en construcción)",
  hMail:"Correo",hAddr:"Dirección"
 };
 let lang="en";
