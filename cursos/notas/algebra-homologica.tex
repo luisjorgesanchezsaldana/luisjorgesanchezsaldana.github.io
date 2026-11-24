@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{S0zOYyqNOCw}
+\input{preambulo}
+\unidad{4}{1} % unidad 4; primer enunciado: 4.1
+
+\title{Álgebra homológica: complejos de cadenas}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=S0zOYyqNOCw}{\guillemotleft{}Álgebra homológica - complejos de cadenas\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Primer video de la serie de álgebra homológica: se definen los complejos de cadenas, sus homomorfismos, subcomplejos y cocientes, y los grupos de homología.
+\normalsize
+
+\section*{Anillos y módulos}
+
+Este es el primer video de una serie en la que se comienza a estudiar el álgebra homológica. A lo largo de toda la serie se considera un anillo $R$ asociativo con uno, que no necesariamente es conmutativo. Si no se quiere trabajar con este nivel de generalidad, se puede tener en mente que $R=\mathbb Z$ o $R=\mathbb Q$; en particular, se recomienda tener muy en mente el caso $R=\mathbb Z$, que es con el que usualmente se trabaja cuando uno está comenzando con este tipo de cosas.
+
+También se trabaja con $R$-módulos. Rapidísimo, un $R$-módulo es lo siguiente: tómese la definición de espacio vectorial y cámbiese el campo por un anillo; un módulo cumple todas las propiedades que cumple un espacio vectorial. Los módulos tienen un comportamiento un poco más errático que el de los espacios vectoriales, pero son exactamente el mismo objeto, nada más que los escalares se toman en un anillo. Si el anillo es $\mathbb Z$, un $\mathbb Z$-módulo es exactamente lo mismo que un grupo abeliano, y si $R=\mathbb Q$, un $\mathbb Q$-módulo es un $\mathbb Q$-espacio vectorial.
+
+\section*{Complejos de cadenas}
+
+\begin{defn}[Complejo de cadenas]\label{def:complejo}
+Un \emph{complejo de cadenas} es una sucesión de homomorfismos de $R$-módulos
+\[
+  \cdots\longrightarrow C_p\xrightarrow{\ \partial_p\ }C_{p-1}\xrightarrow{\ \partial_{p-1}\ }C_{p-2}\xrightarrow{\ \partial_{p-2}\ }\cdots
+\]
+tal que $\partial_{p-1}\circ\partial_p=0$ para todo $p\in\mathbb Z$.
+\end{defn}
+
+La sucesión viene de quién sabe dónde, por eso los primeros puntos suspensivos, y se sigue de manera indefinida; es costumbre que los índices vayan de bajada. La condición dice que la composición de cualesquiera dos homomorfismos consecutivos es cero. En este caso se usa la notación $(C_\bullet,\partial)$: $C_\bullet$, con un puntito abajo, denota toda la colección de los módulos, y $\partial$ denota los homomorfismos. A $\partial$, o a cada uno de los $\partial_p$, se le conoce como \emph{operador frontera}, \emph{homomorfismo frontera} o, más corto, \emph{frontera}. Igualmente, en lugar de \guillemotleft{}complejo de cadenas\guillemotright{}, que es muy largo, se puede decir simplemente \guillemotleft{}complejo\guillemotright{}.
+
+El nombre de cadenas proviene de que todo esto se originó en la topología algebraica, donde las cadenas son algo así como poliedros pegados juntitos; por eso, de manera histórica, se le quedó el nombre de complejo de cadenas a este tipo de objetos.
+
+Lo primero que hay que observar es que la condición que define al complejo es equivalente a pedir que la imagen de $\partial_p$ esté contenida en el núcleo de $\partial_{p-1}$:
+\[
+  \partial_{p-1}\circ\partial_p=0\iff\operatorname{Im}(\partial_p)\subseteq\ker(\partial_{p-1}).
+\]
+
+\section*{Homomorfismos de complejos}
+
+Ahora que ya se tienen definidos los objetos que interesan, se definen los homomorfismos entre ellos.
+
+\begin{defn}[Homomorfismo de complejos de cadenas]\label{def:hom-complejos}
+Un \emph{homomorfismo de complejos de cadenas} $f\colon(C_\bullet,\partial)\to(C'_\bullet,\partial')$ es una sucesión de homomorfismos de $R$-módulos $f_p\colon C_p\to C'_p$, $p\in\mathbb Z$, tales que cada cuadrado
+\[
+  \begin{array}{ccc}
+    C_p & \xrightarrow{\ \partial_p\ } & C_{p-1}\\[2pt]
+    {\scriptstyle f_p}\big\downarrow & & \big\downarrow{\scriptstyle f_{p-1}}\\[2pt]
+    C'_p & \xrightarrow{\ \partial'_p\ } & C'_{p-1}
+  \end{array}
+\]
+conmuta, para todo $p\in\mathbb Z$.
+\end{defn}
+
+Que el diagrama conmute quiere decir que la composición de las dos flechas de un lado es igual a la composición de las del otro: $f_{p-1}\circ\partial_p=\partial'_p\circ f_p$. Lo que es lo mismo, si se toma un elemento en la esquina de arriba a la izquierda y se manda por cualquiera de las dos rutas que hay para llegar a la esquina de abajo a la derecha, siempre se cae en el mismo elemento. Es decir, se tiene el diagrama conmutativo
+\[
+  \begin{array}{ccccccccc}
+    \cdots & \longrightarrow & C_p & \longrightarrow & C_{p-1} & \longrightarrow & C_{p-2} & \longrightarrow & \cdots\\[2pt]
+    & & {\scriptstyle f_p}\big\downarrow & & \big\downarrow{\scriptstyle f_{p-1}} & & \big\downarrow{\scriptstyle f_{p-2}} & & \\[2pt]
+    \cdots & \longrightarrow & C'_p & \longrightarrow & C'_{p-1} & \longrightarrow & C'_{p-2} & \longrightarrow & \cdots
+  \end{array}
+\]
+que parece una escalera y se extiende para ambos lados; que conmute quiere decir que cada uno de los cuadrados de la escalera conmuta. Esto muy usualmente se denota con una flechita curva dentro del cuadrado.
+
+\section*{Subcomplejos y cocientes}
+
+\begin{defn}[Subcomplejo y cociente]\label{def:subcomplejo}
+Se dice que $(D_\bullet,\delta)$ es un \emph{subcomplejo} de $(C_\bullet,\partial)$ si $D_p\le C_p$ es un submódulo para todo $p\in\mathbb Z$ y $\delta=\partial|_{D_p}$. En ese caso, el \emph{cociente} $(C_\bullet,\partial)/(D_\bullet,\delta)=(C_\bullet/D_\bullet,\partial)$ es el complejo
+\[
+  \cdots\longrightarrow C_p/D_p\xrightarrow{\ \partial_p\ }C_{p-1}/D_{p-1}\xrightarrow{\ \partial_{p-1}\ }C_{p-2}/D_{p-2}\longrightarrow\cdots,
+\]
+donde la frontera es el paso al cociente de $\partial_p$, es decir, $\partial_p[c]=[\partial_p(c)]$.
+\end{defn}
+
+Para el subcomplejo se tiene un diagrama donde las flechas verticales son las inclusiones, y en el cociente se está abusando de la notación al llamar otra vez $\partial_p$ a la frontera, pero esencialmente es la misma que la de $C_\bullet$. Es fácil ver que esto es una frontera, es decir, que la composición de dos consecutivas es cero. Se completa así el diagrama, donde las flechas verticales de abajo son los pasos al cociente correspondientes:
+\[
+  \begin{array}{ccccccccc}
+    \cdots & \longrightarrow & D_p & \longrightarrow & D_{p-1} & \longrightarrow & D_{p-2} & \longrightarrow & \cdots\\[2pt]
+    & & \big\downarrow & & \big\downarrow & & \big\downarrow & & \\[2pt]
+    \cdots & \longrightarrow & C_p & \longrightarrow & C_{p-1} & \longrightarrow & C_{p-2} & \longrightarrow & \cdots\\[2pt]
+    & & \big\downarrow & & \big\downarrow & & \big\downarrow & & \\[2pt]
+    \cdots & \longrightarrow & C_p/D_p & \longrightarrow & C_{p-1}/D_{p-1} & \longrightarrow & C_{p-2}/D_{p-2} & \longrightarrow & \cdots
+  \end{array}
+\]
+
+\section*{Homología}
+
+Ahora la definición más importante de todo este asunto.
+
+\begin{defn}[Homología]\label{def:homologia}
+Sea $(C_\bullet,\partial)$ un complejo de cadenas.
+\begin{itemize}
+  \item A los elementos de $C_p$ se les llama \emph{cadenas de dimensión $p$}.
+  \item A los elementos de $\ker(\partial_p)=:Z_p$ se les llama \emph{ciclos de dimensión $p$}.
+  \item A los elementos de $\operatorname{Im}(\partial_{p+1})=:F_p=B_p$ se les llama \emph{fronteras de dimensión $p$}.
+\end{itemize}
+Como $F_p\subseteq Z_p$ para todo $p$, se define
+\[
+  H_p(C_\bullet)=Z_p/F_p ,
+\]
+el \emph{$p$-ésimo grupo de homología} de $C_\bullet$ (o grupo de homología de dimensión $p$). Dos ciclos $c,c'\in Z_p$ son \emph{homólogos} si $[c]=[c']\in H_p(C_\bullet)$.
+\end{defn}
+
+Los nombres de cadenas, ciclos y fronteras vienen de, o están inspirados por, lo que sucede en la homología singular, en topología, que se definirá eventualmente. Hay que tener mucho cuidado con el índice: las fronteras de dimensión $p$ son la imagen de $\partial_{p+1}$. Se usan indistintamente $F_p$ o $B_p$ (por la palabra en inglés, \emph{boundary}).
+
+Como se mencionó antes, que $F_p\subseteq Z_p$ es justamente equivalente a la condición de que la composición de dos fronteras consecutivas sea cero; y el cociente de un módulo entre un submódulo siempre existe. Dos ciclos $c,c'$ son homólogos si y sólo si su diferencia está en $F_p$.
+
+\medskip\noindent\textbf{Ejercicio.} Si $f\colon(C_\bullet,\partial)\to(C'_\bullet,\partial')$ es un homomorfismo de complejos, entonces
+\[
+  f_p(Z_p)\subseteq Z'_p,\qquad f_p(F_p)\subseteq F'_p ,
+\]
+y por lo tanto se tiene una función inducida
+\[
+  f_p=\bar f_p\colon H_p(C_\bullet)\to H_p(C'_\bullet),\qquad[c]\longmapsto[f(c)],
+\]
+que está bien definida justamente por las dos afirmaciones anteriores. Además, si $g\colon(C'_\bullet,\partial')\to(C''_\bullet,\partial'')$ es otro homomorfismo, entonces
+\[
+  \overline{g\circ f}=\bar g\circ\bar f\qquad\text{y}\qquad\overline{\mathrm{Id}_{C_\bullet}}=\mathrm{Id}_{H_p(C_\bullet)} .
+\]
+
+Se suele escribir la barra arriba, pero muchas veces, abusando de la notación, simplemente se escribe $f_p$. Lo que hay que tener en mente es que los homomorfismos de complejos de cadenas inducen homomorfismos en los grupos de homología (que en realidad son módulos), que se respetan las composiciones y que la identidad va a la identidad. Es decir, aquí hay, no tan escondido, un comportamiento funtorial. Ese comportamiento es súper importante, sobre todo cuando uno se mete al álgebra homológica más profunda (funtores derivados, etcétera); aquí se va a usar, pero sin usar todavía el lenguaje de categorías.
+
+Ya se tienen los objetos que se quieren estudiar, las definiciones y el lenguaje; lo que sigue es comenzar a trabajar con estos complejos de cadenas.
+
+\end{document}
