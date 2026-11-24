@@ -1,0 +1,95 @@
+\documentclass[11pt]{article}
+\newcommand{\videoid}{XOkWZ8YTgFw}
+\input{preambulo}
+\unidad{3}{30} % unidad 3; primer enunciado: 3.30
+
+\title{Transformaciones de cubierta y el normalizador}
+\author{Luis Jorge Sánchez Saldaña\\[2pt]\small Facultad de Ciencias, UNAM}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\small Notas del video
+\href{https://www.youtube.com/watch?v=XOkWZ8YTgFw}{\guillemotleft{}Transformaciones de cubierta - parte 2\guillemotright{}}
+(curso de Introducción a la Topología Algebraica). Se demuestra que un cubriente es normal si y sólo si su subgrupo asociado es normal, y que el grupo de transformaciones de cubierta es el normalizador del subgrupo asociado módulo el subgrupo.
+\normalsize
+
+\section*{El enunciado}
+
+Este video es una continuación natural del anterior: se demuestra la siguiente proposición.
+
+\begin{prop}\label{prop:normalizador}
+Sea $p\colon(\tilde X,\tilde x_0)\to(X,x_0)$ un cubriente con $\tilde X$ arco-conexo y $X$ arco-conexo y localmente arco-conexo. Sea $H=p_*\pi_1(\tilde X,\tilde x_0)\le\pi_1(X,x_0)$. Entonces:
+\begin{itemize}
+  \item[a)] el cubriente es normal si y sólo si $H\trianglelefteq\pi_1(X,x_0)$;
+  \item[b)] $G(\tilde X)\cong N(H)/H$, donde $N(H)=\{\,g\in\pi_1(X,x_0)\ :\ g^{-1}Hg=H\,\}$.
+\end{itemize}
+\end{prop}
+
+El inciso a) dice exactamente en qué situación el cubriente es normal, de acuerdo con la definición del video anterior (Definición~3.29). Para el inciso b), recuérdese rápidamente qué es el normalizador $N(H)$: son todos los elementos del grupo que normalizan a $H$, es decir, que al conjugar $H$ con ellos se vuelve a obtener $H$. En particular, $H$ es normal en $N(H)$; $H$ podría no ser normal en el grupo completo, pero sin duda es normal en su normalizador. De hecho, el normalizador es el subgrupo más grande de $\pi_1(X,x_0)$ en el cual $H$ es normal.
+
+En particular,
+\[
+  G(\tilde X)\cong\pi_1(X,x_0)/H\quad\text{si }\tilde X\text{ es normal},
+\]
+que es lo que sucedió en los ejemplos del video anterior: si el cubriente es normal, por el inciso a) $H$ es normal en todo el grupo, así que todo el grupo es su normalizador. Aún más en particular, si $\tilde X\to X$ es el cubriente universal, entonces $H$ es trivial, el subgrupo trivial es normal, y
+\[
+  G(\tilde X)\cong\pi_1(X,x_0) .
+\]
+En resumidas cuentas, el grupo de transformaciones de cubierta del cubriente universal es el grupo fundamental o, dicho de otra forma, el grupo fundamental siempre está actuando en el cubriente universal. Este teorema da toda la conexión entre un espacio que tiene cubriente universal y su grupo fundamental, que está muy relacionado con ese cubriente.
+
+\section*{La demostración}
+
+\begin{proof}
+\emph{Una observación.} En la demostración del teorema de clasificación de cubrientes (Teorema~3.26) se vio lo siguiente: si $\tilde x_0,\tilde x_1\in p^{-1}(x_0)$ y $\tilde\gamma$ es un camino de $\tilde x_0$ a $\tilde x_1$, cuya imagen $p\tilde\gamma=\gamma$ es un lazo en $x_0$, entonces las imágenes bajo $p_*$ de los grupos fundamentales basados en esos dos puntos, que son subgrupos de $\pi_1(X,x_0)$, se comparan conjugando con $[\gamma]$:
+\[
+  p_*\pi_1(\tilde X,\tilde x_0)=[\gamma]\,p_*\pi_1(\tilde X,\tilde x_1)\,[\bar\gamma] .
+\]
+
+\medskip\noindent\emph{a)} Sea $[\gamma]\in\pi_1(X,x_0)$, sea $\tilde\gamma$ su levantamiento que empieza en $\tilde x_0$ y sea $\tilde x_1=\tilde\gamma(1)$. Por la observación, $[\gamma]$ está en el normalizador de $H$ si y sólo si
+\[
+  p_*\pi_1(\tilde X,\tilde x_0)=p_*\pi_1(\tilde X,\tilde x_1).
+\]
+Por el criterio de levantamiento (Proposición~3.11), aplicado a $p\colon(\tilde X,\tilde x_0)\to(X,x_0)$ y al cubriente $p\colon(\tilde X,\tilde x_1)\to(X,x_0)$, esto sucede si y sólo si existe un levantamiento $f\colon(\tilde X,\tilde x_0)\to(\tilde X,\tilde x_1)$ con $pf=p$, es decir, una transformación de cubierta de $\tilde X$ que lleva $\tilde x_0$ en $\tilde x_1$ (Proposición~3.24):
+\[
+  [\gamma]\in N(H)\iff\exists\,f\colon(\tilde X,\tilde x_0)\to(\tilde X,\tilde x_1),\ pf=p .
+\]
+Con esta condición equivalente, el normalizador es todo el grupo, es decir, $H\trianglelefteq\pi_1(X,x_0)$, si y sólo si el cubriente es normal. Esto demuestra el inciso a).
+
+\medskip\noindent\emph{b)} Se define una función
+\[
+  \varphi\colon N(H)\to G(\tilde X),\qquad [\gamma]\longmapsto f\colon(\tilde X,\tilde x_0)\to(\tilde X,\tilde x_1),
+\]
+que a un elemento del normalizador representado por un lazo $\gamma$ le asigna la transformación de cubierta que se encontró hace rato, la que manda $\tilde x_0$ en $\tilde x_1=\tilde\gamma(1)$ (está bien determinada por la Proposición~3.28).
+
+\emph{$\varphi$ es un homomorfismo.} Sea $[\gamma']\in N(H)$ otro elemento, con imagen $\varphi[\gamma']=f'\colon(\tilde X,\tilde x_0)\to(\tilde X,\tilde x_1')$, donde $\tilde x_1'=\tilde\gamma'(1)$. El lazo $\gamma\cdot\gamma'$ se levanta así: primero se levanta $\gamma$ a $\tilde\gamma$, que termina en $\tilde x_1$; ahí debe comenzar el levantamiento de $\gamma'$, y para obtenerlo basta tomar $\tilde\gamma'$ y trasladarlo con $f$. Así, $\gamma\cdot\gamma'$ se levanta a
+\[
+  \tilde\gamma\cdot f(\tilde\gamma'),
+\]
+que es un camino de $\tilde x_0$ a $f(\tilde x_1')=ff'(\tilde x_0)$. Así que $ff'$ es $\varphi[\gamma\cdot\gamma']$, y por lo tanto $\varphi$ es un homomorfismo.
+
+\begin{center}
+\begin{tikzpicture}[x=0.022cm,y=-0.022cm,line cap=round]
+  \draw[thick] (40,130) .. controls (60,90) and (90,60) .. (140,50); \node[font=\small] at (70,80) {$\tilde\gamma$};
+  \draw[thick,azul] (140,50) .. controls (190,40) and (230,30) .. (280,20); \node[azul,font=\small] at (210,22) {$f(\tilde\gamma')$};
+  \fill[extremo] (40,130) circle (3); \node[extremo,font=\small] at (25,140) {$\tilde x_0$};
+  \fill[extremo] (140,50) circle (3); \node[extremo,font=\small] at (145,70) {$\tilde x_1$};
+  \fill[extremo] (280,20) circle (3); \node[extremo,font=\small,anchor=west] at (290,22) {$f(\tilde x_1')=ff'(\tilde x_0)$};
+\end{tikzpicture}
+\end{center}
+
+\noindent Figura: el levantamiento de $\gamma\cdot\gamma'$ que empieza en $\tilde x_0$ es $\tilde\gamma$ seguido de la traslación $f(\tilde\gamma')$ del levantamiento de $\gamma'$.
+
+\emph{$\varphi$ es suprayectiva.} Si se toma una transformación de cubierta, esta manda un punto de la fibra de $x_0$ a otro punto de la fibra de $x_0$; se toma un camino que los une y se proyecta a $X$, lo que da un lazo en $X$ basado en $x_0$. Este lazo normaliza a $H$, y su imagen bajo $\varphi$ es la transformación de cubierta con la que se comenzó. Todos los detalles son como en la demostración del inciso a).
+
+\emph{El núcleo de $\varphi$ es $H$.} Un lazo $\gamma$ determina la transformación identidad si y sólo si su levantamiento $\tilde\gamma$ es un lazo arriba, basado en $\tilde x_0$. Los lazos que se levantan a lazos son exactamente los elementos de la imagen $p_*\pi_1(\tilde X,\tilde x_0)$, como ya se había demostrado (Proposición~3.8); y estos son exactamente los elementos de $H$. Entonces el núcleo es exactamente $H$, y por el primer teorema de isomorfismo $G(\tilde X)\cong N(H)/H$. Esto termina la demostración del inciso b).
+\end{proof}
+
+Este enunciado es sin duda uno de los resultados principales de la teoría de cubrientes.
+
+\begin{erratas}
+  \errata{290}{4:50}{En el pizarrón se escribe \guillemotleft{}$\exists\,f\colon(\tilde X,\tilde x_1)\to(\tilde X,\tilde x_0)$, $pf=f$\guillemotright{}; debe decir $f\colon(\tilde X,\tilde x_0)\to(\tilde X,\tilde x_1)$ con $pf=p$, como en el diagrama de al lado y en la definición de $\varphi$.}
+\end{erratas}
+
+\end{document}

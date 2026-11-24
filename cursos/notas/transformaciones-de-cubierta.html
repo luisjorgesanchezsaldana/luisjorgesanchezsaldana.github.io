@@ -1,0 +1,83 @@
+<!-- Fragmento de las notas de transformaciones-de-cubierta. Mismo contenido que el .tex. -->
+<h4>El grupo de transformaciones de cubierta</h4>
+<p>Supóngase que se tiene un espacio \(X\) y un cubriente \(p\colon\tilde X\to X\). Se pueden considerar todos los isomorfismos de este cubriente en sí mismo, es decir, las funciones \(f\colon\tilde X\to\tilde X\) que conmutan con la proyección \(p\): aplicar \(f\) y luego \(p\) es lo mismo que aplicar \(p\), de modo que el diagrama
+\[
+  \begin{array}{ccc}
+    \tilde X & \xrightarrow{\ f\ } & \tilde X\\[2pt]
+    & {\scriptstyle p}\searrow\quad\swarrow{\scriptstyle p} & \\[2pt]
+    & X &
+  \end{array}
+\]
+conmuta.</p>
+<div class="def"><b>Definición 3.27 (transformación de cubierta).</b> Un isomorfismo \(f\colon\tilde X\to\tilde X\) de un cubriente \(p\colon\tilde X\to X\) en sí mismo (Definición 3.23) se llama una <i>transformación de cubierta</i>. El conjunto de todas ellas se denota
+\[
+  G(\tilde X)=\{\,f\colon\tilde X\to\tilde X\ \text{isomorfismo}\ :\ pf=p\,\}.
+\]</div>
+<p>Este conjunto \(G(\tilde X)\) es un grupo, donde la operación viene dada por la composición: es claro que la función identidad es una transformación de cubierta, que si se tienen dos transformaciones de cubierta su composición también lo es, y que el inverso de una transformación de cubierta es una transformación de cubierta. Es muy fácil verificar que \(G(\tilde X)\) es un grupo, y se le llama el <i>grupo de transformaciones de cubierta</i> del cubriente \(p\colon\tilde X\to X\).</p>
+<p>Como ya se había comentado en uno de los videos anteriores, del hecho de que el diagrama conmute se sigue que para cada \(x\in X\) la función \(f\) manda \(p^{-1}(x)\subseteq\tilde X\) en \(p^{-1}(x)\):
+\[
+  f\colon p^{-1}(x)\to p^{-1}(x).
+\]
+A \(p^{-1}(x)\), la preimagen de \(x\), se le conoce como la <i>fibra</i> de \(x\). Así que una transformación de cubierta siempre preserva las fibras de \(p\). Esta observación es útil, por ejemplo, para estudiar los ejemplos siguientes.</p>
+<h4>Ejemplos: los cubrientes del círculo</h4>
+<p><b>El cubriente \(f_n\).</b> Considérese el cubriente
+\[
+  f_n\colon S^1\to S^1,\qquad z\longmapsto z^n,\qquad n\in\mathbb N,
+\]
+donde \(S^1\) se piensa como los complejos unitarios; ya se vio que estas funciones son cubrientes de \(S^1\). Geométricamente, para \(n=4\), el círculo de arriba se divide en cuatro partes, y cada uno de estos subintervalos le da una vuelta al círculo de abajo. La preimagen del \(1\) bajo esta función son cuatro puntos. Así que una transformación de cubierta solamente puede mandar el punto \(1\) a alguno de esos cuatro puntos, y una vez que se decide a dónde va, todo lo demás está predeterminado, porque no solamente se preservan las fibras del \(1\) sino las fibras de todos los puntos. En resumidas cuentas, \(f_4\) solamente tiene cuatro transformaciones de cubierta y, en general, el grupo de transformaciones de cubierta de \(f_n\) tiene \(n\) elementos.</p>
+<p>Pero no sólo eso: lo que se tiene es un grupo cíclico, porque la transformación que manda el punto \(1\) al siguiente punto de la fibra (una rotación) genera a todas las demás. Así que
+\[
+  G(f_n\colon S^1\to S^1)\cong\mathbb Z/n .
+\]
+Por otro lado, tampoco es difícil checar que
+\[
+  f_{n*}\pi_1(S^1)=n\mathbb Z ,
+\]
+porque el generador de arriba, darle una vuelta al círculo, al proyectarlo da \(n\) vueltas al de abajo; ese es el generador de la imagen. Este es el subgrupo asociado al cubriente \(f_n\). Como observación, y sin que sea una demostración súper sólida, resulta que
+\[
+  G(f_n\colon S^1\to S^1)\cong\mathbb Z/n\cong\pi_1(S^1)/f_{n*}\pi_1(S^1),
+\]
+es decir, el grupo de transformaciones de cubierta es el grupo fundamental de \(S^1\) entre el subgrupo asociado al cubriente. Esto no es ninguna casualidad: es una instancia de un fenómeno mucho más general que se explicará más adelante.</p>
+<p><b>El cubriente universal.</b> Estos son casi todos los cubrientes de \(S^1\); solamente falta uno, el cubriente universal
+\[
+  f\colon\mathbb R\to S^1,\qquad x\longmapsto e^{2\pi ix}.
+\]
+Dentro de los reales están los enteros, cada intervalo \([k,k+1]\) le da una vuelta a \(S^1\), y la preimagen del \(1\) son justamente los enteros. Para obtener transformaciones de cubierta solamente se puede mandar el \(0\) a cualquier otro entero, y eso determina la transformación por completo, de nuevo porque preserva las fibras. Así se ve fácilmente que
+\[
+  G(f\colon\mathbb R\to S^1)\cong\mathbb Z=\mathbb Z/\{0\},
+\]
+un grupo cíclico infinito. De nuevo, como es el cubriente universal, el subgrupo asociado del grupo fundamental es el trivial, \(\{0\}\), y otra vez el grupo de transformaciones de cubierta es el grupo fundamental del espacio entre el subgrupo asociado al cubriente.</p>
+<figure>
+<svg viewBox="0 0 610 260" role="img" aria-label="La fibra del 1 bajo z↦z⁴ son cuatro puntos del círculo; bajo ℝ→S¹ son los enteros">
+<defs><marker id="nbm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="mk"/></marker></defs>
+<circle class="f0" fill="none" cx="80" cy="60" r="45"/><text x="134" y="28">S¹</text><circle class="endpt" cx="125.0" cy="60.0" r="3.5"/><circle class="endpt" cx="80.0" cy="15.0" r="3.5"/><circle class="endpt" cx="35.0" cy="60.0" r="3.5"/><circle class="endpt" cx="80.0" cy="105.0" r="3.5"/>
+<path class="arr" d="M80 115V160" marker-end="url(#nbm1)"/><text x="90" y="142">f₄</text>
+<circle class="f0" fill="none" cx="80" cy="210" r="40"/><text x="134" y="194">S¹</text><circle class="endpt" cx="120" cy="210" r="3.5"/><text class="dim" x="128" y="214">1</text>
+<line class="f0" x1="260" x2="560" y1="60" y2="60"/><text x="580" y="65">ℝ</text><circle class="endpt" cx="275" cy="60" r="3.5"/><text class="dim" x="275" y="82" text-anchor="middle">−3</text><circle class="endpt" cx="320" cy="60" r="3.5"/><text class="dim" x="320" y="82" text-anchor="middle">−2</text><circle class="endpt" cx="365" cy="60" r="3.5"/><text class="dim" x="365" y="82" text-anchor="middle">−1</text><circle class="endpt" cx="410" cy="60" r="3.5"/><text class="dim" x="410" y="82" text-anchor="middle">0</text><circle class="endpt" cx="455" cy="60" r="3.5"/><text class="dim" x="455" y="82" text-anchor="middle">1</text><circle class="endpt" cx="500" cy="60" r="3.5"/><text class="dim" x="500" y="82" text-anchor="middle">2</text><circle class="endpt" cx="545" cy="60" r="3.5"/><text class="dim" x="545" y="82" text-anchor="middle">3</text>
+<path class="arr" d="M410 95V160" marker-end="url(#nbm1)"/><text x="420" y="132">f</text>
+<circle class="f0" fill="none" cx="410" cy="210" r="40"/><text x="464" y="194">S¹</text><circle class="endpt" cx="450" cy="210" r="3.5"/><text class="dim" x="458" y="214">1</text>
+</svg>
+<figcaption>La fibra del \(1\) (en verde) bajo \(f_4\) son cuatro puntos, y bajo \(f\colon\mathbb R\to S^1\) son los enteros. Una transformación de cubierta queda determinada por la imagen de un punto de la fibra.</figcaption>
+</figure>
+<p>Así que, al menos en estos ejemplos, las transformaciones de cubierta relacionan todo lo que se ha visto hasta ahora: el cubriente, el grupo fundamental del espacio base y el subgrupo asociado al cubriente; además hay la acción de un grupo y hay geometría. Las transformaciones de cubierta condensan casi todo lo que se ha visto hasta el momento.</p>
+<h4>Una transformación de cubierta queda determinada por un punto</h4>
+<p>Otra observación muy útil es la siguiente. Una transformación de cubierta \(f\) de \(p\colon\tilde X\to X\) se puede pensar como un levantamiento de la misma proyección cubriente \(p\) a sí misma:
+\[
+  \begin{array}{ccc}
+    & & \tilde X\\[2pt]
+    & {\scriptstyle f}\nearrow & \big\downarrow{\scriptstyle p}\\[2pt]
+    \tilde X & \xrightarrow{\ p\ } & X
+  \end{array}
+\]
+Y se sabe que este levantamiento es único una vez que se levanta un punto base: si se tiene un punto base \(\tilde x_0\in\tilde X\) y se escoge a dónde mandarlo, digamos a algún \(y\in p^{-1}(x_0)\), donde \(x_0=p(\tilde x_0)\), la función \(f\) queda completamente determinada por la unicidad del levantamiento de funciones (Proposición 3.12). Esto es siempre que se suponga que \(\tilde X\) es arco-conexo, pero eso se ha estado suponiendo siempre, porque esencialmente se estudian puros cubrientes arco-conexos. Se tiene entonces la siguiente proposición, que se demostró así, con las manos.</p>
+<div class="thm"><b>Proposición 3.28.</b> <i>Si \(g,f\colon\tilde X\to\tilde X\) son transformaciones de cubierta tales que existe \(x\in\tilde X\) con \(g(x)=f(x)\), entonces \(g=f\).</i></div>
+<p>Esto es súper interesante: para que dos transformaciones de cubierta sean iguales basta que coincidan en un solo punto. Esta proposición es súper importante y se va a estar utilizando posteriormente.</p>
+<h4>Cubrientes normales</h4>
+<div class="def"><b>Definición 3.29 (cubriente normal).</b> Un cubriente \(p\colon\tilde X\to X\) es <i>normal</i> si para todo \(x\in X\) y para cualesquiera \(\tilde x,\tilde x'\in p^{-1}(x)\) existe una transformación de cubierta \(f\colon\tilde X\to\tilde X\) tal que \(f(\tilde x)=\tilde x'\).</div>
+<p>Es decir, un cubriente es normal si el grupo de transformaciones de cubierta actúa transitivamente en todas las fibras. Ya se tienen ejemplos de cubrientes normales: todos los cubrientes del círculo de los ejemplos anteriores son normales. En el ejemplo de \(f_4\), dados cualesquiera dos de los puntos de la fibra siempre existe una transformación de cubierta que manda uno en el otro: nada más hay que girar el primer punto hasta el otro. Lo mismo pasa con el cubriente \(\mathbb R\to S^1\): dados dos enteros, la traslación por su diferencia es una transformación de cubierta que lleva uno en el otro.</p>
+<p>En el próximo video se demuestra una proposición que caracteriza cuándo un cubriente es normal, y eso en automático va a dar ejemplos de cubrientes que no son normales.</p>
+<div class="erratas"><h4>Observaciones y erratas del video</h4><ul>
+  <li><a href="https://www.youtube.com/watch?v=pfpSL5NvOXk&amp;t=493" target="_blank" rel="noopener">8:13</a> Para fijar la transformación de cubierta se escoge un punto «\(y\in f^{-1}(x_0)\)» (y de palabra se dice lo mismo); debe ser \(y\in p^{-1}(x_0)\), un punto en la fibra de \(x_0=p(\tilde x_0)\).</li>
+</ul></div>
+
+<p class="nbsrc">Notas basadas en el video. Fuente en LaTeX: <a href="notas/transformaciones-de-cubierta.tex">transformaciones-de-cubierta.tex</a>.</p>
